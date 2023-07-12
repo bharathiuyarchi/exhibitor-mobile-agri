@@ -1,0 +1,26 @@
+.OTP-box {
+    max-width: 540px;
+    margin: auto;
+    margin-top: 100px;
+
+}
+.title{
+    margin-bottom: 30px;
+}
+
+.form-title {
+    font-family: 'Barlow';
+    font-style: normal;
+    color: #389AE0;
+    font-size: 30px;
+    line-height: 58px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.sub-title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+}

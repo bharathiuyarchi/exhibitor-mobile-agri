@@ -1,0 +1,64 @@
+
+<nav>
+    <div class="back">
+        <backbutton></backbutton>
+
+    </div>
+    <h1 class="welcome">Add Sub-User</h1>
+    <div class="back" style="visibility: hidden;">
+        <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="#389AE0" />
+        </svg>
+
+    </div>
+</nav>
+<div class="main-container">
+    <form [formGroup]="createsubuser" (submit)="submit_subhost()">
+        <div class="form">
+            <div>
+                <label> Name :</label>
+                <input type="text" placeholder="Enter Sub-User name" formControlName="contactName">
+            </div>
+
+            <div>
+                <label>Email ID :</label>
+                <input type="email" placeholder="Enter Your Email ID" formControlName="email">
+            </div>
+
+            <div>
+                <label> Phone Number :</label>
+                <input type="email" placeholder="Enter Your Phone Number" formControlName="mobileNumber">
+            </div>
+
+            <div>
+                <label>User Role :</label>
+                <div class="dropdown" (click)="$event.stopPropagation()">
+                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
+                        Select Role
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><label class="dropdown-item" for="Stock-Manager"><input type="checkbox" id="Stock-Manager"
+                                    value="Stock-Manager" [checked]="is_checked('Stock-Manager')"
+                                    (change)="sellerRole($event)">
+                                <span> Stock Manager </span></label></li>
+                        <li><label class="dropdown-item" for="Account-Manager"><input type="checkbox"
+                                    id="Account-Manager" value="Account-Manager"
+                                    [checked]="is_checked('Account-Manager')" (change)="sellerRole($event)">
+                                <span> Account Manager </span></label></li>
+                        <li><label class="dropdown-item" for="Delivery-Excutive"><input type="checkbox"
+                                    id="Delivery-Excutive" value="Delivery-Excutive"
+                                    [checked]="is_checked('Delivery-Excutive')" (change)="sellerRole($event)">
+                                <span> Delivery Excutive </span></label></li>
+                        <li><label class="dropdown-item" for="Loading-Manager"><input type="checkbox"
+                                    id="Loading-Manager" value="Loading-Manager"
+                                    [checked]="is_checked('Loading-Manager')" (change)="sellerRole($event)">
+                                <span> Loading Manager </span></label></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="post-btn">
+                <button>Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

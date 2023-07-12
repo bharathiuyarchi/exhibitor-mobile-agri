@@ -1,0 +1,106 @@
+<div class="main-title">
+    <div class="page-title">
+        <span>Intimation buyer </span>
+    </div>
+    <button class="btn add-button">
+
+    </button>
+</div>
+<div class="container-fluid">
+    <!-- mainpage -->
+    <div class="main-page">
+        <table>
+            <tr class="tb-heading">
+                <td>S.No</td>
+                <td>Date</td>
+                <td>Stream Time</td>
+                <td>Streaming Name</td>
+                <td>Post Count</td>
+                <td>Net Buyers</td>
+                <td>Status</td>
+            </tr>
+            <tr *ngFor="let value of data; let i = index">
+                <td>{{ i + 1 + this.page * 10 }}</td>
+                <td>{{ value.streamingDate_time | date }}</td>
+                <td>
+                    {{ value.startTime | date : "hh:mm a" }} -
+                    {{ value.endTime | date : "hh:mm a" }}
+                </td>
+                <td routerLink="buyerview" [queryParams]="{id: value._id}">
+                    {{ value.streamName }}
+                </td>
+                <td (click)="show(value)" class="link">
+                    {{ value.No_Of_Post }}
+                </td>
+                <td>{{ value.aggregatedBuyers }}</td>
+                <td>{{ value.status }}</td>
+            </tr>
+        </table>
+        <div class="pagenation">
+            <div class="prev">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </div>
+            <div class="page-number"></div>
+            <div class="next">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popup -->
+
+<div class="popup" *ngIf="showPopup === 1">
+    <div class="dummy" (click)="close()"></div>
+    <div class="popup-container">
+        <div class="popup-close" (click)="close()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        <h3>{{ streamDatas.streamName }}</h3>
+        <table>
+            <tr class="tb-heading">
+                <td>Product</td>
+                <td>Posted Kg</td>
+                <td>Booked Kg</td>
+            </tr>
+            <tr *ngFor="let val of streamDatas; let i = index">
+                <td>{{ val.productName }}</td>
+                <td>{{ val.PostedKg }} Kg</td>
+                <td>{{ val.Bookedkg }} Kg</td>
+            </tr>
+        </table>
+
+        <div class="pagenation">
+            <button class="prev page-btn" [disabled]="page==0" (click)="pagination('prev')">
+                <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    [ngClass]="page==0?'disable-svg':''">
+                    <path
+                        d="M11.58 0.460035C11.8557 0.746552 12.0063 1.13079 11.9988 1.52831C11.9913 1.92584 11.8263 2.30412 11.54 2.58003L3.66401 10L11.54 17.42C11.6887 17.5549 11.8088 17.7183 11.8932 17.9004C11.9776 18.0825 12.0246 18.2798 12.0314 18.4804C12.0382 18.681 12.0046 18.881 11.9327 19.0684C11.8608 19.2558 11.752 19.4269 11.6127 19.5715C11.4735 19.7161 11.3066 19.8313 11.122 19.9102C10.9375 19.9892 10.7389 20.0303 10.5382 20.031C10.3374 20.0318 10.1386 19.9923 9.95336 19.9149C9.76816 19.8374 9.6004 19.7235 9.46001 19.58L0.460015 11.08C0.314842 10.9401 0.199369 10.7724 0.120498 10.5868C0.0416265 10.4012 0.000976562 10.2017 0.000976562 10C0.000976562 9.7984 0.0416265 9.59884 0.120498 9.41328C0.199369 9.22772 0.314842 9.05996 0.460015 8.92003L9.46001 0.420035C9.74653 0.144374 10.1308 -0.00625661 10.5283 0.00124382C10.9258 0.00874426 11.3041 0.173762 11.58 0.460035Z"
+                        fill="#2192FF" />
+                </svg>
+
+            </button>
+            <p class="page-no">1</p>
+            <button class="prev page-btn" [disabled]="!next" (click)="pagination('next')">
+                <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    [ngClass]="!next?'disable-svg':''">
+                    <path
+                        d="M1.41998 20.54C1.14432 20.2534 0.993693 19.8692 1.00119 19.4717C1.00869 19.0742 1.17371 18.6959 1.45998 18.42L9.33598 11L1.45998 3.57997C1.31129 3.44509 1.19119 3.28175 1.10679 3.0996C1.02239 2.91746 0.975403 2.72023 0.968624 2.5196C0.961846 2.31897 0.995409 2.11901 1.06732 1.93159C1.13924 1.74417 1.24804 1.57308 1.38729 1.42848C1.52654 1.28388 1.69339 1.1687 1.87797 1.08977C2.06254 1.01083 2.26109 0.96975 2.46183 0.968957C2.66258 0.968163 2.86144 1.00767 3.04664 1.08514C3.23183 1.16261 3.3996 1.27647 3.53998 1.41997L12.54 9.91997C12.6852 10.0599 12.8006 10.2276 12.8795 10.4132C12.9584 10.5988 12.999 10.7983 12.999 11C12.999 11.2016 12.9584 11.4012 12.8795 11.5867C12.8006 11.7723 12.6852 11.94 12.54 12.08L3.53999 20.58C3.25347 20.8556 2.86923 21.0063 2.47171 20.9988C2.07418 20.9913 1.6959 20.8262 1.41998 20.54Z"
+                        fill="#2192FF" />
+                </svg>
+
+            </button>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,209 @@
+/* mainpage */
+.main-container {
+    /* min-height: 100%; */
+    width: 100%;
+    margin: auto;
+}
+
+.striked {
+    text-decoration: line-through;
+}
+
+table {
+    width: 100%;
+    margin: auto;
+    background-color: white;
+    padding: 10px;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.22);
+    border-radius: 5px !important;
+    overflow: hidden;
+    table-layout: fixed;
+
+}
+
+table>.tb-heading {
+    font-weight: 500;
+    background-color: var(--blue);
+    color: white;
+
+}
+
+table>.tb-heading>td {
+    font-size: 16px;
+}
+
+table>tr>td {
+    height: 50px;
+    min-width: 30% !important;
+    padding-left: 20px;
+    border-bottom: solid rgba(128, 128, 128, 0.250) 1px;
+}
+
+
+
+
+.action {
+    display: flex;
+    align-items: center;
+    min-width: fit-content !important;
+}
+
+.action button {
+    min-width: 100px;
+    border: none;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.set-btn {
+    background-color: #389AE0;
+}
+
+.action button p {
+    margin-left: 5px;
+}
+
+.time-btn,
+.video-btn {
+    background-color: var(--green);
+}
+
+.page-btn,
+.page-no {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagenation {
+    width: fit-content;
+    margin: 40px auto 20px auto;
+    display: flex;
+    background: #F3F7FF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.page-btn {
+    border: none;
+    width: 50px !important;
+}
+
+.page-no {
+    background-color: var(--blue);
+    color: white;
+    border-radius: 5px;
+    border: solid var(--blue) 3px;
+}
+
+
+/* popup */
+.popup-container {
+    background-color: white;
+    width: 500px;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.popup-container h3 {
+    color: var(--blue);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.popup-container .select {
+    width: fit-content;
+    margin: 20px auto;
+    display: flex;
+}
+
+.select span {
+    margin: 0 20px;
+    display: flex;
+    max-width: fit-content;
+    align-items: center;
+}
+
+.select span label {
+    margin-left: 5px;
+}
+
+.set-time,
+.upload-video {
+    width: 90%;
+    margin: auto;
+}
+
+.set-time div,
+.upload-video div {
+    display: flex;
+    margin: 15px 0;
+}
+
+.set-time div label,
+.upload-video div label {
+    width: 40%;
+}
+
+.set-time div input,
+.upload-video div div {
+    width: 50%;
+    padding: 3px;
+    background: #FAFAFA;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    border: none;
+}
+
+.upload-video div div {
+    display: flex;
+    margin: 0 !important;
+    box-shadow: none !important;
+    align-items: flex-end;
+
+}
+
+.upload-video div div p {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.upload-video div div label {
+    min-width: fit-content;
+    background: #FAFAFA;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.uploaded-video {
+    margin-left: 40% !important;
+    width: 50%;
+}
+
+.uploaded-video video {
+    width: 100%;
+}
+
+.submit-btn {
+    width: fit-content;
+    margin: 30px auto 20px auto;
+}
+
+.submit-btn button {
+    background-color: var(--green);
+    border: none;
+    color: white;
+    padding: 5px 25px;
+    border-radius: 3px;
+}

@@ -1,0 +1,71 @@
+<!-- <div class="product-view" *ngIf="streamDetails !=null">
+    <div class="stream-title">
+        <p>{{streamDetails.streamName}}</p>
+    </div>
+    <div class="proudct-list">
+
+        <div class="row" style="margin:0;">
+            <div style="padding:0;" class="col-6" *ngFor="let item of streamProduct; index as i">
+                <div class="single-product">
+                    <img src="{{baseURL+'/'+item.productImage}}" alt="">
+                    <p class="product-title"><span>{{item.productTitle}}</span> <span
+                            *ngIf="item.streamStart !=null && item.streamEnd==null">{{item.offerPrice |
+                            currency:"INR"}}</span> </p>
+
+                    <p class="cart-details" >
+                        <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="path-1-inside-1_1028_2255" fill="white">
+                                <rect width="16" height="4.5" rx="0.5" />
+                            </mask>
+                            <rect width="16" height="4.5" rx="0.5" stroke="#48D391" stroke-width="2"
+                                mask="url(#path-1-inside-1_1028_2255)" />
+                            <mask id="path-2-inside-2_1028_2255" fill="white">
+                                <rect x="0.799988" y="4" width="14.4" height="10.4" rx="0.5" />
+                            </mask>
+                            <rect x="0.799988" y="4" width="14.4" height="10.4" rx="0.5" stroke="#48D391"
+                                stroke-width="2" mask="url(#path-2-inside-2_1028_2255)" />
+                            <rect x="9.41992" y="0.5" width="6.12727" height="3" transform="rotate(90 9.41992 0.5)"
+                                fill="white" stroke="#48D391" />
+                        </svg>
+                        <span style="margin-left: 10px;"> Sold- 100/{{item.quantity}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="container-fluid product-lists" >
+    <div class="row product-row" style="padding: 0;margin:0;" *ngIf="streamDetails !=null">
+        <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12" *ngFor="let item of streamProduct;index as i" style="height: 96px;    padding: 0 4px 8px 8px;">
+            <div class="product-details">
+                <div class="row" style="padding: 0;margin:0">
+                    <div class="col-3 image-view-medium" style="margin:0">
+                        <img [src]="baseURl+'/'+item.image" alt="">
+                    </div>
+                    <div class="col-4 title-views" style="padding: 0;margin:0">
+                        <p (click)="productView(item)" class="product-title">{{item.productTitle}}
+                            <span *ngIf="item.bookingAmount=='yes'">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.5 9.5L9.52733 9.48667C9.61282 9.44396 9.70875 9.42664 9.80378 9.43677C9.8988 9.4469 9.98893 9.48404 10.0635 9.54381C10.1381 9.60357 10.1939 9.68345 10.2245 9.77399C10.2551 9.86453 10.2591 9.96193 10.236 10.0547L9.764 11.9453C9.74076 12.0381 9.74463 12.1356 9.77513 12.2263C9.80563 12.3169 9.86149 12.3969 9.93609 12.4568C10.0107 12.5166 10.1009 12.5538 10.196 12.564C10.2911 12.5741 10.3871 12.5568 10.4727 12.514L10.5 12.5M16 10C16 10.7879 15.8448 11.5681 15.5433 12.2961C15.2417 13.0241 14.7998 13.6855 14.2426 14.2426C13.6855 14.7998 13.0241 15.2417 12.2961 15.5433C11.5681 15.8448 10.7879 16 10 16C9.21207 16 8.43185 15.8448 7.7039 15.5433C6.97595 15.2417 6.31451 14.7998 5.75736 14.2426C5.20021 13.6855 4.75825 13.0241 4.45672 12.2961C4.15519 11.5681 4 10.7879 4 10C4 8.4087 4.63214 6.88258 5.75736 5.75736C6.88258 4.63214 8.4087 4 10 4C11.5913 4 13.1174 4.63214 14.2426 5.75736C15.3679 6.88258 16 8.4087 16 10ZM10 7.5H10.0053V7.50533H10V7.5Z"
+                                        stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </p>
+                        <p class="product-title">{{item.stream_cart}}/{{item.stream_checkout}}/{{item.quantity}} KG</p>
+                    </div>
+                    <div class="col-5 price-views" style="padding: 0;margin:0">
+                        <p class="price">{{item.offerPrice | currency:'INR'}} / <sub
+                                style="text-decoration:line-through;">{{item.marketPlace|currency
+                                :"INR"}}</sub></p>
+                        <div class="add-t-cart" #view_change>
+                            <!-- <a class="add-to-cart-icon" *ngIf="!item.get('add_to_cart')?.value"
+                                (click)="add_to_cart(item,view_change)">Add to cart</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

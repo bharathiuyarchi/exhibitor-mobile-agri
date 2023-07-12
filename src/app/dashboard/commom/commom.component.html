@@ -1,0 +1,20 @@
+<div class="container-fuild">
+    <div class="row">
+        <div class="col-12">
+            <div class="dashboard-box">
+                <div class="sidebar-dash" *ngIf="headerShow =='show'" [ngClass]="!sideBar?'hidesidebar':'showsidebar'">
+                    <div class="sidebar">
+                        <app-sidebar></app-sidebar>
+                    </div>
+                </div>
+                <div class="dash-box" [ngClass]="headerShow=='hide'?'fullview':''">
+                    <main class="main-box">
+                        <div class="main">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

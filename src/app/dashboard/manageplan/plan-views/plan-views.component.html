@@ -1,0 +1,59 @@
+<div class="main-container" [ngStyle]="stream !=null?{'justify-content': 'center'}:{}">
+    <div class="plan-details" *ngIf="plan_details !=null">
+        <div class="back-button"><backbutton></backbutton>   <h3>{{plan_details.planName}}</h3></div>
+      
+        <div class="detail-content">
+            <div *ngIf="stream ==null">
+                <label>Duration :</label>
+                <p>{{plan_details.Duration}} Minutes</p>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Host Per Stream :</label>
+                <p>{{plan_details.no_of_host}}</p>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Number Of Stream :</label>
+                <p>{{plan_details.numberofStream}}</p>
+            </div>
+
+            <div>
+                <label>Participants Count :</label>
+                <p>{{plan_details.numberOfParticipants}} </p>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Validity Of Plan :</label>
+                <p>{{plan_details.validityofplan}} <b style="font-size:11px;"> days</b></p>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Chat :</label>
+                <p>{{plan_details.chatNeed}}</p>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Commission :</label>
+                <td>{{plan_details.commition_value}} {{plan_details.commision}}</td>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Post Per Stream :</label>
+                <p>{{plan_details.numberofStream}}</p>
+            </div>
+
+            <div *ngIf="stream ==null">
+                <label>Stream Expiry :</label>
+                <td>30 days</td>
+            </div>
+        </div>
+
+        <div class="botton-content">
+            <h5> {{plan_details.salesPrice|currency:'INR'}}<sub>/ {{plan_details.regularPrice|currency:"INR"}}</sub>
+            </h5>
+            <button (click)="pay_now()">Pay
+                Now</button>
+        </div>
+    </div>
+</div>

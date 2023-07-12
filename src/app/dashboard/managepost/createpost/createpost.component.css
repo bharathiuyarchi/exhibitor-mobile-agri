@@ -1,0 +1,107 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+
+.back {
+    display: flex;
+    align-items: center;
+}
+
+.form div .quantity {
+    flex-direction: row;
+    margin-bottom: 0;
+}
+
+.quantity input {
+    width: 80%;
+    box-shadow: -0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.quantity select {
+    width: 20%;
+    box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.25);
+    padding-left: 10px;
+    /* margin-left: -10px; */
+}
+
+.description {
+    height: 100px;
+    margin-bottom: 0 !important;
+}
+
+::placeholder.description {
+    display: flex;
+    align-items: flex-start;
+}
+
+.fontstyle {
+    background: #C7C7C7;
+    padding: 10px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    flex-direction: row;
+    margin-bottom: 0 !important;
+}
+
+.radio-button {
+    flex-direction: initial !important;
+    margin-left: 10px;
+}
+
+.upload-files .choose-file label{
+    background: gray;
+    padding: 8px 24px;
+    border-radius: 7px;
+    margin-right: 10px;
+}
+.uploaded-images .image{
+    width: 100px;
+}
+
+.fontstyle svg {
+    margin: 0 10px;
+}
+
+.quantity div {
+    display: flex;
+    flex-direction: row;
+}
+
+.upload,
+.upload-file {
+    padding: 0 !important;
+    height: fit-content;
+}
+
+.quantity a {
+    margin-left: 5px;
+}
+
+.upload {
+    padding: 15px;
+}
+
+input[type="file"]::file-selector-button {
+    background: #878787;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn {
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: row;
+    margin-bottom: 50px !important;
+}
+
+.login-btn {
+    margin: 0px 0;
+}
+
+.form {
+    padding: 0 10px;
+}

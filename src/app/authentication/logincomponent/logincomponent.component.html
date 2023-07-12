@@ -1,0 +1,57 @@
+<div class="main">
+    <header>
+        <div class="logo">
+            <img src="../../assets/images/logo.png" width="100px">
+
+
+        </div>
+        <div class="change-user">
+            <a class="sign-in-header" [routerLink]="['/register']">
+                <span>Sign Up </span>
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M11.1818 7.09089V3.45452C11.1818 2.87587 10.9519 2.32092 10.5428 1.91174C10.1336 1.50257 9.57865 1.27271 9 1.27271H3.18182C2.60316 1.27271 2.04821 1.50257 1.63904 1.91174C1.22987 2.32092 1 2.87587 1 3.45452V16.5454C1 17.1241 1.22987 17.679 1.63904 18.0882C2.04821 18.4974 2.60316 18.7273 3.18182 18.7273H9C9.57865 18.7273 10.1336 18.4974 10.5428 18.0882C10.9519 17.679 11.1818 17.1241 11.1818 16.5454V12.9091M14.0909 12.9091L17 9.99998M17 9.99998L14.0909 7.09089M17 9.99998H4.63636"
+                        stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <div class="welcome-content">
+        <h1 class="welcome">Welcome</h1>
+        <p>Sign in to access Your Virtual Shop</p>
+    </div>
+    <form (submit)="register_now()" [formGroup]="Login">
+        <div class="form">
+            <div>
+                <label for="mobile-number">Email or phone :</label>
+                <input type="text" name="" id="mobile-number" placeholder="Email or phone" formControlName="mobile">
+            </div>
+            <div class="form-error">
+                <label *ngIf="submitted">Enter Email or Phone !</label>
+            </div>
+            <div>
+                <label for="password">Password :</label>
+                <input type="password" name="" id="password" placeholder="Password" formControlName="password">
+                <a class="forget-password" [routerLink]="['/forgot']">Forget Passowrd !</a>
+            </div>
+            <div class="form-error">
+                <label *ngIf="submitted">Invalid Password !</label>
+            </div>
+            <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage}}</label>
+
+            <div class="login-btn btn">
+                <button class="green-btn ">Log In</button>
+            </div>
+        </div>
+
+    </form>
+
+    <p class="sign-up">Already Registered? <a [routerLink]="['/already-user']">Sign in</a></p>
+
+
+</div>

@@ -1,0 +1,290 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.change-user {
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: pointer;
+
+}
+
+.change-user img {
+  margin-bottom: -5px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #FAFAFA;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+}
+
+.heading p {
+  margin: 0 !important;
+  margin-left: 5px !important;
+  color: var(--blue);
+}
+
+/* products */
+.products-container {
+
+  /* height: 90vh; */
+  /* overflow-y: scroll; */
+}
+
+.view-icons span {
+
+  width: auto !important;
+}
+
+.products {
+  padding: 10px;
+  border-bottom: 1px solid #E7E9ED;
+}
+
+.products p {
+  margin-bottom: 0;
+}
+
+.products div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.products div span {
+  display: flex;
+  align-items: center;
+}
+
+.products div span:first-child {
+  width: 150px;
+
+}
+
+.date,
+.quantity,
+.price {
+  width: 100px;
+}
+
+.products svg {
+  margin-right: 5px;
+}
+
+.mypost-edit,
+.delete {
+  width: 100px;
+  display: flex;
+  justify-content: end !important;
+}
+
+.date {
+  color: rgba(10, 38, 71, 0.5);
+  font-size: 12px;
+}
+
+sub {
+  text-decoration: line-through;
+  opacity: 70%;
+}
+
+.row-one {
+  margin-top: 10px !important;
+}
+
+.row-one .price,
+.row-one .quantity {
+  width: 30%;
+}
+
+.view-icons {
+  width: 20%;
+}
+
+.cancel-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: red;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+
+
+
+/* popup */
+.popup-container {
+  background-color: white;
+  width: 500px;
+  max-width: 500px;
+  padding-bottom: 10px;
+  height: 80%;
+  overflow: auto;
+}
+
+.popup-container ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0;
+  justify-content: space-between;
+  padding-bottom: 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 10000000000;
+  background: white;
+}
+
+.popup-container ul li {
+  width: 25%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.active {
+  color: var(--blue);
+}
+
+.popup-container .details {
+  width: 95%;
+  margin: auto !important;
+}
+
+.popup-container .images,
+.teaser {
+  width: 95%;
+  margin: auto;
+}
+
+.teaser video {
+  width: 100%;
+}
+
+.popup-container .details div {
+  display: flex;
+  margin: 10px 0;
+}
+
+.popup-container .details div label {
+  min-width: 40%;
+}
+
+.popup-container .details div p {
+  max-width: 60%;
+}
+
+.carousel-indicators button {
+  height: 5px;
+  width: 5px;
+  border-radius: 100%;
+}
+
+.post-conatiner {
+  /* max-height: 350px; */
+  overflow-y: scroll;
+}
+
+.post {
+  padding: 5px 0;
+  border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
+  border-top: solid rgba(0, 0, 0, 0.2) 1px;
+
+}
+
+.details tr {}
+
+.post div {
+  display: flex;
+  padding: 3px 0;
+  width: 95%;
+  margin: auto;
+}
+
+.post div span {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+
+}
+
+.product-name {
+  font-size: 14px !important;
+}
+
+.post div span p {
+  font-size: 12px;
+
+}
+
+.post div svg {
+  margin-right: 5px;
+}
+
+.popup-title {
+  color: var(--blue);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.message-confirm {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-btn {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-radius: 3px;
+}
+
+.submit-btn {
+  background-color: var(--green);
+  color: white;
+  border: none;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-radius: 3px;
+}
+
+.confirm-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: 30px auto 20px;
+}

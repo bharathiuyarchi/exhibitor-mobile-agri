@@ -1,0 +1,56 @@
+.main-container .form .dropdown button {
+    width: 100%;
+}
+
+.main-container .form .dropdown ul {
+    width: 102%;
+    margin-left: 0px !important;
+}
+
+.main-container .form .dropdown .dropdown-menu input {
+    width: auto !important;
+    padding: 10px;
+
+}
+
+.main-container .form .dropdown .dropdown-menu label {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.main-container .form .dropdown .dropdown-menu label span {
+    margin-left: 20px;
+}
+
+.form {
+    margin-top: 0px !important;
+
+}
+
+.form>div {
+    margin-top: 18px !important;
+}
+
+.dropdown-toggle {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.post-btn {
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.post-btn button {
+    width: 50%;
+    padding: 10px;
+    background: #48D391;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: none;
+    color: white;
+}

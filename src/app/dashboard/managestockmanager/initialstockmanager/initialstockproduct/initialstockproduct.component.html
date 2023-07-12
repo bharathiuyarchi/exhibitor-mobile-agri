@@ -1,0 +1,48 @@
+<div class="main-title">
+    <div class="page-title">
+        <span *ngIf="Stream !=null">{{Stream.streamName}}
+           / {{Stream.startTime |date:"dd-MM-yyyy"}} - {{Stream.startTime
+            |date:"hh:mm a"}}</span>
+    </div>
+    <button class="btn add-button" [routerLink]="['add']">
+
+    </button>
+</div>
+<div class="container-fluid">
+    <!-- mainpage -->
+    <div class="main-page">
+        <table>
+            <tr class="tb-heading">
+                <td>S.No</td>
+                <td>Product</td>
+                <td>Buyer</td>
+                <td>Confirmed</td>
+                <td>Denied</td>
+                <td>Pending</td>
+                <td>Cancelled</td>
+                <td>Status</td>
+                <td>Confirmed Quantity</td>
+            </tr>
+
+            <tr *ngFor="let val of data; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                    <a routerLink="pendingstock" [queryParams]="{id: val._id}">{{ val.productName }}</a>
+                </td>
+                <td>{{ val.Buyer }}</td>
+                <td>{{ val.confirmed }}</td>
+                <td>{{ val.denied }}</td>
+                <td>{{ val.Pending }}</td>
+                <td>{{ val.Cancelled }}</td>
+                <td>{{ val.status }}</td>
+                <td>{{ val.ConfirmedQuantity }} Kg /{{ val.InitiatedQuantity }} kg</td>
+            </tr>
+        </table>
+
+
+
+    </div>
+
+
+
+</div>

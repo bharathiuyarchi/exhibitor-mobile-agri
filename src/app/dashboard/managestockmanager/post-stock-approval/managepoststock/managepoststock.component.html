@@ -1,0 +1,134 @@
+<div class="main-title">
+    <div class="page-title">
+        <span>Intimation buyer </span>
+    </div>
+    <button class="btn add-button">
+
+    </button>
+</div>
+<div class="container-fluid">
+    <!-- mainpage -->
+    <div class="main-page">
+        <table>
+            <tr class="tb-heading">
+                <td>S.No</td>
+                <td>Date</td>
+                <td>Stream Time</td>
+                <td>Streaming Name</td>
+                <td>Post Count</td>
+                <td>Net Buyers</td>
+                <td>Status</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td [routerLink]="['approval']">10-12-2022</td>
+                <td><span>10.00 A.M</span>-<span>10.15 A.M</span></td>
+                <td>Veggies</td>
+                <td (click)="show(1)">1</td>
+                <td>129</td>
+                <td>Partial</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>10-12-2022</td>
+                <td><span>10.00 A.M</span>-<span>10.15 A.M</span></td>
+                <td>Fruit</td>
+                <td (click)="show(1)">1</td>
+                <td>129</td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>10-12-2022</td>
+                <td><span>10.00 A.M</span>-<span>10.15 A.M</span></td>
+                <td>Veggies/Fruit</td>
+                <td (click)="show(1)">1</td>
+                <td>129</td>
+                <td>Finished</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>10-12-2022</td>
+                <td><span>10.00 A.M</span>-<span>10.15 A.M</span></td>
+                <td>Veggies</td>
+                <td (click)="show(1)">1</td>
+                <td>129</td>
+                <td>Partial</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>10-12-2022</td>
+                <td><span>10.00 A.M</span>-<span>10.15 A.M</span></td>
+                <td>Veggies/Fruit</td>
+                <td (click)="show(1)">1</td>
+                <td>129</td>
+                <td>Finished</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>10-12-2022</td>
+                <td><span>10.00 A.M</span>-<span>10.15 A.M</span></td>
+                <td>Veggies/Fruit</td>
+                <td (click)="show(1)">1</td>
+                <td>129</td>
+                <td>Finished</td>
+            </tr>
+        </table>
+        <div class="pagenation">
+            <div class="prev">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </div>
+            <div class="page-number">
+                <p>1</p>
+            </div>
+            <div class="next">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popup -->
+
+<div class="popup" *ngIf="showPopup === 1">
+    <div class="dummy" (click)="close()"></div>
+    <div class="popup-container">
+        <div class="popup-close" (click)="close();">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        <h3>Veggies/Fruit</h3>
+        <table>
+            <tr class="tb-heading">
+                <td>Product</td>
+                <td>Posted Kg</td>
+                <td>Booked Kg</td>
+            </tr>
+            <tr>
+                <td>Onion</td>
+                <td>1000Kg</td>
+                <td>850Kg</td>
+            </tr>
+            <tr>
+                <td>Onion</td>
+                <td>1000Kg</td>
+                <td>850Kg</td>
+            </tr>
+            <tr>
+                <td>Onion</td>
+                <td>1000Kg</td>
+                <td>850Kg</td>
+            </tr>
+        </table>
+    </div>
+</div>

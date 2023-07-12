@@ -1,0 +1,28 @@
+<div class="main">
+    <header>
+        <div class="logo">
+            <img src="../../assets/images/logo.png" width="100px">
+
+        </div>
+    </header>
+    <div class="welcome-content">
+        <h1 class="welcome">Enter OTP</h1>
+    </div>
+    <form (submit)="verify_otp()" [formGroup]="verifyOTP">
+        <div class="form">
+
+            <div>
+                <label>OTP :</label>
+                <input type="text" name="" id="OTP" placeholder="Enter OTP" formControlName="otp">
+                <a href="#" class="forget-password">Resend OTP !</a>
+            </div>
+            <div class="form-error">
+                <label *ngIf="submitted">Enter OTP !</label>
+                <label *ngIf="errorMessage !=null">{{errorMessage}} !</label>
+            </div>
+            <div class="login-btn btn">
+                <button class="green-btn ">Verify OTP</button>
+            </div>
+        </div>
+    </form>
+</div>

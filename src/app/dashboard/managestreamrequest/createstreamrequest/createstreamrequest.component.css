@@ -1,0 +1,276 @@
+.main-container {
+    margin: auto;
+    padding: 10px 10px 20px;
+}
+
+.main-container .form {
+    margin: auto;
+    max-width: 828px;
+}
+
+.form>div {
+    display: flex;
+    /* margin: 10px 0; */
+}
+
+.form div label {
+    width: 40%;
+}
+
+.form div input,
+.form div select,
+.form div>div,
+.form textarea {
+    width: 60%;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+textarea {
+    padding: 7px;
+    min-height: 100px;
+}
+
+.form select,
+.form input {
+    padding: 7px;
+}
+
+.form div>div {
+    display: flex;
+}
+
+.form>div>div>input {
+    width: 80%;
+    box-shadow: none !important;
+}
+
+.form>div>div>select {
+    width: 20%;
+    box-shadow: none !important;
+
+}
+
+.booking-amount {
+    margin: 20px 0 !important;
+}
+
+.booking-amount label {
+    width: 60% !important;
+}
+
+.booking-amount div {
+    width: 40% !important;
+    box-shadow: none !important;
+}
+
+.booking-amount div span {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.booking-amount div input {
+    box-shadow: none !important;
+    width: fit-content !important;
+    margin-right: 5px;
+}
+
+.choose-file {
+    display: flex;
+    align-items: flex-end;
+}
+
+.choose-file p {
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.choose-file label {
+    padding: 7px 30px;
+    width: 150px !important;
+    background: #878787;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.upload-files div {
+    box-shadow: none !important;
+}
+
+.uploaded-images {
+    display: flex;
+    width: 100% !important;
+    justify-content: flex-end;
+    /* margin-left: 40% !important; */
+    margin-top: 20px !important;
+
+}
+
+.uploaded-images .image {
+    max-width: 80px;
+    position: relative;
+    margin: 0 7PX;
+}
+
+.uploaded-images .image img,
+video {
+    width: 100%;
+    height: 66px !important;
+
+}
+
+.remove-image {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    cursor: pointer;
+}
+
+.post-btn {
+    width: fit-content !important;
+    margin: 25px auto !important;
+}
+
+.post-btn button {
+    background-color: var(--green);
+    color: white;
+    border: none;
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    border-radius: 3px;
+}
+
+.error-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 9px;
+    height: 15px;
+}
+
+.error-message p {
+    width: 60%;
+    color: red;
+    font-weight: bold;
+}
+
+.error-message p span {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.post-form tbody tr td select,
+.post-form tbody tr td input[type='number'],
+.post-form tbody tr td input[type='text'],
+.post-form tbody tr td input[type='time'],
+.post-form tbody tr td input[type='date'],
+.post-form tbody tr td input[type='datetime-local'] {
+    width: 100%;
+    box-shadow: 0 0 2px 2px #b7b2b2;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    font-size: 13px;
+}
+
+.post-form tbody tr td label {
+    padding: 7px;
+    width: 100%;
+}
+
+.post-form tbody tr td button {
+    padding: 8px;
+}
+
+.post-form tbody tr td span:last-child {
+    width: 60%;
+}
+
+.post-form tbody tr {
+    width: 100%;
+    font-size: 13px;
+
+}
+
+.post-form tbody tr td {
+    padding: 8px;
+
+}
+
+.post-form tbody tr td .form-flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 13px;
+    padding: 0 0 0 0;
+    align-items: center;
+}
+
+.post-form tbody tr td .error-message {
+    color: red;
+    text-align: right;
+    margin-bottom: 0;
+    margin-right: 5px;
+    font-weight: 600;
+    height: 24px;
+
+
+}
+
+.edit-image {
+    position: absolute;
+    right: 0;
+    width: 60%;
+    z-index: 10000;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    display: block !important;
+}
+
+.hide-image {
+    display: none;
+}
+
+table {
+    box-shadow: 0 0 0 0 !important;
+}
+
+.btn-primary {
+    background: #2092ff;
+    border: none;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+
+.back {
+    display: flex;
+    align-items: center;
+}
+
+/* #preview-form {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000000000000000000000;
+}
+
+#preview-form .modal-dialog {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+} */

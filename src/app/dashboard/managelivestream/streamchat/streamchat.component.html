@@ -1,0 +1,36 @@
+<div class="mobile-chat">
+    <div class="contant-box" style="height: 283px;">
+        <ol style="padding: 0 14px">
+            <ng-container *ngFor="let item of this.addpro.value;index as i">
+
+                <li class="message-others" *ngIf="item.type=='others'">
+                    <div style="height: 34px;;color: white;border-radius: 50%;display: flex;justify-content: center;align-items: center;width: 34px;"
+                        ngClass="{{item.userType=='buyer' ?'buyer':'supplier'}}">
+                        {{item.userName[0]}}
+                    </div>
+                    <div>
+                        <p>{{item.userName}}</p>
+                        <span style=" word-break: break-word;color: white; ">{{item.text}}</span>
+                    </div>
+                </li>
+                <li class="message-me" *ngIf="item.type=='me'">
+                    <div>
+                        <span style=" word-break: break-word; "> {{item.text}}</span>
+                    </div>
+                </li>
+            </ng-container>
+
+        </ol>
+    </div>
+    <form (submit)="send_now()" *ngIf="!sub.joindedUserBan && sub.chatPermistion">
+        <div class="chat-box-form" style="height: 100%;">
+            <div class="fixed-box" style="padding: 0 0px 7px 14px;">
+                <input style="border-radius: 12px; font-size:12px;padding-left:20px;height: 43px;" type="text"
+                    name="text" id="chat-boxs" [formControl]="type_message" placeholder="Type here ..........">
+                <button type="submit" style="font-size:21px;">
+                    <i class="fa fa-send"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

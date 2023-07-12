@@ -1,0 +1,157 @@
+/* mainpage */
+.main-page {
+    width: 100%;
+}
+
+.mainpage-heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 30px;
+}
+
+.mainpage-heading>h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin: auto;
+    /* margin-top: 30px; */
+    background-color: white;
+    padding: 10px;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.22);
+    border-radius: 5px !important;
+    overflow: hidden;
+}
+
+table>tr>:nth-child(4) {
+    cursor: pointer;
+    max-width: 150px;
+    text-decoration: underline;
+    color: var(--blue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+table>.tb-heading {
+    font-weight: 500;
+    background-color: var(--blue);
+    color: white !important;
+
+}
+
+table>.tb-heading>td {
+    color: white !important;
+    text-decoration: none;
+}
+
+table>.tb-heading>td {
+    font-size: 16px;
+}
+
+table>tr>td {
+    height: 50px;
+    padding-left: 20px;
+    border-bottom: solid rgba(128, 128, 128, 0.250) 1px;
+}
+
+table>tr>.active {
+    color: green;
+    font-weight: 700;
+}
+
+table>tr>.expired {
+    font-weight: 700;
+    opacity: 50%;
+}
+
+.pagenation {
+    display: flex;
+    width: fit-content;
+    margin: 30px auto;
+}
+
+.pagenation>div {
+    height: 40px;
+    width: 40px;
+    background-color: var(--blue);
+    margin: 0 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.page-number {
+    background-color: white !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: context-menu !important;
+}
+
+.pagenation svg {
+    height: 20px;
+    color: white !important;
+}
+
+table>tr>.plan-details {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.plan-details {
+    color: var(--blue);
+}
+
+table>tr>td:nth-child(5) {
+    color: var(--blue);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* popup */
+.dummy {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    overflow-y: hidden;
+}
+
+.popup-container {
+    width: 550px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.popup-container>table {
+    margin-top: 10px;
+}
+
+.popup-container::-webkit-scrollbar {
+    display: none;
+}
+
+.popup-container>h3 {
+    text-align: center;
+    color: var(--blue);
+}
+
+.btndisable {
+    background-color: gray !important;
+    cursor: default !important;
+    opacity: 50%;
+}
+
+.page-number {
+    user-select: none;
+}

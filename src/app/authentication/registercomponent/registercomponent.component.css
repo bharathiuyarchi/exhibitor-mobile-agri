@@ -1,0 +1,33 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.change-user {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.change-user svg {
+    margin-left: 10px;
+}
+
+.form {
+
+    margin: auto;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.btn {
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: row;
+}
+
+.login-btn {
+    margin: 30px 0;
+}

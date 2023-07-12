@@ -1,0 +1,47 @@
+<nav>
+    <div class="back">
+        <backbutton></backbutton>
+
+    </div>
+    <h1 class="welcome">Add Sub-Host</h1>
+    <div class="back" style="visibility: hidden;">
+        <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="#389AE0" />
+        </svg>
+
+    </div>
+</nav>
+<div class="main-container">
+    <form [formGroup]="createsubhost" (submit)="submit_subhost()">
+        <div class="form">
+            <div>
+                <label for="Name">Name :</label>
+                <input id="Name" type="text" placeholder="Enter Sub Host Name" formControlName="contactName">
+            </div>
+
+            <div>
+                <label for="emailId">Email ID :</label>
+                <input id="emailId" type="text" placeholder="Enter Your Email ID" formControlName="email">
+            </div>
+
+            <div>
+                <label for="phoneNumber">Phone Number :</label>
+                <input id="phoneNumber" type="text" placeholder="Enter Your Phone Number"
+                    formControlName="mobileNumber">
+            </div>
+
+            <div>
+                <label for="Role">Role :</label>
+                <select formControlName="sellerRole" id="Role">
+                    <option disabled selected [ngValue]="null">Select Role</option>
+                    <option value="chat/stream">Chat/Stream</option>
+                    <option value="chat">Chat</option>
+                    <option value="stream">Stream</option>
+                </select>
+            </div>
+            <div class="post-btn">
+                <button>Add</button>
+            </div>
+        </div>
+    </form>
+</div>

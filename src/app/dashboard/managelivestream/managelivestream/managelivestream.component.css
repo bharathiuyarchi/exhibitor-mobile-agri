@@ -1,0 +1,144 @@
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #FAFAFA;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+}
+
+.heading {
+    display: flex;
+}
+
+.heading p {
+    margin: 0 !important;
+    margin-left: 5px !important;
+    color: var(--blue);
+}
+
+/* products */
+.products-container {
+
+    /* height: 90vh; */
+    /* overflow-y: scroll; */
+}
+
+.view-icons span {
+
+    width: auto !important;
+}
+
+.view-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end !important;
+}
+
+.products {
+    padding: 10px;
+    border-bottom: 1px solid #E7E9ED;
+}
+
+.products p {
+    margin-bottom: 0;
+}
+
+.products div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.products div span {
+    display: flex;
+    align-items: center;
+}
+
+.products div span:first-child {
+    width: 150px;
+
+}
+
+.date,
+.quantity,
+.price {
+    width: 100px;
+}
+
+.products svg {
+    margin-right: 5px;
+}
+
+.mypost-edit,
+.delete {
+    width: 100px;
+    display: flex;
+    justify-content: end !important;
+}
+
+.date {
+    color: rgba(10, 38, 71, 0.5);
+    font-size: 12px;
+}
+
+sub {
+    text-decoration: line-through;
+    opacity: 70%;
+}
+
+.row-one {
+    margin-top: 10px !important;
+}
+
+.row-one .price,
+.row-one .quantity {
+    width: 30%;
+}
+
+.view-icons {
+    width: 25%;
+}
+
+.cancel-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    font-size: 12px;
+    background: red;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.green-btn {
+    background-color: #48D391;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.blue-btn {
+    background: #389AE0;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+}

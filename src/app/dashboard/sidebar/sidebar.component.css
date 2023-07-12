@@ -1,0 +1,144 @@
+.sidebar {
+    background-color: white;
+    width: 298px;
+    height: 100%;
+}
+
+.Dashboard-button {
+    width: 100%;
+    text-align: left;
+    padding: 11px 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0;
+    font-weight: bold;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+
+}
+
+.Dashboard-button p {
+    margin-bottom: 0;
+}
+
+.Dashboard-button .userNames {
+    width: 72%;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.Dashboard-button .userNames p:first-child {
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+
+.single-menu {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(10, 38, 71, 0.2);
+    border-radius: 0;
+    padding: 10px 12px;
+    font-size: 14px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.rotate-icon .reverce-icon i {
+    transform: rotate(180deg);
+    transition: transform 1s;
+}
+
+.reverce-icon i {
+    transform: rotate(0deg);
+    transition: transform 1s;
+
+}
+
+.single-menu span {
+    margin-left: 10px;
+    width: 88%;
+
+}
+
+.submuenus {
+    display: grid;
+}
+
+.submuenus .single-menu {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(10, 38, 71, 0.2);
+    border-radius: 0;
+    padding: 8px 10px;
+    font-size: 12px;
+    justify-content: space-between;
+}
+
+.submuenus .single-menu i:first-child {
+    margin-right: 20px;
+}
+
+#accordion {
+    background: white;
+}
+
+.arrow-mark {
+    font-size: 19px;
+    color: #2292ff;
+    display: none;
+}
+
+.arrow-mark-down {
+    font-size: 19px;
+    color: black;
+}
+
+.arrow-mark-down-active {
+    transform: rotate(180deg);
+}
+
+.acive-button-menu svg path {
+    stroke: #2092ff;
+}
+
+.acive-button-menu svg path {
+    fill: #2092ff;
+}
+
+.acive-button-menu svg rect {
+    stroke: #2092ff;
+}
+
+.acive-button-menu svg mask {
+    fill: #2092ff;
+}
+
+.acive-button-menu span {
+    color: #2092ff;
+    ;
+}
+
+.acive-button-menu i {
+    display: block;
+}
+
+.closepopup {
+    position: fixed;
+    width: calc(100% - 298px);
+    right: 0;
+    top: 0;
+    height: 100%;
+}

@@ -1,0 +1,93 @@
+<div class="main">
+    <nav>
+        <div class="back">
+            <backbutton></backbutton>
+    
+        </div>
+        <h1 class="welcome">Allot Sub User</h1>
+        <div class="back" style="visibility: hidden;">
+            <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="#389AE0" />
+            </svg>
+    
+        </div>
+    </nav>
+
+    <form [formGroup]="postForm" (submit)="alert_stream()" *ngIf="stream_list !=null && subhost !=null">
+        <div class="form">
+            <div>
+                <label>Stream Name :</label>
+                <p>{{stream_list.streamName}}</p>
+            </div>
+
+            <div>
+                <label>Stream Date :</label>
+                <p>{{stream_list.startTime|date:"dd-MM-yyyy"}}</p>
+            </div>
+
+            <div>
+                <label>Stream Time :</label>
+                <p> {{stream_list.startTime|date:"hh-mm a"}} -
+                    {{stream_list.endTime|date:"hh-mm a"}}</p>
+            </div>
+
+            <div>
+                <label>Chat :</label>
+                <select name="" id="" formControlName="allot_chat">
+                    <option value="my self">My Self</option>
+                    <ng-container *ngFor="let item of subhost.chat">
+                        <option value="{{item._id}}">{{item.contactName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+
+            <div
+                *ngIf="stream_list.purchasedplans.no_of_host == 1 || stream_list.purchasedplans.no_of_host == 2 || stream_list.purchasedplans.no_of_host == 3">
+                <label>Host 1(Primary) :</label>
+                <select name="" id="" formControlName="allot_host_1">
+                    <option value="my self"
+                        *ngIf="postForm.get('allot_host_3')?.value !='my self' && postForm.get('allot_host_2')?.value !='my self'">
+                        My Self</option>
+                    <ng-container *ngFor="let item of subhost.host">
+                        <option
+                            *ngIf="postForm.get('allot_host_3')?.value !=item._id&& postForm.get('allot_host_2')?.value !=item._id"
+                            value="{{item._id}}">{{item.contactName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div *ngIf="stream_list.purchasedplans.no_of_host == 2 || stream_list.purchasedplans.no_of_host == 3">
+                <label>Host 2 :</label>
+                <select name="" id="" formControlName="allot_host_2">
+                    <option value="my self"
+                        *ngIf="postForm.get('allot_host_3')?.value !='my self' && postForm.get('allot_host_1')?.value !='my self'">
+                        My Self</option>
+                    <ng-container *ngFor="let item of subhost.host">
+                        <option
+                            *ngIf="postForm.get('allot_host_3')?.value !=item._id&& postForm.get('allot_host_1')?.value !=item._id"
+                            value="{{item._id}}">{{item.contactName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div *ngIf="stream_list.purchasedplans.no_of_host == 3">
+                <label>Host 3 :</label>
+                <select name="" id="" formControlName="allot_host_3">
+                    <option value="my self"
+                        *ngIf="postForm.get('allot_host_2')?.value !='my self' && postForm.get('allot_host_1')?.value !='my self'">
+                        My Self</option>
+                    <ng-container *ngFor="let item of subhost.host">
+                        <option
+                            *ngIf="postForm.get('allot_host_2')?.value !=item._id&& postForm.get('allot_host_1')?.value !=item._id "
+                            value="{{item._id}}">{{item.contactName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="login-btn btn">
+                <button type="submit" class="green-btn ">Submit</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+</div>

@@ -1,0 +1,409 @@
+<app-header></app-header>
+
+<div class="main-container">
+    <div class="main-title">
+        <div class="page-title">
+            <svg width="26" height="19" viewBox="0 0 26 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M17.6154 7.61111L23.4246 1.66741C23.5537 1.53549 23.7181 1.44568 23.8971 1.4093C24.076 1.37293 24.2615 1.39163 24.4301 1.46305C24.5986 1.53446 24.7427 1.65538 24.8442 1.81054C24.9456 1.9657 24.9998 2.14814 25 2.33481V16.6652C24.9998 16.8519 24.9456 17.0343 24.8442 17.1895C24.7427 17.3446 24.5986 17.4655 24.4301 17.537C24.2615 17.6084 24.076 17.6271 23.8971 17.5907C23.7181 17.5543 23.5537 17.4645 23.4246 17.3326L17.6154 11.3889M3.76923 18H14.8462C15.5806 18 16.285 17.7015 16.8043 17.1701C17.3236 16.6388 17.6154 15.9181 17.6154 15.1667V3.83333C17.6154 3.08189 17.3236 2.36122 16.8043 1.82986C16.285 1.29851 15.5806 1 14.8462 1H3.76923C3.03479 1 2.33042 1.29851 1.81109 1.82986C1.29176 2.36122 1 3.08189 1 3.83333V15.1667C1 15.9181 1.29176 16.6388 1.81109 17.1701C2.33042 17.7015 3.03479 18 3.76923 18Z"
+                    stroke="#389AE0" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <span style="margin-left: 5px;font-weight: bold;">Live Stream - {{sortForm}}</span>
+        </div>
+        <div class="dropdown">
+            <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                style="width:170px;border: none;box-shadow: 0 0 1px 2px #d8d4d4a3;padding: 9px;">
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.374 14.6444L18.5998 13.4185C18.7536 13.2647 18.9623 13.1783 19.1798 13.1783C19.3973 13.1783 19.6059 13.2647 19.7598 13.4185C19.9136 13.5724 20 13.781 20 13.9985C20 14.216 19.9136 14.4247 19.7598 14.5785L17.1235 17.2147C17.0092 17.3299 16.8632 17.4084 16.7041 17.4403C16.545 17.4722 16.3801 17.456 16.2302 17.3938C16.0804 17.3316 15.9524 17.2262 15.8627 17.091C15.7729 16.9558 15.7255 16.797 15.7263 16.6348V0.817239C15.7517 0.616686 15.8494 0.432293 16.0011 0.298635C16.1528 0.164977 16.348 0.0912342 16.5501 0.0912342C16.7523 0.0912342 16.9475 0.164977 17.0992 0.298635C17.2508 0.432293 17.3485 0.616686 17.374 0.817239V14.6444ZM0.726005 1.64766C0.525452 1.62224 0.341059 1.52454 0.207401 1.37287C0.0737428 1.2212 0 1.02599 0 0.82383C0 0.621672 0.0737428 0.426458 0.207401 0.27479C0.341059 0.123122 0.525452 0.0254188 0.726005 0H12.5892C12.7897 0.0254188 12.9741 0.123122 13.1078 0.27479C13.2414 0.426458 13.3152 0.621672 13.3152 0.82383C13.3152 1.02599 13.2414 1.2212 13.1078 1.37287C12.9741 1.52454 12.7897 1.62224 12.5892 1.64766H0.726005ZM0.726005 9.55642C0.525452 9.531 0.341059 9.4333 0.207401 9.28163C0.0737428 9.12997 0 8.93475 0 8.73259C0 8.53044 0.0737428 8.33522 0.207401 8.18355C0.341059 8.03189 0.525452 7.93418 0.726005 7.90876H12.5892C12.7897 7.93418 12.9741 8.03189 13.1078 8.18355C13.2414 8.33522 13.3152 8.53044 13.3152 8.73259C13.3152 8.93475 13.2414 9.12997 13.1078 9.28163C12.9741 9.4333 12.7897 9.531 12.5892 9.55642H0.726005ZM0.726005 17.4652C0.525452 17.4398 0.341059 17.3421 0.207401 17.1904C0.0737428 17.0387 0 16.8435 0 16.6414C0 16.4392 0.0737428 16.244 0.207401 16.0923C0.341059 15.9406 0.525452 15.8429 0.726005 15.8175H12.5892C12.7897 15.8429 12.9741 15.9406 13.1078 16.0923C13.2414 16.244 13.3152 16.4392 13.3152 16.6414C13.3152 16.8435 13.2414 17.0387 13.1078 17.1904C12.9741 17.3421 12.7897 17.4398 12.5892 17.4652H0.726005Z"
+                        fill="#2192FF" />
+                </svg>
+                Sort By
+            </button>
+            <ul class="dropdown-menu" style="width: 102%;border-radius: 0;padding: 0;">
+                <li><a (click)="sort_byr('All')" [ngClass]="sortForm=='All'?'active':''"
+                        style="padding: 4px 7px;cursor: pointer; text-align: center;" class="dropdown-item">All</a></li>
+                <li><a (click)="sort_byr('Completed')" [ngClass]="sortForm=='Completed'?'active':''"
+                        style="padding: 4px 7px;cursor: pointer; text-align: center;"
+                        class="dropdown-item">Completed</a>
+                </li>
+                <li><a (click)="sort_byr('Waiting')" [ngClass]="sortForm=='Waiting'?'active':''"
+                        style="padding: 4px 7px;cursor: pointer; text-align: center;" class="dropdown-item">Waiting</a>
+                </li>
+                <li><a (click)="sort_byr('Expired')" [ngClass]="sortForm=='Expired'?'active':''"
+                        style="padding: 4px 7px;cursor: pointer; text-align: center;" class="dropdown-item">Expired</a>
+                </li>
+                <li><a (click)="sort_byr('Cancelled')" [ngClass]="sortForm=='Cancelled'?'active':''"
+                        style="padding: 4px 7px;cursor: pointer; text-align: center;"
+                        class="dropdown-item">Cancelled</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="products-container">
+        <div class="products" *ngFor="let item of my_stream; index as i">
+            <div class="row-one">
+                <span class="category" style="width: 100%;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
+                        <path
+                            d="M4.2714 4.60861C3.65136 5.25579 3.19415 6.237 3.03758 7.25579C2.98747 7.58773 2.98747 8.30172 3.03758 8.63366C3.19415 9.65245 3.65136 10.6337 4.2714 11.2788C4.36326 11.3748 4.38622 11.3894 4.45929 11.3894C4.53653 11.3894 4.55741 11.3748 4.81837 11.1159C5.09812 10.8362 5.13361 10.784 5.09603 10.6838C5.0856 10.6566 5.00418 10.5418 4.91441 10.4312C3.73904 8.97187 3.73904 6.91759 4.91441 5.4583C5.00418 5.34765 5.0856 5.23283 5.09603 5.20569C5.13361 5.10548 5.09812 5.05329 4.81837 4.77354C4.55741 4.51467 4.53653 4.50005 4.45929 4.50005C4.38622 4.50005 4.36326 4.51467 4.2714 4.60861Z"
+                            fill="white" />
+                        <path
+                            d="M11.1818 4.77354C11.0294 4.92385 10.8999 5.06999 10.8937 5.09713C10.8749 5.1702 10.9125 5.24744 11.0502 5.41237C12.2715 6.88836 12.2715 9.0011 11.0502 10.4771C10.9125 10.642 10.8749 10.7193 10.8937 10.7923C10.8999 10.8195 11.0294 10.9656 11.1818 11.1159C11.4427 11.3748 11.4636 11.3894 11.5409 11.3894C11.6139 11.3894 11.6369 11.3748 11.7287 11.2788C12.3488 10.6337 12.806 9.65245 12.9626 8.63366C13.0127 8.30172 13.0127 7.58773 12.9626 7.25579C12.806 6.237 12.3488 5.25579 11.7287 4.60861C11.6369 4.51467 11.6139 4.50005 11.5409 4.50005C11.4636 4.50005 11.4427 4.51467 11.1818 4.77354Z"
+                            fill="white" />
+                        <path
+                            d="M10.1609 5.83193C10.1379 5.8361 9.99389 5.96345 9.84358 6.11377C9.58262 6.37264 9.56592 6.39351 9.56592 6.46867C9.56592 6.53339 9.58888 6.58141 9.68283 6.70876C9.95005 7.0741 10.0878 7.50416 10.0878 7.95301C10.0858 8.40187 9.9417 8.83193 9.6703 9.19936C9.58888 9.30792 9.56592 9.35594 9.56592 9.41648C9.56592 9.49164 9.58471 9.51669 9.84149 9.77556C10.1129 10.049 10.1192 10.0532 10.211 10.0532C10.2945 10.0532 10.3133 10.0428 10.3926 9.95928C10.5993 9.73798 10.8603 9.27034 10.9751 8.91752C11.0878 8.56679 11.1192 8.3622 11.1192 7.94466C11.1192 7.62734 11.1108 7.52086 11.0732 7.34759C10.9835 6.92587 10.8227 6.53965 10.6035 6.2098C10.3926 5.89456 10.2883 5.80688 10.1609 5.83193Z"
+                            fill="white" />
+                        <path
+                            d="M5.60737 5.93005C5.40069 6.15134 5.13973 6.61898 5.02491 6.9718C4.91217 7.32253 4.88086 7.52713 4.88086 7.94466C4.88086 8.3622 4.91217 8.56679 5.02491 8.91752C5.13973 9.27034 5.40069 9.73798 5.60737 9.95928C5.6867 10.0428 5.70549 10.0532 5.789 10.0532C5.88086 10.0532 5.88712 10.049 6.15852 9.77556C6.41531 9.51669 6.4341 9.49164 6.4341 9.41648C6.4341 9.35594 6.41113 9.30792 6.3318 9.19936C6.05414 8.82149 5.91217 8.39978 5.91217 7.94466C5.91217 7.48955 6.05414 7.06784 6.3318 6.68997C6.41113 6.58141 6.4341 6.53339 6.4341 6.47285C6.4341 6.39769 6.41531 6.37264 6.15852 6.11377C5.88712 5.84028 5.88086 5.8361 5.789 5.8361C5.70549 5.8361 5.6867 5.84654 5.60737 5.93005Z"
+                            fill="white" />
+                        <path
+                            d="M7.72877 6.72545C7.17762 6.84236 6.74756 7.37681 6.74756 7.94466C6.74756 8.61689 7.32793 9.19727 8.00017 9.19727C8.57428 9.19727 9.10246 8.7672 9.22146 8.20562C9.31123 7.77973 9.19015 7.37681 8.87908 7.06574C8.56593 6.75468 8.15674 6.63359 7.72877 6.72545Z"
+                            fill="white" />
+                    </svg>
+                    <p>{{item.streamName}}</p>
+                </span>
+
+            </div>
+
+            <div class="row-one">
+                <span class="subcategory" style="width: 47%;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
+                        <path
+                            d="M5.08333 3V4.25M10.9167 3V4.25M3 11.75V5.5C3 5.16848 3.1317 4.85054 3.36612 4.61612C3.60054 4.3817 3.91848 4.25 4.25 4.25H11.75C12.0815 4.25 12.3995 4.3817 12.6339 4.61612C12.8683 4.85054 13 5.16848 13 5.5V11.75M3 11.75C3 12.0815 3.1317 12.3995 3.36612 12.6339C3.60054 12.8683 3.91848 13 4.25 13H11.75C12.0815 13 12.3995 12.8683 12.6339 12.6339C12.8683 12.3995 13 12.0815 13 11.75M3 11.75V7.58333C3 7.25181 3.1317 6.93387 3.36612 6.69945C3.60054 6.46503 3.91848 6.33333 4.25 6.33333H11.75C12.0815 6.33333 12.3995 6.46503 12.6339 6.69945C12.8683 6.93387 13 7.25181 13 7.58333V11.75"
+                            stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                    <p style="font-size: 12px;">{{item.streamingDate}} {{item.startTime|date:"hh:mm a"}}</p>
+                </span>
+                <span class="quantity" >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
+                        <path
+                            d="M5.22222 5V3.5C5.22222 3.36739 5.28075 3.24021 5.38494 3.14645C5.48913 3.05268 5.63044 3 5.77778 3H12.4444C12.5918 3 12.7331 3.05268 12.8373 3.14645C12.9415 3.24021 13 3.36739 13 3.5V10.5C13 10.6326 12.9415 10.7598 12.8373 10.8535C12.7331 10.9473 12.5918 11 12.4444 11H10.7778V12.5C10.7778 12.776 10.5278 13 10.2183 13H3.55944C3.48618 13.0004 3.41355 12.9877 3.34573 12.9628C3.27792 12.9379 3.21624 12.9011 3.16425 12.8546C3.11227 12.8082 3.071 12.7529 3.04281 12.6921C3.01462 12.6312 3.00007 12.5659 3 12.5L3.00167 5.5C3.00167 5.224 3.25167 5 3.56056 5H5.22222ZM4.11222 6L4.11111 12H9.66667V6H4.11222ZM6.33333 5H10.7778V9.99999H11.8889V4H6.33333V5ZM5.22222 7.5H8.55556V8.49999H5.22222V7.5ZM5.22222 9.49999H8.55556V10.5H5.22222V9.49999Z"
+                            fill="white" />
+                    </svg>
+
+
+                    <p> {{item.post.length}} / {{item.max_post_per_stream}} </p>
+                </span>
+                <div class="view-icons">
+
+                </div>
+            </div>
+
+            <div class="row-one">
+                <span class="category" style="width: 47%;"> 
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
+                        <mask id="path-2-inside-1_741_946" fill="white">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8 13.25C8 13.25 12 9.45914 12 7.25C12 5.04086 10.2091 3.25 8 3.25C5.79086 3.25 4 5.04086 4 7.25C4 9.45914 8 13.25 8 13.25ZM8 8.45C8.66274 8.45 9.2 7.91274 9.2 7.25C9.2 6.58726 8.66274 6.05 8 6.05C7.33726 6.05 6.8 6.58726 6.8 7.25C6.8 7.91274 7.33726 8.45 8 8.45Z" />
+                        </mask>
+                        <path
+                            d="M8 13.25L7.31212 13.9758L8 14.6277L8.68788 13.9758L8 13.25ZM11 7.25C11 7.53926 10.8546 8.00549 10.5036 8.62888C10.1677 9.22546 9.70676 9.85686 9.22563 10.4457C8.74758 11.0308 8.26685 11.5529 7.90425 11.93C7.72348 12.1179 7.57338 12.2684 7.46935 12.3711C7.41736 12.4225 7.37697 12.4617 7.3501 12.4877C7.33667 12.5007 7.32663 12.5103 7.32021 12.5165C7.31701 12.5195 7.31471 12.5217 7.31335 12.523C7.31267 12.5237 7.31223 12.5241 7.31202 12.5243C7.31192 12.5244 7.31187 12.5244 7.31189 12.5244C7.3119 12.5244 7.31196 12.5243 7.31196 12.5243C7.31203 12.5243 7.31212 12.5242 8 13.25C8.68788 13.9758 8.688 13.9757 8.68813 13.9756C8.68819 13.9755 8.68834 13.9754 8.68847 13.9753C8.68873 13.975 8.68905 13.9747 8.68944 13.9743C8.6902 13.9736 8.6912 13.9727 8.69245 13.9715C8.69493 13.9691 8.69837 13.9658 8.70274 13.9617C8.71146 13.9533 8.72388 13.9414 8.73974 13.9261C8.77147 13.8954 8.81701 13.8511 8.8744 13.7945C8.98912 13.6812 9.15152 13.5183 9.34575 13.3164C9.73315 12.9135 10.2524 12.35 10.7744 11.7112C11.2932 11.0761 11.8323 10.3456 12.2464 9.61008C12.6454 8.90137 13 8.06531 13 7.25H11ZM8 4.25C9.65685 4.25 11 5.59315 11 7.25H13C13 4.48858 10.7614 2.25 8 2.25V4.25ZM5 7.25C5 5.59315 6.34315 4.25 8 4.25V2.25C5.23858 2.25 3 4.48858 3 7.25H5ZM8 13.25C8.68788 12.5242 8.68797 12.5243 8.68804 12.5243C8.68804 12.5243 8.6881 12.5244 8.68811 12.5244C8.68813 12.5244 8.68808 12.5244 8.68798 12.5243C8.68777 12.5241 8.68733 12.5237 8.68665 12.523C8.68529 12.5217 8.68299 12.5195 8.67979 12.5165C8.67337 12.5103 8.66333 12.5007 8.6499 12.4877C8.62303 12.4617 8.58264 12.4225 8.53065 12.3711C8.42662 12.2684 8.27652 12.1179 8.09575 11.93C7.73315 11.5529 7.25242 11.0308 6.77437 10.4457C6.29324 9.85686 5.83227 9.22546 5.49638 8.62888C5.1454 8.00549 5 7.53926 5 7.25H3C3 8.06531 3.3546 8.90137 3.75362 9.61008C4.16773 10.3456 4.70676 11.0761 5.22563 11.7112C5.74758 12.35 6.26685 12.9135 6.65425 13.3164C6.84848 13.5183 7.01088 13.6812 7.1256 13.7945C7.18299 13.8511 7.22853 13.8954 7.26026 13.9261C7.27612 13.9414 7.28854 13.9533 7.29726 13.9617C7.30163 13.9658 7.30507 13.9691 7.30755 13.9715C7.3088 13.9727 7.3098 13.9736 7.31056 13.9743C7.31095 13.9747 7.31127 13.975 7.31153 13.9753C7.31166 13.9754 7.31181 13.9755 7.31187 13.9756C7.312 13.9757 7.31212 13.9758 8 13.25ZM8.2 7.25C8.2 7.36046 8.11046 7.45 8 7.45V9.45C9.21503 9.45 10.2 8.46503 10.2 7.25H8.2ZM8 7.05C8.11046 7.05 8.2 7.13954 8.2 7.25H10.2C10.2 6.03497 9.21503 5.05 8 5.05V7.05ZM7.8 7.25C7.8 7.13954 7.88954 7.05 8 7.05V5.05C6.78497 5.05 5.8 6.03497 5.8 7.25H7.8ZM8 7.45C7.88954 7.45 7.8 7.36046 7.8 7.25H5.8C5.8 8.46503 6.78497 9.45 8 9.45V7.45Z"
+                            fill="white" mask="url(#path-2-inside-1_741_946)" />
+                    </svg>
+                    <p>
+
+                        <ng-container
+                            *ngIf="item.tokenGeneration ==false &&  iso > item.endTime && item.status !='Cancelled'">
+                            <span style="color:orange;font-weight:bold">Time Out</span>
+                        </ng-container>
+
+                        <ng-container *ngIf="item.no_of_host == 1">
+                            <span *ngIf="iso < item.startTime && item.status !='Cancelled'"
+                                style="color:rgb(50, 18, 207);font-weight:bold">Waiting</span>
+                            <span style="color: green;font-weight: bold;"
+                                *ngIf="item.tokenGeneration==false  && item.adminApprove !='Pending'&& item.status !='Cancelled' && item.startTime<iso && item.endTime > iso">Time
+                                Reached</span>
+                            <div *ngIf="item.allot_chat !='subhost' &&  item.allot_host_1 !='subhost'">
+                                <span
+                                    *ngIf="iso < item.endTime && item.status !='Cancelled'&& !item.hostingPermissions && item.tokenGeneration &&  item.status !='Completed'"
+                                    style="color:rgb(173, 31, 168);font-weight:bold">On
+                                    Going</span>
+                                <span
+                                    *ngIf="item.tokenGeneration && iso > item.endTime && item.status !='Cancelled'||item.status =='Completed'"
+                                    style="color:rgb(184, 127, 21);font-weight:bold">Completed</span>
+
+                                <span *ngIf="item.status =='Cancelled' "
+                                    style="color:red;font-weight:bold">Cancelled</span>
+                                <span
+                                    *ngIf="iso > item.startTime && item.status !='Cancelled' && iso < item.endTime&& !item.tokenGeneration && !item.hostingPermissions"
+                                    style="color:rgb(50, 18, 207);font-weight:bold">Host Delay</span>
+
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="item.no_of_host == 2">
+                            <span *ngIf="iso < item.startTime && item.status !='Cancelled'"
+                                style="color:rgb(50, 18, 207);font-weight:bold">Waiting</span>
+                            <span style="color: green;font-weight: bold;"
+                                *ngIf="item.tokenGeneration==false  && item.adminApprove !='Pending'&& item.status !='Cancelled' && item.startTime<iso && item.endTime > iso">Time
+                                Reached</span>
+                            <div
+                                *ngIf="item.allot_chat !='subhost' &&  item.allot_host_1 !=null && item.allot_host_2 !=null">
+                                <span
+                                    *ngIf="iso < item.endTime && item.status !='Cancelled'&& !item.hostingPermissions && item.tokenGeneration"
+                                    style="color:rgb(173, 31, 168);font-weight:bold">On
+                                    Going</span>
+
+                                <span
+                                    *ngIf="item.tokenGeneration && iso > item.endTime && item.status !='Cancelled' ||    item.status =='Completed'  "
+                                    style="color:rgb(184, 127, 21);font-weight:bold">Completed</span>
+                                <span *ngIf="item.status =='Cancelled' "
+                                    style="color:red;font-weight:bold">Cancelled</span>
+                                <span
+                                    *ngIf="iso > item.startTime && item.status !='Cancelled' && iso < item.endTime&& !item.tokenGeneration && !item.hostingPermissions"
+                                    style="color:rgb(50, 18, 207);font-weight:bold">Host Delay</span>
+
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="item.no_of_host == 3">
+                            <span *ngIf="iso < item.startTime && item.status !='Cancelled'"
+                                style="color:rgb(50, 18, 207);font-weight:bold">Waiting</span>
+                            <span style="color: green;font-weight: bold;"
+                                *ngIf="item.tokenGeneration==false  && item.adminApprove !='Pending'&& item.status !='Cancelled' && item.startTime<iso && item.endTime > iso">Time
+                                Reached</span>
+                            <div
+                                *ngIf="item.allot_chat !='subhost' &&  item.allot_host_1 !=null && item.allot_host_2 !=null &&  item.allot_host_3 !=null">
+                                <span
+                                    *ngIf="iso < item.endTime && item.status !='Cancelled'&& !item.hostingPermissions && item.tokenGeneration"
+                                    style="color:rgb(173, 31, 168);font-weight:bold">On
+                                    Going</span>
+
+                                <span
+                                    *ngIf="item.tokenGeneration && iso > item.endTime && item.status !='Cancelled'||   item.status =='Completed'"
+                                    style="color:rgb(184, 127, 21);font-weight:bold">Completed</span>
+                                <span *ngIf="item.status =='Cancelled'"
+                                    style="color:red;font-weight:bold">Cancelled</span>
+                                <span
+                                    *ngIf="iso > item.startTime && item.status !='Cancelled' && iso < item.endTime&& !item.tokenGeneration && !item.hostingPermissions"
+                                    style="color:rgb(50, 18, 207);font-weight:bold">Host Delay</span>
+                            </div>
+                        </ng-container>
+
+                    </p>
+                </span>
+                <span class="price">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
+                        <path
+                            d="M6.33333 8.41667L7.58333 9.66667L9.66667 6.75M13 8C13 8.65661 12.8707 9.30679 12.6194 9.91342C12.3681 10.52 11.9998 11.0712 11.5355 11.5355C11.0712 11.9998 10.52 12.3681 9.91342 12.6194C9.30679 12.8707 8.65661 13 8 13C7.34339 13 6.69321 12.8707 6.08658 12.6194C5.47996 12.3681 4.92876 11.9998 4.46447 11.5355C4.00017 11.0712 3.63188 10.52 3.3806 9.91342C3.12933 9.30679 3 8.65661 3 8C3 6.67392 3.52678 5.40215 4.46447 4.46447C5.40215 3.52678 6.67392 3 8 3C9.32608 3 10.5979 3.52678 11.5355 4.46447C12.4732 5.40215 13 6.67392 13 8Z"
+                            stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+
+                    <p>{{item.registeredUsers}} / {{item.noOfParticipants}}</p>
+                </span>
+                <div class="view-icons">
+                    <button (click)="go_live(item)"
+                    *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.status !='Completed'"
+                    class="go-live-btn"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9.30769 4.11111L12.2123 1.31407C12.2769 1.252 12.3591 1.20973 12.4485 1.19261C12.538 1.1755 12.6307 1.1843 12.715 1.2179C12.7993 1.25151 12.8714 1.30842 12.9221 1.38143C12.9728 1.45445 12.9999 1.5403 13 1.62815V8.37185C12.9999 8.4597 12.9728 8.54555 12.9221 8.61857C12.8714 8.69158 12.7993 8.74849 12.715 8.7821C12.6307 8.8157 12.538 8.8245 12.4485 8.80739C12.3591 8.79027 12.2769 8.748 12.2123 8.68593L9.30769 5.88889M2.38462 9H7.92308C8.2903 9 8.64248 8.85952 8.90215 8.60948C9.16181 8.35943 9.30769 8.02029 9.30769 7.66667V2.33333C9.30769 1.97971 9.16181 1.64057 8.90215 1.39052C8.64248 1.14048 8.2903 1 7.92308 1H2.38462C2.01739 1 1.66521 1.14048 1.40554 1.39052C1.14588 1.64057 1 1.97971 1 2.33333V7.66667C1 8.02029 1.14588 8.35943 1.40554 8.60948C1.66521 8.85952 2.01739 9 2.38462 9Z"
+                            stroke="white" stroke-linecap="round" />
+                    </svg>
+                    <p>Go Live</p>
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- pagenation -->
+    <div class="pagenation">
+        <button class="prev page-btn"  [ngClass]="page==0?'button-disabled':''"  [disabled]="page==0" (click)="pagination('prev')">
+            <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
+                [ngClass]="page==0?'disable-svg':''">
+                <path
+                    d="M11.58 0.460035C11.8557 0.746552 12.0063 1.13079 11.9988 1.52831C11.9913 1.92584 11.8263 2.30412 11.54 2.58003L3.66401 10L11.54 17.42C11.6887 17.5549 11.8088 17.7183 11.8932 17.9004C11.9776 18.0825 12.0246 18.2798 12.0314 18.4804C12.0382 18.681 12.0046 18.881 11.9327 19.0684C11.8608 19.2558 11.752 19.4269 11.6127 19.5715C11.4735 19.7161 11.3066 19.8313 11.122 19.9102C10.9375 19.9892 10.7389 20.0303 10.5382 20.031C10.3374 20.0318 10.1386 19.9923 9.95336 19.9149C9.76816 19.8374 9.6004 19.7235 9.46001 19.58L0.460015 11.08C0.314842 10.9401 0.199369 10.7724 0.120498 10.5868C0.0416265 10.4012 0.000976562 10.2017 0.000976562 10C0.000976562 9.7984 0.0416265 9.59884 0.120498 9.41328C0.199369 9.22772 0.314842 9.05996 0.460015 8.92003L9.46001 0.420035C9.74653 0.144374 10.1308 -0.00625661 10.5283 0.00124382C10.9258 0.00874426 11.3041 0.173762 11.58 0.460035Z"
+                    fill="#2192FF" />
+            </svg>
+
+        </button>
+        <p class="page-no">{{page+1}}</p>
+        <button class="prev page-btn" [ngClass]="!next?'button-disabled':''" [disabled]="!next" (click)="pagination('next')">
+            <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
+                [ngClass]="!next?'disable-svg':''">
+                <path
+                    d="M1.41998 20.54C1.14432 20.2534 0.993693 19.8692 1.00119 19.4717C1.00869 19.0742 1.17371 18.6959 1.45998 18.42L9.33598 11L1.45998 3.57997C1.31129 3.44509 1.19119 3.28175 1.10679 3.0996C1.02239 2.91746 0.975403 2.72023 0.968624 2.5196C0.961846 2.31897 0.995409 2.11901 1.06732 1.93159C1.13924 1.74417 1.24804 1.57308 1.38729 1.42848C1.52654 1.28388 1.69339 1.1687 1.87797 1.08977C2.06254 1.01083 2.26109 0.96975 2.46183 0.968957C2.66258 0.968163 2.86144 1.00767 3.04664 1.08514C3.23183 1.16261 3.3996 1.27647 3.53998 1.41997L12.54 9.91997C12.6852 10.0599 12.8006 10.2276 12.8795 10.4132C12.9584 10.5988 12.999 10.7983 12.999 11C12.999 11.2016 12.9584 11.4012 12.8795 11.5867C12.8006 11.7723 12.6852 11.94 12.54 12.08L3.53999 20.58C3.25347 20.8556 2.86923 21.0063 2.47171 20.9988C2.07418 20.9913 1.6959 20.8262 1.41998 20.54Z"
+                    fill="#2192FF" />
+            </svg>
+        </button>
+    </div>
+
+</div>
+
+
+<!-- popup -->
+
+<div class="popup" *ngIf="view_details !=null">
+    <div class="dummy" (click)="close_popup()"></div>
+    <div class="popup-container">
+        <a class="popupclose" (click)="close_popup()">x</a>
+        <ul>
+            <li [ngClass]="view_details_type=='Content'?'active':''" (click)="change_view('Content')">
+                Details
+            </li>
+            <li [ngClass]="view_details_type=='Images'?'active':''" (click)="change_view('Images')">Images
+            </li>
+            <li [ngClass]="view_details_type=='Teaser'?'active':''" (click)="change_view('Teaser')">Teaser
+            </li>
+            <li [ngClass]="view_details_type=='Post'?'active':''" (click)="change_view('Post')">Post</li>
+            <li [ngClass]="view_details_type=='Host'?'active':''" (click)="change_view('Host')">Host</li>
+        </ul>
+
+        <div class="details" *ngIf="view_details_type=='Content'">
+            <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
+                <tbody>
+                    <tr>
+                        <td>Stream Name</td>
+                        <td>:</td>
+                        <td>{{view_details.streamName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Post Count</td>
+                        <td>:</td>
+                        <td>{{view_details.post.length}}</td>
+                    </tr>
+                    <tr *ngIf="view_details.bookingAmount_contion =='yes'">
+                        <td>Booking Amount</td>
+                        <td>:</td>
+                        <td>{{view_details.bookingAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Communication</td>
+                        <td>:</td>
+                        <td>{{view_details.primarycommunication}}</td>
+                    </tr>
+                    <tr>
+                        <td>Secondary Communication</td>
+                        <td>:</td>
+                        <td>{{view_details.secondarycommunication}}</td>
+                    </tr>
+                    <tr>
+                        <td>Streaming Date</td>
+                        <td>:</td>
+                        <td>{{view_details.streamingDate}}</td>
+                    </tr>
+                    <tr>
+                        <td>Streaming Time</td>
+                        <td>:</td>
+                        <td>{{view_details.streamingTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>:</td>
+                        <td style="overflow-wrap: anywhere;">{{view_details.discription}}</td>
+                    </tr>
+                    <tr>
+                        <td>After Streaming Show</td>
+                        <td>:</td>
+                        <td style="overflow-wrap: anywhere;">{{view_details.afterStreaming}}</td>
+                    </tr>
+                    <tr>
+                        <td>Chat </td>
+                        <td>:</td>
+                        <td style="overflow-wrap: anywhere;text-transform: capitalize;">
+                            {{view_details.chat_need}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="images" *ngIf="view_details_type=='Images'">
+            <img src="{{baseURL+'/'+view_details.image}}" alt="" style="width: 100%;    height: 300px;">
+        </div>
+
+        <!-- teaser -->
+        <div class="teaser" *ngIf="view_details_type=='Teaser'">
+            <video *ngIf="view_details.video !=null" src="{{view_details.teaser}}" controls
+                style="width: 100%;height: 300px;"></video>
+        </div>
+
+        <!-- post -->
+        <div class="post-conatiner" *ngIf="view_details_type=='Post'">
+            <div class="post" *ngFor="let item of view_details.streamrequestposts;index as i">
+                <div><span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.40674" y="0.848633" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
+                                stroke="#BCC3CC" />
+                            <mask id="path-2-inside-1_11_9817" fill="white">
+                                <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" />
+                            </mask>
+                            <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" stroke="white"
+                                stroke-width="1.4" mask="url(#path-2-inside-1_11_9817)" />
+                            <mask id="path-3-inside-2_11_9817" fill="white">
+                                <rect x="5.96484" y="9.06885" width="12.2093" height="9.4186" rx="0.5" />
+                            </mask>
+                            <rect x="5.96484" y="9.06885" width="12.2093" height="9.4186" rx="0.5" stroke="white"
+                                stroke-width="1.4" mask="url(#path-3-inside-2_11_9817)" />
+                            <rect x="13.3941" y="6.27969" width="5.51565" height="2.78837"
+                                transform="rotate(90 13.3941 6.27969)" fill="#BCC3CC" stroke="white"
+                                stroke-width="0.7" />
+                        </svg>
+                        <p class="product-name">{{item.productTitle}}</p>
+                    </span>
+
+                    <span>
+                        <p>{{item.offerPrice|currency:"INR"}}</p>/<sub
+                            style="text-decoration: line-through;">{{item.marketPlace|currency:'INR'}}</sub>
+                    </span>
+
+                </div>
+                <div>
+                    <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.40674" y="0.733398" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
+                                stroke="#BCC3CC" />
+                            <mask id="path-2-inside-1_11_9828" fill="white">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.0692 18.7211C12.0692 18.7211 17.6506 13.4315 17.6506 10.349C17.6506 7.26645 15.1517 4.76758 12.0692 4.76758C8.98667 4.76758 6.48779 7.26645 6.48779 10.349C6.48779 13.4315 12.0692 18.7211 12.0692 18.7211ZM12.0691 12.0229C12.9939 12.0229 13.7435 11.2732 13.7435 10.3485C13.7435 9.42373 12.9939 8.67406 12.0691 8.67406C11.1443 8.67406 10.3947 9.42373 10.3947 10.3485C10.3947 11.2732 11.1443 12.0229 12.0691 12.0229Z" />
+                            </mask>
+                            <path
+                                d="M12.0692 18.7211L11.3813 19.4469L12.0692 20.0988L12.7571 19.4469L12.0692 18.7211ZM16.6506 10.349C16.6506 10.8566 16.4063 11.5802 15.9071 12.4669C15.423 13.3269 14.7643 14.2275 14.0855 15.0582C13.4098 15.8852 12.7314 16.622 12.2205 17.1532C11.9656 17.4182 11.7538 17.6307 11.6065 17.7761C11.5329 17.8488 11.4755 17.9046 11.437 17.9417C11.4178 17.9603 11.4033 17.9742 11.3939 17.9832C11.3892 17.9877 11.3858 17.991 11.3837 17.993C11.3826 17.994 11.3819 17.9947 11.3815 17.9951C11.3813 17.9953 11.3812 17.9954 11.3812 17.9954C11.3811 17.9954 11.3812 17.9954 11.3812 17.9954C11.3812 17.9953 11.3813 17.9952 12.0692 18.7211C12.7571 19.4469 12.7572 19.4468 12.7573 19.4466C12.7574 19.4466 12.7576 19.4464 12.7577 19.4463C12.758 19.446 12.7584 19.4456 12.7589 19.4451C12.7599 19.4442 12.7612 19.443 12.7628 19.4415C12.766 19.4384 12.7706 19.434 12.7765 19.4284C12.7882 19.4172 12.805 19.401 12.8267 19.3801C12.87 19.3383 12.9325 19.2774 13.0115 19.1994C13.1695 19.0435 13.3937 18.8186 13.662 18.5396C14.1977 17.9826 14.9146 17.2044 15.6343 16.3237C16.3508 15.4467 17.0875 14.447 17.6499 13.4482C18.1971 12.4761 18.6506 11.3826 18.6506 10.349H16.6506ZM12.0692 5.76758C14.5994 5.76758 16.6506 7.81874 16.6506 10.349H18.6506C18.6506 6.71417 15.704 3.76758 12.0692 3.76758V5.76758ZM7.48779 10.349C7.48779 7.81874 9.53895 5.76758 12.0692 5.76758V3.76758C8.43438 3.76758 5.48779 6.71417 5.48779 10.349H7.48779ZM12.0692 18.7211C12.7571 17.9952 12.7571 17.9953 12.7572 17.9954C12.7572 17.9954 12.7572 17.9954 12.7572 17.9954C12.7572 17.9954 12.7571 17.9953 12.7569 17.9951C12.7565 17.9947 12.7558 17.994 12.7547 17.993C12.7526 17.991 12.7491 17.9877 12.7444 17.9832C12.735 17.9742 12.7206 17.9603 12.7013 17.9417C12.6629 17.9046 12.6055 17.8488 12.5319 17.7761C12.3846 17.6307 12.1727 17.4182 11.9178 17.1532C11.407 16.622 10.7286 15.8852 10.0529 15.0582C9.37406 14.2275 8.71541 13.3269 8.23127 12.4669C7.73203 11.5802 7.48779 10.8566 7.48779 10.349H5.48779C5.48779 11.3826 5.94123 12.4761 6.4885 13.4482C7.05087 14.447 7.78757 15.4467 8.50412 16.3237C9.22375 17.2044 9.94069 17.9826 10.4763 18.5396C10.7447 18.8186 10.9689 19.0435 11.1268 19.1994C11.2058 19.2774 11.2684 19.3383 11.3117 19.3801C11.3333 19.401 11.3502 19.4172 11.3619 19.4284C11.3678 19.434 11.3723 19.4384 11.3756 19.4415C11.3772 19.443 11.3785 19.4442 11.3795 19.4451C11.3799 19.4456 11.3803 19.446 11.3806 19.4463C11.3808 19.4464 11.381 19.4466 11.381 19.4466C11.3812 19.4468 11.3813 19.4469 12.0692 18.7211ZM12.7435 10.3485C12.7435 10.721 12.4416 11.0229 12.0691 11.0229V13.0229C13.5461 13.0229 14.7435 11.8255 14.7435 10.3485H12.7435ZM12.0691 9.67406C12.4416 9.67406 12.7435 9.97601 12.7435 10.3485H14.7435C14.7435 8.87144 13.5461 7.67406 12.0691 7.67406V9.67406ZM11.3947 10.3485C11.3947 9.97601 11.6966 9.67406 12.0691 9.67406V7.67406C10.5921 7.67406 9.39468 8.87144 9.39468 10.3485H11.3947ZM12.0691 11.0229C11.6966 11.0229 11.3947 10.721 11.3947 10.3485H9.39468C9.39468 11.8255 10.5921 13.0229 12.0691 13.0229V11.0229Z"
+                                fill="white" mask="url(#path-2-inside-1_11_9828)" />
+                        </svg>
+                        <p>{{item.location}}</p>
+                    </span>
+                    <span>Min - {{item.minLots}}Kg</span>
+                </div>
+                <div>
+                    <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.40771" y="0.617188" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
+                                stroke="#BCC3CC" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M17.4207 9.02505L19.0353 17.4049C19.075 17.6112 19.0145 17.8233 18.8699 17.984C18.7253 18.1447 18.5116 18.2376 18.2863 18.2376H6.05306C5.82778 18.2376 5.41567 18.1447 5.2711 17.984C5.12648 17.8233 5.06596 17.6112 5.10568 17.4049L6.72027 9.02505C6.7853 8.6877 7.10077 8.44212 7.46925 8.44212H10.1545C9.65101 7.9808 9.33812 7.33992 9.33812 6.63213C9.33812 5.23057 10.5639 4.09033 12.0705 4.09033C13.5772 4.09033 14.8029 5.23057 14.8029 6.63213C14.8029 7.33992 14.49 7.9808 13.9865 8.44212H16.6717C17.0402 8.44212 17.3557 8.6877 17.4207 9.02505ZM13.2811 6.63213C13.2811 6.01117 12.738 5.50601 12.0705 5.50601C11.403 5.50601 10.8599 6.01117 10.8599 6.63213C10.8599 7.2531 11.403 7.7583 12.0705 7.7583C12.738 7.7583 13.2811 7.2531 13.2811 6.63213ZM8.73491 9.74922C8.50775 9.74922 8.30914 9.90235 8.25136 10.122L6.65391 16.1957C6.57053 16.5127 6.80966 16.8229 7.13746 16.8229H17.0032C17.331 16.8229 17.5702 16.5127 17.4868 16.1957L15.8893 10.122C15.8316 9.90235 15.6329 9.74922 15.4058 9.74922H8.73491Z"
+                                fill="white" />
+                        </svg>
+                        <p>{{item.quantity}} KG</p>
+                    </span>
+                    <span>Add on- {{item.incrementalLots}}Kg</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- host -->
+        <div class="host" *ngIf="view_details_type=='Host'">
+            <div *ngIf="view_details.chat_need=='yes' &&view_details.allot_chat_name !=null">
+                <label>Chat :</label>
+                <p>{{view_details.allot_chat_name}}</p>
+            </div>
+            <div *ngIf="view_details.allot_host_1_name !=null">
+                <label>Host-1(Primary) :</label>
+                <p>{{view_details.allot_host_1_name}}</p>
+            </div>
+            <div *ngIf="view_details.allot_host_2_name !=null">
+                <label>Host-2 :</label>
+                <p>{{view_details.allot_host_2_name}}</p>
+            </div>
+            <div *ngIf="view_details.allot_host_3_name !=null">
+                <label>Host-3 :</label>
+                <p>{{view_details.allot_host_3_name}}</p>
+            </div>
+        </div>
+    </div>
