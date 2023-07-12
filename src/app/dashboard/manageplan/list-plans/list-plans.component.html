@@ -4,67 +4,302 @@
 
     </div>
     <h1 class="welcome">Plans</h1>
-    <div class="back" style="visibility: hidden;">
-        <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="#389AE0" />
-        </svg>
-
+    <div class="back" >
+       <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Bank Details</button>
     </div>
 </nav>
 <div class="main-container">
-    <div class="plans row">
-        <div class="col-md-6 col-xs-12 col-sm-6 col-lg-6" *ngFor="let item of plans; index as i"
-            style="position: relative;">
-            <div [ngClass]="view?'plan-view ':'plan'">
-                <h3 class="plan-title" style="    width: 80%;">{{item.planName}}</h3>
-                <ul>
-                    <li>
-                        <app-list-plans-show [view]="item.numberofStream ==1?false:true"></app-list-plans-show>
-                        <a>Multi Stream</a>
-                    </li>
-                    <li>
-                        <app-list-plans-show [view]="item.numberOfParticipants==1?false:true"></app-list-plans-show>
-                        <a>Multi Participants</a>
-                    </li>
-                    <li>
-                        <app-list-plans-show [view]="item.chatNeed =='no'?false:true"></app-list-plans-show>
-                        <a>Chat</a>
-                    </li>
-                    <li>
-                        <app-list-plans-show [view]="item.commision =='no'?false:true"></app-list-plans-show>
-                        <a>Commission</a>
-                    </li>
-                    <li>
-                        <app-list-plans-show [view]="item.no_of_host==1?false:true"></app-list-plans-show>
-                        <a>Multi Host</a>
-                    </li>
-                </ul>
-                <h3 class="plan-price">
-                    {{item.salesPrice|currency:'INR'}}<sub>/{{item.regularPrice|currency:'INR'}}</sub>
-                </h3>
-                <button class="choose-plan-btn" [routerLink]="'/dashboard/plan/plans/view'"
-                    [queryParams]="{plan:item._id,stream:id}">Choose Plan</button>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col" *ngFor="let v of allPlans">
+            <div class="content">
+            <div class="card">
+                <div class="card-body title-card">
+                    <h2 style="color: var(--green);text-transform: capitalize;">{{v.planName}}</h2>
+                    
+                   
+                </div>
+              </div>
+            <div class="card" *ngIf="v.planName =='Diamond'">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    Exclusive streaming slots
+                </div>
+              </div>
+            <div class="card">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    Up to {{v.numberOfParticipants}} Participants
+                </div>
+              </div>
+            <div class="card" *ngIf="v.planName =='Diamond'">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    E-commerce transaction
+                </div>
+              </div>
+            <div class="card">
+                <div class="card-body">
+                   
+                        
+                   <p *ngIf="v.no_of_host==1">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    Single Host</p>
+                   <p *ngIf="v.no_of_host==2">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    Double Host</p>
+                </div>
+              </div>
+            <div class="card" *ngIf="v.planName =='Diamond'">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    Exclusive marketing to visitor 
+                </div>
+              </div>
+            <div class="card">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    Upto {{v.PostCount}} products/stream
+                </div>
+              </div>
+            <div class="card">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    {{liveStream(v.slotInfo)}} live streams 
+                </div>
+              </div>
+            <div class="card">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    {{totalmin(v.slotInfo)}}hours of interaction
+                </div>
+              </div>
+            <div class="card" *ngIf="v.chat_Option=='yes'">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    Chat option
+                </div>
+              </div>
+            <div class="card">
+                <div class="card-body">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                    Recorded streams {{v.completedStream}}
+                </div>
+              </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+        <div class="last">
+            <div >
+                <label><p>₹{{v.Price}}<span style="font-size: 12px;">+GST</span></p></label>
+            </div>
+           
+            <div >
+                <button class="wish" (click)="view_plan(v)"  data-bs-toggle="modal" data-bs-target="#viewplans" > Wish to buy!</button>
+           </div>
+        </div>
             </div>
         </div>
-    </div>
-    <div class="pagenation">
-        <button class="prev page-btn" [disabled]="page==0" (click)="pagination('prev')">
-            <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
-                [ngClass]="page==0?'disable-svg':''">
-                <path
-                    d="M11.58 0.460035C11.8557 0.746552 12.0063 1.13079 11.9988 1.52831C11.9913 1.92584 11.8263 2.30412 11.54 2.58003L3.66401 10L11.54 17.42C11.6887 17.5549 11.8088 17.7183 11.8932 17.9004C11.9776 18.0825 12.0246 18.2798 12.0314 18.4804C12.0382 18.681 12.0046 18.881 11.9327 19.0684C11.8608 19.2558 11.752 19.4269 11.6127 19.5715C11.4735 19.7161 11.3066 19.8313 11.122 19.9102C10.9375 19.9892 10.7389 20.0303 10.5382 20.031C10.3374 20.0318 10.1386 19.9923 9.95336 19.9149C9.76816 19.8374 9.6004 19.7235 9.46001 19.58L0.460015 11.08C0.314842 10.9401 0.199369 10.7724 0.120498 10.5868C0.0416265 10.4012 0.000976562 10.2017 0.000976562 10C0.000976562 9.7984 0.0416265 9.59884 0.120498 9.41328C0.199369 9.22772 0.314842 9.05996 0.460015 8.92003L9.46001 0.420035C9.74653 0.144374 10.1308 -0.00625661 10.5283 0.00124382C10.9258 0.00874426 11.3041 0.173762 11.58 0.460035Z"
-                    fill="#2192FF" />
-            </svg>
+        </div>
 
-        </button>
-        <p class="page-no">1</p>
-        <button class="prev page-btn" [disabled]="!next" (click)="pagination('next')">
-            <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
-                [ngClass]="!next?'disable-svg':''">
-                <path
-                    d="M1.41998 20.54C1.14432 20.2534 0.993693 19.8692 1.00119 19.4717C1.00869 19.0742 1.17371 18.6959 1.45998 18.42L9.33598 11L1.45998 3.57997C1.31129 3.44509 1.19119 3.28175 1.10679 3.0996C1.02239 2.91746 0.975403 2.72023 0.968624 2.5196C0.961846 2.31897 0.995409 2.11901 1.06732 1.93159C1.13924 1.74417 1.24804 1.57308 1.38729 1.42848C1.52654 1.28388 1.69339 1.1687 1.87797 1.08977C2.06254 1.01083 2.26109 0.96975 2.46183 0.968957C2.66258 0.968163 2.86144 1.00767 3.04664 1.08514C3.23183 1.16261 3.3996 1.27647 3.53998 1.41997L12.54 9.91997C12.6852 10.0599 12.8006 10.2276 12.8795 10.4132C12.9584 10.5988 12.999 10.7983 12.999 11C12.999 11.2016 12.9584 11.4012 12.8795 11.5867C12.8006 11.7723 12.6852 11.94 12.54 12.08L3.53999 20.58C3.25347 20.8556 2.86923 21.0063 2.47171 20.9988C2.07418 20.9913 1.6959 20.8262 1.41998 20.54Z"
-                    fill="#2192FF" />
-            </svg>
-        </button>
+        
+      </div>
+   
+    
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="display:flex; justify-content: center;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color:#019444; ">RTGS/NEFT Details</h5>
+        </div>
+        <div class="modal-body">
+            <div class="form">
+                <div class="data">
+                    <label>Name</label>
+                    <p>Ookam Technology Services Private Limited</p>
+                </div>
+                <div class="data">
+                    <label>Bank </label>
+                    <p>ICICI Bank Ltd</p>
+                </div>
+                <div class="data">
+                    <label>A/C No</label>
+                    <p>787905000040</p>
+                </div>
+                <div class="data">
+                    <label>Bank address</label>
+                    <p>ICICI BANK LTD., GEORGE SQUARE, NO. 102/234, TTK ROAD, ALWARPET, CHENNAI - 600018</p>
+                </div>
+                <div class="data">
+                    <label>RTGS</label>
+                    <p>ICIC0007879</p>
+                </div>
+                <div class="data">
+                    <label>MICR Code</label>
+                    <p>600229160</p>
+                </div>
+                <div class="data">
+                    <label>Purpose</label>
+                    <p>Towards participation charges in AGRI EXPO LIVE 2023, Chennai</p>
+                </div>
+                <div class="data">
+                    <label>PAN No</label>
+                    <p>AAECO0517F</p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="viewplans"   tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <h3 style="width: 100%;text-align: center;">{{viewPlans.planName}}</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Plan Name</td>
+                            <td>:</td>
+                            <td>{{viewPlans.planName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Host Per Stream</td>
+                            <td>:</td>
+                            <td>{{viewPlans.no_of_host}}</td>
+                        </tr>
+                        <tr>
+                            <td>Participants Limit</td>
+                            <td>:</td>
+                            <td>{{viewPlans.numberOfParticipants}}</td>
+                        </tr>
+                        <tr >
+                            <td>Commision</td>
+                            <td>:</td>
+                            <td> {{viewPlans.salesCommission}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Slots</td>
+                            <td>:</td>
+                            <td >
+                                <ol>
+                                    <li *ngFor="let v of viewPlans.slotInfo ">  
+                                        {{v.slotType}} {{v.Duration}}mins -- {{v.No_Of_Slot}}</li>
+                                </ol>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Stream Videos Download</td>
+                            <td>:</td>
+                            <td>{{viewPlans.StreamVideos}}</td>
+                        </tr>
+                        <tr>
+                            <td>Completed Stream</td>
+                            <td>:</td>
+                            <td>{{viewPlans.completedStream}}</td>
+                        </tr>
+                        <tr>
+                            <td>Transtraction</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Transtraction}}</td>
+                        </tr>
+                        <tr>
+                            <td>Teaser</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Teaser}}</td>
+                        </tr>
+                        <tr >
+                            <td>Pdf</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Pdf}}</td>
+                        </tr>
+                        <tr >
+                            <td>Description</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Pdf}}</td>
+                        </tr>
+                        <tr >
+                            <td>Chat Needed</td>
+                            <td>:</td>
+                            <td>{{viewPlans.chat_Option}}</td>
+                        </tr>
+                        <tr>
+                            <td>Image</td>
+                            <td>:</td>
+                            <td>{{viewPlans.image}}</td>
+                        </tr>
+                        <tr>
+                            <td>Advertisement Display</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Advertisement_Display}}</td>
+                        </tr>
+                        <tr>
+                            <td>Special Notification</td>
+                            <td>:</td>
+                            <td>{{viewPlans.Special_Notification}}</td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Raise Hands</td>
+                            <td>:</td>
+                            <td>{{viewPlans.RaiseHands}}</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+                <div style="display: flex;justify-content: center;">
+                  <h4>Press confirm to fix this plan!</h4>
+                </div>
+             
+            </div>
+            <div class="modal-footer" style="display: flex;justify-content: center;">
+                <button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal" (click)="buyplan()" #close>Confirm</button>
+            </div>
+        </div>
     </div>
 </div>

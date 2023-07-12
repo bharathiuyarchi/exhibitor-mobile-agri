@@ -1,0 +1,339 @@
+<div class="green">
+    <label>
+      <a href="">
+        <img src="../../assets/images/whatsapp-line (1).png" alt="" />
+        +91-7845216208</a
+      ></label
+    >
+    <label>
+      <a href="">
+        <img src="../../assets/images/mail-line.png" alt="" srcset="" />
+        exhibitor@agriexpo.live
+      </a></label
+    >
+    <label>
+      <a href="">
+        <img src="../../assets/images/phone-line.png" alt="" />
+        +91-7845283594
+      </a></label
+    >
+  </div>
+  <div class="header">
+    <div class="content">
+      <div class="logo">
+        <a href="https://agriexpo.live/">
+          <img src="../../assets/images/logo.png" alt=""
+        /></a>
+      </div>
+      <div class="nav">
+        <ul>
+          <li>
+            <a href="https://agriexpo.live/">Home</a>
+          </li>
+          <li class="title">
+            <a href="https://agriexpo.live/#about_us">About us
+               <svg style="width: 12px;" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.5 1.25L9 8.75L1.5 1.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg></a>
+            <ul class="card">
+              <li>
+                <a href="https://agriexpo.live/#about_us">About organization</a>
+              </li>
+              <li>
+                <a href="https://agriexpo.live/#about_us">Background Story</a>
+              </li>
+            </ul>
+          </li>
+          <li class="title">
+            <a href=" https://agriexpo.live/agriculture/"
+              >Agriculture
+              <svg style="width: 12px;" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5 1.25L9 8.75L1.5 1.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  </a>
+            <ul class="card">
+              <li *ngFor="let v of agri">
+                <a [href]="v.link">{{ v.title }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="title">
+            <a href="https://agriexpo.live/#agriexpolive2023"
+              >Agriexpolive 2023
+              <svg style="width: 12px;" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5 1.25L9 8.75L1.5 1.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg></a>
+            <ul class="card">
+              <li *ngFor="let v of expo">
+                <a [href]="v.link">{{ v.title }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="title">
+            <a href=" https://agriexpo.live/#">Exhibitor
+              <svg style="width: 12px;" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5 1.25L9 8.75L1.5 1.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </a>
+            <ul class="card">
+              <li *ngFor="let v of exhi">
+                <a [href]="v.link">{{ v.title }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="title">
+            <a href="https://agriexpo.live/#">Visitor
+              <svg style="width: 12px;" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5 1.25L9 8.75L1.5 1.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </a>
+            <ul class="card">
+              <li *ngFor="let v of visi">
+                <a [href]="v.link">{{ v.title }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="title">
+            <a href="https://agriexpo.live/sponsors/">Sponsor
+              <svg style="width: 12px;" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5 1.25L9 8.75L1.5 1.25" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </a>
+            <ul class="card">
+              <li *ngFor="let v of spon">
+                <a [href]="v.link">{{ v.title }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="title">
+            <a href="https://agriexpo.live/contact-us/">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="header"   id="menu">
+    <div class="content">
+      <div class="logo">
+        <a href="https://agriexpo.live/">
+          <img src="../../assets/images/logo.png" alt=""
+        /></a>
+      </div>
+      <div class="nav">
+        <button
+          type="button"
+         style="border: none;background-color: transparent;"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#demo"
+        >
+          <svg
+          style="height: 35px;"
+            width="100"
+            height="100"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="100" height="100" fill="#019444" />
+            <rect x="10" y="30" width="80" height="10" fill="#262626" />
+            <rect x="10" y="60" width="80" height="10" fill="#262626" />
+          </svg>
+          
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="offcanvas offcanvas-start" id="demo" style="width: 100%">
+    <div class="offcanvas-header">
+      <h1 class="offcanvas-title"><a href="https://agriexpo.live/">Home</a></h1>
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              <a href="https://agriexpo.live/#about_us">About us</a>
+            </button>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <ul>
+                <li>
+                  <a href="https://agriexpo.live/#about_us">About organization</a>
+                </li>
+                <li>
+                  <a href="https://agriexpo.live/#about_us">Background Story</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                <a href=" https://agriexpo.live/agriculture/">Agriculture </a>
+              </button>
+            </h2>
+            <div
+              id="flush-collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                <ul>
+                  <li *ngFor="let v of agri">
+                    <a [href]="v.link">{{ v.title }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseThree"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseThree"
+                >
+                  <a href="https://agriexpo.live/#agriexpolive2023"
+                    >Agriexpo live 2023
+                  </a>
+                </button>
+              </h2>
+              <div
+                id="flush-collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingThree"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let v of expo">
+                      <a [href]="v.link">{{ v.title }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-4">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseFour"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseFour"
+                >
+                  <a href=" https://agriexpo.live/#">Exhibitor </a>
+                </button>
+              </h2>
+              <div
+                id="flush-collapseFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-4"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let v of exhi">
+                      <a [href]="v.link">{{ v.title }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-5">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseFive"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseFive"
+                >
+                  <a href="https://agriexpo.live/#">Visitor </a>
+                </button>
+              </h2>
+              <div
+                id="flush-collapseFive"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-5"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let v of visi">
+                      <a [href]="v.link">{{ v.title }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-6">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseSix"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseSix"
+                >
+                  <a href="https://agriexpo.live/sponsors/">Sponsor </a>
+                </button>
+              </h2>
+              <div
+                id="flush-collapseSix"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-6"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let v of spon">
+                      <a [href]="v.link">{{ v.title }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <a href="https://agriexpo.live/contact-us/">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

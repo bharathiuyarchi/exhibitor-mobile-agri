@@ -62,7 +62,7 @@ table>tr>td {
 }
 
 .set-btn {
-    background-color: #389AE0;
+    background-color: var(--green);
 }
 
 .action button p {

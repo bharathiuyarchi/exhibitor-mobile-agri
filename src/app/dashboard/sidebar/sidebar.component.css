@@ -97,7 +97,7 @@
 
 .arrow-mark {
     font-size: 19px;
-    color: #2292ff;
+    color: var(--green);
     display: none;
 }
 
@@ -111,23 +111,23 @@
 }
 
 .acive-button-menu svg path {
-    stroke: #2092ff;
+    stroke: var(--green);
 }
 
 .acive-button-menu svg path {
-    fill: #2092ff;
+    fill: var(--green);
 }
 
 .acive-button-menu svg rect {
-    stroke: #2092ff;
+    stroke: var(--green);
 }
 
 .acive-button-menu svg mask {
-    fill: #2092ff;
+    fill:var(--green);
 }
 
 .acive-button-menu span {
-    color: #2092ff;
+    color: var(--green);
     ;
 }
 

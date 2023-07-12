@@ -116,3 +116,43 @@
     border-radius: 5px;
     border: solid var(--blue) 3px;
   }
+  .last{
+    width: 100%;
+    display: flex;
+
+  }
+  .last div{
+    margin-top: 15px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+  .last div button{
+    color: #019444;
+    height: 40px;
+    border-radius: 50px;
+    font-weight: 500;
+    border: none;
+    font-size: 15px;
+    text-wrap: nowrap;
+    background-color: #DDECE4;
+    padding: 11px 32px;
+  }
+  .last label{
+    font-size: 22px;
+  }
+  .data{
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.data label{
+    width: 50%;
+    color: #019444;
+}
+.data p{
+    width: 50%;
+}

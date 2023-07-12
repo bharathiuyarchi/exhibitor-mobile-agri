@@ -3,8 +3,8 @@
         <a class="btn Dashboard-button" (click)="closeMenu()" [routerLink]="['myprofile']" *ngIf="show_menus([1,2,3,4,5])">
             <img class="change-user" src=" ../../assets/images/user.png" alt="">
             <div class="userNames" *ngIf="userDetails !=null"> 
-                <p>{{userDetails.contactName}}</p>
-                <p>{{userDetails.email}}</p>
+                <p>{{userDetails.tradeName}}</p>
+                <p>{{userDetails.mobileNumber}}</p>
             </div>
             <a>
                 <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,10 +18,12 @@
         <!-- <a class="btn Dashboard-button" [routerLink]="['']" *ngIf="show_menus([1,2,3,4,5])">
             Dashboard
         </a> -->
-        <a class="btn single-menu" (click)="closeMenu()" [routerLink]="['']" [routerLinkActive]="'acive-button-menu'"
+        <a style="background-color: green;
+        color: white;
+        font-weight: 600;" class="btn single-menu" (click)="closeMenu()" [routerLink]="['']" [routerLinkActive]="'acive-button-menu'"
             [routerLinkActiveOptions]="{ exact: true }" *ngIf="show_menus([1])">
             <span>
-                DashBoard
+                Dashboard
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
 

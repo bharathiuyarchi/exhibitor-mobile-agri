@@ -10,7 +10,9 @@ export class ManageplaneService {
   baseurl = Env.baseAPi;
 
   constructor(private http: HttpClient) { }
-
+  get_buy_plansM(page:any){
+    return this.http.get(this.baseurl+`/v1/ecomplan/get/all/plan/pagination?page=${page}`)
+  }
   get_all_plans(page: any) {
     return this.http.get(this.baseurl + "/v1/ecomplan/get/all/plan/normal?page=" + page);
   }
@@ -37,8 +39,16 @@ export class ManageplaneService {
     // return this.http.post("http://localhost:3000/v1/purchaseplan/purchase/addon/suceess",data,{ headers: { auth: this.token },})
     return this.http.post(this.baseurl + "/v1/purchaseplan/purchase/addon/suceess", data)
   }
-
+  buy_plan(data:any){
+    return this.http.post(this.baseurl+'/v1/purchaseplan/purchase/PurchasePlan/EXpo',data)
+  }
   get_all_my_orders(page: any) {
     return this.http.get(this.baseurl + "/v1/purchaseplan/getpayment/details/all/normal?page=" + page)
+  }
+  get_buy_plan(){
+    return this.http.get(this.baseurl+'/v1/purchaseplan/fetch/getPurchasedPlan')
+  }
+  update_buy_plan(id:any,data:any){
+    return this.http.put(this.baseurl+'/v1/purchaseplan/'+id,data)
   }
 }

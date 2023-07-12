@@ -16,11 +16,13 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { HttploadersComponent } from './httploaders/httploaders.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     Error404Component,
     HttploadersComponent,
+   
   ],
   imports: [
     BrowserModule,

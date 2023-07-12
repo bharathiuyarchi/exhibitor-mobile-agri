@@ -285,7 +285,7 @@ td span {
 }
 
 .single-row .properyty-view .title {
-    color: #2192FF;
+    color: var(--green);
     font-size: 20px;
 
 }

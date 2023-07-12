@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ToggleMenusComponent } from '../toggle-menus/toggle-menus.component';
 import { BackbuttonComponent } from '../backbutton/backbutton.component';
+import { NewHeaderComponent } from '../new-header/new-header.component';
 
 
 
@@ -17,7 +18,8 @@ import { BackbuttonComponent } from '../backbutton/backbutton.component';
     HeaderComponent,
     CommenComponent,
     ToggleMenusComponent,
-    BackbuttonComponent
+    BackbuttonComponent,
+    NewHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,6 @@ import { BackbuttonComponent } from '../backbutton/backbutton.component';
     
   ],
   providers: [FooterComponent, HeaderComponent, ToggleMenusComponent, BackbuttonComponent],
-  exports: [FooterComponent, HeaderComponent, CommenComponent, ToggleMenusComponent, BackbuttonComponent]
+  exports: [FooterComponent, HeaderComponent, CommenComponent, ToggleMenusComponent, BackbuttonComponent, NewHeaderComponent,]
 })
 export class CommommoduleModule { }

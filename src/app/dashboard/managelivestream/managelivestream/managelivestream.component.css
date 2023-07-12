@@ -132,7 +132,7 @@ sub {
 }
 
 .blue-btn {
-    background: #389AE0;
+    background: var(--green);
     color: white;
     padding: 5px 10px;
     border: none;

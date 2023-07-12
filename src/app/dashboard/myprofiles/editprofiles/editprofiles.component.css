@@ -29,7 +29,7 @@ nav .back,
 nav h3 {
     display: flex;
     align-items: center;
-    color: var(--blue);
+    color: var(--green);
 }
 
 nav h3 svg {
@@ -160,4 +160,9 @@ nav h3 svg {
     border: none;
     border-radius: 3px;
     font-weight: bold;
+}
+.err{
+    color: red;
+    width: 100% !important;
+    text-align: end;
 }

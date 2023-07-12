@@ -78,8 +78,8 @@
 }
 
 :root {
-    --green: #48D391;
-    --blue: #389AE0;
+    --green:  #019444;
+    --blue: var(--green);
     --gray: #EBEEF0;
     --red: #FF8080;
 }
@@ -113,13 +113,13 @@
 
 .welcome {
     font-family: 'Barlow', sans-serif !important;
-    color: #2192FF;
+    color: var(--green);
     font-size: 22px !important;
     margin-bottom: 0px;
 }
 
 .welcome-content h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
 }
 
@@ -353,4 +353,7 @@ p {
 }
 .button-disabled{
     opacity: 0.4;
+}
+option{
+    text-transform: capitalize;
 }
