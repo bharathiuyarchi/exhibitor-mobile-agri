@@ -13,6 +13,7 @@
             <p>My Plans</p>
         </div>
         <div class="add">
+            <!-- <a data-bs-toggle="modal" data-bs-target="#buyplan" > -->
             <a [routerLink]="['plans']">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -21,7 +22,10 @@
                 </svg></a>
         </div>
     </nav>
-    <div class="table-design">
+    <div class="no-found">
+        <h2>No plans found</h2>
+    </div>
+    <div class="table-design" *ngIf="false">
         <div class="single-row" *ngFor="let item of my_plans; index as i">
             <div class="properyty-view">
                 <h4 class="title"  style="color: var(--green);">{{item.planName}}</h4>
@@ -76,7 +80,7 @@
         </div>
     </div>
     <!-- pagenation -->
-    <div class="pagenation">
+    <div class="pagenation" *ngIf="false">
         <button class="prev page-btn" [disabled]="page==0" (click)="pagination('prev')">
             <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                 [ngClass]="page==0?'disable-svg':''">
@@ -102,3 +106,17 @@
 
 
 </div>
+<div class="modal fade" id="buyplan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+        <p>My plans will be active after purchasing the plan!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
+        
+        </div>
+      </div>
+    </div>
+  </div>

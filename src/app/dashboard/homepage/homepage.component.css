@@ -112,3 +112,55 @@ sub {
 .row-one:last-child {
     margin-top: 10px !important;
 }
+.content{
+    width: 100%;
+    height: 100%;
+   
+}
+.img-bg{
+height: 380px;
+    background-color: #D7E6DE;
+    border-radius: 0 0 44px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+.img{
+     width: 260px;
+     margin-bottom: 20px;
+}
+.box-welcome{
+display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 44px;
+    background-color: transparent;
+}
+.box-welcome div{
+    background-color: white;
+        border-radius: 30px;
+    width: 300px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+img{
+    width: 100%;
+}
+.box-welcome h2{
+    font-size: 20px;
+    margin: 10px 0 0 20px;
+}
+.box-welcome h1{
+    margin: 10px 0 0 18px;
+}
+.box-welcome h5{
+     margin: 10px 0 0 18px;
+}
+.box-welcome button{
+       margin: 10px 0 9px 50px;
+    background-color: var(--blue);
+    color: white;
+    padding: 7px 57px;
+    border: none;
+    border-radius: 28px;
+}

@@ -27,6 +27,15 @@ export class LogincomponentComponent implements OnInit {
       }
     })
   }
+  Login: any = new FormGroup({
+    mobile: new FormControl(null,  [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(10),
+      Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+    ]),
+    password: new FormControl(null, [Validators.required]),
+  })
   errorMessage: any;
   submitted: any = false;
   register_now() {
@@ -46,8 +55,5 @@ export class LogincomponentComponent implements OnInit {
 
   }
 
-  Login: any = new FormGroup({
-    mobile: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
-  })
+  
 }

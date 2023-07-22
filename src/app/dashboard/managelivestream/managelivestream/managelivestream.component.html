@@ -17,8 +17,10 @@
         </div>
     </nav>
     <!-- products-container -->
-
-    <div class="products-container">
+    <div class="no-found">
+        <h2>No live stream found</h2>
+    </div>
+    <div class="products-container" *ngIf="false">
 
 
         <div class="products" *ngFor="let item of my_stream; index as i">

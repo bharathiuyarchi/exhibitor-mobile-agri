@@ -1,0 +1,48 @@
+<div class="main">
+    <nav>
+        <div class="back">
+            <toggle-menu></toggle-menu>
+        </div>
+
+        <div class="heading">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M4.44444 4.4V1.1C4.44444 0.808261 4.56151 0.528472 4.76988 0.322182C4.97826 0.115892 5.26087 0 5.55556 0H18.8889C19.1836 0 19.4662 0.115892 19.6746 0.322182C19.8829 0.528472 20 0.808261 20 1.1V16.5C20 16.7917 19.8829 17.0715 19.6746 17.2778C19.4662 17.4841 19.1836 17.6 18.8889 17.6H15.5556V20.9C15.5556 21.5072 15.0556 22 14.4367 22H1.11889C0.972363 22.0008 0.827108 21.973 0.691469 21.9182C0.55583 21.8633 0.432481 21.7824 0.32851 21.6802C0.224538 21.578 0.141992 21.4564 0.0856159 21.3225C0.0292396 21.1886 0.000143749 21.045 0 20.9L0.00333336 5.49999C0.00333336 4.8928 0.503333 4.4 1.12111 4.4H4.44444ZM2.22444 6.59999L2.22222 19.8H13.3333V6.59999H2.22444ZM6.66667 4.4H15.5556V15.4H17.7778V2.2H6.66667V4.4ZM4.44444 9.89999H11.1111V12.1H4.44444V9.89999ZM4.44444 14.3H11.1111V16.5H4.44444V14.3Z"
+                    fill="var(--green)" />
+            </svg>
+            <p>My Slots</p>
+        </div>
+        <div class="add">
+           
+            <a  data-bs-toggle="modal" data-bs-target="#buyplan">
+            <!-- <a [routerLink]="['choose-slots']"> -->
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M1.11111 0H18.8889C19.1836 0 19.4662 0.117063 19.6746 0.325437C19.8829 0.533811 20 0.816426 20 1.11111V18.8889C20 19.1836 19.8829 19.4662 19.6746 19.6746C19.4662 19.8829 19.1836 20 18.8889 20H1.11111C0.816426 20 0.533811 19.8829 0.325437 19.6746C0.117063 19.4662 0 19.1836 0 18.8889V1.11111C0 0.816426 0.117063 0.533811 0.325437 0.325437C0.533811 0.117063 0.816426 0 1.11111 0ZM2.22222 2.22222V17.7778H17.7778V2.22222H2.22222ZM8.88889 8.88889V4.44444H11.1111V8.88889H15.5556V11.1111H11.1111V15.5556H8.88889V11.1111H4.44444V8.88889H8.88889Z"
+                        fill="var(--green)" />
+                </svg></a>
+
+        </div>
+    </nav>
+    <div class="no-found">
+        <h2>No slots found</h2>
+    </div>
+    </div>
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="buyplan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+        <p>Choose slot will be active after purchasing the plan!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
+        
+        </div>
+      </div>
+    </div>
+  </div>

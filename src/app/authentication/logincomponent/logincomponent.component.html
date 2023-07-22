@@ -25,11 +25,12 @@
     <form (submit)="register_now()" [formGroup]="Login">
         <div class="form">
             <div>
-                <label for="mobile-number">phone :</label>
-                <input type="text" name="" id="mobile-number" placeholder="Email or phone" formControlName="mobile">
+                <label for="mobile-number">Mobile Number :</label>
+                <input type="tel" onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" 
+                name="" id="mobile-number" placeholder="Enter Mobile Number" formControlName="mobile">
             </div>
             <div class="form-error">
-                <label *ngIf="submitted">Enter Email or Phone !</label>
+                <label *ngIf="submitted && Login.get('mobile')?.invalid">Enter a valid number !</label>
             </div>
             <div>
                 <label for="password">Password :</label>
@@ -37,7 +38,7 @@
                 <a class="forget-password" [routerLink]="['/forgot']">Forget Passowrd !</a>
             </div>
             <div class="form-error">
-                <label *ngIf="submitted">Invalid Password !</label>
+                <label *ngIf="submitted  && Login.get('password')?.invalid ">Invalid Password !</label>
             </div>
             <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage}}</label>
 

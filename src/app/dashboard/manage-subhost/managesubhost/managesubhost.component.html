@@ -22,7 +22,8 @@
 
         </div>
     </nav>
-    <div class="subhost-view">
+    
+    <div class="subhost-view" *ngIf="false">
         <div class="single-row-host" *ngFor="let item of subHost_List; index as i">
             <div class="row-contant">
                 <span>
@@ -85,7 +86,7 @@
         </div>
     </div>
     <!-- pagenation -->
-    <div class="pagenation">
+    <div class="pagenation" *ngIf="false">
         <button class="prev page-btn" [disabled]="page==0" (click)="pagination('prev')">
             <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                 [ngClass]="page==0?'disable-svg':''">

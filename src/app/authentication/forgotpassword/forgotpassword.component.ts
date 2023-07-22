@@ -29,6 +29,11 @@ export class ForgotpasswordComponent {
   }
 
   forgetPassword = new FormGroup({
-    mobileNumber: new FormControl(null, [Validators.required])
+    mobileNumber: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(10),
+      Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+    ])
   })
 }

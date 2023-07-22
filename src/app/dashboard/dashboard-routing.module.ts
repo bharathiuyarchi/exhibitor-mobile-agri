@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '', component: CommomComponent, data: { role: [1, 2, 3, 4, 5], route: 'dashboard' }, children: [
       { path: "", component: HomepageComponent, pathMatch: "full", canActivate: [AuthService], data: { role: [1, 2, 3, 4, 5], route: 'dashboard' } },
       { path: "post", loadChildren: () => import('./managepost/managepost.module').then((m) => m.ManagepostModule), canActivate: [AuthService], data: { role: [1], route: 'dashboard/post' } },
+      { path: "slots", loadChildren: () => import('./slots/slots.module').then((m) => m.SlotsModule), canActivate: [AuthService], data: { role: [1, 2, 3, 4, 5], route: 'dashboard/slot' } },
       { path: "stream", loadChildren: () => import('./managestreamrequest/managestreamrequest.module').then((m) => m.ManagestreamrequestModule), canActivate: [AuthService], data: { role: [1], route: 'dashboard/stream' } },
       { path: "livestream", loadChildren: () => import('./managelivestream/managelivestream.module').then((m) => m.ManagelivestreamModule), canActivate: [AuthService], data: { role: [1], route: 'dashboard/livestream' } },
       { path: "plan", loadChildren: () => import('./manageplan/manageplan.module').then((m) => m.ManageplanModule), canActivate: [AuthService], data: { role: [1], route: 'dashboard/plan' } },

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
 
 * {
     margin: 0;
@@ -99,7 +100,7 @@
 }
 
 .green-btn {
-    background-color: #48D391;
+    background-color: var(--green);
     color: white;
     padding: 10px 30px;
     border: none;
@@ -356,4 +357,11 @@ p {
 }
 option{
     text-transform: capitalize;
+}
+.no-found{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0 0 0;
+    color: var(--blue);
 }
