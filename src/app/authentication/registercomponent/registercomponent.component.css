@@ -1,8 +1,8 @@
 header {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 .change-user {
@@ -16,18 +16,42 @@ header {
 }
 
 .form {
-
     margin: auto;
     margin-top: 20px;
-    padding: 5px;
+    max-width: 500px;
+    margin: auto;
+    padding: 0 10px;
 }
 
 .btn {
     display: flex !important;
-    justify-content: center !important;
+    /* justify-content: center !important; */
     flex-direction: row;
 }
 
 .login-btn {
-    margin: 30px 0;
+    /* margin: 30px 0; */
+    padding: 0;
+    justify-content: space-between;
+}
+
+.welcome {
+    text-align: center;
+    font-weight: bold;
+}
+
+.normal-btn {
+    background-color: white;
+    border: none;
+    color: var(--green);
+    box-shadow: 0 0 3px 2px #00944536;
+    font-weight: bold;
+}
+
+.login-btn button {
+    /* margin: 10px; */
+    width: 49%;
+    border-radius: 2px;
+
+
 }

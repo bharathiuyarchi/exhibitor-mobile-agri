@@ -1,288 +1,167 @@
 <div class="main">
+  <header>
     <new-header></new-header>
-    <header>
-        <div class="logo">
-      
-        </div>
-        <div class="change-user">
-            <a class="sign-in-header" [routerLink]="['/login']">
-                <span>Sign In </span>
-                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M11.1818 7.09089V3.45452C11.1818 2.87587 10.9519 2.32092 10.5428 1.91174C10.1336 1.50257 9.57865 1.27271 9 1.27271H3.18182C2.60316 1.27271 2.04821 1.50257 1.63904 1.91174C1.22987 2.32092 1 2.87587 1 3.45452V16.5454C1 17.1241 1.22987 17.679 1.63904 18.0882C2.04821 18.4974 2.60316 18.7273 3.18182 18.7273H9C9.57865 18.7273 10.1336 18.4974 10.5428 18.0882C10.9519 17.679 11.1818 17.1241 11.1818 16.5454V12.9091M14.0909 12.9091L17 9.99998M17 9.99998L14.0909 7.09089M17 9.99998H4.63636"
-                        stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
 
-            </a>
+  </header>
+  <div class="welcome-content" style="margin-top: 30px;">
+    <!-- <div class="change-user" style="display: flex;justify-content: end;">
+      <a class="sign-in-header" [routerLink]="['/login']">
+        <span>Sign In </span>
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M11.1818 7.09089V3.45452C11.1818 2.87587 10.9519 2.32092 10.5428 1.91174C10.1336 1.50257 9.57865 1.27271 9 1.27271H3.18182C2.60316 1.27271 2.04821 1.50257 1.63904 1.91174C1.22987 2.32092 1 2.87587 1 3.45452V16.5454C1 17.1241 1.22987 17.679 1.63904 18.0882C2.04821 18.4974 2.60316 18.7273 3.18182 18.7273H9C9.57865 18.7273 10.1336 18.4974 10.5428 18.0882C10.9519 17.679 11.1818 17.1241 11.1818 16.5454V12.9091M14.0909 12.9091L17 9.99998M17 9.99998L14.0909 7.09089M17 9.99998H4.63636"
+            stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
 
-        </div>
+      </a>
 
-    </header>
-    <div class="welcome-content" style="margin-top: 80px;">
-        <div class="change-user" style="display: flex;justify-content: end;">
-            <a class="sign-in-header" [routerLink]="['/login']">
-                <span>Sign In </span>
-                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M11.1818 7.09089V3.45452C11.1818 2.87587 10.9519 2.32092 10.5428 1.91174C10.1336 1.50257 9.57865 1.27271 9 1.27271H3.18182C2.60316 1.27271 2.04821 1.50257 1.63904 1.91174C1.22987 2.32092 1 2.87587 1 3.45452V16.5454C1 17.1241 1.22987 17.679 1.63904 18.0882C2.04821 18.4974 2.60316 18.7273 3.18182 18.7273H9C9.57865 18.7273 10.1336 18.4974 10.5428 18.0882C10.9519 17.679 11.1818 17.1241 11.1818 16.5454V12.9091M14.0909 12.9091L17 9.99998M17 9.99998L14.0909 7.09089M17 9.99998H4.63636"
-                        stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+    </div> -->
+    <h1 class="welcome">Exhibitor Registration!</h1>
 
-            </a>
+  </div>
+  <form (submit)="login_now()" [formGroup]="registerForm">
 
-        </div>
-        <h1 class="welcome">Exhibitor Registration!</h1>
-        
-    </div>
     <form (submit)="login_now()" [formGroup]="registerForm">
-
-        <form (submit)="login_now()" [formGroup]="registerForm">
-            <div class="form">
-              <div class="form-row">
-                <label for="Trade-Name">Name : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Trade-Name"
-                  placeholder="Enter Name"
-                  formControlName="tradeName"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('tradeName')?.invalid"
-                  >Enter Name !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Email-ID">Email ID : </label>
-                <input
-                  type="email"
-                  name=""
-                  id="Email-ID"
-                  placeholder="Enter Email ID"
-                  formControlName="email"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && loginerror.email.errors?.['required']"
-                  >Enter Email ID !</label
-                >
-                <label *ngIf="submitted && loginerror.email.errors?.['email']"
-                  >Enter Valid Email !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Mobile-Number">Mobile Number : </label>
-                <input
-                  type="number"
-                  name=""
-                  id="Mobile-Number"
-                  placeholder="Enter Mobile Number"
-                  formControlName="mobileNumber"
-                  (keypress)="only_ten_degist($event, 9)"
-                  onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                />
-              </div>
-              <div class="form-error">
-                <label
-                  *ngIf="submitted && loginerror.mobileNumber.errors?.['required']"
-                  >Enter Mobile Number !</label
-                >
-                <label
-                  *ngIf="submitted && (loginerror.mobileNumber.errors?.['maxLength'] || loginerror.mobileNumber.errors?.['minLength'])"
-                  >Enter Valid Mobile Number !</label
-                >
-                <label
-                  *ngIf="submitted && loginerror.mobileNumber.errors?.['pattern']"
-                  >Enter Valid Mobile Number !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Business-Type">Company Name : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Business-Type"
-                  placeholder="Enter Business Type"
-                  formControlName="companyName"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('companyName')?.invalid"
-                  >Enter Company Type !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Business-Type">Designation : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Business-Type"
-                  placeholder="Enter Business Type"
-                  formControlName="Designation"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('Designation')?.invalid"
-                  >Enter Designation Type !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Business-Type">Website : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Business-Type"
-                  placeholder="Enter Business Type"
-                  formControlName="webSite"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('webSite')?.invalid"
-                  >Enter Website Type !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Business-Type">Category : </label>
-                <select
-                  formControlName="category"
-                  name=""
-                  id=""
-                  style="
+      <div class="form">
+        <div class="form-row">
+          <label for="Trade-Name">Name : </label>
+          <input type="text" name="" id="Trade-Name" placeholder="Enter Name" formControlName="tradeName" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('tradeName')?.invalid">Enter Name !</label>
+        </div>
+        <div class="form-row">
+          <label for="Email-ID">Email ID : </label>
+          <input type="email" name="" id="Email-ID" placeholder="Enter Email ID" formControlName="email" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && loginerror.email.errors?.['required']">Enter Email ID !</label>
+          <label *ngIf="submitted && loginerror.email.errors?.['email']">Enter Valid Email !</label>
+        </div>
+        <div class="form-row">
+          <label for="Mobile-Number">Mobile Number : </label>
+          <input type="number" name="" id="Mobile-Number" placeholder="Enter Mobile Number"
+            formControlName="mobileNumber" (keypress)="only_ten_degist($event, 9)"
+            onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && loginerror.mobileNumber.errors?.['required']">Enter Mobile Number !</label>
+          <label
+            *ngIf="submitted && (loginerror.mobileNumber.errors?.['maxLength'] || loginerror.mobileNumber.errors?.['minLength'])">Enter
+            Valid Mobile Number !</label>
+          <label *ngIf="submitted && loginerror.mobileNumber.errors?.['pattern']">Enter Valid Mobile Number !</label>
+        </div>
+        <div class="form-row">
+          <label for="Business-Type">Company Name : </label>
+          <input type="text" name="" id="Business-Type" placeholder="Enter Business Type"
+            formControlName="companyName" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('companyName')?.invalid">Enter Company Type !</label>
+        </div>
+        <div class="form-row">
+          <label for="Business-Type">Designation : </label>
+          <input type="text" name="" id="Business-Type" placeholder="Enter Business Type"
+            formControlName="Designation" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('Designation')?.invalid">Enter Designation Type !</label>
+        </div>
+        <div class="form-row">
+          <label for="Business-Type">Website : </label>
+          <input type="text" name="" id="Business-Type" placeholder="Enter Business Type" formControlName="webSite" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('webSite')?.invalid">Enter Website Type !</label>
+        </div>
+        <div class="form-row">
+          <label for="Business-Type">Category : </label>
+          <select formControlName="category" name="" id="" style="
                     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
                     border: none;
                     padding: 7px 12px;
                     width: 100%;
-                  "
-                >
-                  <option checked disabled>Select</option>
-                  <option [value]="cat" *ngFor="let cat of category">
-                    {{ cat }}
-                  </option>
-                </select>
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('category')?.invalid"
-                  >Select Category Type !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Address">Address : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Address"
-                  placeholder="Enter Address"
-                  formControlName="address"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('address')?.invalid"
-                  >Enter Address !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Country">Country : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Country"
-                  placeholder="Enter Country"
-                  formControlName="country"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('country')?.invalid"
-                  >Enter Country !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="State">State : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="State"
-                  placeholder="Enter State"
-                  formControlName="state"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('state')?.invalid"
-                  >Enter State !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="City">City : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="City"
-                  placeholder="Enter City"
-                  formControlName="city"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && registerForm.get('city')?.invalid"
-                  >Enter City !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="Pincode">Pincode : </label>
-                <input
-                  type="text"
-                  name=""
-                  id="Pincode"
-                  placeholder="Enter Pincode"
-                  formControlName="Pincode"
-                  (keypress)="only_ten_degist($event, 5)"
-                  onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                />
-              </div>
-              <div class="form-error">
-                <label *ngIf="submitted && loginerror.Pincode.errors?.['required']"
-                  >Enter Pincode !</label
-                >
-                <label
-                  *ngIf="submitted && (loginerror.Pincode.errors?.['maxLength'] || loginerror.Pincode.errors?.['minLength'])"
-                  >Enter Valid Pincode !</label
-                >
-                <label *ngIf="submitted && loginerror.Pincode.errors?.['pattern']"
-                  >Enter Valid Pincode !</label
-                >
-              </div>
-              <div class="form-row">
-                <label for="City">How did you know us? : </label>
-                <select
-                  name=""
-                  id=""
-                  formControlName="how_did_you_know_us"
-                  style="
+                  ">
+            <option checked disabled>Select</option>
+            <option [value]="cat" *ngFor="let cat of category">
+              {{ cat }}
+            </option>
+          </select>
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('category')?.invalid">Select Category Type !</label>
+        </div>
+        <div class="form-row">
+          <label for="Address">Address : </label>
+          <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('address')?.invalid">Enter Address !</label>
+        </div>
+        <div class="form-row">
+          <label for="Country">Country : </label>
+          <input type="text" name="" id="Country" placeholder="Enter Country" formControlName="country" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('country')?.invalid">Enter Country !</label>
+        </div>
+        <div class="form-row">
+          <label for="State">State : </label>
+          <input type="text" name="" id="State" placeholder="Enter State" formControlName="state" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('state')?.invalid">Enter State !</label>
+        </div>
+        <div class="form-row">
+          <label for="City">City : </label>
+          <input type="text" name="" id="City" placeholder="Enter City" formControlName="city" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('city')?.invalid">Enter City !</label>
+        </div>
+        <div class="form-row">
+          <label for="Pincode">Pincode : </label>
+          <input type="text" name="" id="Pincode" placeholder="Enter Pincode" formControlName="Pincode"
+            (keypress)="only_ten_degist($event, 5)"
+            onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && loginerror.Pincode.errors?.['required']">Enter Pincode !</label>
+          <label
+            *ngIf="submitted && (loginerror.Pincode.errors?.['maxLength'] || loginerror.Pincode.errors?.['minLength'])">Enter
+            Valid Pincode !</label>
+          <label *ngIf="submitted && loginerror.Pincode.errors?.['pattern']">Enter Valid Pincode !</label>
+        </div>
+        <div class="form-row">
+          <label for="City">How did you know us? : </label>
+          <select name="" id="" formControlName="how_did_you_know_us" style="
                     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
                     border: none;
                     padding: 7px 12px;
                     width: 100%;
-                  "
-                >
-                  <option [value]="k" *ngFor="let k of know">{{ k }}</option>
-                </select>
-              </div>
-              <div class="form-error">
-                <label
-                  *ngIf="
+                  ">
+            <option [value]="k" *ngFor="let k of know">{{ k }}</option>
+          </select>
+        </div>
+        <div class="form-error">
+          <label *ngIf="
                     submitted && registerForm.get('how_did_you_know_us')?.invalid
-                  "
-                  >Select how do you know !</label
-                >
-              </div>
-              <div class="form-submit">
-                <label *ngIf="errorMessage != null">{{ errorMessage }}</label>
-                <div class="button">
-                  <button type="submit" class="btn" style="background-color: var(--green);color: white;">
-                    Register
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
+                  ">Select how do you know !</label>
+        </div>
+
+        <div class="login-btn btn">
+          <button class="normal-btn" [routerLink]="['/login']" type="button"> Login</button>
+          <button class="green-btn ">Register</button>
+        </div>
+        <!-- <div class="form-submit">
+          <label *ngIf="errorMessage != null">{{ errorMessage }}</label>
+          <div class="button">
+            <button type="submit" class="btn" style="background-color: var(--green);color: white;">
+              
+            </button>
+          </div>
+        </div> -->
+      </div>
     </form>
+  </form>
 </div>
