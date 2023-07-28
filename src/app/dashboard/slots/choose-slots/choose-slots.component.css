@@ -1,0 +1,182 @@
+.date-container{
+    width: 100%;
+    height: 88px;
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+    min-width: 300px;
+    overflow-y: auto;
+    white-space: nowrap;
+
+}
+.date{
+
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;display: flex;
+    height: 71%;
+    border: none;
+    border-width: 2px ;
+   padding-top: 5px;
+    border-radius: 50px;
+    width: 165px;
+    background-color: white;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s background-color ease-in;
+}
+.date:hover{
+    background-color: #019444 !important;
+    color: aliceblue;
+    border: none;
+}
+.date-active{
+    background-color: #019444 !important;
+    color: aliceblue;
+    border: none;
+}
+.slot-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.slot-title{
+    display: flex;
+    margin-right: 40px;
+    justify-content: center;
+    font-weight: 500;
+    margin-left: 30px;
+    margin-top: 8px;
+    width: 70px;
+}
+.own-slot{
+    min-width: 300px;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+.peak{
+    background-color: #2192FF !important;
+}
+.ex{
+    background-color: rgb(255, 186, 59) !important;
+}
+.os{
+    font-size: 12px;
+    display: inline-block;
+    background-color: #019444;
+    color: white;
+    height: 33px;
+    border-radius: 20px;
+    width: 100px !important;
+    text-align: center;
+    justify-content: center;
+    padding-top: 6px;
+    margin-left: 10px;
+    margin-top: 5px;
+    padding: 8px 0px 5px 0;
+}
+.buy-slot{
+    position: relative;
+    height: 46px;
+    width: 110px;
+    display: inline-block;
+    box-shadow: 0 0 7px 2px #a7a7a787;
+    cursor: pointer;
+    margin: 20px 8px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.left{
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    background-color: #019444;
+    border-radius: 5px 15px 15px  5px;
+    width: 10px;
+    top: 0;
+    transition: 0.2s width;
+
+}
+.right{
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    background-color: #019444;
+    border-radius: 15px  5px  5px 15px;
+    width: 10px;
+    top: 0;
+    right: 0;
+    transition: 0.2s width;
+}
+.buy-slot p{
+    position: absolute;
+    font-size: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+    background: transparent;
+    z-index: 999;
+}
+.slot-active-p{
+    background-color: #2192FF !important;
+    color: white !important;
+}
+.slot-active-e{
+    background-color: rgb(255, 186, 59) !important;
+    color: white !important;
+}
+.slot-active{
+    background-color: #019444 !important;
+    color: white !important;
+}
+/* .buy-slot:hover .right {
+    width: 50%;
+    border-radius: 0;
+    border-radius: 0 5px 5px 0;
+
+}
+.buy-slot:hover .left{
+    width: 50%;
+    border-radius: 5px 0 0 5px;
+
+}
+.buy-slot:hover p{
+    color: white;
+} */
+.button{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn{
+    padding: 8px 40px;
+    border-radius: 20px;
+    width: 160px;
+}
+.hide{
+    display: none;
+}
+.count{
+    color: white;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    width: 15px;
+   background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    font-size: 11px;
+}
+@media only screen and (max-width: 440px) {
+    .date{
+        padding: 7px 11px 8px 21px;
+    }
+    .date:hover{
+        padding: 7px 11px 8px 21px;
+    }
+}

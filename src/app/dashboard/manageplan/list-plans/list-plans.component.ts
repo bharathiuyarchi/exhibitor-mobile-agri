@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ManageplaneService } from '../manageplane.service';
 
 @Component({
@@ -12,42 +12,30 @@ export class ListPlansComponent implements OnInit {
   @Input('view') view: any = false;
   @Input('selected') selected: any = false;
 
-  constructor(public api: ManageplaneService, public router: ActivatedRoute) { }
+  constructor(public api: ManageplaneService,
+     public router: ActivatedRoute,
+     private route:Router) { }
   id: any;
   stream: any;
   ngOnInit(): void {
     this.getlikePlan()
     this.get_plans_purchase()
     console.log(this.selected)
-    this.router.queryParams.subscribe((params: any) => {
-      console.log(params, 12312)
-      this.id = params.id;
-      this.stream = params.stream;
-      if (this.id == null) {
-        this.id = this.stream;
-      }
-      if (params.page != null) {
-        this.page = params.page;
-      }
-    })
+    // this.router.queryParams.subscribe((params: any) => {
+    //   console.log(params, 12312)
+    //   this.id = params.id;
+    //   this.stream = params.stream;
+    //   if (this.id == null) {
+    //     this.id = this.stream;
+    //   }
+    //   if (params.page != null) {
+    //     this.page = params.page;
+    //   }
+    // })
     // this.get_all_plans(this.page);
 
   }
-  allPlans:any[]=[
-    {
-      planName:'gold',
-      Price:6000,
-      numberOfParticipants:150,
-      no_of_host:1,
-      PostCount:2,
-      slotInfo:[{slotType: 'Normal', Duration: 10, No_Of_Slot: 2}, 
-      {slotType: 'Peak', Duration: 30, No_Of_Slot: 1},
-      {slotType: 'Exclusive', Duration: 10, No_Of_Slot: 1}],
-      chat_Option:'yes',
-      completedStream:'165'
-
-    }
-  ]
+  allPlans:any[]=[]
   page: any = 0;
   plans: any;
   next: any = false;
@@ -84,18 +72,13 @@ export class ListPlansComponent implements OnInit {
   
   buyplan(){
    
-    if(this.planid){
-      this.api.update_buy_plan(this.planid,this.viewPlans).subscribe((res:any)=>{
-        console.log(res)
-        this.getlikePlan()
-      })
-    }
-    else{
+    delete this.viewPlans._id
       this.api.buy_plan(this.viewPlans).subscribe((res:any)=>{
         console.log(res)
         this.getlikePlan()
+    this.route.navigateByUrl('/dashboard/plan');
+
       })
-    }
    
   }
   get_plans_purchase(){

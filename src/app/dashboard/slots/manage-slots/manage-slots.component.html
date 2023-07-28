@@ -14,19 +14,72 @@
         </div>
         <div class="add">
            
-            <a  data-bs-toggle="modal" data-bs-target="#buyplan">
-            <!-- <a [routerLink]="['choose-slots']"> -->
+            <!-- <a  data-bs-toggle="modal" data-bs-target="#buyplan"> -->
+            <!-- <a [routerLink]="['choose-slots']">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M1.11111 0H18.8889C19.1836 0 19.4662 0.117063 19.6746 0.325437C19.8829 0.533811 20 0.816426 20 1.11111V18.8889C20 19.1836 19.8829 19.4662 19.6746 19.6746C19.4662 19.8829 19.1836 20 18.8889 20H1.11111C0.816426 20 0.533811 19.8829 0.325437 19.6746C0.117063 19.4662 0 19.1836 0 18.8889V1.11111C0 0.816426 0.117063 0.533811 0.325437 0.325437C0.533811 0.117063 0.816426 0 1.11111 0ZM2.22222 2.22222V17.7778H17.7778V2.22222H2.22222ZM8.88889 8.88889V4.44444H11.1111V8.88889H15.5556V11.1111H11.1111V15.5556H8.88889V11.1111H4.44444V8.88889H8.88889Z"
                         fill="var(--green)" />
-                </svg></a>
+                </svg></a> -->
 
         </div>
     </nav>
-    <div class="no-found">
+    <div class="no-found" *ngIf="false">
         <h2>No slots found</h2>
     </div>
+    <div class="page-container">
+      <div class="box" *ngFor="let v of data">
+        <div class="box-title">
+          <h2>{{v.planName}}</h2>
+        </div>
+        <div class="box-slot">
+          <p>Normal</p>
+          <p>{{v.Normal}}</p>
+        </div>
+        <div class="box-slot">
+          <p>Peak</p>
+          <p>{{v.Peak}}</p>
+        </div>
+        <div class="box-slot">
+          <p>Exclusive</p>
+          <p>{{v.Exclusive}}</p>
+        </div>
+        <div class="box-btn">
+          <button *ngIf="!(checkbutton(v))" (click)="chooseSlot(v._id)" >Choose slots</button>
+          <button *ngIf="checkbutton(v)" (click)="view(v._id)" >View slots</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <table>
+      <tr class="tb-heading">
+          <td style="width: 30% !important;">Plan</td>
+          <td>Normal Slot</td>
+          <td>Peak Slot</td>
+          <td>Exclusive</td>
+          <td>Action</td>
+      </tr>
+
+    <tr *ngFor="let v of data">
+          <td>{{v.planName}}</td>
+          <td>{{v.Normal}}</td>
+          <td>{{v.Peak}}</td>
+          <td>{{v.Exclusive}}</td>
+          <td>
+              <span>
+                  <button (click)="chooseSlot(v._id)"  style="border-radius: 15px;color: white;
+                  background-color: green;
+                  padding: 5px 15px; border: none;">Choose Slot</button>
+              </span>
+              <span *ngIf="false">
+                  <p>View</p>
+              </span>
+             
+          </td>
+    </tr>
+
+
+  </table> -->
     </div>
 <!-- Button trigger modal -->
 

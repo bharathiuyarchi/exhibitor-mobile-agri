@@ -1,8 +1,8 @@
 header {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 .change-user {
@@ -17,8 +17,10 @@ header {
 
 .btn {
     display: flex !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
     flex-direction: row;
+    padding: 0;
+
 }
 
 .or {
@@ -56,10 +58,19 @@ header {
     border: none;
 }
 
+.normal-btn {
+    background-color: white;
+    border: none;
+    color: var(--green);
+    box-shadow: 0 0 1px 1px #0094457a;
+    font-weight: bold;
+}
+
 .google-login-btn img,
 .fb-login-btn img {
     margin-right: 5px;
 }
+
 
 .sign-up {
     margin-top: 150px;
@@ -69,4 +80,22 @@ header {
 .sign-up span {
     color: var(--green);
     font-weight: 700;
+}
+form{
+    max-width: 500px;
+    margin: auto;
+    padding: 0 10px;
+}
+.welcome{
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.login-btn button {
+    /* margin: 10px; */
+    width: 49%;
+    border-radius: 2px;
+
+
 }

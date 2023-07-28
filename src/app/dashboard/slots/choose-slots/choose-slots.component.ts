@@ -1,10 +1,283 @@
-import { Component } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ManageplaneService } from '../../manageplan/manageplane.service';
+import { SlotsService } from '../slots.service';
 
 @Component({
   selector: 'app-choose-slots',
   templateUrl: './choose-slots.component.html',
   styleUrls: ['./choose-slots.component.css']
 })
-export class ChooseSlotsComponent {
+export class ChooseSlotsComponent implements OnInit{
+  constructor(
+    private service: SlotsService,
+    private arouter: ActivatedRoute,
+    private planService: ManageplaneService,
+    private router:Router
+  ) {}
+
+  ngOnInit(): void {
+    this.arouter.queryParams.subscribe((params) => {
+      this.id = params["id"];
+      this.get_plan();
+    });
+    console.log(this.id);
+  }
+  id!: string;
+  data: string[] = [];
+  dates: any = [];
+  selectedDate: any;
+  exclusive: any;
+  normal: any;
+  peak: any;
+  dummyarr: any[] = [];
+  normalS: any = [];
+  peakS: any = [];
+  exS: any = [];
+  slotsFinal: any = [];
+planName!:string;
+  constNum(v: number): number {
+    const num = v;
+    return num;
+  }
+  get_plan() {
+    this.service.get_plan_for_availSlots(this.id).subscribe((res: any) => {
+      console.log(res, "plan");
+      this.dummyarr = res.slotInfo;
+      this.planName=res.planName
+      this.dummyarr.forEach((res: any) => {
+        if (res.SlotType == "Normal") {
+          this.normalS.push(res);
+        }
+        if (res.SlotType == "Exclusive") {
+          this.exS.push(res);
+        }
+        if (res.SlotType == "Peak") {
+          this.peakS.push(res);
+        }
+      });
+      this.normalS.sort((a: any, b: any) => a.Duration - b.Duration);
+      this.exS.sort((a: any, b: any) => a.Duration - b.Duration);
+      this.peakS.sort((a: any, b: any) => a.Duration - b.Duration);
+      console.log("normal", this.normalS, "peak", this.peakS, "ex", this.exS);
+      let data = {
+        PlanId: this.id,
+      };
+      this.get_all(data);
+    });
+  }
+  get_all(id: any) {
+    this.service.get_all_slots(id).subscribe((res: any) => {
+      console.log("response", res);
+
+      res.dates.forEach((res: any) => {
+        this.dates.push(new Date(res.date));
+      });
+      this.dates.sort((a: Date, b: Date) => a.getTime() - b.getTime());
+      this.selectedDate = this.dates[0];
+      console.log(this.dates);
+      for (let i = 0; i <= res.val.length - 1; i++) {
+        console.log(i);
+
+        if (res.val[i]._id == "Exclusive") {
+          this.exclusive = res.val[i].documents;
+        }
+        if (res.val[i]._id == "Peak") {
+          this.peak = res.val[i].documents;
+        }
+        if (res.val[i]._id == "Normal") {
+          this.normal = res.val[i].documents;
+        }
+      }
+      this.normal.sort((a: any, b: any) => a.Duration - b.Duration);
+      this.exclusive.sort((a: any, b: any) => a.Duration - b.Duration);
+      this.peak.sort((a: any, b: any) => a.Duration - b.Duration);
+    });
+  }
+  changeSDate(v: any) {
+    
+    this.selectedDate = v;
+  }
+  choose(v: any) {
+    let find = this.slotsFinal.findIndex((res: any) => {
+      return res.slotId == v._id;
+    });
+    console.log(find, "find");
+    let durationfind = this.normalS.findIndex((res: any) => {
+      // console.log(res.Duration , v.Duration)
+      return res.Duration == v.Duration;
+    });
+    if (find == -1) {
+      // console.log(durationfind,'duration find')
+      if (
+        this.normalS[durationfind].Slots !=
+        this.normalS[durationfind].selected_count
+      ) {
+        this.slotsFinal.push({
+          Date: this.selectedDate,
+          planId: this.id,
+          slotId: v._id,
+          Type: v.Type,
+          duration: v.Duration,
+          start: v.start,
+          end: v.end,
+        });
+        if (this.normalS[durationfind].selected_count == undefined) {
+          this.normalS[durationfind].selected_count = 0;
+        }
+        this.normalS[durationfind].selected_count =
+          this.normalS[durationfind].selected_count + 1;
+      } else {
+        console.log("count reached");
+      }
+    } else {
+      this.slotsFinal.splice(find, 1);
+      if (this.normalS[durationfind].selected_count > 0) {
+        this.normalS[durationfind].selected_count =
+          this.normalS[durationfind].selected_count - 1;
+      }
+    }
+    console.log(find);
+    console.log(this.slotsFinal);
+    console.log(this.normalS, "slot he have");
+  }
+  chooseP(v: any) {
+    let find = this.slotsFinal.findIndex((res: any) => {
+      return res.slotId == v._id;
+    });
+    console.log(find, "find");
+    let durationfind = this.peakS.findIndex((res: any) => {
+      // console.log(res.Duration , v.Duration)
+      return res.Duration == v.Duration;
+    });
+    if (find == -1) {
+      // console.log(durationfind,'duration find')
+      if (
+        this.peakS[durationfind].Slots !=
+        this.peakS[durationfind].selected_count
+      ) {
+        this.slotsFinal.push({
+          Date: this.selectedDate,
+          planId: this.id,
+          slotId: v._id,
+          Type: v.Type,
+          duration: v.Duration,
+          start: v.start,
+          end: v.end,
+        });
+        if (this.peakS[durationfind].selected_count == undefined) {
+          this.peakS[durationfind].selected_count = 0;
+        }
+        this.peakS[durationfind].selected_count =
+          this.peakS[durationfind].selected_count + 1;
+      } else {
+        console.log("count reached");
+      }
+    } else {
+      this.slotsFinal.splice(find, 1);
+      if (this.peakS[durationfind].selected_count > 0) {
+        this.peakS[durationfind].selected_count =
+          this.peakS[durationfind].selected_count - 1;
+      }
+    }
+    console.log(find);
+    console.log(this.slotsFinal);
+    console.log(this.peakS, "slot he have");
+  }
+
+  chooseEx(v: any) {
+    let find = this.slotsFinal.findIndex((res: any) => {
+      return res.slotId == v._id;
+    });
+    console.log(find, "find");
+    let durationfind = this.exS.findIndex((res: any) => {
+      // console.log(res.Duration , v.Duration)
+      return res.Duration == v.Duration;
+    });
+    if (find == -1) {
+      // console.log(durationfind,'duration find')
+      if (
+        this.exS[durationfind].Slots !=
+        this.exS[durationfind].selected_count
+      ) {
+        this.slotsFinal.push({
+          Date: this.selectedDate,
+          planId: this.id,
+          slotId: v._id,
+          Type: v.Type,
+          duration: v.Duration,
+          start: v.start,
+          end: v.end,
+        });
+        if (this.exS[durationfind].selected_count == undefined) {
+          this.exS[durationfind].selected_count = 0;
+        }
+        this.exS[durationfind].selected_count =
+          this.exS[durationfind].selected_count + 1;
+      } else {
+        console.log("count reached");
+      }
+    } else {
+      this.slotsFinal.splice(find, 1);
+      if (this.exS[durationfind].selected_count > 0) {
+        this.exS[durationfind].selected_count =
+          this.exS[durationfind].selected_count - 1;
+      }
+    }
+    console.log(find);
+    console.log(this.slotsFinal);
+    console.log(this.exS, "slot he have");
+  }
+  isActive(id: any): boolean {
+    let find = false;
+    this.slotsFinal.find((res: any): any => {
+      if (res.slotId == id) {
+        find = true;
+        return true;
+      } else {
+        find = false;
+        return false;
+      }
+    });
+    return find;
+  }
+  returnIndex(id: any): number {
+    let find = this.slotsFinal.findIndex((res: any): any => {
+      return id == res.slotId;
+    });
+    return find;
+  }
+  showslots: any = [];
+  viewslots() {
+    // let sorts = this.slotsFinal.filter(
+    //   (a: any, b: any) =>
+    //     formatDate(a.Date, "yyyy-MM-dd", "en-IN") ==
+    //     formatDate(b.Date, "yyyy-MM-dd", "en-IN")
+    // );
+   this.showslots = this.slotsFinal.reduce(
+      (entryMap: any, e: any) =>
+        entryMap.set(formatDate(e.Date, "yyyy-MM-dd", "en-IN"), [
+          ...(entryMap.get(formatDate(e.Date, "yyyy-MM-dd", "en-IN")) || []),
+          e,
+        ]),
+      new Map()
+    );
+    
+
+    console.log(this.showslots)
+  }
+  submit(){
+    let data ={
+      arr:this.slotsFinal
+    }
+    this.service.confirmSlot(data).subscribe((res:any)=>
+    {
+      console.log(res)
+      this.router.navigateByUrl('/dashboard/slots')
+    })
+  }
 
 }
+
+

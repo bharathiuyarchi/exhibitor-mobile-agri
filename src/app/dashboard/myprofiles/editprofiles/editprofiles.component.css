@@ -60,7 +60,9 @@ nav h3 svg {
     margin: 0 0 2px 10px;
     height: fit-content;
     width: 50%;
-    font-size: 16px !important;
+    font-size: 13px !important;
+    font-weight: 500;
+
 }
 
 .form-container div input {
@@ -68,6 +70,7 @@ nav h3 svg {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border: none;
     padding: 15px;
+    font-size: 12px;
 }
 
 .resend-otp {
@@ -150,6 +153,7 @@ nav h3 svg {
     border-radius: 4px;
     padding: 10px;
     width: 100%;
+    font-size: 12px;
 }
 
 .form-container div button {
@@ -165,4 +169,8 @@ nav h3 svg {
     color: red;
     width: 100% !important;
     text-align: end;
+}
+textarea{
+    width: 100%;
+    font-size: 12px;
 }

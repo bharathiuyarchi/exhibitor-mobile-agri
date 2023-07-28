@@ -22,9 +22,32 @@
                 </svg></a>
         </div>
     </nav>
-    <div class="no-found">
+    <div class="no-found" *ngIf="false">
         <h2>No plans found</h2>
     </div>
+    <div class="page-container">
+        <div class="box" *ngFor="let v of my_plans">
+          <div class="box-title">
+            <h2>{{v.planName}}</h2>
+            <p>{{v.status}}</p>
+          </div>
+          <div class="box-slot">
+            <p>Normal</p>
+            <p>{{v.Normal}}</p>
+          </div>
+          <div class="box-slot">
+            <p>Peak</p>
+            <p>{{v.Peak}}</p>
+          </div>
+          <div class="box-slot">
+            <p>Exclusive</p>
+            <p>{{v.Exclusive}}</p>
+          </div>
+          <div class="box-btn">
+            Purchased On - 10/03/2023
+          </div>
+        </div>
+      </div>
     <div class="table-design" *ngIf="false">
         <div class="single-row" *ngFor="let item of my_plans; index as i">
             <div class="properyty-view">
@@ -79,6 +102,7 @@
             </div>
         </div>
     </div>
+
     <!-- pagenation -->
     <div class="pagenation" *ngIf="false">
         <button class="prev page-btn" [disabled]="page==0" (click)="pagination('prev')">

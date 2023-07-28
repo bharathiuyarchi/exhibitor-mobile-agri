@@ -28,11 +28,6 @@
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('email').invalid">Email is Invalid!</p>
             <div>
-                <label>Number :</label>
-                <p><input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" type="number" name="" id="" formControlName="mobileNumber"></p>
-            </div>
-            <p class="err" *ngIf="submitted && mydetails.get('mobileNumber').invalid">Number is Invalid!</p>
-            <div>
                 <label>Company Name :</label>
                 <p><input type="text" name="" id="" formControlName="companyName"></p>
             </div>
@@ -50,11 +45,11 @@
             <div>
                 <label>Category :</label>
                 <p><select name="Category" id="" formControlName="category">
-                    <option [value]="v" *ngFor="let v of category">{{v}}</option>
-                </select></p>
+                        <option [value]="v" *ngFor="let v of category">{{v}}</option>
+                    </select></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('category').invalid">category is required!</p>
-            
+
             <div>
                 <label>Address :</label>
                 <p>
@@ -81,7 +76,7 @@
             <div>
                 <label> Pin code :</label>
                 <p><input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                     type="number" name="" id="" formControlName="Pincode"></p>
+                        type="number" name="" id="" formControlName="Pincode"></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('Pincode').invalid">Pincode is Invalid!</p>
             <div>
