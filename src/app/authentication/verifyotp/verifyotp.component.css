@@ -24,3 +24,26 @@
     font-weight: 500;
     font-size: 12px;
 }
+
+form{
+    max-width: 500px;
+    margin: auto;
+    padding: 0 10px;
+}
+.welcome{
+    text-align: center;
+    font-weight: bold;
+}
+
+.button button{
+    width: 50%;
+}
+
+.login-btn{
+
+    padding: 0;
+
+}
+.login-btn button{
+    width: 50%;
+}

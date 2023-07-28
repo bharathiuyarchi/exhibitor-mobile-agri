@@ -41,8 +41,19 @@
     margin: auto;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    /* padding: 0 10px; */
+    border: none;
+    border-bottom: none;
 }
+
+@media only screen and (min-width: 1000px) {
+    .main {
+        border: 1px solid #d3d3d361;
+        border-bottom: none;
+        border-top: 0;
+    }
+
+}
+
 
 .form {
     margin-top: 20px !important;
@@ -79,7 +90,7 @@
 }
 
 :root {
-    --green:  #019444;
+    --green: #019444;
     --blue: var(--green);
     --gray: #EBEEF0;
     --red: #FF8080;
@@ -352,13 +363,16 @@ p {
     border-radius: 5px;
     border: solid var(--blue) 3px;
 }
-.button-disabled{
+
+.button-disabled {
     opacity: 0.4;
 }
-option{
+
+option {
     text-transform: capitalize;
 }
-.no-found{
+
+.no-found {
     display: flex;
     align-items: center;
     justify-content: center;

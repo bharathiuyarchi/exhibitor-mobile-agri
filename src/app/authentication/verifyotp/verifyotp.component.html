@@ -11,14 +11,14 @@
             <div>
                 <label>OTP :</label>
                 <input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                 type="tel" maxlength="6" name="" id="OTP" placeholder="Enter OTP" formControlName="otp">
+                    type="tel" maxlength="6" name="" id="OTP" placeholder="Enter OTP" formControlName="otp">
                 <!-- <a (click)="resend()" class="forget-password">Resend OTP !</a> -->
             </div>
             <div class="form-error">
                 <label *ngIf="submitted && verifyOTP.get('otp')?.invalid">Enter valid OTP !</label>
                 <label *ngIf="errorMessage !=null">{{errorMessage | json}} !</label>
             </div>
-           
+
             <div class="login-btn btn">
                 <button class="green-btn ">Verify OTP</button>
             </div>
