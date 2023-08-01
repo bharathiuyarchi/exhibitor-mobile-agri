@@ -15,8 +15,10 @@
         <div class="form">
             <div>
                 <label>Select Category :</label>
-                <select (change)="change_cate($event)" formControlName="categoryId">
-                    <option disabled selected [ngValue]="null">Select Category</option>
+                <select [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'" (change)="change_cate($event)"
+                    formControlName="categoryId"
+                    style="height: 40px; border: none;box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);">
+                    <option disabled selected hidden [ngValue]="null">Select Category</option>
                     <option *ngFor="let item of category_list" value="{{item.id}}">
                         {{item.categoryName}}</option>
                 </select>
@@ -28,8 +30,10 @@
             </div>
             <div>
                 <label> Product :</label>
-                <select name="" id="" formControlName="productId">
-                    <option [ngValue]="null" disabled selected>Select Product
+                <select name="" id="" formControlName="productId"
+                [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'"
+                    style="height: 40px; border: none;box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);">
+                    <option [ngValue]="null" disabled selected hidden>Select Product
                     </option>
                     <ng-container *ngIf="productList !=null">
 
@@ -44,12 +48,13 @@
                 </p>
             </div>
             <div class="product-not-found" *ngIf="ProductNotFound">
-                <p (click)="enablePopup()">Peoduct Not Found ?</p>
+                <p (click)="enablePopup()">Product Not Found ?</p>
             </div>
             <div>
                 <label> Unit :</label>
-                <select formControlName="unit">
-                    <option [value]="null" disabled>Choose Unit</option>
+                <select formControlName="unit" [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'"
+                    style="height: 40px; border: none;box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);">
+                    <option [value]="null" disabled hidden>Choose Unit</option>
                     <option value="kg">KG</option>
                     <option value="pc">PC</option>
                 </select>
@@ -62,7 +67,7 @@
             <div class="quantity">
                 <label>Quantity :</label>
                 <div>
-                    <input type="text" placeholder="Enter Quanity"
+                    <input type="text" placeholder="Enter Quantity"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="quantity" (keyup)="qtyChange($event)">
                     <!-- <select>
@@ -219,20 +224,11 @@
                     <input type="text" placeholder="₹ Enter Incremental Lots"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="incrementalLots" (keyup)="IncreMentLost($event)">
-                    <!-- <select>
-                        <option value="kg">KG</option>
-                        <option value="pc">PC</option>
-                    </select> -->
                 </div>
             </div>
             <div class="error-message" *ngIf="IncreMentLosterr">
                 <p>
                     <span>Incremental Lots Limit Exceeded</span>
-                </p>
-            </div>
-            <div class="error-message">
-                <p *ngIf="submited && postForm.get('incrementalLots').invalid">
-                    <span>Enter Incremental Lots</span>
                 </p>
             </div>
             <div>
@@ -250,7 +246,7 @@
                 <div class="choose-file quantity upload-file"><label for="image">Choose File</label><input
                         style="display: none;" type="file" id="image" accept="image/png, image/gif, image/jpeg"
                         (change)="change_image($event)" [multiple]="5">
-                    <p>.JPG,.PNG,.JPEG</p>
+                    <p style="display: flex; align-items: center;">.JPG,.PNG,.JPEG</p>
                 </div>
             </div>
 
@@ -287,7 +283,7 @@
                 <div class="choose-file  quantity upload-file"><label for="video">Choose File</label>
                     <input style="display: none;" type="file" id="video" (change)="change_video($event)"
                         accept="video/mp4,video/x-m4v,video/*">
-                    <p>.mp4</p>
+                    <p style="display: flex; align-items: center;">.mp4</p>
                 </div>
             </div>
 

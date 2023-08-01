@@ -24,10 +24,10 @@ nav {
 .quantity select {
   width: 20%;
   box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.25);
-  padding-left: 10px;
-  /* margin-left: -10px; */
 }
-
+.fom div .select {
+  height: 40px !important;
+}
 .description {
   height: 100px;
   margin-bottom: 0 !important;
@@ -151,8 +151,8 @@ input[type="file"]::file-selector-button {
   border-radius: 60px;
 }
 .close-popup-icon p {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 .popup-container-1::-webkit-scrollbar {
   display: none;
@@ -219,6 +219,18 @@ input[type="file"]::file-selector-button {
   border: none;
 }
 .error-message p {
-    text-align: right;
-    color: red;
+  text-align: right;
+  color: red;
+}
+.form div select:invalid {
+  color: gray;
+}
+form div select option[value="null"][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
+.not-selected{
+    color: #232323ac;
 }
