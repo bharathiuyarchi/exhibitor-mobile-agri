@@ -231,6 +231,6 @@ form div select option[value="null"][disabled] {
 option {
   color: black;
 }
-.not-selected{
-    color: #232323ac;
+.not-selected {
+  color: #232323ac;
 }
