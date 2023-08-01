@@ -5,6 +5,8 @@ import { ManageSlotsComponent } from './manage-slots/manage-slots.component';
 import { ViewSlotsComponent } from './view-slots/view-slots.component';
 import { SlotsRoutingModule } from './slots-routing.module';
 import { CommommoduleModule } from "../../commen/commommodule.module";
+import { ToastrModule } from 'ngx-toastr';
+import { SlotPipe } from './slot.pipe';
 
 
 
@@ -12,12 +14,18 @@ import { CommommoduleModule } from "../../commen/commommodule.module";
     declarations: [
         ManageSlotsComponent,
         ViewSlotsComponent,
-        ChooseSlotsComponent
+        ChooseSlotsComponent,
+        SlotPipe
     ],
     imports: [
         CommonModule,
         SlotsRoutingModule,
-        CommommoduleModule
+        CommommoduleModule,
+        ToastrModule.forRoot({
+            timeOut: 10000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+          }),
     ]
 })
 export class SlotsModule { }
