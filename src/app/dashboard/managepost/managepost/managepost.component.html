@@ -25,11 +25,11 @@
     </nav>
     <!-- products-container -->
     <!-- <a href="whatsapp://send?text=www.google.com" data-action="share/whatsapp/share">Share via Whatsapp</a> -->
-    <div class="no-found">
+    <div class="no-found" *ngIf="false"> 
         <h2>No posts found</h2>
     </div>
   
-    <div *ngIf="false" class="products-container">
+    <div *ngIf="true" class="products-container">
 
 
         <div class="products" *ngFor="let item of my_posts; index as i">

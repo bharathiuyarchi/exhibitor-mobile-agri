@@ -49,4 +49,10 @@ export class ManagepostService {
   removed_one_post(id: any) {
     return this.http.put(this.baseurl + "/v1/ecomplan/remove/one/post?id=" + id, {});
   }
+  customerRequestProduct(data: any) {
+    return this.http.post(
+      this.baseurl + "/v1/product/createCustomer/Request/Product",
+      data
+    );
+  }
 }
