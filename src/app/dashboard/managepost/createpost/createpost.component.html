@@ -9,28 +9,31 @@
             <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="var(--green)" />
             </svg>
-
         </div>
     </nav>
     <form [formGroup]="postForm" (submit)="create_post()">
         <div class="form">
             <div>
                 <label>Select Category :</label>
-                <select (change)="change_cate($event)" formControlName="categoryId">
-                    <option disabled selected [ngValue]="null">Select Category</option>
+                <select [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'" (change)="change_cate($event)"
+                    formControlName="categoryId"
+                    style="height: 40px; border: none;box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);">
+                    <option disabled selected hidden [ngValue]="null">Select Category</option>
                     <option *ngFor="let item of category_list" value="{{item.id}}">
                         {{item.categoryName}}</option>
                 </select>
             </div>
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('categoryId').invalid">
-                    <span>Choose Category</span>
+                    <span> Category</span>
                 </p>
             </div>
             <div>
-                <label>Select Product :</label>
-                <select name="" id="" formControlName="productId">
-                    <option [ngValue]="null" disabled selected>Select Product
+                <label> Product :</label>
+                <select name="" id="" formControlName="productId"
+                [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'"
+                    style="height: 40px; border: none;box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);">
+                    <option [ngValue]="null" disabled selected hidden>Select Product
                     </option>
                     <ng-container *ngIf="productList !=null">
 
@@ -41,19 +44,36 @@
             </div>
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('productId').invalid">
-                    <span>Choose Product</span>
+                    <span> Product</span>
+                </p>
+            </div>
+            <div class="product-not-found" *ngIf="ProductNotFound">
+                <p (click)="enablePopup()">Product Not Found ?</p>
+            </div>
+            <div>
+                <label> Unit :</label>
+                <select formControlName="unit" [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'"
+                    style="height: 40px; border: none;box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);">
+                    <option [value]="null" disabled hidden>Choose Unit</option>
+                    <option value="kg">KG</option>
+                    <option value="pc">PC</option>
+                </select>
+            </div>
+            <div class="error-message">
+                <p *ngIf="submited && postForm.get('unit').invalid">
+                    <span>Choose Unit</span>
                 </p>
             </div>
             <div class="quantity">
                 <label>Quantity :</label>
                 <div>
-                    <input type="text" placeholder="Enter Quanity"
+                    <input type="text" placeholder="Enter Quantity"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                        formControlName="quantity">
-                    <select>
+                        formControlName="quantity" (keyup)="qtyChange($event)">
+                    <!-- <select>
                         <option value="kg">KG</option>
                         <option value="pc">PC</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
 
@@ -62,7 +82,7 @@
                     <span>Enter Quantity</span>
                 </p>
             </div>
-            <div>
+            <!-- <div>
                 <label>Location :</label>
                 <input type="text" placeholder="Enter Location" formControlName="location">
             </div>
@@ -70,8 +90,8 @@
                 <p *ngIf="submited && postForm.get('location').invalid">
                     <span>Enter Location</span>
                 </p>
-            </div>
-            <div>
+            </div> -->
+            <!-- <div>
                 <label>Description :</label>
                 <textarea placeholder="Enter description" formControlName="discription"
                     (keypress)="maxlengths($event, 250)" (paste)="(false)"></textarea>
@@ -81,7 +101,7 @@
                     <span>Enter Description</span>
                 </p>
             </div>
-            <h4>During Live Stream</h4>
+            <h4>During Live Stream</h4> -->
 
             <div class="quantity">
                 <label>Market Price :</label>
@@ -89,10 +109,10 @@
                     <input type="number" placeholder="₹ Enter Market Price"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="marketPlace">
-                    <select>
+                    <!-- <select>
                         <option value="kg">KG</option>
                         <option value="pc">PC</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <div class="error-message">
@@ -106,10 +126,10 @@
                     <input type="text" placeholder="₹ Enter Offer Price"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="offerPrice">
-                    <select>
+                    <!-- <select>
                         <option value="kg">KG</option>
                         <option value="pc">PC</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <div class="error-message">
@@ -165,10 +185,10 @@
                     <input type="text" placeholder="₹ Enter Price After Live Streaming"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="postLiveStreamingPirce">
-                    <select>
+                    <!-- <select>
                         <option value="kg">KG</option>
                         <option value="pc">PC</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <div *ngIf="postForm.get('afterStreaming')?.value=='yes'" class="error-message">
@@ -181,12 +201,17 @@
                 <div>
                     <input type="text" placeholder="₹ Enter Minimum Lots"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                        formControlName="minLots">
-                    <select>
+                        formControlName="minLots" (keyup)="minLostChange($event)">
+                    <!-- <select>
                         <option value="kg">KG</option>
                         <option value="pc">PC</option>
-                    </select>
+                    </select> -->
                 </div>
+            </div>
+            <div class="error-message" *ngIf="minLosterr">
+                <p>
+                    <span>Minimum Lots Limit {{Qty}} Only</span>
+                </p>
             </div>
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('minLots').invalid">
@@ -198,16 +223,22 @@
                 <div>
                     <input type="text" placeholder="₹ Enter Incremental Lots"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                        formControlName="incrementalLots">
-                    <select>
-                        <option value="kg">KG</option>
-                        <option value="pc">PC</option>
-                    </select>
+                        formControlName="incrementalLots" (keyup)="IncreMentLost($event)">
                 </div>
             </div>
+            <div class="error-message" *ngIf="IncreMentLosterr">
+                <p>
+                    <span>Incremental Lots Limit Exceeded</span>
+                </p>
+            </div>
+            <div>
+                <label>Description :</label>
+                <textarea placeholder="Enter description" formControlName="discription"
+                    (keypress)="maxlengths($event, 250)" (paste)="(false)"></textarea>
+            </div>
             <div class="error-message">
-                <p *ngIf="submited && postForm.get('incrementalLots').invalid">
-                    <span>Enter Incremental Lots</span>
+                <p *ngIf="submited && postForm.get('discription').invalid">
+                    <span>Enter Description</span>
                 </p>
             </div>
             <div class="upload-files">
@@ -215,7 +246,7 @@
                 <div class="choose-file quantity upload-file"><label for="image">Choose File</label><input
                         style="display: none;" type="file" id="image" accept="image/png, image/gif, image/jpeg"
                         (change)="change_image($event)" [multiple]="5">
-                    <p>.JPG,.PNG,.JPEG</p>
+                    <p style="display: flex; align-items: center;">.JPG,.PNG,.JPEG</p>
                 </div>
             </div>
 
@@ -252,7 +283,7 @@
                 <div class="choose-file  quantity upload-file"><label for="video">Choose File</label>
                     <input style="display: none;" type="file" id="video" (change)="change_video($event)"
                         accept="video/mp4,video/x-m4v,video/*">
-                    <p>.mp4</p>
+                    <p style="display: flex; align-items: center;">.mp4</p>
                 </div>
             </div>
 
@@ -284,6 +315,7 @@
                 </p>
             </div>
 
+
             <div class="login-btn btn">
                 <button type="submit" class="green-btn ">Post</button>
             </div>
@@ -292,6 +324,53 @@
 
         </div>
     </form>
+</div>
 
 
+<div class="popup-1" *ngIf="addPopup">
+    <div class="popup-close-1" (click)="disablePopup()"></div>
+    <div class="popup-container-1">
+        <div class="close-popup-icon" (click)="disablePopup()">
+            <p>x</p>
+        </div>
+        <div class="content-title">
+            <p>Add Product</p>
+        </div>
+        <div class="form-popup" [formGroup]="AddProductForm">
+            <div>
+                <p>Category :</p>
+                <input type="text" placeholder="Enter Category *" formControlName="category" />
+            </div>
+            <div class="error-message-popup">
+                <p *ngIf="productSubmit && AddProductForm.get('category').invalid">
+                    <span>Enter category</span>
+                </p>
+            </div>
+            <div>
+                <p>Sub Category :</p>
+                <input type="text" placeholder="Enter Sub Category" formControlName="subcategory" />
+            </div>
+            <div class="error-message-popup">
+                <!-- <p *ngIf="productSubmit && AddProductForm.get('subcategory').invalid">
+                    <span>Enter subcategory</span>
+                </p> -->
+            </div>
+            <div>
+                <p>Product Name :</p>
+                <input type="text" placeholder="Enter Product Name *" formControlName="productName" />
+            </div>
+            <div class="error-message-popup">
+                <p *ngIf="productSubmit && AddProductForm.get('productName').invalid">
+                    <span>Enter productName</span>
+                </p>
+            </div>
+            <div>
+                <p>Brand Name :</p>
+                <input type="text" placeholder="Enter Brand Name" formControlName="brandName" />
+            </div>
+        </div>
+        <div class="submit-btn-popup">
+            <button type="button" (click)="submitProduct()">Submit</button>
+        </div>
+    </div>
 </div>
