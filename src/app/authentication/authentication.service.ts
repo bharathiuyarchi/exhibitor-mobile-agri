@@ -32,4 +32,7 @@ export class AuthenticationService {
   alreadyUser(data: any) {
     return this.http.post(this.baseURL + '/v1/seller/alreadyuser/seller', data);
   }
+  continueRegister(data:any){
+    return this.http.post(this.baseURL+'/v1/seller/sendOTP/continue',data)
+  }
 }

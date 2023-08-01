@@ -1,30 +1,50 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['./forgotpassword.component.css']
 })
-export class ForgotpasswordComponent {
+export class ForgotpasswordComponent implements OnInit{
   submitted: any = false;
-  constructor(public api: AuthenticationService, private router: Router) {
+  constructor(public api: AuthenticationService, private router: Router,
+    private arouter:ActivatedRoute) {
 
   }
   errorMessage: any;
+  cr:any;
+  ngOnInit(): void {
+   this.arouter.queryParams.subscribe((res:any)=>{
+    this.cr=res['cr']
+   })
+   console.log(this.cr,'asdfsdf')
+  }
   forget_password() {
     this.errorMessage = null;
     this.submitted = true;
     if (this.forgetPassword.valid) {
       this.submitted=false;
-      this.api.forgetPassword(this.forgetPassword.value).subscribe((res: any) => {
-        localStorage.setItem('mobileNumber', res.mobileNumber);
-        this.router.navigate(['verifyotp'])
-      }, error => {
-        this.errorMessage = error;
-      })
+      if(this.cr){
+        console.log('continue register')
+        this.api.continueRegister(this.forgetPassword.value).subscribe((res:any)=>{
+          localStorage.setItem('mobileNumber', res.mobileNumber);
+          this.router.navigate(['verifyotp'])
+        }, error => {
+          this.errorMessage = error.error.message;
+        })
+      }
+      else{
+        this.submitted = false;
+        this.api.forgetPassword(this.forgetPassword.value).subscribe((res: any) => {
+          localStorage.setItem('mobileNumber', res.mobileNumber);
+          this.router.navigate(['verifyotp'])
+        }, error => {
+          this.errorMessage = error.error.message;
+        })
+      }
     }
   }
 

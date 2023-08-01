@@ -54,6 +54,13 @@ export class LogincomponentComponent implements OnInit {
     }
 
   }
+  continue(){
+    let data={
+      cr:'1'
+    }
+    let query = new URLSearchParams(data).toString()
+    this.router.navigateByUrl('/forgot?'+ query)
+  }
 
   
 }

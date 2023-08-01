@@ -25,7 +25,11 @@
             <div>
                 <label for="password">Password :</label>
                 <input type="password" name="" id="password" placeholder="Password" formControlName="password">
-                <a class="forget-password" [routerLink]="['/forgot']">Forget Passowrd !</a>
+                <div class="form-forgot"> 
+                    <a  [routerLink]="['/forgot']">Forget Passowrd !</a>
+                    <a   [routerLink]="['/forgot']" (click)="continue()" >Continue Registering !</a>
+                </div>
+             
             </div>
             <div class="form-error">
                 <label *ngIf="submitted  && Login.get('password')?.invalid ">Invalid Password !</label>

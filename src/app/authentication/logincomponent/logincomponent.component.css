@@ -98,4 +98,11 @@ form{
     border-radius: 2px;
 
 
-}
+} .form-forgot a {
+    margin-left: 9px;
+  }
+  
+ .form-forgot{
+    margin-top: 10px  ; display: flex; justify-content: end;
+    align-items: flex-end;
+  }
