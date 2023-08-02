@@ -50,10 +50,10 @@
                         <rect x="8.84995" y="4.35" width="3.75455" height="1.8" transform="rotate(90 8.84995 4.35)"
                             fill="#BCC3CC" stroke="white" stroke-width="0.7" />
                     </svg>
-                    <p>{{item.productName}}</p>
+                    <p class="product_name" (click)="view_image('content', item)">{{item.productName}}</p>
                 </span>
                 <p class="quantity">
-                    {{item.quantity}}
+                    {{item.quantity}} {{item.unit}}
                 </p>
                 <div>
                     <a [routerLink]="['add']" [queryParams]="{id:item._id}"
@@ -68,7 +68,7 @@
             </div>
 
             <div class="row-one">
-                <span class="category">
+                <!-- <span class="category">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
                         <mask id="path-2-inside-1_741_946" fill="white">
@@ -80,8 +80,8 @@
                             fill="white" mask="url(#path-2-inside-1_741_946)" />
                     </svg>
                     <p>{{item.location}}</p>
-                </span>
-                <p class="price">
+                </span> -->
+                <p class="price" style="padding-left: 20px;">
                     {{item.offerPrice|currency:'INR'}}/<sub class="striked">{{item.marketPlace|currency:'INR'}}</sub>
                 </p>
                 <div class="view-icons">
@@ -116,6 +116,101 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
         
         </div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- popup -->
+
+<div class="popup" *ngIf="view_details != null">
+    <div class="dummy" (click)="close_popup()"></div>
+    <div class="popup-container">
+      <a class="popupclose" (click)="close_popup()">x</a>
+      <ul>
+        <li [ngClass]="view_details_type == 'content' ? 'active' : ''" (click)="view_details_type_action('content')">
+          Details
+        </li>
+        <li [ngClass]="view_details_type == 'image' ? 'active' : ''" (click)="view_details_type_action('image')">
+          Images
+        </li>
+        <li [ngClass]="view_details_type == 'video' ? 'active' : ''" (click)="view_details_type_action('video')">
+          Teaser
+        </li>
+      </ul>
+      <!-- details -->
+      <div class="details" *ngIf="view_details_type == 'content'">
+        <div>
+          <label>Product Name :</label>
+          <p>{{ view_details.productName }}</p>
+        </div>
+        <div>
+          <label>Unit :</label>
+          <p>{{ view_details.unit?view_details.unit:'nill' }}</p>
+        </div>
+        <div>
+          <label>Quantity :</label>
+          <p>{{ view_details.quantity }}</p>
+        </div>
+        <div>
+          <label>Market Price :</label>
+          <p>{{ view_details.marketPlace }}</p>
+        </div>
+        <div>
+          <label>Offer Price :</label>
+          <p>{{ view_details.offerPrice }}</p>
+        </div>
+        <div>
+          <label>Booking Amount :</label>
+          <p>{{ view_details.bookingAmount }}</p>
+        </div>
+  
+        <div>
+          <label>Post Live Streaming Pirce :</label>
+          <p>{{ view_details.postLiveStreamingPirce?view_details.postLiveStreamingPirce:'null' }}</p>
+        </div>
+        <div>
+          <label>Min Lots :</label>
+          <p>{{ view_details.minLots }}</p>
+        </div>
+        <div>
+          <label>Incremental Lots :</label>
+          <p>{{ view_details.incrementalLots?view_details.incrementalLots:0 }}</p>
+        </div>
+        <div>
+          <label>Description :</label>
+          <p>{{ view_details.discription }}.</p>
+        </div>
+      </div>
+  
+      <div class="images" *ngIf="view_details_type == 'image'">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button *ngFor="let item of view_details.images; index as i" type="button"
+              data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" [ngClass]="i == 0 ? 'active' : ''"
+              [attr.aria-current]="i == 0 ? true : false" [attr.aria-label]="'Slide ' + i"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let item of view_details.images; index as i"
+              [ngClass]="i == 0 ? 'active' : ''">
+              <img src="{{ baseURL + '/' + item }}" class="d-block w-100" alt="..." />
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+  
+      <div class="teaser" *ngIf="view_details_type == 'video'">
+        <video *ngIf="view_details.video != null" src="{{ view_details.video }}" controls></video>
       </div>
     </div>
   </div>
