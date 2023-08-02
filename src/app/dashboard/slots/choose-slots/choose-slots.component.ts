@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManageplaneService } from '../../manageplan/manageplane.service';
 import { SlotsService } from '../slots.service';
-
+import { ToastrService } from 'ngx-toastr';
+declare const $: any;
 @Component({
   selector: 'app-choose-slots',
   templateUrl: './choose-slots.component.html',
@@ -14,7 +15,8 @@ export class ChooseSlotsComponent implements OnInit{
     private service: SlotsService,
     private arouter: ActivatedRoute,
     private planService: ManageplaneService,
-    private router:Router
+    private router:Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -250,12 +252,22 @@ planName!:string;
   }
   showslots: any = [];
   viewslots() {
-    // let sorts = this.slotsFinal.filter(
-    //   (a: any, b: any) =>
-    //     formatDate(a.Date, "yyyy-MM-dd", "en-IN") ==
-    //     formatDate(b.Date, "yyyy-MM-dd", "en-IN")
-    // );
-   this.showslots = this.slotsFinal.reduce(
+    let normal =this.normalS.filter((res:any)=>{
+      console.log(res,res.hasOwnProperty('selected_count'))
+    return  res.hasOwnProperty('selected_count') && res.selected_count == res.Slots
+    })
+    let peak =this.peakS.filter((res:any)=>{
+      console.log(res,res.hasOwnProperty('selected_count'))
+    return  res.hasOwnProperty('selected_count') && res.selected_count == res.Slots
+    })
+    let ex =this.exS.filter((res:any)=>{
+      console.log(res,res.hasOwnProperty('selected_count'))
+    return  res.hasOwnProperty('selected_count') && res.selected_count == res.Slots
+    })
+
+  if(normal.length == this.normalS.length && peak.length == this.peakS.length && ex.length == this.exS.length){
+    console.log('slotes are booked')
+    let showslots = this.slotsFinal.reduce(
       (entryMap: any, e: any) =>
         entryMap.set(formatDate(e.Date, "yyyy-MM-dd", "en-IN"), [
           ...(entryMap.get(formatDate(e.Date, "yyyy-MM-dd", "en-IN")) || []),
@@ -263,9 +275,19 @@ planName!:string;
         ]),
       new Map()
     );
-    
-
+    console.log(showslots)
+    let arr:any= [...showslots ].map(([key, value]) => ({key, value}))
+    this.showslots=arr;
     console.log(this.showslots)
+    $("#exampleModal").modal("show");
+  }
+  else{
+    console.log('please book slot')
+    this.toastr.error( 'To Submit','Please Book All slots',{
+      timeOut: 5000,
+  positionClass: 'toast-top-right',
+    });
+  }
   }
   submit(){
     let data ={

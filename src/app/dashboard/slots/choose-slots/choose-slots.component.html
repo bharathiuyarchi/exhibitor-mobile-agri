@@ -1,87 +1,231 @@
 <nav>
-    <div class="back">
-        <backbutton></backbutton>
-
+  <div class="back">
+    <backbutton></backbutton>
+  </div>
+  <h1
+    class="welcome"
+    style="font-family: sans-serif !important; font-size: 22px !important"
+  >
+    Choose Slots
+  </h1>
+  <div class="back">
+    <div style="color: green; font-weight: 600">
+      {{ planName }}
     </div>
-    <h1 class="welcome" style="font-family: sans-serif !important;font-size: 22px!important;" 
-    >Choose Slots</h1>
-    <div class="back" >
-        <div style="color: green;font-weight: 600;">
-           {{planName}}
-        </div>
-    </div>
+  </div>
 </nav>
 <div class="main-container">
-    <div class="date-container">
-        <p  class="date" [class.date-active]="v == selectedDate" 
-        *ngFor="let v of dates" (click)="changeSDate(v)">
-       <span>{{v|date:'EEE'}}</span><span>{{v|date:'dd-MMM'}}</span>  </p>
-      
+  <div class="date-container">
+    <p
+      class="date"
+      [class.date-active]="v == selectedDate"
+      *ngFor="let v of dates"
+      (click)="changeSDate(v)"
+    >
+      <span>{{ v | date : "EEE" }}</span
+      ><span>{{ v | date : "dd-MMM" }}</span>
+    </p>
+  </div>
+  <div class="slot-container">
+    <div class="slot-title">
+      <h4>Normal</h4>
     </div>
-    <div class="slot-container">
-        <div class="slot-title">
-            <h4>Normal</h4>
-        </div>
-        <div class="own-slot">
-            <span *ngFor="let v of normalS" class="os">{{v.Duration}} mins - {{v.Slots}}/{{v.selected_count == undefined ? 0 :v.selected_count}}     
-            </span>
-          
+    <div class="own-slot">
+      <span *ngFor="let v of normalS" class="os"
+        >{{ v.Duration }} mins - {{ v.Slots }}/{{
+          v.selected_count == undefined ? 0 : v.selected_count
+        }}
+      </span>
+    </div>
+  </div>
+  <div class="buy-container">
+    <span
+     
+    *ngFor="let v of normal | slot : selectedDate"
+      class="buy-slot"
+      (click)="choose(v)"
+      [ngClass]="isActive(v._id) ? 'slot-active' : ''"
+    >
+      <p style="bottom: 8px">
+        {{ v.start | date : "h:mm a" }}-{{ v.end | date : "h:mm a" }}
+      </p>
+      <p style="top: 12px">
+        Duration: {{ v.Duration }} <span *ngIf="isActive(v._id)">-</span
+        ><span *ngIf="isActive(v._id)" class="count">{{
+          returnIndex(v._id) + 1
+        }}</span>
+      </p>
+      <span class="left"></span>
+      <span class="right"></span>
+    </span>
+    <span class="no-slot" *ngIf="(normal | slot : selectedDate).length == 0"
+    >No Available Slots on this date
+    {{ selectedDate | date : "dd-MM-YYYY" }}</span
+  >
+  </div>
+  <div class="slot-container">
+    <div class="slot-title">
+      <h4>Peak</h4>
+    </div>
+    <div class="own-slot">
+      <span *ngFor="let v of peakS" class="os peak"
+        >{{ v.Duration }} mins - {{ v.Slots }}/{{
+          v.selected_count == undefined ? 0 : v.selected_count
+        }}</span
+      >
+    </div>
+  </div>
+  <div class="buy-container">
+    <span
+     
+      (click)="chooseP(v)"
+      *ngFor="let v of peak | slot : selectedDate"
+      class="buy-slot"
+      [ngClass]="isActive(v._id) ? 'slot-active-p' : ''"
+    >
+      <p style="bottom: 8px">
+        {{ v.start | date : "h:mm a" }}-{{ v.end | date : "h:mm a" }}
+      </p>
+      <p style="top: 12px">
+        Duration: {{ v.Duration }}<span *ngIf="isActive(v._id)">-</span
+        ><span *ngIf="isActive(v._id)" class="count">{{
+          returnIndex(v._id) + 1
+        }}</span>
+      </p>
+      <span class="left peak"></span>
+      <span class="right peak"></span>
+    </span>
+    <span class="no-slot" *ngIf="(peak | slot : selectedDate).length == 0"
+    >No Available Slots on this date
+    {{ selectedDate | date : "dd-MM-YYYY" }}</span
+  >
+  </div>
+  <div class="slot-container">
+    <div class="slot-title">
+      <h4>Exclusive</h4>
+    </div>
+    <div class="own-slot">
+      <span *ngFor="let v of exS" class="os ex"
+        >{{ v.Duration }} mins - {{ v.Slots }}/{{
+          v.selected_count == undefined ? 0 : v.selected_count
+        }}</span
+      >
+    </div>
+  </div>
+  <div class="buy-container">
+    <span
+    
+    *ngFor="let v of exclusive | slot : selectedDate"
+      class="buy-slot"
+      (click)="chooseEx(v)"
+      [ngClass]="isActive(v._id) ? 'slot-active-e' : ''"
+    >
+      <p style="bottom: 8px">
+        {{ v.start | date : "h:mm a" }}-{{ v.end | date : "h:mm a" }}
+      </p>
+      <p style="top: 12px">
+        Duration: {{ v.Duration }} <span *ngIf="isActive(v._id)">-</span
+        ><span *ngIf="isActive(v._id)" class="count">{{
+          returnIndex(v._id) + 1
+        }}</span>
+      </p>
+      <span class="left ex"></span>
+      <span class="right ex"></span>
+    </span>
+    <span class="no-slot" *ngIf="(exclusive | slot : selectedDate).length == 0"
+    >No Available Slots on this date
+    {{ selectedDate | date : "dd-MM-YYYY" }}</span
+  >
+  </div>
+  <div class="button">
+    <button class="btn btn-success" (click)="viewslots()">Submit</button>
+  </div>
+</div>
 
-        </div>
-    </div>
-    <div class="buy-container">
-        <span [class.hide]="(selectedDate | date:'dd-MM-YYYY')  !=  (v.chooseTime | date:'dd-MM-YYYY')"
-         *ngFor="let v of normal" class="buy-slot" (click)="choose(v)" 
-         [ngClass]="isActive(v._id)? 'slot-active' :''">
-            <p style="bottom: 8px;" >{{v.start| date:'h:mm a'}}-{{v.end | date:'h:mm a'}}</p>
-            <p style="top:12px">Duration: {{v.Duration }} <span *ngIf="isActive(v._id)" >-</span><span
-               *ngIf="isActive(v._id)" class="count">{{returnIndex(v._id) + 1}}</span></p>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4
+          class="modal-title"
+          style="text-align: center"
+          id="exampleModalLabel"
+        >
+          Confirm Slot
+        </h4>
+        <div>
+          <span class="buy-slot slot-active">
+            <p style="font-size: 16px; font-weight: 500; bottom: 0">Normal</p>
             <span class="left"></span>
             <span class="right"></span>
-        </span>
-     
-    </div>
-    <div class="slot-container">
-        <div class="slot-title">
-            <h4>Peak</h4>
-        </div>
-        <div class="own-slot">
-            <span *ngFor="let v of peakS" class="os peak">{{v.Duration}} mins - {{v.Slots}}/{{v.selected_count == undefined ? 0 :v.selected_count}}</span>  
-        
-        </div>
-    </div>
-    <div class="buy-container">
-        <span [class.hide]="(selectedDate | date:'dd-MM-YYYY')  !=  (v.chooseTime | date:'dd-MM-YYYY')"
-        (click)="chooseP(v)"
-         *ngFor="let v of peak" class="buy-slot"  [ngClass]="isActive(v._id)? 'slot-active-p' :''">
-            <p style="bottom:8px">{{v.start| date:'h:mm a'}}-{{v.end | date:'h:mm a'}}</p>
-            <p style="top:12px">Duration: {{v.Duration }}<span *ngIf="isActive(v._id)" >-</span><span
-                *ngIf="isActive(v._id)" class="count">{{returnIndex(v._id) + 1}}</span></p>
+          </span>
+
+          <span class="buy-slot slot-active-p">
+            <p style="font-size: 16px; font-weight: 500; bottom: 0">Peak</p>
             <span class="left peak"></span>
             <span class="right peak"></span>
-        </span>
-    
-    </div>
-    <div class="slot-container">
-        <div class="slot-title">
-            <h4>Exclusive</h4>
-        </div>
-        <div class="own-slot">
-            <span *ngFor="let v of exS" class="os ex">{{v.Duration}} mins - {{v.Slots}}/{{v.selected_count == undefined ? 0 :v.selected_count}}</span>
-        </div>
-    </div>
-    <div class="buy-container">
-        <span [class.hide]="(selectedDate | date:'dd-MM-YYYY')  !=  (v.chooseTime | date:'dd-MM-YYYY')"
-         *ngFor="let v of exclusive" class="buy-slot" (click)="chooseEx(v)" [ngClass]="isActive(v._id)? 'slot-active-e' :''" >
-            <p  style="bottom:8px">{{v.start| date:'h:mm a'}}-{{v.end | date:'h:mm a'}}</p>
-            <p style="top:12px">Duration: {{v.Duration }} <span *ngIf="isActive(v._id)" >-</span><span
-                *ngIf="isActive(v._id)" class="count">{{returnIndex(v._id) + 1}}</span></p>
+          </span>
+
+          <span class="buy-slot slot-active-e">
+            <p style="font-size: 16px; font-weight: 500; bottom: 0">
+              Exclusive
+            </p>
             <span class="left ex"></span>
             <span class="right ex"></span>
-        </span>
+          </span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="confirm-content">
+          <div class="cols" *ngFor="let v of showslots; index as i">
+            <div class="date-content">
+              <p>{{ showslots[i].key | date : "dd-MM-YYYY" }}</p>
+              <br />
+            </div>
+            <span
+              *ngFor="let slot of v.value"
+              class="buy-slot"
+              [ngClass]="{
+                'slot-active-p': slot.Type == 'Peak',
+                'slot-active-e': slot.Type == 'Exclusive',
+                'slot-active': slot.Type == 'Normal'
+              }"
+            >
+              <p style="bottom: 8px">
+                {{ slot.start | date : "h:mm a" }}-{{
+                  slot.end | date : "h:mm a"
+                }}
+              </p>
+              <p style="top: 12px">Duration: {{ slot.duration }}</p>
+              <span
+                class="left"
+                [ngClass]="{'peak':slot.Type=='Peak', 'ex': slot.Type=='Exclusive',}"
+              ></span>
+              <span
+                class="right"
+                [ngClass]="{'peak':slot.Type=='Peak', 'ex': slot.Type=='Exclusive', }"
+              ></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="submit()"
+          data-bs-dismiss="modal"
+        >
+          Confirm
+        </button>
+      </div>
     </div>
-    <div class="button">
-        <button class="btn btn-success" (click)="viewslots()" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
-    </div>
-
+  </div>
 </div>

@@ -81,7 +81,7 @@
 .buy-slot{
     position: relative;
     height: 46px;
-    width: 110px;
+    width: 100px;
     display: inline-block;
     box-shadow: 0 0 7px 2px #a7a7a787;
     cursor: pointer;
@@ -113,7 +113,7 @@
 }
 .buy-slot p{
     position: absolute;
-    font-size: 10px;
+    font-size: 9px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -153,6 +153,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .btn{
@@ -162,6 +163,17 @@
 }
 .hide{
     display: none;
+}
+.no-slot{
+    height: 80px;
+    display: block;
+    display: flex;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
 }
 .count{
     color: white;

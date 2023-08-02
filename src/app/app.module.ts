@@ -14,7 +14,8 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { HttpInterceptorService } from './interceptors/http-interceptor.service';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { HttploadersComponent } from './httploaders/httploaders.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -34,7 +35,10 @@ import { HttploadersComponent } from './httploaders/httploaders.component';
     CommommoduleModule,
     RouterModule,
     HttpClientModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd.forRoot(),
+  
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
 
   ],
   providers: [AuthenticationModule, CommommoduleModule,
