@@ -4,190 +4,378 @@
 
     </div>
     <h1 class="welcome">Plans</h1>
-    <div class="back" >
-       <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Bank Details</button>
+    <div class="back">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"
+            (click)="popup1Open()">Bank Details</button>
     </div>
 </nav>
 <div class="main-container">
     <div class="row" style="margin-top: 10px;">
         <div class="col" *ngFor="let v of allPlans">
             <div class="content">
-            <div class="card">
-                <div class="card-body title-card">
-                    <h2 style="color: var(--green);text-transform: capitalize;">{{v.planName}}</h2>
-                    
-                   
+                <div class="card">
+                    <div class="card-body title-card">
+                        <h2 style="color: var(--green);text-transform: capitalize;">{{v.planName}}</h2>
+
+
+                    </div>
                 </div>
-              </div>
-            <div class="card" *ngIf="v.planName =='Diamond'">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card" *ngIf="v.planName =='Diamond'">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    Exclusive streaming slots
+
+                        Exclusive streaming slots
+                    </div>
                 </div>
-              </div>
-            <div class="card">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    Up to {{v.numberOfParticipants}} Participants
+
+                        Up to {{v.numberOfParticipants}} Participants
+                    </div>
                 </div>
-              </div>
-            <div class="card" *ngIf="v.planName =='Diamond'">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card" *ngIf="v.planName =='Diamond'">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    E-commerce transaction
+
+                        E-commerce transaction
+                    </div>
                 </div>
-              </div>
-            <div class="card">
-                <div class="card-body">
-                   
-                        
-                   <p *ngIf="v.no_of_host==1">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    Single Host</p>
-                   <p *ngIf="v.no_of_host==2">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    Double Host</p>
+                <div class="card">
+                    <div class="card-body">
+
+
+                        <p *ngIf="v.no_of_host==1">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                    stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Single Host
+                        </p>
+                        <p *ngIf="v.no_of_host==2">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                    stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Double Host
+                        </p>
+                    </div>
                 </div>
-              </div>
-            <div class="card" *ngIf="v.planName =='Diamond'">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card" *ngIf="v.planName =='Diamond'">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    Exclusive marketing to visitor 
+
+                        Exclusive marketing to visitor
+                    </div>
                 </div>
-              </div>
-            <div class="card">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    Upto {{v.PostCount}} products/stream
+
+                        Upto {{v.PostCount}} products/stream
+                    </div>
                 </div>
-              </div>
-            <div class="card">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    {{liveStream(v.slotInfo)}} live streams 
+
+                        {{liveStream(v.slotInfo)}} live streams
+                    </div>
                 </div>
-              </div>
-            <div class="card">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    {{totalmin(v.slotInfo)}} Minutes of interaction
+
+                        {{totalmin(v.slotInfo)}} Minutes of interaction
+                    </div>
                 </div>
-              </div>
-            <div class="card" *ngIf="v.chat_Option=='yes'">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card" *ngIf="v.chat_Option=='yes'">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    Chat option
+
+                        Chat option
+                    </div>
                 </div>
-              </div>
-            <div class="card">
-                <div class="card-body">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="card">
+                    <div class="card-body">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.33333 9.66667L8.33333 11.6667L11.6667 7M17 9C17 10.0506 16.7931 11.0909 16.391 12.0615C15.989 13.0321 15.3997 13.914 14.6569 14.6569C13.914 15.3997 13.0321 15.989 12.0615 16.391C11.0909 16.7931 10.0506 17 9 17C7.94943 17 6.90914 16.7931 5.93853 16.391C4.96793 15.989 4.08601 15.3997 3.34315 14.6569C2.60028 13.914 2.011 13.0321 1.60896 12.0615C1.20693 11.0909 1 10.0506 1 9C1 6.87827 1.84285 4.84344 3.34315 3.34315C4.84344 1.84285 6.87827 1 9 1C11.1217 1 13.1566 1.84285 14.6569 3.34315C16.1571 4.84344 17 6.87827 17 9Z"
+                                stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        
-                    Recorded streams {{v.completedStream}}
+
+                        Recorded streams {{v.completedStream}}
+                    </div>
                 </div>
-              </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-        <div class="last">
-            <div >
-                <label><p>₹{{v.Price}}<span style="font-size: 12px;">+GST</span></p></label>
             </div>
-           
-            <div >
-                <button class="wish" (click)="view_plan(v)" style="font-size: 12px;font-weight: bold;"  data-bs-toggle="modal" data-bs-target="#viewplans" > Wish to buy!</button>
-           </div>
-        </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="last">
+                        <div>
+                            <label>
+                                <p>₹{{v.Price}}<span style="font-size: 12px;">+GST</span></p>
+                            </label>
+                        </div>
+
+                        <div>
+                            <button class="wish" (click)="view_plan(v)" style="font-size: 12px;font-weight: bold;"
+                                data-bs-toggle="modal" data-bs-target="#viewplans"> Wish to buy!</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
         </div>
 
-        
-      </div>
-   
-    
+
+    </div>
+
+
 </div>
-
+<!-- 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header" style="display:flex; justify-content: center;">
-          <h5 class="modal-title" id="exampleModalLabel" style="color:#019444; ">RTGS/NEFT Details</h5>
-        </div>
-        <div class="modal-body">
-            <div class="form">
-                <div class="data">
-                    <label>Name</label>
-                    <p>Ookam Technology Services Private Limited</p>
+        <div class="modal-content">
+            <div class="modal-header" style="display:flex; justify-content: center;">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:#019444; ">RTGS/NEFT Details</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="data">
+                        <label>Name</label>
+                        <p>Ookam Technology Services Private Limited</p>
+                    </div>
+                    <div class="data">
+                        <label>Bank </label>
+                        <p>ICICI Bank Ltd</p>
+                    </div>
+                    <div class="data">
+                        <label>A/C No</label>
+                        <p>787905000040</p>
+                    </div>
+                    <div class="data">
+                        <label>Bank address</label>
+                        <p>ICICI BANK LTD., GEORGE SQUARE, NO. 102/234, TTK ROAD, ALWARPET, CHENNAI - 600018</p>
+                    </div>
+                    <div class="data">
+                        <label>RTGS</label>
+                        <p>ICIC0007879</p>
+                    </div>
+                    <div class="data">
+                        <label>MICR Code</label>
+                        <p>600229160</p>
+                    </div>
+                    <div class="data">
+                        <label>Purpose</label>
+                        <p>Towards participation charges in AGRI EXPO LIVE 2023, Chennai</p>
+                    </div>
+                    <div class="data">
+                        <label>PAN No</label>
+                        <p>AAECO0517F</p>
+                    </div>
+
                 </div>
-                <div class="data">
-                    <label>Bank </label>
-                    <p>ICICI Bank Ltd</p>
-                </div>
-                <div class="data">
-                    <label>A/C No</label>
-                    <p>787905000040</p>
-                </div>
-                <div class="data">
-                    <label>Bank address</label>
-                    <p>ICICI BANK LTD., GEORGE SQUARE, NO. 102/234, TTK ROAD, ALWARPET, CHENNAI - 600018</p>
-                </div>
-                <div class="data">
-                    <label>RTGS</label>
-                    <p>ICIC0007879</p>
-                </div>
-                <div class="data">
-                    <label>MICR Code</label>
-                    <p>600229160</p>
-                </div>
-                <div class="data">
-                    <label>Purpose</label>
-                    <p>Towards participation charges in AGRI EXPO LIVE 2023, Chennai</p>
-                </div>
-                <div class="data">
-                    <label>PAN No</label>
-                    <p>AAECO0517F</p>
-                </div>
-                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
-        <div class="modal-footer">
-        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div> -->
 
+
+<div class="popup-1" *ngIf="popup1">
+    <div class="popup-close-1" (click)="popupCLose1()"></div>
+    <div class="popup-container-1" style="position: relative;overflow: hidden;">
+        <div class="close-icon">
+            <p (click)="popupCLose1()">X</p>
+        </div>
+        <div class="content-title">
+            <p>RTG/NEFT Details</p>
+        </div>
+        <div class="scroll-div">
+            <div class="contents1">
+                <div>
+                    <p class="key1">Name:</p>
+                    <p class="val1">Ookam Technology
+                        <span>Services Private limited</span>
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">Bank:</p>
+                    <p class="val1">ICICI Bank Ltd
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">Account No:</p>
+                    <p class="val1">787905000040
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">Account Type:</p>
+                    <p class="val1">Current A/C
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">Bank Address:</p>
+                    <p class="val1">ICICI Bank LTD., GEORGE,SQUARE, NO. 102/234, TTK ROAD,ALWARPET, CHENNAI - 600018
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">RTGS:</p>
+                    <p class="val1">ICIC0007879
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">MICR Code:</p>
+                    <p class="val1">600229160
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">Purpose:</p>
+                    <p class="val1">Towards participation charges in AGRI EXPO LIVE 2023,Chennai
+                    </p>
+                </div>
+                <div>
+                    <p class="key1">PAN No:</p>
+                    <p class="val1">AAECO0517F</p>
+                </div>
+                <div>
+                    <p class="key1">GST No:</p>
+                    <p class="val1">AAECO0517F</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="popup-1" *ngIf="popup">
+    <div class="popup-close-1" (click)="popupCLose()"></div>
+    <div class="popup-container-1" style="position: relative;overflow: hidden;">
+        <div class="close-icon">
+            <p (click)="popupCLose()">X</p>
+        </div>
+        <div class="content-title">
+            <p>{{viewPlans.planName}}</p>
+        </div>
+        <div class="scroll-div">
+            <div class="contents">
+                <div>
+                    <p class="key">Host Per Stream:</p>
+                    <p class="val">{{viewPlans.no_of_host}}</p>
+                </div>
+                <div>
+                    <p class="key">Participant Limit:</p>
+                    <p class="val">{{viewPlans.numberOfParticipants}}</p>
+                </div>
+                <div>
+                    <p class="key">Commission:</p>
+                    <p class="val">{{viewPlans.salesCommission}}</p>
+                </div>
+                <div>
+                    <p class="key">Stream Video Download:</p>
+                    <p class="val">{{viewPlans.StreamVideos}}</p>
+                </div>
+                <div>
+                    <p class="key">Completed Stream:</p>
+                    <p class="val">{{viewPlans.completedStream}}</p>
+                </div>
+                <div>
+                    <p class="key">Transaction:</p>
+                    <p class="val">{{viewPlans.Transtraction}}</p>
+                </div>
+                <div>
+                    <p class="key">Teaser:</p>
+                    <p class="val">{{viewPlans.Teaser}}</p>
+                </div>
+                <div>
+                    <p class="key">Broucher:</p>
+                    <p class="val">{{viewPlans.Pdf}}</p>
+                </div>
+                <div>
+                    <p class="key">Description:</p>
+                    <p class="val">{{viewPlans.description}}</p>
+                </div>
+                <div>
+                    <p class="key">Chat:</p>
+                    <p class="val">{{viewPlans.chat_Option}}</p>
+                </div>
+                <div>
+                    <p class="key">Image:</p>
+                    <p class="val">{{viewPlans.image}}</p>
+                </div>
+                <div>
+                    <p class="key">Advertisement Display</p>
+                    <p class="val">{{viewPlans.Advertisement_Display}}</p>
+                </div>
+                <div>
+                    <p class="key">Special Notification</p>
+                    <p class="val">{{viewPlans.Special_Notification}}</p>
+                </div>
+                <div class="slots">
+                    <p style="padding-left: 20px; font-weight: bold;">Slots:</p>
+                    <div *ngFor="let data of viewPlans.slotInfo" style="width: 100%;">
+                        <p style="width: 50%; padding-left: 20px;">{{data.slotType}} {{data.Duration}} mins:</p>
+                        <p style="width: 50%; padding-left:50px;">{{data.No_Of_Slot}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="price_pay">
+            <div class="price">
+                <p
+                    style="font-size: 18px; font-weight: 500; display: flex; justify-content: center; align-items: center;">
+                    ₹ {{viewPlans.Price}} / <sub style="text-decoration: line-through;">₹
+                        {{viewPlans.Price + 500}}</sub></p>
+            </div>
+            <div class="btn">
+                <button (click)="buyplan()">Pay Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 
   <div class="modal fade" id="viewplans"   tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content" >
@@ -302,4 +490,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

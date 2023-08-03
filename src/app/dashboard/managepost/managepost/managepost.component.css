@@ -1,114 +1,196 @@
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
 }
 
 .change-user {
-    border-radius: 100%;
-    overflow: hidden;
-    cursor: pointer;
-
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .change-user img {
-    margin-bottom: -5px;
+  margin-bottom: -5px;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: #FAFAFA;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #fafafa;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
 nav div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .heading {
-    display: flex;
+  display: flex;
 }
 
 .heading p {
-    margin: 0 !important;
-    margin-left: 5px !important;
-    color: var(--blue);
+  margin: 0 !important;
+  margin-left: 5px !important;
+  color: var(--blue);
 }
 
-/* products */
-.products-container {
-
-    /* height: 90vh; */
-    /* overflow-y: scroll; */
-}
 
 .view-icons span {
-    
-    width: auto !important;
+  width: auto !important;
 }
 
 .products {
-    padding: 10px;
-    border-bottom: 1px solid #E7E9ED;
+  padding: 10px;
+  border-bottom: 1px solid #e7e9ed;
 }
 
 .products p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .products div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0;
 }
 
 .products div span {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .products div span:first-child {
-    width: 150px;
-
+  width: 150px;
 }
 
 .date,
 .quantity,
 .price {
-    width: 100px;
+  width: 100px;
 }
 
 .products svg {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .mypost-edit,
 .delete {
-    width: 100px;
-    display: flex;
-    justify-content: end !important;
+  width: 100px;
+  display: flex;
+  justify-content: end !important;
 }
 
 .date {
-    color: rgba(10, 38, 71, 0.5);
-    font-size: 12px;
+  color: rgba(10, 38, 71, 0.5);
+  font-size: 12px;
 }
 
 sub {
-    text-decoration: line-through;
-    opacity: 70%;
+  text-decoration: line-through;
+  opacity: 70%;
 }
 
 .row-one:first-child {
-    margin-top: 5px !important;
+  margin-top: 5px !important;
 }
 
 .row-one:last-child {
-    margin-top: 10px !important;
+  margin-top: 10px !important;
 }
+.product_name {
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+/* popup */
+.popup-container {
+    background-color: white;
+    width: 500px;
+    max-width: 500px;
+    padding-bottom: 10px;
+  }
+  
+  .popup-container ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 0;
+    justify-content: space-between;
+  }
+  
+  .popup-container ul li {
+    width: 33.33%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .active {
+    color: var(--blue);
+  }
+  
+  .popup-container .details {
+    width: 95%;
+    margin: auto !important;
+  }
+  
+  .popup-container .images,
+  .teaser {
+    width: 95%;
+    margin: auto;
+    height: 300px;
+  }
+  
+  .teaser video {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .popup-container .details div {
+    display: flex;
+    margin: 10px 0;
+  }
+  
+  .popup-container .details div label {
+    min-width: 40%;
+  }
+  
+  .popup-container .details div p {
+    max-width: 60%;
+  }
+  
+  .carousel-indicators button {
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+  }
+  
+  #carouselExampleIndicators {
+    height: 300px;
+  }
+  
+  #carouselExampleIndicators .carousel-item {
+    height: 100%;
+  }
+  
+  .carousel-inner {
+    height: 91%;
+  }
+  
+  #carouselExampleIndicators img {
+    height: 100%;
+  }
+  
+  .carousel-indicators {
+    margin: 0;
+    background-color: black;
+  }
