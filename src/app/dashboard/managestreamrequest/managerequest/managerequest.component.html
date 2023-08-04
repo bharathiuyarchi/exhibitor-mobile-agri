@@ -161,18 +161,21 @@
         <div class="dummy" (click)="close_popup()"></div>
         <div class="popup-container">
             <a class="popupclose" (click)="close_popup()">x</a>
-    
+
             <ul>
                 <li [ngClass]="view_details_type=='Content'?'active':''" (click)="view_details_type_action('Content')">
                     Details
                 </li>
-                <li [ngClass]="view_details_type=='Images'?'active':''" (click)="view_details_type_action('Images')">Images
+                <li [ngClass]="view_details_type=='Images'?'active':''" (click)="view_details_type_action('Images')">
+                    Images
                 </li>
-                <li [ngClass]="view_details_type=='Teaser'?'active':''" (click)="view_details_type_action('Teaser')">Teaser
+                <li [ngClass]="view_details_type=='Teaser'?'active':''" (click)="view_details_type_action('Teaser')">
+                    Teaser
                 </li>
-                <li [ngClass]="view_details_type=='Post'?'active':''" (click)="view_details_type_action('Post')">Post</li>
+                <li [ngClass]="view_details_type=='Post'?'active':''" (click)="view_details_type_action('Post')">Post
+                </li>
             </ul>
-    
+
             <!-- details -->
             <div class="details" *ngIf="view_details_type=='Content'">
                 <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
@@ -231,24 +234,24 @@
                     </tbody>
                 </table>
             </div>
-    
+
             <div class="images" *ngIf="view_details_type=='Images'">
                 <img src="{{baseURL+'/'+view_details.image}}" alt="" style="width: 100%;    height: 300px;">
             </div>
-    
+
             <!-- teaser -->
             <div class="teaser" *ngIf="view_details_type=='Teaser'">
                 <video *ngIf="view_details.video !=null" src="{{view_details.teaser}}" controls
                     style="width: 100%;height: 300px;"></video>
             </div>
-    
+
             <!-- post -->
             <div class="post-conatiner" *ngIf="view_details_type=='Post'">
                 <div class="post" *ngFor="let item of view_details.streamrequestposts;index as i">
                     <div><span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1.40674" y="0.848633" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
-                                    stroke="#BCC3CC" />
+                                <rect x="1.40674" y="0.848633" width="21.3256" height="21.3256" rx="10.6628"
+                                    fill="#BCC3CC" stroke="#BCC3CC" />
                                 <mask id="path-2-inside-1_11_9817" fill="white">
                                     <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" />
                                 </mask>
@@ -265,18 +268,18 @@
                             </svg>
                             <p class="product-name">{{item.productTitle}}</p>
                         </span>
-    
+
                         <span>
                             <p>{{item.offerPrice|currency:"INR"}}</p>/<sub
                                 style="text-decoration: line-through;">{{item.marketPlace|currency:'INR'}}</sub>
                         </span>
-    
+
                     </div>
                     <div>
                         <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1.40674" y="0.733398" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
-                                    stroke="#BCC3CC" />
+                                <rect x="1.40674" y="0.733398" width="21.3256" height="21.3256" rx="10.6628"
+                                    fill="#BCC3CC" stroke="#BCC3CC" />
                                 <mask id="path-2-inside-1_11_9828" fill="white">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M12.0692 18.7211C12.0692 18.7211 17.6506 13.4315 17.6506 10.349C17.6506 7.26645 15.1517 4.76758 12.0692 4.76758C8.98667 4.76758 6.48779 7.26645 6.48779 10.349C6.48779 13.4315 12.0692 18.7211 12.0692 18.7211ZM12.0691 12.0229C12.9939 12.0229 13.7435 11.2732 13.7435 10.3485C13.7435 9.42373 12.9939 8.67406 12.0691 8.67406C11.1443 8.67406 10.3947 9.42373 10.3947 10.3485C10.3947 11.2732 11.1443 12.0229 12.0691 12.0229Z" />
@@ -292,8 +295,8 @@
                     <div>
                         <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1.40771" y="0.617188" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
-                                    stroke="#BCC3CC" />
+                                <rect x="1.40771" y="0.617188" width="21.3256" height="21.3256" rx="10.6628"
+                                    fill="#BCC3CC" stroke="#BCC3CC" />
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M17.4207 9.02505L19.0353 17.4049C19.075 17.6112 19.0145 17.8233 18.8699 17.984C18.7253 18.1447 18.5116 18.2376 18.2863 18.2376H6.05306C5.82778 18.2376 5.41567 18.1447 5.2711 17.984C5.12648 17.8233 5.06596 17.6112 5.10568 17.4049L6.72027 9.02505C6.7853 8.6877 7.10077 8.44212 7.46925 8.44212H10.1545C9.65101 7.9808 9.33812 7.33992 9.33812 6.63213C9.33812 5.23057 10.5639 4.09033 12.0705 4.09033C13.5772 4.09033 14.8029 5.23057 14.8029 6.63213C14.8029 7.33992 14.49 7.9808 13.9865 8.44212H16.6717C17.0402 8.44212 17.3557 8.6877 17.4207 9.02505ZM13.2811 6.63213C13.2811 6.01117 12.738 5.50601 12.0705 5.50601C11.403 5.50601 10.8599 6.01117 10.8599 6.63213C10.8599 7.2531 11.403 7.7583 12.0705 7.7583C12.738 7.7583 13.2811 7.2531 13.2811 6.63213ZM8.73491 9.74922C8.50775 9.74922 8.30914 9.90235 8.25136 10.122L6.65391 16.1957C6.57053 16.5127 6.80966 16.8229 7.13746 16.8229H17.0032C17.331 16.8229 17.5702 16.5127 17.4868 16.1957L15.8893 10.122C15.8316 9.90235 15.6329 9.74922 15.4058 9.74922H8.73491Z"
                                     fill="white" />
@@ -304,22 +307,22 @@
                     </div>
                 </div>
             </div>
-    
+
         </div>
     </div>
-    
-    
+
+
     <div class="popup" *ngIf="popupType=='create_post'">
         <div class="dummy" (click)="close_popup_now()"></div>
         <div class="popup-container" style="max-height: 180px;">
             <a class="popupclose" (click)="close_popup_now()">x</a>
             <!-- details -->
-            <div class="popup-content" >
+            <div class="popup-content">
                 <h3 class="popup-title">Create Post!</h3>
                 <p class="message-confirm">
                     You Don't Have Any Active Post To Request Stream ?
                 </p>
-    
+
                 <div class="confirm-button">
                     <button class="back-btn" (click)="close_popup_now()">Back</button>
                     <button class="submit-btn" [routerLink]="['/dashboard/post/add']">Add Post</button>
@@ -329,7 +332,7 @@
     </div>
     <div class="popup" *ngIf="popupType=='by_plan'">
         <div class="dummy" (click)="close_popup_now()"></div>
-        <div class="popup-container" style="max-height: 180px;"> 
+        <div class="popup-container" style="max-height: 180px;">
             <a class="popupclose" (click)="close_popup_now()">x</a>
             <!-- details -->
             <div class="popup-content">
@@ -337,7 +340,7 @@
                 <p class="message-confirm">
                     You Don't Have Any Active Plan To Request Stream ?
                 </p>
-    
+
                 <div class="confirm-button">
                     <button class="back-btn" (click)="close_popup_now()">Back</button>
                     <button class="submit-btn" [routerLink]="['/dashboard/plan/plans']">Buy Plan</button>
@@ -345,20 +348,20 @@
             </div>
         </div>
     </div>
-    
+
 </ng-container>
 
 <div class="modal fade" id="buyplan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
-      <div class="modal-content">
-       
-        <div class="modal-body">
-        <p>Stream request will be active after purchasing the plan!</p>
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <p>Stream request will be active after purchasing the plan!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
+
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
-        
-        </div>
-      </div>
     </div>
-  </div>
+</div>
