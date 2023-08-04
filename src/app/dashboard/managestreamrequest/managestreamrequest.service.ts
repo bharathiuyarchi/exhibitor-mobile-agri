@@ -41,4 +41,10 @@ export class ManagestreamrequestService {
   cancel_stream(id: any) {
     return this.http.put(this.baseurl + "/v1/ecomplan/cancel/stream", { id: id });
   }
+  get_Planes() {
+    return this.http.get(this.baseurl + "/v1/purchaseplan/getPlanes/Request/Streams" );
+  }
+  Booked_slots_Byusers(id: any) {
+    return this.http.get(this.baseurl + "/v1/slotbooking/Booked/slots/Byusers/" + id);
+  }
 }

@@ -17,10 +17,7 @@
         </div>
     </nav>
     <!-- products-container -->
-    <div class="no-found">
-        <h2>No live stream found</h2>
-    </div>
-    <div class="products-container" *ngIf="false">
+    <div class="products-container" >
 
 
         <div class="products" *ngFor="let item of my_stream; index as i">
@@ -210,7 +207,7 @@
                         </button>
 
                         <button
-                            *ngIf="(item.allot_chat =='subhost' ||  item.allot_host_1 =='subhost') && iso < item.endTime"
+                            *ngIf="(item.allot_chat ==null||  item.allot_host_1 ==null) && iso < item.endTime"
                             class="assign-host-btn blue-btn" routerLink="assignhost" [queryParams]="{id:item._id}"><svg
                                 width="10" height="11" viewBox="0 0 10 11" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +240,7 @@
                             <p>Go Live</p>
                         </button>
                         <button
-                            *ngIf="(item.allot_chat =='subhost' ||  item.allot_host_1 ==null || item.allot_host_2 ==null) && iso < item.endTime"
+                            *ngIf="(item.allot_chat ==null ||  item.allot_host_1 ==null || item.allot_host_2 ==null) && iso < item.endTime"
                             class="assign-host-btn blue-btn" routerLink="assignhost" [queryParams]="{id:item._id}"><svg
                                 width="10" height="11" viewBox="0 0 10 11" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -276,7 +273,7 @@
                             <p>Go Live</p>
                         </button>
                         <button
-                            *ngIf="(item.allot_chat =='subhost' ||  item.allot_host_1 ==null || item.allot_host_2 ==null|| item.allot_host_3 ==null ) && iso < item.endTime"
+                            *ngIf="(item.allot_chat ==null ||  item.allot_host_1 ==null || item.allot_host_2 ==null|| item.allot_host_3 ==null ) && iso < item.endTime"
                             class="assign-host-btn blue-btn" routerLink="assignhost" [queryParams]="{id:item._id}"><svg
                                 width="10" height="11" viewBox="0 0 10 11" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">

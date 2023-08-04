@@ -12,7 +12,7 @@
         </div>
     </nav>
     <form [formGroup]="postForm" (submit)="create_post()">
-        <div class="form">
+        <div class="form" style="padding-top: 20px;margin-top: 0!important;">
             <div>
                 <label>Select Category :</label>
                 <select [ngClass]="postForm.get('categoryId')?.valid?'':'not-selected'" (change)="change_cate($event)"
