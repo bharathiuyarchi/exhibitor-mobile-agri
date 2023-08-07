@@ -146,7 +146,15 @@
                     submitted && registerForm.get('how_did_you_know_us')?.invalid
                   ">Select how do you know !</label>
       </div>
-
+      <div class="form-row" style="margin-bottom: 30px;">
+        <p style="font-size: 10px;">
+          By clicking Register, you agree to the
+          <a style="font-size: 10px;" href="https://agriexpo.live/terms-and-conditions/"
+            >Terms and Conditions</a
+          >
+          & <a style="font-size: 10px;" href="https://agriexpo.live/privacy-policy/">Privacy Policy</a>  of agriexpo.live
+        </p>
+      </div>
       <div class="login-btn btn">
         <button class="normal-btn" [routerLink]="['/login']" type="button"> Login</button>
         <button class="green-btn ">Register</button>

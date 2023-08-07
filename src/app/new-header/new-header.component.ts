@@ -69,7 +69,7 @@ exhi:any=[
     link:'https://agriexpo.live/marketing-campagin/'
   },
   {
-    title:'Terms and Condition',
+    title:'Terms and Conditions',
     link:'https://agriexpo.live/terms-and-conditions/'
   },
 ]
