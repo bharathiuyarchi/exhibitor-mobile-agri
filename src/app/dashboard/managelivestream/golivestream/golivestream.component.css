@@ -139,6 +139,10 @@
   height: 380px;
 }
 
+.parent-live-video-small .menu-opens {
+  height: 450px;
+}
+
 .right-icon-fonts button {
   padding: 11px 13px;
   background: white;

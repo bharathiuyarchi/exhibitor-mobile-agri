@@ -34,6 +34,7 @@
             <div>
                 <label>Chat :</label>
                 <select name="" id="" formControlName="allot_chat">
+                    <option [ngValue]="null" disabled>Select Host</option>
                     <option value="my self">My Self</option>
                     <ng-container *ngFor="let item of subhost.chat">
                         <option value="{{item._id}}">{{item.contactName}}</option>
@@ -45,6 +46,7 @@
                 *ngIf="stream_list.purchasedplans.no_of_host == 1 || stream_list.purchasedplans.no_of_host == 2 || stream_list.purchasedplans.no_of_host == 3">
                 <label>Host 1(Primary) :</label>
                 <select name="" id="" formControlName="allot_host_1">
+                    <option [ngValue]="null" disabled>Select Host</option>
                     <option value="my self"
                         *ngIf="postForm.get('allot_host_3')?.value !='my self' && postForm.get('allot_host_2')?.value !='my self'">
                         My Self</option>
@@ -58,6 +60,7 @@
             <div *ngIf="stream_list.purchasedplans.no_of_host == 2 || stream_list.purchasedplans.no_of_host == 3">
                 <label>Host 2 :</label>
                 <select name="" id="" formControlName="allot_host_2">
+                    <option [ngValue]="null" disabled>Select Host</option>
                     <option value="my self"
                         *ngIf="postForm.get('allot_host_3')?.value !='my self' && postForm.get('allot_host_1')?.value !='my self'">
                         My Self</option>
@@ -71,6 +74,7 @@
             <div *ngIf="stream_list.purchasedplans.no_of_host == 3">
                 <label>Host 3 :</label>
                 <select name="" id="" formControlName="allot_host_3">
+                    <option [ngValue]="null" disabled>Select Host</option>
                     <option value="my self"
                         *ngIf="postForm.get('allot_host_2')?.value !='my self' && postForm.get('allot_host_1')?.value !='my self'">
                         My Self</option>
