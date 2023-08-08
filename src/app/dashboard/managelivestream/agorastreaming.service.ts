@@ -109,7 +109,11 @@ export class AgorastreamingService {
         this.localAudioTrack.setEnabled(req.audio)
         this.localVideoTrack.setEnabled(req.video)
       }
-      this.videostarted.next({user:uuid})
+      this.videostarted.subscribe((res: any) => {
+        if (res == null) {
+          this.videostarted.next({ user: uuid })
+        }
+      })
       this.localVideoTrack.play('local-player');
       await this.rtc.client.publish([this.localAudioTrack, this.localVideoTrack]);
     }

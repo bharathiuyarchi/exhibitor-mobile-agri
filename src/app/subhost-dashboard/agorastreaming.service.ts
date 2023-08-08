@@ -27,7 +27,7 @@ export class AgorastreamingService_sub {
   updateUserInfo = new BehaviorSubject<any>(null);
   unpublished = new BehaviorSubject<any>(null);
   liveUsersList: any = [];
-  videostarted= new BehaviorSubject<any>(null);
+  videostarted = new BehaviorSubject<any>(null);
 
   agoraServerEvents(rtc: any) {
     rtc.client.on("user-published", async (user: any, mediaType: any) => {
@@ -109,7 +109,11 @@ export class AgorastreamingService_sub {
         this.localAudioTrack.setEnabled(req.audio)
         this.localVideoTrack.setEnabled(req.video)
       }
-      this.videostarted.next({user:uuid})
+      this.videostarted.subscribe((res: any) => {
+        if (res == null) {
+          this.videostarted.next({ user: uuid })
+        }
+      })
       this.localVideoTrack.play('local-player');
       await this.rtc.client.publish([this.localAudioTrack, this.localVideoTrack]);
     }
