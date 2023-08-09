@@ -23,7 +23,7 @@
         </div>
     </nav>
     <!-- products-container -->
-    <div  class="products-container">
+    <div class="products-container">
         <div class="products" *ngFor="let item of myrequest; index as i">
             <div class="row-one">
                 <span class="subcategory">
@@ -151,7 +151,7 @@
     </div>
 </div>
 
-<ng-container *ngIf="false">
+<ng-container *ngIf="true">
     <div class="popup" *ngIf="view_details !=null">
         <div class="dummy" (click)="close_popup()"></div>
         <div class="popup-container">
@@ -319,12 +319,13 @@
                 </p>
 
                 <div class="confirm-button">
-                    <button class="back-btn" (click)="close_popup_now()">Back</button>
+                    <button class="back-btn" (click)="close_popup_now()" style="background-color: blue;">Back</button>
                     <button class="submit-btn" [routerLink]="['/dashboard/post/add']">Add Post</button>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="popup" *ngIf="popupType=='by_plan'">
         <div class="dummy" (click)="close_popup_now()"></div>
         <div class="popup-container" style="max-height: 180px;">
@@ -337,7 +338,7 @@
                 </p>
 
                 <div class="confirm-button">
-                    <button class="back-btn" (click)="close_popup_now()">Back</button>
+                    <button class="back-btn" (click)="close_popup_now()" style="background-color: blue;">Back</button>
                     <button class="submit-btn" [routerLink]="['/dashboard/plan/plans']">Buy Plan</button>
                 </div>
             </div>

@@ -48,18 +48,17 @@ export class ManagerequestComponent implements OnInit {
       this.get_my_request(this.page);
     });
   }
+  popupType: any = "";
 
   go_to_new_stream() {
-    // if (this.plan_list.length == 0) {
-    //   this.popupType = 'by_plan';
-    // }
-    // else if (this.post_list.length == 0) {
-    //   this.popupType = 'create_post';
-    // }
-    // else {
-    //   this.router.navigateByUrl('/dashboard/stream/add')
-    // }
-    this.router.navigateByUrl("/dashboard/stream/add");
+    console.log(this.plan_list.length);
+    if (this.plan_list.length == 0) {
+      this.popupType = "by_plan";
+    } else if (this.post_list.length == 0) {
+      this.popupType = "create_post";
+    } else {
+      this.router.navigateByUrl("/dashboard/stream/add");
+    }
   }
 
   view_details: any;
@@ -91,8 +90,6 @@ export class ManagerequestComponent implements OnInit {
   view_details_type_action(type: any) {
     this.view_details_type = type;
   }
-
-  popupType: any = "";
 
   close_popup_now() {
     this.popupType = "";

@@ -72,8 +72,8 @@ export class ListPlansComponent implements OnInit {
   }
 
   buyplan() {
-    delete this.viewPlans._id;
-    this.api.buy_plan(this.viewPlans).subscribe((res: any) => {
+    let data = { planId: this.viewPlans._id };
+    this.api.buy_plan(data).subscribe((res: any) => {
       console.log(res);
       this.getlikePlan();
       this.route.navigateByUrl("/dashboard/plan");

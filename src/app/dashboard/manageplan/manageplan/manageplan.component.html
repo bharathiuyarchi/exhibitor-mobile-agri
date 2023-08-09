@@ -10,7 +10,7 @@
                     d="M4.44444 4.4V1.1C4.44444 0.808261 4.56151 0.528472 4.76988 0.322182C4.97826 0.115892 5.26087 0 5.55556 0H18.8889C19.1836 0 19.4662 0.115892 19.6746 0.322182C19.8829 0.528472 20 0.808261 20 1.1V16.5C20 16.7917 19.8829 17.0715 19.6746 17.2778C19.4662 17.4841 19.1836 17.6 18.8889 17.6H15.5556V20.9C15.5556 21.5072 15.0556 22 14.4367 22H1.11889C0.972363 22.0008 0.827108 21.973 0.691469 21.9182C0.55583 21.8633 0.432481 21.7824 0.32851 21.6802C0.224538 21.578 0.141992 21.4564 0.0856159 21.3225C0.0292396 21.1886 0.000143749 21.045 0 20.9L0.00333336 5.49999C0.00333336 4.8928 0.503333 4.4 1.12111 4.4H4.44444ZM2.22444 6.59999L2.22222 19.8H13.3333V6.59999H2.22444ZM6.66667 4.4H15.5556V15.4H17.7778V2.2H6.66667V4.4ZM4.44444 9.89999H11.1111V12.1H4.44444V9.89999ZM4.44444 14.3H11.1111V16.5H4.44444V14.3Z"
                     fill="var(--green)" />
             </svg>
-            <p>Create Plans</p>
+            <p>Manage Plans</p>
         </div>
         <div class="add">
             <!-- <a data-bs-toggle="modal" data-bs-target="#buyplan" > -->
@@ -26,10 +26,10 @@
         <h2>No plans found</h2>
     </div>
     <div class="page-container">
-        <div class="box" *ngFor="let v of my_plans">
+        <div class="box" *ngFor="let v of my_plans;let i= index">
             <div class="box-title">
-                <h2>{{v.planName}}</h2>
-                <p>{{v.status}}</p>
+                <h2 (click)="planClick(i)">{{v.planName}}</h2>
+                <p [ngClass]="v.status == 'Pending'?'pend':'app' ">{{v.status}}</p>
             </div>
             <div class="box-slot">
                 <p>Normal</p>
@@ -44,7 +44,7 @@
                 <p>{{v.Exclusive}}</p>
             </div>
             <div class="box-btn">
-                Purchased On - {{v.created | date:'dd-MM-YYYY'}}
+                Purchased On :: {{v.DateIso | date:'dd-MM-YYYY'}}
             </div>
         </div>
     </div>
@@ -140,6 +140,78 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ok</button>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="popup-1" *ngIf="popup1">
+    <div class="popup-close-1" (click)="popupCLose1()"></div>
+    <div class="popup-container-1" style="position: relative;overflow: hidden;">
+        <div class="close-icon">
+            <p (click)="popupCLose1()">X</p>
+        </div>
+        <div class="content-title">
+            <p>{{viewPlans.planName}}</p>
+        </div>
+        <div class="scroll-div">
+            <div class="contents">
+                <div>
+                    <p class="key">Host Per Stream:</p>
+                    <p class="val">{{viewPlans.no_of_host}}</p>
+                </div>
+                <div>
+                    <p class="key">Participant Limit:</p>
+                    <p class="val">{{viewPlans.numberOfParticipants}}</p>
+                </div>
+                <div>
+                    <p class="key">Commission:</p>
+                    <p class="val">{{viewPlans.salesCommission}}</p>
+                </div>
+                <div>
+                    <p class="key">Stream Video Download:</p>
+                    <p class="val">{{viewPlans.StreamVideos}}</p>
+                </div>
+                <div>
+                    <p class="key">Completed Stream:</p>
+                    <p class="val">{{viewPlans.completedStream}}</p>
+                </div>
+                <div>
+                    <p class="key">Teaser:</p>
+                    <p class="val">{{viewPlans.Teaser}}</p>
+                </div>
+                <div>
+                    <p class="key">Broucher:</p>
+                    <p class="val">{{viewPlans.Pdf}}</p>
+                </div>
+                <div>
+                    <p class="key">Description:</p>
+                    <p class="val">{{viewPlans.description}}</p>
+                </div>
+                <div>
+                    <p class="key">Chat:</p>
+                    <p class="val">{{viewPlans.chat_Option}}</p>
+                </div>
+                <div>
+                    <p class="key">Image:</p>
+                    <p class="val">{{viewPlans.image}}</p>
+                </div>
+                <div>
+                    <p class="key">Advertisement Display: </p>
+                    <p class="val">{{viewPlans.Advertisement_Display}}</p>
+                </div>
+                <div>
+                    <p class="key">Special Notification: </p>
+                    <p class="val">{{viewPlans.Special_Notification}}</p>
+                </div>
+                <div class="slots">
+                    <p style="padding-left: 20px; font-weight: bold;">Slots:</p>
+                    <div *ngFor="let data of viewPlans.slotInfo" style="width: 100%;">
+                        <p style="width: 50%; padding-left: 20px;">{{data.slotType}} {{data.Duration}} mins:</p>
+                        <p style="width: 50%; padding-left:50px;">{{data.No_Of_Slot}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

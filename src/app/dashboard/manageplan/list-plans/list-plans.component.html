@@ -5,8 +5,7 @@
     </div>
     <h1 class="welcome">Plans</h1>
     <div class="back">
-        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"
-            (click)="popup1Open()">Bank Details</button>
+        <button (click)="popup1Open()">Bank Details</button>
     </div>
 </nav>
 <div class="main-container">
@@ -318,10 +317,6 @@
                     <p class="val">{{viewPlans.completedStream}}</p>
                 </div>
                 <div>
-                    <p class="key">Transaction:</p>
-                    <p class="val">{{viewPlans.Transtraction}}</p>
-                </div>
-                <div>
                     <p class="key">Teaser:</p>
                     <p class="val">{{viewPlans.Teaser}}</p>
                 </div>
@@ -367,7 +362,7 @@
                         {{viewPlans.Price + 500}}</sub></p>
             </div>
             <div class="btn">
-                <button (click)="buyplan()">Pay Now</button>
+                <button (click)="buyplan()">Confirm</button>
             </div>
         </div>
     </div>
