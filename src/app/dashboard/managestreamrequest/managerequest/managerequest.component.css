@@ -41,11 +41,11 @@ nav div {
 }
 
 /* products */
-.products-container {
+/* .products-container { */
 
   /* height: 90vh; */
   /* overflow-y: scroll; */
-}
+/* } */
 
 .view-icons span {
 
@@ -216,7 +216,7 @@ sub {
 
 }
 
-.details tr {}
+/* .details tr {} */
 
 .post div {
   display: flex;
