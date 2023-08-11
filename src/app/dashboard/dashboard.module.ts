@@ -17,8 +17,7 @@ import { dashboardroutingmodule } from './dashboard-routing.module';
   declarations: [
     CommomComponent,
     HomepageComponent,
-    SidebarComponent,
-  
+    SidebarComponent,  
   ],
   imports: [
     CommonModule,
