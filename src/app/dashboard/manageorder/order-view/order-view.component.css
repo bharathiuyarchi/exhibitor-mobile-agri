@@ -1,0 +1,43 @@
+.details-container {
+  margin-top: 20px;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.485);
+}
+.image {
+  width: 20%;
+  height: 100%;
+  float: left;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+}
+.details {
+  width: 80%;
+  height: 100%;
+  float: right;
+}
+.row1 {
+  width: 90%;
+  padding-top: 10px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.payment-details {
+  width: 100%;
+  margin: auto;
+  margin-top: 70px;
+  margin-left: 10px;
+}
+.payment-details div p {
+  width: 50%;
+  margin: auto;
+}
+.payment-details div {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
