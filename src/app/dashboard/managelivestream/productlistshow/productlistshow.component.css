@@ -166,6 +166,7 @@
     height: 64px;
     background: white;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .title-views {

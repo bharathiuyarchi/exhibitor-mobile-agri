@@ -32,6 +32,10 @@ export class Managelivestream_sub {
   create_cloude_recording(data: any) {
     return this.http.post(this.baseurl + "/v2/generateRTC/production/livestream/generateToken/supplier/cloudrecording", data);
   }
+
+  join_chat_now(id: any) {
+    return this.http.get(this.baseurl + "/v1/ecomplan/only/chat/join?id=" + id)
+  }
 }
 
 

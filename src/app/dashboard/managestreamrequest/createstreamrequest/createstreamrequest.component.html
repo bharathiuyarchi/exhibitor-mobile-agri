@@ -177,6 +177,19 @@
                 <p class="error-message">
                     <span *ngIf="submited  && postRequest.get('slot')?.invalid">Choose Slot</span>
                 </p>
+                <div class="form-flex">
+                    <label>Transaction :</label>
+                    <span class="field_value">
+                        <select name="transaction" formControlName="transaction">
+                            <option [ngValue]="null" disabled selected>Select Transaction</option>
+                            <option value="With Transaction">With Transaction</option>
+                            <option value="Without Transaction">Without Transaction</option>
+                        </select>
+                    </span>
+                </div>
+                <p class="error-message">
+                    <span *ngIf="submited  && postRequest.get('transaction')?.invalid">Select Transaction</span>
+                </p>
 
                 <div class="form-flex" style="margin-top: 20px;">
                     <label>Location :</label>

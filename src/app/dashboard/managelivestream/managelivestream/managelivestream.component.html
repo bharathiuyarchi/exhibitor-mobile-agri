@@ -195,6 +195,12 @@
                     <p>{{item.registeredUsers}} / {{item.noOfParticipants}}</p>
                 </span>
                 <div class="view-icons">
+                    <button (click)="chat_now(item)" style="font-size: 11px;"
+                        *ngIf="iso < item.endTime &&item.status != 'Cancelled' &&!item.hostingPermissions &&item.tokenGeneration &&item.chat_permissions"
+                        class="go-live-btn green-btn">
+                        <p>Chat Now</p>
+                    </button>
+
                     <ng-container *ngIf="item.no_of_host == 1">
                         <button (click)="go_live(item)"
                             *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.hostingPermissions && item.allot_chat !='subhost' &&  item.status !='Completed' &&  item.allot_host_1 !='subhost'"

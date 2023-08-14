@@ -7,15 +7,18 @@
     border-radius: 4px;
     /* box-shadow: 0 0 5px 1px #d2d2d2; */
     /* margin-top: 23px; */
-    height: 95%;
+    height: 100%;
     /* min-height: 700px;
     max-height: 800px; */
-    align-items: flex-end;
+    align-items: end;
+    background: #EBEBEB;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
 }
 
 .chat-box .contant-box {
-    padding: 0 20px 20px;
+    /* padding: 0 20px 20px; */
 
 }
 
@@ -48,12 +51,59 @@
 
 .message-others {
     display: flex;
-    max-width: 63%;
+    /* max-width: 63%; */
+    background: white;
+    border-radius: 4px;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 10px;
+    width: 80%;
+    position: relative;
+}
+
+.show_icon,
+.show_icon2 {
+    display: none;
+}
+
+.message-others:hover {
+    cursor: pointer;
+
+}
+
+.message-others:hover>div div .show_icon2 {
+    display: block !important;
+}
+
+.div {
+    background: #8888de;
+}
+
+.message-others:hover>div .div {
+    background-color: #e1e1f2;
+}
+
+.message-others:hover>.show_icon {
+    display: block !important;
+}
+
+
+.message-others:hover>div div .show_icon_hide {
+    display: none;
+
+}
+
+.ban-style {
+    display: none;
+}
+
+.hide_remove {
+    visibility: hidden;
+    display: none!important;
 }
 
 .message-others div {
-    padding: 8px 13px;
-    border-radius: 6px;
+    padding: 5px 13px;
+    /* border-radius: 6px; */
 
 
 }
@@ -91,18 +141,21 @@
     /* max-height: 500px;
     min-height: 500px; */
     overflow: auto;
-    height: 96%;
-    /* height:calc(100% - 46px) ; */
+    height: 100%;
 }
 
 .chat-box-form input {
+
     border: none;
     border-radius: 11px;
     padding-right: 67px;
     width: 100%;
-    height: 49px;
-    border-top: 1px solid gray;
-    border-radius: 0;
+    height: 46px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    padding-left: 22px;
+
 }
 
 .chat-box-form input:focus-visible {
@@ -118,11 +171,11 @@
     border-radius: 0;
     color: white;
     font-weight: bold;
-    transform: rotate(28deg);
+    transform: rotate(36deg);
     font-size: 26px;
     background: white;
     color: black;
-    margin-top: 4px;
+    margin-top: 3px;
     margin-right: 16px;
 }
 
@@ -157,7 +210,7 @@
 .chat-title {
 
     padding: 16px 11px !important;
-    border-bottom: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
     font-weight: 600;
 
 }
@@ -170,75 +223,38 @@
     background-color: #4dcc1b;
 }
 
+.chat-box {
+    position: relative;
+}
 
-/* mobile view  */
-
-.mobile-chat {
-    display: grid;
-    align-content: space-between;
+.contant-box {
+    width: 100%;
     height: 100%;
+    padding: 56px 0 0 20px;
+    overflow: hidden;
+
 }
 
-.message-priview-all {
-
-    position: fixed;
+.chat-title {
+    position: absolute;
+    z-index: 100000000000;
     width: 100%;
-    bottom: 0;
+    top: 0;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.contant-box ol {
+    overflow: auto;
     height: 100%;
-    background: #ffffff00;
-
+    padding-right: 20px;
 }
 
-.message-box {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    background: white;
-    height: 137px;
+.contant-box ol li:last-child {
+    margin-bottom: 10px;
 }
 
-.dummy-page {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 137px);
-}
-
-.close-icon {
-    position: absolute;
-    z-index: 10000;
-    right: 0;
-    padding: 0px 7px;
-    margin-top: -30px;
-    margin-right: 6px;
-    border: none;
-    border-radius: 50%;
-}
-
-.sep-1 {
-    position: absolute;
-    bottom: 13px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.sep-3 {
-    position: absolute;
-    bottom: 13px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sep-3 button:first-child {
-    margin-right: 5px;
-}
-
-.sep-2 p {
-    text-align: center;
-    font-weight: bold;
-    color: red;
-
+table tr th ,table tr td{
+    text-align: left!important;
 }

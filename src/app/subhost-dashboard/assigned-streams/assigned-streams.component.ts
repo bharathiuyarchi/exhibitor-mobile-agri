@@ -111,5 +111,11 @@ date_now = new Date().getTime()
   change_view(type: any) {
     this.view_details_type = type;
   }
+  chat_now(item: any) {
+    this.api.join_chat_now(item._id).subscribe((res: any) => {
+      console.log(res)
+      this.router.navigateByUrl('/stream/chatnow/' + res._id)
+    })
+  }
 
 }

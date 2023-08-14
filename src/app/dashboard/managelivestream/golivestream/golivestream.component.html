@@ -98,6 +98,7 @@
                   <div class="view-page-blur">
                     <div class="footer-menu" [ngClass]="openMenus?'menu-opens':''">
                       <div class="footer-view">
+                        <div class="view-page" *ngIf="view_type==''"></div>
                         <div class="view-page" *ngIf="view_type=='product'">
                           <div class="product-view">
                             <app-productlistshow [id]="id" [streamDetails]="streamDetails">
@@ -383,8 +384,7 @@
                                 </svg>
                               </a>
                             </li>
-                            <li *ngIf="view_type=='chat'">
-
+                            <li *ngIf="view_type=='chat' || view_type==''">
                               <a (click)="toggle_cart('product')">
                                 <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
@@ -431,7 +431,7 @@
                               </a>
                             </li>
                             <li *ngIf="view_type=='product'">
-                              <a (click)="toggle_cart('product')" style="background-color: #48D391;">
+                              <a (click)="toggle_cart('')" style="background-color: #48D391;">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
                                   <path
@@ -477,7 +477,7 @@
 
                               </a>
                             </li>
-                            <li *ngIf="view_type=='product'" style="position: relative;">
+                            <li *ngIf="view_type=='product' || view_type==''" style="position: relative;">
                               <span *ngIf="chatCount !=0"
                                 style="position: absolute;top: -18px;right: -10px;background: var(--green);padding: 2px 9px;border-radius: 50%;color: white;font-size: 10px;">{{chatCount}}</span>
                               <a (click)="toggle_cart('chat')">
@@ -490,7 +490,7 @@
                               </a>
                             </li>
                             <li *ngIf="view_type=='chat'">
-                              <a (click)="toggle_cart('product')" style="background-color: #48D391;">
+                              <a (click)="toggle_cart('')" style="background-color: #48D391;">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
                                   <path

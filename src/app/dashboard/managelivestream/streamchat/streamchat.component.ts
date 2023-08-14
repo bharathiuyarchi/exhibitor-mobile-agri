@@ -51,27 +51,15 @@ export class StreamchatComponent implements OnInit {
       });
     }
   }
-  ban_user_now: any = false;
-  baan_user(user: any, ban: any, remove: any) {
-    this.ban_user_now = true;
-    $(user).hide();
-    $(remove).addClass('hide_remove')
-    $(ban).show();
-  }
-  back_message(user: any, ban: any, remove: any) {
-    this.ban_user_now = false;
-    $(user).show();
-    $(remove).removeClass('hide_remove')
-    $(ban).hide();
-  }
+
+  select_chat: any;
   remove_message(item: any) {
-    console.log(item)
     this.api.romove_message(item)
+    this.select_chat = null;
   }
-  ban_user_chat(user: any, ban: any, remove: any, item: any) {
-    $(user).show();
-    $(remove).removeClass('hide_remove')
-    $(ban).hide();
+  ban_user_chat(item: any) {
+    this.select_chat = null;
+    this.ban = false;
     this.api.ban_user_chat(item)
   }
   chat_now() {
@@ -121,6 +109,8 @@ export class StreamchatComponent implements OnInit {
       scrollTop: $(".contant-box ol").height() * 150
     }, 500);
   }
+
+  ban: any = false;
 
 
 }

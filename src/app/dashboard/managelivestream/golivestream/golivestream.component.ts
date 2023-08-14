@@ -328,7 +328,16 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     this.countDown.unsubscribe();
   }
 
+  active_cam: any = 'front';
   ngDoCheck(): void {
+    this.stream.active_cam.subscribe((res: any) => {
+      if (this.active_cam != res) {
+        if (res == 'back') {
+          $("#local-player video").css("transform", "scaleX(1)");
+        }
+      }
+    })
+
   }
   userId: any;
   deviceId: any = '';

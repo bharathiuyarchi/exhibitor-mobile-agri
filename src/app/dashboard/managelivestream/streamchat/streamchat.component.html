@@ -1,15 +1,16 @@
 <div class="mobile-chat">
-    <div class="contant-box" style="height: 283px;">
+    <div class="contant-box">
         <ol style="padding: 0 14px">
             <ng-container *ngFor="let item of this.addpro.value;index as i">
 
                 <li class="message-others" *ngIf="item.type=='others'">
-                    <div style="height: 34px;;color: white;border-radius: 50%;display: flex;justify-content: center;align-items: center;width: 34px;"
+                    <div (click)="select_chat=item"
+                        style="height: 34px;;color: white;border-radius: 50%;display: flex;justify-content: center;align-items: center;width: 34px;"
                         ngClass="{{item.userType=='buyer' ?'buyer':'supplier'}}">
                         {{item.userName[0]}}
                     </div>
                     <div>
-                        <p>{{item.userName}}</p>
+                        <p (click)="select_chat=item">{{item.userName}}</p>
                         <span style=" word-break: break-word;color: white; ">{{item.text}}</span>
                     </div>
                 </li>
@@ -22,7 +23,7 @@
 
         </ol>
     </div>
-    <form (submit)="send_now()" *ngIf="!sub.joindedUserBan && sub.chatPermistion">
+    <form style="height: 46px;" (submit)="send_now()" *ngIf="!sub.joindedUserBan && sub.chatPermistion">
         <div class="chat-box-form" style="height: 100%;">
             <div class="fixed-box" style="padding: 0 0px 7px 14px;">
                 <input style="border-radius: 12px; font-size:12px;padding-left:20px;height: 43px;" type="text"
@@ -33,4 +34,30 @@
             </div>
         </div>
     </form>
+</div>
+
+
+<div class="message-priview-all" *ngIf="select_chat !=null">
+    <div class="dummy-page" (click)="select_chat=null"></div>
+    <div class="message-box">
+        <button class="close-icon" (click)="select_chat=null">x</button>
+        <div class="message-priview">
+            <div class="alert alert-success" style="font-size: 12px;max-height: 75px;overflow: auto;">
+                <strong>{{select_chat.userName}}</strong>: {{select_chat.text}}
+            </div>
+            <div class="sep-1" *ngIf="!ban">
+                <button type="button" class="btn btn-danger btn-sm"
+                    (click)="remove_message(select_chat)">Remove</button>
+                <button type="button" class="btn btn-warning btn-sm" (click)="ban=true">Ban Chat</button>
+            </div>
+            <div class="sep-2" *ngIf="ban">
+                <p>Do you want To Ban User?</p>
+                <div class="sep-3">
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="ban=false">no</button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                        (click)="ban_user_chat(select_chat)">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

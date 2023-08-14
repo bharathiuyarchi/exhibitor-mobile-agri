@@ -130,6 +130,8 @@ export class AgorastreamingService_sub {
   }
 
 
+  active_cam: any = new BehaviorSubject<any>('front');
+  acitve_camara: any = 'front'
 
   async switch_cam(deviceId: any) {
     const cams = await AgoraRTC.getCameras();
@@ -145,7 +147,10 @@ export class AgorastreamingService_sub {
     else {
       index = 0;
     }
+    let type = cams[index].label.includes('back') == true ? 'back' : 'front';
+    this.acitve_camara = type;
     this.localVideoTrack.setDevice(cams[index].deviceId);
+    this.active_cam.next(this.acitve_camara);
     return cams[index].deviceId;
   }
 
