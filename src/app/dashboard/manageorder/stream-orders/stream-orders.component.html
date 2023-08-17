@@ -42,7 +42,7 @@
     </nav>
 
     <div class="page-container">
-        <div class="orders-container" *ngFor="let val of orders" (click)="orderViewRoute()">
+        <div class="orders-container" *ngFor="let val of orders" (click)="orderViewRoute(val._id)">
             <div class="order-price">
                 <p>#{{val.orderId}} ({{val.tradeName}})</p>
                 <p>₹{{val.Amount}}</p>
