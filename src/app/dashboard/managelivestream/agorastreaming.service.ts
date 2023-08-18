@@ -152,8 +152,6 @@ export class AgorastreamingService {
     this.active_cam.next(this.acitve_camara);
     return cams[index].deviceId;
   }
-
-
   async togglePlay(type: any) {
     console.log(this.localVideoTrack.setEnabled(type))
     this.videoPass = type
