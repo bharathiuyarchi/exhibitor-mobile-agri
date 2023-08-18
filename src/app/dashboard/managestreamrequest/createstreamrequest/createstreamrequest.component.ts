@@ -45,18 +45,7 @@ export class CreatestreamrequestComponent implements OnInit {
     this.api.get_purchasePlans().subscribe((res: any) => {
       this.myplans = res;
       if (res.length != 0) {
-        this.postRequest.get("planId").setValue(res[0]._id);
-        this.selectPlan = res[0];
         console.log(this.selectPlan, 298218);
-        this.expire_date =
-          formatDate(
-            new Date(this.selectPlan.expireDate),
-            "yyyy-MM-dd",
-            "en-IN"
-          ) +
-          "T" +
-          formatDate(new Date(this.selectPlan.expireDate), "HH:mm", "en-IN");
-        // expire_date
         this.change_allot_stream();
       }
     });
@@ -98,6 +87,7 @@ export class CreatestreamrequestComponent implements OnInit {
     chat_need: new FormControl("no", Validators.required),
     Location: new FormControl(null, Validators.required),
     slot: new FormControl(null, Validators.required),
+    transaction: new FormControl(null, Validators.required)
   });
   selectPlan: any;
   removeImageshop() {

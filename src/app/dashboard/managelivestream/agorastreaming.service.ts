@@ -27,7 +27,7 @@ export class AgorastreamingService {
   updateUserInfo = new BehaviorSubject<any>(null);
   unpublished = new BehaviorSubject<any>(null);
   liveUsersList: any = [];
-  videostarted= new BehaviorSubject<any>(null);
+  videostarted = new BehaviorSubject<any>(null);
 
   agoraServerEvents(rtc: any) {
     rtc.client.on("user-published", async (user: any, mediaType: any) => {
@@ -130,7 +130,8 @@ export class AgorastreamingService {
   }
 
 
-
+  active_cam: any = new BehaviorSubject<any>('front');
+  acitve_camara: any = 'front'
   async switch_cam(deviceId: any) {
     const cams = await AgoraRTC.getCameras();
     console.log(cams)
@@ -145,11 +146,12 @@ export class AgorastreamingService {
     else {
       index = 0;
     }
+    let type = cams[index].label.includes('back') == true ? 'back' : 'front';
+    this.acitve_camara = type;
     this.localVideoTrack.setDevice(cams[index].deviceId);
+    this.active_cam.next(this.acitve_camara);
     return cams[index].deviceId;
   }
-
-
   async togglePlay(type: any) {
     console.log(this.localVideoTrack.setEnabled(type))
     this.videoPass = type

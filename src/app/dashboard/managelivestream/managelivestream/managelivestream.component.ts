@@ -113,4 +113,11 @@ export class ManagelivestreamComponent {
     } else {
     }
   }
+
+  chat_now(item: any) {
+    this.api.join_chat_now(item._id).subscribe((res: any) => {
+      console.log(res)
+      this.router.navigateByUrl('/dashboard/livestream/chatnow/' + res._id)
+    })
+  }
 }

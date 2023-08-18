@@ -9,8 +9,10 @@ import { PendingChangesGuard_sub } from './can.deactivate.guard';
 
 const routes: Routes = [
   { path: '', component: AssignedStreamsComponent, pathMatch: "full" },
-  { path: 'golive', component: GolivestreamComponent,canDeactivate:[PendingChangesGuard_sub] },
-  { path: 'profile', loadChildren: () => import("./myprofiles/myprofiles.module").then((m: any) => m.MyprofilesModule_sub)},
+  { path: 'golive', component: GolivestreamComponent, canDeactivate: [PendingChangesGuard_sub] },
+  { path: 'profile', loadChildren: () => import("./myprofiles/myprofiles.module").then((m: any) => m.MyprofilesModule_sub) },
+  { path: "chatnow/:id", loadChildren: () => import("../livechat/livechat.module").then((m) => m.LivechatModule) },
+
 
 ];
 @NgModule({

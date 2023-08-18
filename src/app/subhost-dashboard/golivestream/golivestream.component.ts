@@ -13,13 +13,13 @@ declare let $: any;
   styleUrls: ['./golivestream.component.css']
 })
 export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
-  constructor(public route: ActivatedRoute, public api: Managelivestream_sub, public stream: AgorastreamingService_sub, public router: Router, public agora: HostserviceService_sub, public web: SocketioService_sub,private leave:PendingChangesGuard_sub) { }
+  constructor(public route: ActivatedRoute, public api: Managelivestream_sub, public stream: AgorastreamingService_sub, public router: Router, public agora: HostserviceService_sub, public web: SocketioService_sub, private leave: PendingChangesGuard_sub) { }
   id: any;
   token: any;
   participents: any;
   innerWidth: any;
   tokenValues: any;
-  chatCount:number=0;
+  chatCount: number = 0;
 
   ngOnInit(): void {
     this.leave.leave_host(false);
@@ -334,9 +334,20 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     // this.stop_recording();
     this.countDown.unsubscribe();
   }
-
+  active_cam: any = 'front';
   ngDoCheck(): void {
-    // console.log(this.countDown,'asdas')
+    this.stream.active_cam.subscribe((res: any) => {
+      console.log(res)
+      if (this.active_cam != res) {
+        if (res == 'back') {
+          $("#local-player video").css("transform", "scaleX(1)");
+          // setTimeout(() => {
+          //   $("#local-player video").css("transform", "scaleX(1)");
+          // }, 400)
+        }
+      }
+    })
+
   }
   userId: any;
   deviceId: any = '';
@@ -530,8 +541,8 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   view_type: any = "product";
   toggle_cart(type: any) {
     this.view_type = type;
-    if(this.view_type=='chat'){
-      this.chatCount=0;
+    if (this.view_type == 'chat') {
+      this.chatCount = 0;
     }
   }
   open_product_view: any;
@@ -543,7 +554,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   name: "formatTime"
 })
 export class FormatTimePipe implements PipeTransform {
-  constructor(public router: Router,private leave:PendingChangesGuard_sub) {
+  constructor(public router: Router, private leave: PendingChangesGuard_sub) {
 
   }
   transform(value: number): string {

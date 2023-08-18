@@ -78,7 +78,7 @@
 
                     <p style="font-size: 12px;">{{item.streamingDate}} {{item.startTime|date:"hh:mm a"}}</p>
                 </span>
-                <span class="quantity" >
+                <span class="quantity">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
                         <path
@@ -95,7 +95,7 @@
             </div>
 
             <div class="row-one">
-                <span class="category" style="width: 47%;"> 
+                <span class="category" style="width: 47%;">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#BCC3CC" stroke="#BCC3CC" />
                         <mask id="path-2-inside-1_741_946" fill="white">
@@ -170,8 +170,7 @@
                                 *ngIf="item.allot_chat !='subhost' &&  item.allot_host_1 !=null && item.allot_host_2 !=null &&  item.allot_host_3 !=null">
                                 <span
                                     *ngIf="iso < item.endTime && item.status !='Cancelled'&& !item.hostingPermissions && item.tokenGeneration"
-                                    style="color:rgb(173, 31, 168);font-weight:bold">On
-                                    Going</span>
+                                    style="color:rgb(173, 31, 168);font-weight:bold">On Going</span>
 
                                 <span
                                     *ngIf="item.tokenGeneration && iso > item.endTime && item.status !='Cancelled'||   item.status =='Completed'"
@@ -183,7 +182,6 @@
                                     style="color:rgb(50, 18, 207);font-weight:bold">Host Delay</span>
                             </div>
                         </ng-container>
-
                     </p>
                 </span>
                 <span class="price">
@@ -199,23 +197,29 @@
                 </span>
                 <div class="view-icons">
                     <button (click)="go_live(item)"
-                    *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.status !='Completed'"
-                    class="go-live-btn"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.30769 4.11111L12.2123 1.31407C12.2769 1.252 12.3591 1.20973 12.4485 1.19261C12.538 1.1755 12.6307 1.1843 12.715 1.2179C12.7993 1.25151 12.8714 1.30842 12.9221 1.38143C12.9728 1.45445 12.9999 1.5403 13 1.62815V8.37185C12.9999 8.4597 12.9728 8.54555 12.9221 8.61857C12.8714 8.69158 12.7993 8.74849 12.715 8.7821C12.6307 8.8157 12.538 8.8245 12.4485 8.80739C12.3591 8.79027 12.2769 8.748 12.2123 8.68593L9.30769 5.88889M2.38462 9H7.92308C8.2903 9 8.64248 8.85952 8.90215 8.60948C9.16181 8.35943 9.30769 8.02029 9.30769 7.66667V2.33333C9.30769 1.97971 9.16181 1.64057 8.90215 1.39052C8.64248 1.14048 8.2903 1 7.92308 1H2.38462C2.01739 1 1.66521 1.14048 1.40554 1.39052C1.14588 1.64057 1 1.97971 1 2.33333V7.66667C1 8.02029 1.14588 8.35943 1.40554 8.60948C1.66521 8.85952 2.01739 9 2.38462 9Z"
-                            stroke="white" stroke-linecap="round" />
-                    </svg>
-                    <p>Go Live</p>
-                </button>
+                        *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.status !='Completed' && item.hostingPermissions"
+                        class="go-live-btn"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.30769 4.11111L12.2123 1.31407C12.2769 1.252 12.3591 1.20973 12.4485 1.19261C12.538 1.1755 12.6307 1.1843 12.715 1.2179C12.7993 1.25151 12.8714 1.30842 12.9221 1.38143C12.9728 1.45445 12.9999 1.5403 13 1.62815V8.37185C12.9999 8.4597 12.9728 8.54555 12.9221 8.61857C12.8714 8.69158 12.7993 8.74849 12.715 8.7821C12.6307 8.8157 12.538 8.8245 12.4485 8.80739C12.3591 8.79027 12.2769 8.748 12.2123 8.68593L9.30769 5.88889M2.38462 9H7.92308C8.2903 9 8.64248 8.85952 8.90215 8.60948C9.16181 8.35943 9.30769 8.02029 9.30769 7.66667V2.33333C9.30769 1.97971 9.16181 1.64057 8.90215 1.39052C8.64248 1.14048 8.2903 1 7.92308 1H2.38462C2.01739 1 1.66521 1.14048 1.40554 1.39052C1.14588 1.64057 1 1.97971 1 2.33333V7.66667C1 8.02029 1.14588 8.35943 1.40554 8.60948C1.66521 8.85952 2.01739 9 2.38462 9Z"
+                                stroke="white" stroke-linecap="round" />
+                        </svg>
+                        <p>Go Live</p>
+                    </button>
+                    <button (click)="chat_now(item)"
+                        *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.status !='Completed' && item.chat_permissions"
+                        class="go-live-btn">
+                        <p>Chat Now</p>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- pagenation -->
     <div class="pagenation">
-        <button class="prev page-btn"  [ngClass]="page==0?'button-disabled':''"  [disabled]="page==0" (click)="pagination('prev')">
+        <button class="prev page-btn" [ngClass]="page==0?'button-disabled':''" [disabled]="page==0"
+            (click)="pagination('prev')">
             <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                 [ngClass]="page==0?'disable-svg':''">
                 <path
@@ -225,7 +229,8 @@
 
         </button>
         <p class="page-no">{{page+1}}</p>
-        <button class="prev page-btn" [ngClass]="!next?'button-disabled':''" [disabled]="!next" (click)="pagination('next')">
+        <button class="prev page-btn" [ngClass]="!next?'button-disabled':''" [disabled]="!next"
+            (click)="pagination('next')">
             <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                 [ngClass]="!next?'disable-svg':''">
                 <path

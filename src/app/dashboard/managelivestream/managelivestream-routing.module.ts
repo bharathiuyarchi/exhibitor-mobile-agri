@@ -17,8 +17,7 @@ const routes: Routes = [
       { path: "settime", component: SetTimeComponent, canActivate: [AuthService] },
       { path: "assignhost", component: AssignHostComponent, canActivate: [AuthService] },
       { path: "golive", component: GolivestreamComponent, canActivate: [AuthService],canDeactivate:[PendingChangesGuard] },
-
-
+      { path: "chatnow/:id", loadChildren: () => import("../../livechat/livechat.module").then((m) => m.LivechatModule) },
     ]
   }
 ];
