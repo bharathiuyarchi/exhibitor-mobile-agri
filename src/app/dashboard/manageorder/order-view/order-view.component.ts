@@ -29,7 +29,7 @@ export class OrderViewComponent implements OnInit {
   }
 
   fetchOrdes() {
-    this.Api.get_My_OrdersById(this.id).subscribe((e: any) => {
+    this.Api.get_My_OrdersByOrder(this.id).subscribe((e: any) => {
       this.orders = e[0].productTitle;
       this.singleStreamOrders = e[0];
     });

@@ -91,4 +91,10 @@ export class ManageplaneService {
       this.baseurl + "/v1/registerShop/get/Streaming/ordersByStream/" + id
     );
   }
+  get_My_OrdersByOrder(id: any) {
+    return this.http.get(
+      this.baseurl + "/v1/registerShop/get/Streaming/ordersBy/Order/" + id
+    );
+  }
+  // get/Streaming/ordersBy/Order
 }

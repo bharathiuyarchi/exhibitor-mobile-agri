@@ -21,4 +21,9 @@ export class ManageOrdersComponent implements OnInit {
       console.log(this.streamDetails);
     });
   }
+
+  redirect(id:any){
+    console.log(id)
+  }
+
 }

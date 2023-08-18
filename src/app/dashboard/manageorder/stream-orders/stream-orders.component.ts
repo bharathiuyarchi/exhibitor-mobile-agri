@@ -34,8 +34,9 @@ export class StreamOrdersComponent implements OnInit {
     });
   }
 
-  orderViewRoute() {
-    this.router.navigateByUrl("dashboard/manag-orders/orderView/" + this.id);
+  orderViewRoute(id: any) {
+    console.log(id)
+    this.router.navigateByUrl("dashboard/manag-orders/orderView/" + id);
   }
 }
 // dashboard/manag-orders/orderView/68b6312b-aa80-485c-a7c9-4174a27f6632
