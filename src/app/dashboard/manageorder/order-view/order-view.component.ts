@@ -11,7 +11,7 @@ export class OrderViewComponent implements OnInit {
   stream: any;
   id: any;
   orders: any;
-  singleStreamOrders: any;
+  singleStreamOrders: any="";
   baseURL: any = "https://agriexpo.click";
   constructor(
     private Api: ManageplaneService,
