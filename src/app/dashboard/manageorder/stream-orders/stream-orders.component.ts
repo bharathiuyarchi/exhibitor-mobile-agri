@@ -11,6 +11,8 @@ export class StreamOrdersComponent implements OnInit {
   stream: any;
   id: any;
   orders: any;
+  notFound: any = false;
+
   constructor(
     private Api: ManageplaneService,
     private Aroute: ActivatedRoute,
@@ -31,11 +33,14 @@ export class StreamOrdersComponent implements OnInit {
     this.Api.get_My_OrdersById(this.id).subscribe((e: any) => {
       console.log(e);
       this.orders = e;
+      if (e.length < 1) {
+        this.notFound = true;
+      }
     });
   }
 
   orderViewRoute(id: any) {
-    console.log(id)
+    console.log(id);
     this.router.navigateByUrl("dashboard/manag-orders/orderView/" + id);
   }
 }

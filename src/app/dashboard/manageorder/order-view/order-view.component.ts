@@ -11,7 +11,8 @@ export class OrderViewComponent implements OnInit {
   stream: any;
   id: any;
   orders: any;
-  singleStreamOrders: any;
+  singleStreamOrders: any = "";
+  notFound: any = false;
   baseURL: any = "https://agriexpo.click";
   constructor(
     private Api: ManageplaneService,
@@ -31,7 +32,9 @@ export class OrderViewComponent implements OnInit {
   fetchOrdes() {
     this.Api.get_My_OrdersByOrder(this.id).subscribe((e: any) => {
       this.orders = e[0].productTitle;
+      console.log(e,"orders")
       this.singleStreamOrders = e[0];
+
     });
   }
 }
