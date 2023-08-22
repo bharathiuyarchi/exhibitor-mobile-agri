@@ -1,0 +1,77 @@
+<div class="choose-option" *ngIf="show_permistion=='start' "></div>
+<div class="draggable" (mousedown)="onDragStart($event)" (document:mouseup)="onDragEnd()"
+    (document:mousemove)="onDrag($event)">
+
+    <div class="allow-to-raice-hands" *ngIf="show_permistion=='start' && loading">
+        <div class="close-icon" style="position: absolute;">
+            <button (click)="close_raise()">X</button>
+        </div>
+        <p style="text-align: center;">Are You want to start Raise your hands?</p>
+        <div class="btn-groups">
+            <button class="btn btn-success btn-sm" (click)="start_raising()">Yes </button>
+            <button class="btn btn-danger btn-sm">no </button>
+        </div>
+    </div>
+
+    <div class="allow-user-list" *ngIf="show_permistion=='user' && loading">
+        <h6>
+            <div class="close-icon" style="position: absolute;top: 7px;">
+                <button (click)="close_raise()">X</button>
+            </div> Hands request users
+        </h6>
+        <div class="">
+            <div class="user-list" *ngFor="let item of raised_users; index as i">
+                <div class="rows-limit">
+                    <ul class="list-group"
+                        style="padding-top: 10px; border-bottom: 1px solid #80808047;border-radius: 0;">
+                        <li style="border: none;"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM10.1597 14C8.1243 14 6.29182 14.8687 5.01276 16.2556C6.38039 17.3474 8.114 18 10 18C11.9695 18 13.7727 17.2883 15.1666 16.1081C13.8956 14.8074 12.1219 14 10.1597 14ZM10 2C5.58172 2 2 5.58172 2 10C2 11.8106 2.6015 13.4807 3.61557 14.8214C5.25639 13.0841 7.58144 12 10.1597 12C12.6441 12 14.8933 13.0066 16.5218 14.6342C17.4526 13.3267 18 11.7273 18 10C18 5.58172 14.4183 2 10 2ZM10 3C12.2091 3 14 4.79086 14 7C14 9.2091 12.2091 11 10 11C7.79086 11 6 9.2091 6 7C6 4.79086 7.79086 3 10 3ZM10 5C8.8954 5 8 5.89543 8 7C8 8.1046 8.8954 9 10 9C11.1046 9 12 8.1046 12 7C12 5.89543 11.1046 5 10 5Z"
+                                        fill="#262626" />
+                                </svg>
+                                <span style="margin-left: 7px;font-size: 12px;">{{item.SName}}</span>
+                            </div>
+                            <div style="font-size: 11px;">
+                                {{item.createdAt|minted_def}}
+                            </div>
+                        </li>
+                        <li style="border: none;"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.36556 7.6821C7.302 9.3288 8.6712 10.698 10.3179 11.6344L11.2024 10.3961C11.4965 9.9845 12.0516 9.8573 12.4956 10.0998C13.9024 10.8683 15.4571 11.3353 17.0789 11.4637C17.599 11.5049 18 11.9389 18 12.4606V16.9234C18 17.4361 17.6122 17.8657 17.1022 17.9181C16.5723 17.9726 16.0377 18 15.5 18C6.93959 18 0 11.0604 0 2.5C0 1.96227 0.0274201 1.42771 0.0818901 0.89776C0.1343 0.38775 0.56394 0 1.07665 0H5.53942C6.0611 0 6.49513 0.40104 6.5363 0.92109C6.66467 2.54288 7.1317 4.09764 7.9002 5.50444C8.1427 5.9484 8.0155 6.50354 7.6039 6.79757L6.36556 7.6821ZM3.84425 7.0252L5.7442 5.66809C5.20547 4.50514 4.83628 3.27183 4.64727 2H2.00907C2.00303 2.16632 2 2.333 2 2.5C2 9.9558 8.0442 16 15.5 16C15.667 16 15.8337 15.997 16 15.9909V13.3527C14.7282 13.1637 13.4949 12.7945 12.3319 12.2558L10.9748 14.1558C10.4258 13.9425 9.8956 13.6915 9.3874 13.4061L9.3293 13.373C7.3697 12.2587 5.74134 10.6303 4.627 8.6707L4.59394 8.6126C4.30849 8.1044 4.05754 7.5742 3.84425 7.0252Z"
+                                        fill="#262626" />
+                                </svg>
+
+                                <span style="margin-left: 7px;font-size: 12px;">{{item.mobile}}</span>
+                            </div>
+                            <div>
+
+                                <button *ngIf="item.status=='Pending' && waiting_user_join==null"
+                                    (click)="reject_raise(item)" style="margin-right: 15px;font-size: 12px;"
+                                    class="btn  reject-button btn-sm">Decline</button>
+                                <button *ngIf="item.status=='Pending' && waiting_user_join==null"
+                                    style="font-size: 12px;" (click)="approve_raise(item)"
+                                    class="btn accept-button  btn-sm">Accept</button>
+                                <span *ngIf="item.status=='rejected'"
+                                    style="color: red;font-size: 12px;">Declined</span>
+                                <button *ngIf="item.status=='approved'|| item.waiting_user_join==item._id"
+                                    style="font-size: 12px;" (click)="cansel_raise(item)"
+                                    class="btn btn-danger btn-sm">Cancel</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div *ngIf="raised_users.length==0" style="font-size: 12px;">
+                Users Not Found
+            </div>
+        </div>
+    </div>
+</div>

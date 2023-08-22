@@ -12,6 +12,7 @@ import { StreamchatComponent } from './streamchat/streamchat.component';
 import { ProductlistshowComponent } from './productlistshow/productlistshow.component';
 import { ProductdetailviewComponent } from './productdetailview/productdetailview.component';
 import { PendingChangesGuard } from './can-deactivate.guard';
+import { MinutedDef, RaisehandsComponent } from './raisehands/raisehands.component';
 
 
 
@@ -24,7 +25,9 @@ import { PendingChangesGuard } from './can-deactivate.guard';
     StreamchatComponent,
     ProductlistshowComponent,
     FormatTimePipe,
-    ProductdetailviewComponent
+    ProductdetailviewComponent,
+    RaisehandsComponent,
+    MinutedDef
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,7 @@ import { PendingChangesGuard } from './can-deactivate.guard';
     Managelivestraemroutingmodule,
 
   ],
-  providers:[PendingChangesGuard]
+  providers: [PendingChangesGuard]
 
 })
 export class ManagelivestreamModule { }

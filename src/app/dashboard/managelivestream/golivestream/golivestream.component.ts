@@ -34,6 +34,10 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
         })
       }
     })
+    this.api.raise_hands.next(false);
+    this.api.raise_hands.subscribe((res: any) => {
+      this.rice_hande = res;
+    })
     this.web.productView.subscribe((res: any) => {
       console.log(res)
       this.open_product_view = res;
@@ -193,20 +197,12 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     this.web.stream_view_change(data);
     // this.screen_view();
   }
+  rice_hande: any = false;
   get_token(id: any) {
-    // this.api.create_cloude_recording({ streamId: id }).subscribe((res: any) => {
-    //   this.token = res;
-    //   if (res.recoredStart == "Pending") {
-    //     // this.start_recording();
-    //   }
-    // })
     this.api.get_token_details(id).subscribe((res: any) => {
-      console.log(res, 7677777777777)
+      this.stream.raiseUID = res.raiseUID;
       this.targetTime = res.endTime;
       this.streamDetails = res
-      console.log(this.streamDetails, 2312312312312)
-      // this.targetDate = new Date(2023, 5, 11);
-      // this.targetTime = this.targetDate.getTime();
       this.tickTock();
       res = res.temptokens;
       this.tokenValues = res;
@@ -337,7 +333,6 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
         }
       }
     })
-
   }
   userId: any;
   deviceId: any = '';
