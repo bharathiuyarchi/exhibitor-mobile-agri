@@ -20,6 +20,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   innerWidth: any;
   tokenValues: any;
   chatCount: number = 0;
+  rice_hande: any = false;
 
   ngOnInit(): void {
     this.leave.leave_host(false);
@@ -31,6 +32,9 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
           console.log(start)
         })
       }
+    })
+    this.api.raise_hands.subscribe((res: any) => {
+      this.rice_hande = res;
     })
     if (window.innerWidth < 600) {
       this.innerWidth = 'mobile'
@@ -90,6 +94,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
       console.log(res, 1237816231)
       if (res.length != 0) {
         this.targetTime = res[0].endTime;
+        this.stream.raiseUID = res[0].raiseUID;
         this.streamDetails = res[0]
         this.tickTock();
         res = res[0].temptokens;
@@ -396,12 +401,17 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   //   }
   // }
   targetTime: any;
+  nowTimae: any = new Date().getTime();
   tickTock() {
     var startDate = new Date();
     var endDate = new Date(this.targetTime);
     var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
     this.counter = Math.floor(seconds) + 2;
-    this.countDown = timer(0, 1000).subscribe(() => --this.counter);
+    this.countDown = timer(0, 1000).subscribe(() => {
+      --this.counter;
+      this.nowTimae = new Date().getTime();
+
+    });
 
   }
   countDown: any;

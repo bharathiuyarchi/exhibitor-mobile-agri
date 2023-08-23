@@ -1,0 +1,96 @@
+.draggable {
+    width: 100px;
+    position: fixed;
+    cursor: grab;
+    z-index: 1000000000000;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px 2px #8080805c;
+    background: white;
+    max-height: 90%;
+    overflow: auto;
+    padding: 0;
+    margin: -0;
+    width: 100%;
+    left: 0;
+
+}
+
+.allow-to-raice-hands {
+    padding: 50px 20px;
+}
+
+.close-icon {
+    z-index: 1000000;
+    /* position: absolute; */
+    right: 0;
+    top: 0;
+    /* float: right; */
+}
+
+.close-icon button {
+    padding: 4px 9px;
+    border: none;
+    border-radius: 0 10px 0 0;
+    color: red;
+    font-weight: bold;
+}
+
+.choose-option {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #808080bf;
+    z-index: 1000000000;
+}
+
+.btn-groups {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-groups button {
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.allow-user-list{
+    padding: 0 14px;
+    min-height: 350px;
+}
+
+.allow-user-list h6{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    padding: 14px;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+
+.reject-button{
+    color: #019444;
+}
+
+
+.accept-button{
+
+    background: #019444;
+    color: white;
+}

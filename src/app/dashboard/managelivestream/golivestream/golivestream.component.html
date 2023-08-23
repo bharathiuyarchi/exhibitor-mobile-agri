@@ -80,16 +80,6 @@
                         </div>
                         <div class="icons-page" *ngIf="streamDetails.primaryHost">
                           <ol class="right-icon-fonts">
-                            <!-- <li>
-                              <a (click)="change_view()">
-                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <path
-                                    d="M14.4 0H16V4.66667H14.4V1.55556H11.2V0H14.4ZM1.6 0H4.8V1.55556H1.6V4.66667H0V0H1.6ZM14.4 12.4444V9.33333H16V14H11.2V12.4444H14.4ZM1.6 12.4444H4.8V14H0V9.33333H1.6V12.4444Z"
-                                    fill="black" />
-                                </svg>
-                              </a>
-                            </li> -->
                             <li *ngIf="streamDetails.RaiseHands=='yes'"><a (click)="api.raise_hands.next(true)">
                                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
@@ -491,7 +481,7 @@
                         <div class="icons-page" *ngIf="!streamDetails.primaryHost"
                           style="display: grid;align-items: self-end;">
                           <div style="height: 200px;">
-                            <ol class="right-icon-fonts" style="align-items: flex-end;">
+                            <ol class="right-icon-fonts">
 
 
                               <li><a (click)="switch_cam()">

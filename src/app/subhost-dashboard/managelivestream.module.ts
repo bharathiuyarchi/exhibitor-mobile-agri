@@ -2,6 +2,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Env } from '../environment';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -36,6 +37,25 @@ export class Managelivestream_sub {
   join_chat_now(id: any) {
     return this.http.get(this.baseurl + "/v1/ecomplan/only/chat/join?id=" + id)
   }
+
+  start_raising(id: any) {
+    return this.http.post(this.baseurl + "/v2/generateRTC/start/raicehands", { stream: id });
+  }
+  get_raise_datails(id: any) {
+    return this.http.get(this.baseurl + "/v2/generateRTC/start/raicehands?stream=" + id);
+  }
+  raise_hands = new BehaviorSubject<any>(false);
+
+  approve_raise(id: any) {
+    return this.http.post(this.baseurl + "/v2/generateRTC/raise/appove", { raise: id });
+  }
+  reject_raise(id: any) {
+    return this.http.post(this.baseurl + "/v2/generateRTC/raise/reject", { raise: id });
+  }
+  pending_raise(id: any) {
+    return this.http.post(this.baseurl + "/v2/generateRTC/raise/pending", { raise: id });
+  }
+
 }
 
 

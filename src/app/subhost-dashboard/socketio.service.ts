@@ -216,5 +216,14 @@ export class SocketioService_sub {
     });
   }
   productView: any = new BehaviorSubject(null)
-
+  get_request_users(id: any): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(id + "_raise_hands_request", (data: any) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    });
+  }
 }

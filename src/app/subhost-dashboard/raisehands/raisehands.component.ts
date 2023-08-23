@@ -1,25 +1,25 @@
 import { Component, HostListener, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { ManagelivestreamService } from '../managelivestream.service';
 import { ActivatedRoute } from '@angular/router';
-import { SocketioService } from '../socketio.service';
-import { AgorastreamingService } from '../agorastreaming.service';
+import { Managelivestream_sub } from '../managelivestream.module';
+import { AgorastreamingService_sub } from '../agorastreaming.service';
+import { SocketioService_sub } from '../socketio.service';
 
 @Component({
-  selector: 'raisehands',
+  selector: 'raisehands-sub',
   templateUrl: './raisehands.component.html',
   styleUrls: ['./raisehands.component.css']
 })
-export class RaisehandsComponent implements OnInit {
+export class RaisehandsComponent_sub implements OnInit {
   private isDragging: boolean = false;
   private initialX: number = 0;
   private initialY: number = 0;
   private xOffset: number = 0;
   private yOffset: number = 0;
   show_permistion: any = 'start';
-  loading: any = false;
-  id: any;
   @Input("nowTimae") nowTimae: any;
 
+  loading: any = false;
+  id: any;
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
@@ -42,7 +42,7 @@ export class RaisehandsComponent implements OnInit {
       this.waiting_user_join = res.current_raise;
     })
   }
-  constructor(private api: ManagelivestreamService, private route: ActivatedRoute, private socket: SocketioService, private agora: AgorastreamingService) {
+  constructor(private api: Managelivestream_sub, private route: ActivatedRoute, private socket: SocketioService_sub, private agora: AgorastreamingService_sub) {
 
   }
   onDragStart(event: MouseEvent) {
@@ -105,10 +105,11 @@ export class RaisehandsComponent implements OnInit {
 }
 
 
+
 @Pipe({
-  name: "minted_def"
+  name: "minted_def_sub"
 })
-export class MinutedDef implements PipeTransform {
+export class MinutedDef_sub implements PipeTransform {
   transform(value: number, nowtime: any): any {
     let created = new Date(value).getTime();
     let now = nowtime;
@@ -123,5 +124,6 @@ export class MinutedDef implements PipeTransform {
 
     }
   }
+
 
 }

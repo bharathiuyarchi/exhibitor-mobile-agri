@@ -394,12 +394,17 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   //   }
   // }
   targetTime: any;
+  nowTimae: any = new Date().getTime();
   tickTock() {
     var startDate = new Date();
     var endDate = new Date(this.targetTime);
     var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
     this.counter = Math.floor(seconds) + 2;
-    this.countDown = timer(0, 1000).subscribe(() => --this.counter);
+    this.countDown = timer(0, 1000).subscribe(() => {
+      --this.counter;
+      this.nowTimae = new Date().getTime();
+
+    });
 
   }
   pauseAll: any = false;

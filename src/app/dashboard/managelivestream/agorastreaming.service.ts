@@ -151,12 +151,17 @@ export class AgorastreamingService {
   async leaveCall() {
     this.localAudioTrack.close();
     this.localVideoTrack.close();
-    this.rtc.client.remoteUsers.forEach((user: any) => {
+    this.remoteUsers.forEach((user: any) => {
       const playerContainer = document.getElementById('remote-playerlist' + user.uid.toString());
+      playerContainer && playerContainer.remove();
+    });
+    this.raiseUser.forEach((user: any) => {
+      const playerContainer = document.getElementById('remote-playerlist-raise' + user.uid.toString());
       playerContainer && playerContainer.remove();
     });
     await this.rtc.client.leave();
     this.remoteUsers = [];
+    this.raiseUser = [];
   }
 
 
