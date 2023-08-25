@@ -130,7 +130,7 @@ input[type="file"]::file-selector-button {
 
 .popup-container-1 {
   z-index: 1;
- 
+
   max-height: 90vh;
   overflow-y: auto;
   background-color: rgba(245, 245, 245, 1);
@@ -230,4 +230,13 @@ option {
 }
 .not-selected {
   color: #232323ac;
+}
+.radio-button {
+  width: 100% !important;
+  overflow-x: scroll !important;
+}
+.image img {
+  height: 100px;
+  width: 100px;
+  padding-right: 10px;
 }

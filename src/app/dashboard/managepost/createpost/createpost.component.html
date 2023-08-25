@@ -219,9 +219,9 @@
             </div>
             <div class="upload-files">
                 <label>Images Upload :</label>
-                <div class="choose-file quantity upload-file"><label for="image">{{id==null?'Choose Image':'Replace Teaser'}} </label><input
-                        style="display: none;" type="file" id="image" accept="image/png, image/gif, image/jpeg"
-                        (change)="change_image($event)" [multiple]="5">
+                <div class="choose-file quantity upload-file"><label for="image">{{id==null?'Choose Image':'Replace
+                        Teaser'}} </label><input style="display: none;" type="file" id="image"
+                        accept="image/png, image/gif, image/jpeg" (change)="change_image($event)" [multiple]="5">
                     <p style="display: flex; align-items: center;">.JPG,.PNG,.JPEG</p>
                 </div>
             </div>
@@ -241,7 +241,8 @@
                     <img src="{{item}}">
                 </div>
             </div>
-            <div class="uploaded-images radio-button" *ngIf="oldDetails  !=null && selected_image.length==0">
+            <div class="uploaded-images radio-button image-container"
+                *ngIf="oldDetails  !=null && selected_image.length==0">
                 <div class="image" *ngFor="let item of oldDetails.images">
                     <img src="{{baseURL+'/'+item}}">
                 </div>
@@ -256,7 +257,8 @@
 
             <div class="upload-files">
                 <label>Teaser Upload :</label>
-                <div class="choose-file  quantity upload-file"><label for="video">{{id==null?'Choose Teaser':'Replace Teaser'}}</label>
+                <div class="choose-file  quantity upload-file"><label for="video">{{id==null?'Choose Teaser':'Replace
+                        Teaser'}}</label>
                     <input style="display: none;" type="file" id="video" (change)="change_video($event)"
                         accept="video/mp4,video/x-m4v,video/*">
                     <p style="display: flex; align-items: center;">.mp4</p>
