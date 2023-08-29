@@ -28,20 +28,12 @@
                 <h2 (click)="planClick(i)">{{v.planName}}</h2>
                 <p [ngClass]="v.status == 'Pending'?'pend':'app' ">{{v.status}}</p>
             </div>
-            <div class="box-slot" >
-                <p>Normal</p>
-                <p>{{v.Normal}}</p>
-            </div>
-            <div class="box-slot">
-                <p>Peak</p>
-                <p>{{v.Peak}}</p>
-            </div>
-            <div class="box-slot">
-                <p>Exclusive</p>
-                <p>{{v.Exclusive}}</p>
+            <div class="box-slot" *ngFor="let s of v.Type">
+                <p>{{s.type}}</p>
+                <p>{{s.count}}</p>
             </div>
             <div class="box-btn">
-                Purchased On :: {{v.DateIso | date:'dd-MM-YYYY'}}
+                Purchased On : {{v.DateIso | date:'dd-MM-YYYY'}}
             </div>
         </div>
     </div>
