@@ -23,16 +23,20 @@ export class ManageplanComponent implements OnInit {
   ngOnInit(): void {
     this.date_now = new Date().getTime();
     console.log(this.date_now);
-    this.get_myplans(this.page);
+    this.get_myplans();
   }
   my_plans: any;
   view_details: any;
   next: any = false;
-  get_myplans(page: any) {
-    this.api.get_all_my_orders(page).subscribe((res: any) => {
-      console.log(res);
-      this.my_plans = res.plan;
-      this.next = res.next;
+  get_myplans() {
+    // this.api.get_all_my_orders(page).subscribe((res: any) => {
+    //   console.log(res);
+    //   this.my_plans = res.plan;
+    //   this.next = res.next;
+    // });
+    this.api.getPlanesByUser().subscribe((res: any) => {
+      this.my_plans = res;
+      console.log(this.my_plans, "planes");
     });
   }
   view_image(item: any) {
@@ -48,7 +52,6 @@ export class ManageplanComponent implements OnInit {
     if (type == "next") {
       this.page++;
     }
-    this.get_myplans(this.page);
   }
 
   popup1: any = false;
@@ -61,7 +64,10 @@ export class ManageplanComponent implements OnInit {
   }
   viewPlans: any;
   planClick(i: any) {
-    this.popup1 = true;
-    this.viewPlans = this.my_plans[i];
+    let id = this.my_plans[i]._id;
+    this.api.getPlanById(id).subscribe((e: any) => {
+      this.viewPlans = e;
+      this.popup1 = true;
+    });
   }
 }
