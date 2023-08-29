@@ -49,6 +49,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
       this.get_token(this.id);
+      this.get_raise_user_details();
     })
     console.log(this.id, 998876867867)
     this.web.getMessage_userCount(this.id).subscribe(msg => {
@@ -64,11 +65,11 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     }, 1500)
     this.stream.updateUserInfo.subscribe((res: any) => {
       if (this.streamDetails != null) {
+        console.log(this.streamDetails.temptokens_sub, res, 986878977)
         let index = this.streamDetails.temptokens_sub.findIndex((a: any) => a.Uid == res);
-
         if (index == -1) {
           this.api.get_token_details(this.id).subscribe((res: any) => {
-            this.streamDetails.temptokens_sub = res.temptokens_sub;
+            this.streamDetails.temptokens_sub = res[0].temptokens_sub;
           })
         }
 
@@ -83,19 +84,20 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   targetDate: any;
   streamDetails: any
   get_token(id: any) {
-    // this.api.create_cloude_recording({ streamId: id }).subscribe((res: any) => {
-    //   console.log(res, 231312312)
-    //   this.token = res;
-    //   if (res.recoredStart == "Pending") {
-    //     // this.start_recording();
-    //   }
-    // })
     this.api.get_token_details(id).subscribe((res: any) => {
       console.log(res, 1237816231)
       if (res.length != 0) {
         this.targetTime = res[0].endTime;
         this.stream.raiseUID = res[0].raiseUID;
         this.streamDetails = res[0]
+        this.locahost.usertype = res[0].primaryHost ? 'main' : 'sub';
+        this.locahost.userName = res[0].temptokens != null ? res[0].temptokens.supplierName : 'No Name';
+        if (res[0].current_raise != null) {
+          this.api.raiseUser_Details(res[0].current_raise).subscribe((res: any) => {
+            console.log(res, 87676)
+            this.stream.raise_hand_user = res;
+          })
+        }
         this.tickTock();
         res = res[0].temptokens;
         this.tokenValues = res;
@@ -104,7 +106,6 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
         if (!res.mainhostLeave) {
           this.start_call_now(res, res.chennel);
         }
-        console.log(this.token, 2131231)
         this.web.getMessage_new_chat(this.id).subscribe((res: any) => {
           if (this.view_type != "chat") {
             this.chatCount++;
@@ -180,67 +181,84 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     })
 
   }
-
-  localvideo: any = 'medium';
-  screen_view() {
-    let bissize: any = this.tokenValues.bigSize;
-    let biguser: any = this.tokenValues.Uid
-    this.streamDetails.temptokens_sub.forEach((element: any) => {
-      if (element.bigSize) {
-        let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == element.Uid);
-        if (index != -1) {
-          bissize = true;
-          biguser = element.Uid;
+  get_raise_user_details() {
+    this.web.get_raise_iser_jion(this.id).subscribe((res: any) => {
+      console.log(res, "ares,ads")
+      this.stream.raise_hand_user = res;
+      if (res != null) {
+        let find = this.stream.remoteUsers.findIndex((a: any) => a.uid == res.Uid);
+        if (find != -1) {
+          this.stream.remoteUsers[find].userName = res.SName;
         }
       }
-    });
-    console.log(bissize)
-    if (bissize) {
-      if (this.tokenValues.Uid == biguser) {
-        this.localvideo = 'big-screen';
-        let i = 1;
-        this.stream.remoteUsers.forEach((a: any) => {
-          let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == a.uid);
-          if (index != -1) {
-            this.stream.remoteUsers[index].class = 'small-screen' + i;
-            i++;
-          }
-        })
-      }
-      else {
-        let userId = this.stream.remoteUsers.findIndex((e: any) => e.uid == biguser);
+    })
+  }
+  localvideo: any = 'medium';
+  locahost: any = { usertype: "main", userName: "" };
+  screen_view() {
+
+    if (this.tokenValues != null) {
+      this.stream.remoteUsers.map((a: any) => {
+        let userId = this.streamDetails.temptokens_sub.findIndex((e: any) => e.Uid == a.uid);
         if (userId != -1) {
-          this.localvideo = 'small-screen1';
-          this.streamDetails.temptokens_sub.forEach((element: any) => {
-            let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == element.Uid);
-            if (index != -1) {
-              if (biguser != element.Uid) {
-                this.stream.remoteUsers[index].class = 'small-screen2';
-              }
-              else {
-                this.stream.remoteUsers[index].class = 'big-screen';
-              }
-            }
-          });
+          return (a.usertype = this.streamDetails.temptokens_sub[userId].supplierId == this.streamDetails.allot_host_1_details ? 'main' : 'sub', a.userName = this.streamDetails.temptokens_sub[userId].supplierName);
         }
         else {
-          this.stream.remoteUsers.map((a: any) => {
-            return a.class = 'medium';
+          if (this.stream.raiseUID == a.uid) {
+
+            if (this.stream.raise_hand_user != null) {
+              return (a.usertype = 'raise', a.userName = this.stream.raise_hand_user.SName);
+            }
+          }
+        }
+      })
+      console.log(this.stream.remoteUsers, 98766985, this.locahost)
+      let bissize: any = this.tokenValues.bigSize;
+      let biguser: any = this.tokenValues.Uid
+      this.streamDetails.temptokens_sub.forEach((element: any) => {
+        if (element.bigSize) {
+          let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == element.Uid);
+          if (index != -1) {
+            bissize = true;
+            biguser = element.Uid;
+          }
+        }
+      });
+      if (bissize) {
+        if (this.tokenValues.Uid == biguser) {
+          this.localvideo = 'big-screen';
+          let i = 0;
+          console.log(this.stream.remoteUsers, 3249876)
+          this.stream.remoteUsers.forEach((a: any) => {
+            this.stream.remoteUsers[i].class = 'small-screen' + (i + 1);
+            i++;
           })
-          this.localvideo = 'medium';
+        }
+        else {
+          let userId = this.stream.remoteUsers.findIndex((e: any) => e.uid == biguser);
+          if (userId != -1) {
+            this.localvideo = 'small-screen1';
+            let remote = this.stream.remoteUsers.findIndex((a: any) => a.uid != biguser);
+            this.stream.remoteUsers[userId].class = 'big-screen';
+            if (remote != -1) {
+              this.stream.remoteUsers[remote].class = 'small-screen2';
+            }
+          }
+          else {
+            this.stream.remoteUsers.map((a: any) => {
+              return a.class = 'medium';
+            })
+            this.localvideo = 'medium';
+          }
         }
       }
-      console.log(this.stream.remoteUsers, '23232_2342342')
+      else {
+        this.stream.remoteUsers.map((a: any) => {
+          return a.class = 'medium';
+        })
+        this.localvideo = 'medium';
+      }
     }
-    else {
-      this.stream.remoteUsers.map((a: any) => {
-        return a.class = 'medium';
-      })
-      this.localvideo = 'medium';
-      console.log(this.stream.remoteUsers, '23232_2342342_SA')
-    }
-    this.bigscreen = bissize
-
   }
   open_menus_sub_menus: any = false;
   open_menus_sub(val: any) {
@@ -342,7 +360,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   active_cam: any = 'front';
   ngDoCheck(): void {
     this.stream.active_cam.subscribe((res: any) => {
-      console.log(res)
+      // console.log(res)
       if (this.active_cam != res) {
         if (res == 'back') {
           $("#local-player video").css("transform", "scaleX(1)");

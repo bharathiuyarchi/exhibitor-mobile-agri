@@ -55,7 +55,9 @@ export class Managelivestream_sub {
   pending_raise(id: any) {
     return this.http.post(this.baseurl + "/v2/generateRTC/raise/pending", { raise: id });
   }
-
+  raiseUser_Details(id: any) {
+    return this.http.post(this.baseurl + "/v2/generateRTC/get/raise/hand/user?id=" + id, {});
+  }
 }
 
 

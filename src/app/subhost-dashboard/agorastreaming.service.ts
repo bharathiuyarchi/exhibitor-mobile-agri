@@ -33,7 +33,7 @@ export class AgorastreamingService_sub {
   agoraServerEvents(rtc: any) {
     rtc.client.on("user-published", async (user: any, mediaType: any) => {
       console.log(user, mediaType, 'user-published');
-      if (this.raiseUID != user.uid) {
+      // if (this.raiseUID != user.uid) {
         let id = user.uid;
         let index = this.remoteUsers.findIndex((a: any) => a.uid == user.uid)
         if (index != -1) {
@@ -59,27 +59,28 @@ export class AgorastreamingService_sub {
           this.remoteUsers[index].audio = user._audio_muted_;
           this.remoteUsers[index].video = user._video_muted_;
         }
-      }
-      else {
-        let index = this.raiseUser.findIndex((a: any) => a.uid == user.uid)
-        if (index != -1) {
-        }
-        else {
-          this.raiseUser.push({ uid: user.uid });
-        }
-        let id = user.uid;
-        await rtc.client.subscribe(user, mediaType);
-        if (mediaType === "video") {
-          const remoteVideoTrack = user.videoTrack;
-          setTimeout(() => {
-            remoteVideoTrack.play('remote-playerlist-raise' + user.uid);
-          }, 500);
-        }
-        if (mediaType === "audio") {
-          const remoteAudioTrack = user.audioTrack;
-          remoteAudioTrack.play();
-        }
-      }
+      // }
+      // else {
+      //   // alert("das")
+      //   let index = this.raiseUser.findIndex((a: any) => a.uid == user.uid)
+      //   if (index != -1) {
+      //   }
+      //   else {
+      //     this.raiseUser.push({ uid: user.uid });
+      //   }
+      //   let id = user.uid;
+      //   await rtc.client.subscribe(user, mediaType);
+      //   if (mediaType === "video") {
+      //     const remoteVideoTrack = user.videoTrack;
+      //     setTimeout(() => {
+      //       remoteVideoTrack.play('remote-playerlist-raise' + user.uid);
+      //     }, 500);
+      //   }
+      //   if (mediaType === "audio") {
+      //     const remoteAudioTrack = user.audioTrack;
+      //     remoteAudioTrack.play();
+      //   }
+      // }
     });
     rtc.client.on("user-left", (user: any) => {
       let index = this.remoteUsers.findIndex((a: any) => a.uid == user.uid)
@@ -208,5 +209,5 @@ export class AgorastreamingService_sub {
 
 
 
-
+  raise_hand_user:any;
 }

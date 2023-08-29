@@ -1,8 +1,10 @@
 import { Component, HostListener, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ManagelivestreamService } from '../managelivestream.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SocketioService } from '../socketio.service';
 import { AgorastreamingService } from '../agorastreaming.service';
+import { PendingChangesGuard } from '../can-deactivate.guard';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'raisehands',
@@ -10,16 +12,16 @@ import { AgorastreamingService } from '../agorastreaming.service';
   styleUrls: ['./raisehands.component.css']
 })
 export class RaisehandsComponent implements OnInit {
+  constructor(private api: ManagelivestreamService, private route: ActivatedRoute, private socket: SocketioService, private agora: AgorastreamingService) {}
   private isDragging: boolean = false;
   private initialX: number = 0;
   private initialY: number = 0;
   private xOffset: number = 0;
   private yOffset: number = 0;
+  @Input("nowTimae") nowTimae: any;
   show_permistion: any = 'start';
   loading: any = false;
   id: any;
-  @Input("nowTimae") nowTimae: any;
-
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
@@ -27,23 +29,33 @@ export class RaisehandsComponent implements OnInit {
       this.get_token_details();
       this.socket.get_request_users(this.id).subscribe((res: any) => {
         console.log(res)
-        this.raised_users.push(res)
+        let index = this.raised_users.findIndex((a: any) => a._id == res._id);
+        if (index == -1) {
+          this.raised_users.push(res)
+        }
+        else {
+          this.raised_users[index].status = res.status;
+          this.raised_users[index].already_joined = res.already_joined;
+          this.raised_users[index].raised_count = res.status == 'end' ? 0 : res.raised_count;
+          this.raised_users[index].updatedAt = res.updatedAt;
+          if (res.status == 'end' && res._id == this.waiting_user_join) {
+            this.waiting_user_join = null;
+          }
+        }
 
+        console.log(this.raised_users)
       })
-
     })
   }
   get_token_details() {
     this.api.get_raise_datails(this.id).subscribe((res: any) => {
       console.log(res)
       this.loading = true;
+      this.raise_hand_option.patchValue(res.raise_hands);
       this.show_permistion = res.raise_hands ? 'user' : 'start';
       this.raised_users = [...this.raised_users, ...res.raiseusers];
       this.waiting_user_join = res.current_raise;
     })
-  }
-  constructor(private api: ManagelivestreamService, private route: ActivatedRoute, private socket: SocketioService, private agora: AgorastreamingService) {
-
   }
   onDragStart(event: MouseEvent) {
     this.isDragging = true;
@@ -66,13 +78,6 @@ export class RaisehandsComponent implements OnInit {
     element.style.transform = `translate3d(${this.xOffset}px, ${this.yOffset}px, 0)`;
   }
   raised_users: any = [];
-  start_raising() {
-    this.api.start_raising(this.id).subscribe((res: any) => {
-      this.show_permistion = "user";
-      this.agora.raiseUID = res.Uid;
-    })
-  }
-
 
   close_request() {
     this.api.raise_hands.next(false);
@@ -93,16 +98,25 @@ export class RaisehandsComponent implements OnInit {
   }
   cansel_raise(item: any) {
     this.api.pending_raise(item._id).subscribe((res: any) => {
-      console.log(res)
       this.waiting_user_join = null;
-      item.status = "Pending";
     })
   }
   waiting_user_join: any;
   close_raise() {
     this.api.raise_hands.next(false);
   }
+  raise_hand_option: any = new FormControl(true);
+  raise_hand_action(event: any) {
+    this.api.start_raising(this.id).subscribe((res: any) => {
+      console.log(res)
+      this.raise_hand_option.patchValue(res.raise_hands)
+      this.get_token_details();
+      this.agora.raiseUID = res.Uid;
+      this.raised_users = []
+    })
+  }
 }
+
 
 
 @Pipe({
@@ -115,7 +129,7 @@ export class MinutedDef implements PipeTransform {
     let msDifference = now - created;
     let minutes = Math.floor(msDifference / 1000 / 60);
 
-    if (minutes == 0) {
+    if (minutes <= 0) {
       return "Now";
     }
     else {
@@ -123,5 +137,4 @@ export class MinutedDef implements PipeTransform {
 
     }
   }
-
 }

@@ -13,6 +13,7 @@ import { ProductlistshowComponent } from './productlistshow/productlistshow.comp
 import { ProductdetailviewComponent } from './productdetailview/productdetailview.component';
 import { PendingChangesGuard } from './can-deactivate.guard';
 import { MinutedDef, RaisehandsComponent } from './raisehands/raisehands.component';
+import { SortpipePipe } from './sortpipe.pipe';
 
 
 
@@ -27,7 +28,8 @@ import { MinutedDef, RaisehandsComponent } from './raisehands/raisehands.compone
     FormatTimePipe,
     ProductdetailviewComponent,
     RaisehandsComponent,
-    MinutedDef
+    MinutedDef,
+    SortpipePipe
   ],
   imports: [
     CommonModule,
