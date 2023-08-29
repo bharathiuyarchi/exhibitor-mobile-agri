@@ -96,5 +96,16 @@ export class ManageplaneService {
       this.baseurl + "/v1/registerShop/get/Streaming/ordersBy/Order/" + id
     );
   }
+
+  getPlanesByUser() {
+    return this.http.get(this.baseurl + "/v1/purchaseplan/getPlanes/ByUser");
+  }
+
+  getPlanById(id: any) {
+    return this.http.get(
+      this.baseurl + "/v1/purchaseplan/getPurchasedPlanById/" + id
+    );
+  }
+
   // get/Streaming/ordersBy/Order
 }
