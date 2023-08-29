@@ -154,26 +154,26 @@
       <div class="modal-header">
         <h4
           class="modal-title"
-          style="text-align: center"
+          style="text-align: center;font-size: 16px;"
           id="exampleModalLabel"
         >
           Confirm Slot
         </h4>
-        <div>
-          <span class="buy-slot slot-active">
-            <p style="font-size: 16px; font-weight: 500; bottom: 0">Normal</p>
+        <div class="buy-container">
+          <span class="buy-slot-show slot-active">
+            <p >Normal</p>
             <span class="left"></span>
             <span class="right"></span>
           </span>
 
-          <span class="buy-slot slot-active-p">
-            <p style="font-size: 16px; font-weight: 500; bottom: 0">Peak</p>
+          <span class="buy-slot-show slot-active-p">
+            <p >Peak</p>
             <span class="left peak"></span>
             <span class="right peak"></span>
           </span>
 
-          <span class="buy-slot slot-active-e">
-            <p style="font-size: 16px; font-weight: 500; bottom: 0">
+          <span class="buy-slot-show slot-active-e">
+            <p >
               Exclusive
             </p>
             <span class="left ex"></span>
@@ -188,6 +188,7 @@
               <p>{{ showslots[i].key | date : "dd-MM-YYYY" }}</p>
               <br />
             </div>
+            <div class='buy-container'>
             <span
               *ngFor="let slot of v.value"
               class="buy-slot"
@@ -213,9 +214,11 @@
               ></span>
             </span>
           </div>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="    display: grid;
+      grid-template-columns: auto auto;">
         <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         <button
           type="button"
