@@ -23,9 +23,9 @@
         </div>
     </nav>
     <div class="page-container">
-        <div class="box" *ngFor="let v of my_plans;let i= index">
+        <div class="box" *ngFor="let v of my_plans;let i= index" (click)="planClick(i)">
             <div class="box-title">
-                <h2 (click)="planClick(i)">{{v.planName}}</h2>
+                <h2>{{v.planName}}</h2>
                 <p [ngClass]="v.status == 'Pending'?'pend':'app' ">{{v.status}}</p>
             </div>
             <div class="box-slot" *ngFor="let s of v.Type">
@@ -193,6 +193,14 @@
                 <div>
                     <p class="key">Special Notification: </p>
                     <p class="val">{{viewPlans.Special_Notification}}</p>
+                </div>
+                <div>
+                    <p class="key">Rise Hands</p>
+                    <p class="val">{{viewPlans.RaiseHands}}</p>
+                </div>
+                <div>
+                    <p class="key">No Of Products/Stream</p>
+                    <p class="val">{{viewPlans.PostCount}}</p>
                 </div>
                 <div class="slots">
                     <p style="padding-left: 20px; font-weight: bold;">Slots:</p>
