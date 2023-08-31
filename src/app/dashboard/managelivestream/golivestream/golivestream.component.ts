@@ -15,7 +15,6 @@ declare let $: any;
 })
 export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   constructor(private leave: PendingChangesGuard, public route: ActivatedRoute, public api: ManagelivestreamService, public stream: AgorastreamingService, public router: Router, public agora: HostserviceService, public web: SocketioService, private auth: AuthService) { }
-
   id: any;
   token: any;
   participents: any;
@@ -56,6 +55,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
       this.get_token(this.id);
+      this.get_raise_user_details()
 
     })
     console.log(this.id, 998876867867)
@@ -95,64 +95,86 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   targetDate: any;
   streamDetails: any;
   tokenValues: any;
+  get_raise_user_details() {
 
-  localvideo: any = 'medium';
-  screen_view() {
-    let bissize: any = this.tokenValues.bigSize;
-    let biguser: any = this.tokenValues.Uid
-    this.streamDetails.temptokens_sub.forEach((element: any) => {
-      if (element.bigSize) {
-        let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == element.Uid);
-        if (index != -1) {
-          bissize = true;
-          biguser = element.Uid;
+    this.web.get_raise_iser_jion(this.id).subscribe((res: any) => {
+      this.stream.raise_hand_user = res;
+      console.log(res, "ares,ads")
+      if (res != null) {
+        let find = this.stream.remoteUsers.findIndex((a: any) => a.uid == res.Uid);
+        if (find != -1) {
+          this.stream.remoteUsers[find].userName = res.SName;
         }
       }
-    });
-    console.log(bissize)
-    if (bissize) {
-      if (this.tokenValues.Uid == biguser) {
-        this.localvideo = 'big-screen';
-        let i = 1;
-        this.stream.remoteUsers.forEach((a: any) => {
-          let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == a.uid);
-          if (index != -1) {
-            this.stream.remoteUsers[index].class = 'small-screen' + i;
-            i++;
-          }
-        })
-      }
-      else {
-        let userId = this.stream.remoteUsers.findIndex((e: any) => e.uid == biguser);
+    })
+  }
+  localvideo: any = 'medium';
+  locahost: any = { usertype: "main", userName: "" };
+  screen_view() {
+
+    if (this.tokenValues != null) {
+
+      this.stream.remoteUsers.map((a: any) => {
+        let userId = this.streamDetails.temptokens_sub.findIndex((e: any) => e.Uid == a.uid);
         if (userId != -1) {
-          this.localvideo = 'small-screen1';
-          this.streamDetails.temptokens_sub.forEach((element: any) => {
-            let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == element.Uid);
-            if (index != -1) {
-              if (biguser != element.Uid) {
-                this.stream.remoteUsers[index].class = 'small-screen2';
-              }
-              else {
-                this.stream.remoteUsers[index].class = 'big-screen';
-              }
-            }
-          });
+          return (a.usertype = this.streamDetails.temptokens_sub[userId].supplierId == this.streamDetails.allot_host_1 ? 'main' : 'sub', a.userName = this.streamDetails.temptokens_sub[userId].supplierName);
         }
         else {
-          this.stream.remoteUsers.map((a: any) => {
-            return a.class = 'medium';
+          if (this.stream.raiseUID == a.uid) {
+
+            if (this.stream.raise_hand_user != null) {
+              return (a.usertype = 'raise', a.userName = this.stream.raise_hand_user.SName);
+            }
+          }
+        }
+      })
+      console.log(this.stream.remoteUsers, 242456567342, this.locahost)
+
+      let bissize: any = this.tokenValues.bigSize;
+      let biguser: any = this.tokenValues.Uid
+      this.streamDetails.temptokens_sub.forEach((element: any) => {
+        if (element.bigSize) {
+          let index = this.stream.remoteUsers.findIndex((e: any) => e.uid == element.Uid);
+          if (index != -1) {
+            bissize = true;
+            biguser = element.Uid;
+          }
+        }
+      });
+      if (bissize) {
+        if (this.tokenValues.Uid == biguser) {
+          this.localvideo = 'big-screen';
+          let i = 0;
+          console.log(this.stream.remoteUsers, 3249876)
+          this.stream.remoteUsers.forEach((a: any) => {
+            this.stream.remoteUsers[i].class = 'small-screen' + (i + 1);
+            i++;
           })
-          this.localvideo = 'medium';
+        }
+        else {
+          let userId = this.stream.remoteUsers.findIndex((e: any) => e.uid == biguser);
+          if (userId != -1) {
+            this.localvideo = 'small-screen1';
+            let remote = this.stream.remoteUsers.findIndex((a: any) => a.uid != biguser);
+            this.stream.remoteUsers[userId].class = 'big-screen';
+            if (remote != -1) {
+              this.stream.remoteUsers[remote].class = 'small-screen2';
+            }
+          }
+          else {
+            this.stream.remoteUsers.map((a: any) => {
+              return a.class = 'medium';
+            })
+            this.localvideo = 'medium';
+          }
         }
       }
-      console.log(this.stream.remoteUsers, '23232_2342342')
-    }
-    else {
-      this.stream.remoteUsers.map((a: any) => {
-        return a.class = 'medium';
-      })
-      this.localvideo = 'medium';
-      console.log(this.stream.remoteUsers, '23232_2342342_SA')
+      else {
+        this.stream.remoteUsers.map((a: any) => {
+          return a.class = 'medium';
+        })
+        this.localvideo = 'medium';
+      }
     }
   }
   change_view_sub(item: any) {
@@ -200,9 +222,17 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   rice_hande: any = false;
   get_token(id: any) {
     this.api.get_token_details(id).subscribe((res: any) => {
+      if (res.current_raise != null) {
+        this.api.raiseUser_Details(res.current_raise).subscribe((res: any) => {
+          console.log(res, 87676)
+          this.stream.raise_hand_user = res;
+        })
+      }
       this.stream.raiseUID = res.raiseUID;
       this.targetTime = res.endTime;
       this.streamDetails = res
+      this.locahost.usertype = res.primaryHost ? 'main' : 'sub';
+      this.locahost.userName = res.temptokens != null ? res.temptokens.supplierName : 'No Name';
       this.tickTock();
       res = res.temptokens;
       this.tokenValues = res;
@@ -370,29 +400,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     }, ex)
   }
   recording_api: any;
-  // start_recording() {
-  //   this.agora.acquire_recording(this.token._id).subscribe((acquire: any) => {
-  //     console.log(acquire, 'acquire');
-  //     setTimeout(() => {
-  //       this.agora.start_recording({ ...acquire, ...{ id: this.token._id } }).subscribe((start: any) => {
-  //         this.recording_api = start
-  //         setTimeout(() => {
-  //           console.log(start, 'start')
-  //           this.agora.query_recording({ ...start, ...{ id: this.token._id } }).subscribe((query: any) => {
-  //             console.log(query, 'query')
-  //           })
-  //         }, 1000)
-  //       })
-  //     }, 6000)
-  //   })
-  // }
-  // stop_recording() {
-  //   if (this.stream.remoteUsers.length == 0) {
-  //     this.agora.stop_recording({ id: this.token._id }).subscribe((res: any) => {
-  //       this.recording_api = res
-  //     })
-  //   }
-  // }
+
   targetTime: any;
   nowTimae: any = new Date().getTime();
   tickTock() {

@@ -14,7 +14,7 @@
 
 
 <div class="page-container post-form">
-    <form [formGroup]="postRequest" (submit)="create_stream_request()">
+    <form [formGroup]="postRequest" (submit)="open_preview()">
         <div class="form-container">
             <div class="forms">
                 <div class="form-flex" *ngIf="id ==null">
@@ -201,7 +201,7 @@
                 <p class="error-message">
                     <span *ngIf="submited  && postRequest.get('Location')?.invalid">Enter Location</span>
                 </p>
-                <div class="form-flex" style="margin-top: 20px;">
+                <!-- <div class="form-flex" style="margin-top: 20px;">
                     <label>Chat Needed :</label>
                     <span class="field_value">
                         <div>
@@ -214,7 +214,7 @@
                         </div>
                     </span>
 
-                </div>
+                </div> -->
 
                 <div class="form-flex" style="position: relative;">
                     <label>Description</label>
@@ -238,7 +238,7 @@
 
 
 <div class="modal fade mt-4" id="preview-form" style="margin-top: 5.5rem!important;">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <h4 class="modal-title">Are you sure Yes/No?</h4> -->
@@ -248,19 +248,36 @@
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
+                            <td>Plan Name</td>
+                            <td>:</td>
+                            <td *ngIf="postRequest.get('planId')?.value !=null">
+                                {{preview_details(postRequest.get('planId')?.value,'plan')}}</td>
+                        </tr>
+                        <tr>
                             <td>Stream Name</td>
                             <td>:</td>
                             <td>{{postRequest.get('streamName')?.value}}</td>
                         </tr>
                         <tr>
-                            <td>Streaming Date</td>
+                            <td>Location</td>
                             <td>:</td>
-                            <td>{{postRequest.get('streamingDate')?.value}}</td>
+                            <td>{{postRequest.get('Location')?.value}}</td>
                         </tr>
                         <tr>
-                            <td>Streaming Time</td>
+                            <td>Slot</td>
                             <td>:</td>
-                            <td>{{getTime(postRequest.get('streamingTime')?.value)}}</td>
+                            <td *ngIf="postRequest.get('slot')?.value !=null">
+                                {{preview_details(postRequest.get('slot')?.value,'slot').slotType}} -
+                                {{preview_details(postRequest.get('slot')?.value,'slot').Durations}} min -
+                                {{preview_details(postRequest.get('slot')?.value,'slot').slots.date}} -
+                                {{preview_details(postRequest.get('slot')?.value,'slot').slots.start|date:'HH:mm a'}} -
+                                {{preview_details(postRequest.get('slot')?.value,'slot').slots.end | date:'HH:mm a'}}
+                                <!-- {{preview_details(postRequest.get('slot')?.value,'slot')|json}}</td> -->
+                        </tr>
+                        <tr>
+                            <td>Transaction</td>
+                            <td>:</td>
+                            <td>{{postRequest.get('transaction')?.value}}</td>
                         </tr>
                         <tr>
                             <td>Description</td>
@@ -284,20 +301,13 @@
                             <td>:</td>
                             <td>{{postRequest.get('primarycommunication')?.value}}</td>
                         </tr>
-
-                        <tr>
-                            <td>Secondary Communication</td>
-                            <td>:</td>
-                            <td>{{postRequest.get('secondarycommunication')?.value}}</td>
-                        </tr>
                     </tbody>
                 </table>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" (click)="create_stream_request()">Yes</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                </div>
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="create_stream_request()">Yes</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+            </div>
 
         </div>
     </div>

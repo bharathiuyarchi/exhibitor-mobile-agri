@@ -69,7 +69,7 @@ export class CreatestreamrequestComponent implements OnInit {
         streamName: res.streamName,
         primarycommunication: res.primarycommunication,
         discription: res.discription,
-        chat_need: res.chat_need,
+        // chat_need: res.chat_need,
         Location: res.Location,
       });
       if (this.selectPlan.max_post_per_stream == res.post.length) {
@@ -84,7 +84,7 @@ export class CreatestreamrequestComponent implements OnInit {
     discription: new FormControl(null, Validators.required),
     streamName: new FormControl(null, Validators.required),
     planId: new FormControl(null, Validators.required),
-    chat_need: new FormControl("no", Validators.required),
+    // chat_need: new FormControl("no", Validators.required),
     Location: new FormControl(null, Validators.required),
     slot: new FormControl(null, Validators.required),
     transaction: new FormControl(null, Validators.required)
@@ -117,9 +117,6 @@ export class CreatestreamrequestComponent implements OnInit {
   }
   open_preview() {
     this.submited = true;
-    console.log(this.postRequest.get("chat_need").valid);
-    console.log(this.postRequest.get("allot_chat").valid);
-
     if (this.id == null) {
       if (
         this.postRequest.valid &&
@@ -214,7 +211,7 @@ export class CreatestreamrequestComponent implements OnInit {
             ?.value,
           discription: this.postRequest.get("discription")?.value,
           streamName: this.postRequest.get("streamName")?.value,
-          chat_need: this.postRequest.get("chat_need")?.value,
+          // chat_need: this.postRequest.get("chat_need")?.value,
           Location: this.postRequest.get("Location")?.value,
         };
         this.api.update_request_one(date, this.id).subscribe((res: any) => {
@@ -395,4 +392,20 @@ export class CreatestreamrequestComponent implements OnInit {
     }
   }
 
+  preview_details(id: any, item: any) {
+    if (item == 'plan') {
+      let index = this.planes.findIndex((a: any) => a._id == id);
+      if (index != -1) {
+        return this.planes[index].planName;
+      }
+    }
+    if (item == 'slot') {
+      let index = this.BookedSlots.findIndex((a: any) => a.slots._id == id);
+      if (index != -1) {
+        console.log(this.BookedSlots[index])
+        return this.BookedSlots[index]
+        // return this.BookedSlots[index].slotType + " - " + this.BookedSlots[index].Durations + this.BookedSlots[index].slots.date;
+      }
+    }
+  }
 }

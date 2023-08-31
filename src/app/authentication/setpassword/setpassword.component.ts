@@ -14,27 +14,25 @@ export class SetpasswordComponent {
   }
   submitted: any = false;
   errorMessage: any;
-  sameOne:boolean= false;
-  show1:boolean=false;
-  show2:boolean=false;
+  sameOne: boolean = false;
+  show1: boolean = false;
+  show2: boolean = false;
 
-  change1(){
-   this.show1=!this.show1
+  change1() {
+    this.show1 = !this.show1
   }
-  change2(){
-   this.show2=!this.show2
+  change2() {
+    this.show2 = !this.show2
   }
 
   set_password() {
     this.submitted = true;
     this.errorMessage = null;
-
-console.log(this.setpassword.value)
-    if(this.setpassword.get('password')?.value == this.setpassword.get('conformPassword')?.value) 
-    this.sameOne = true;
+    if (this.setpassword.get('password')?.value == this.setpassword.get('conformPassword')?.value)
+      this.sameOne = true;
     if (this.setpassword.valid && this.sameOne) {
       this.submitted = false;
-      this.sameOne=false;
+      this.sameOne = false;
       this.api.setPassword(this.setpassword.value).subscribe((res: any) => {
         console.log(res)
         localStorage.removeItem('verifiedAccount')

@@ -226,4 +226,15 @@ export class SocketioService_sub {
       }
     });
   }
+
+  get_raise_iser_jion(channel: any): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(channel + '_raise_user_jion', (data: any) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    });
+  }
 }

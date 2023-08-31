@@ -13,7 +13,6 @@
             <p>My Stream Request</p>
         </div>
         <div class="add">
-            <!-- <a  data-bs-toggle="modal" data-bs-target="#buyplan"> -->
             <a (click)="go_to_new_stream()" style="cursor: pointer;">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -22,7 +21,6 @@
                 </svg></a>
         </div>
     </nav>
-    <!-- products-container -->
     <div class="products-container">
         <div class="products" *ngFor="let item of myrequest; index as i">
             <div class="row-one">
@@ -132,7 +130,8 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    {{item.offerPrice|currency:'INR'}}/<sub class="striked">{{item.marketPlace|currency:'INR'}}</sub>
+                    <span style="font-size: 12px;">{{item.adminApprove}}</span>
+                    <!-- {{item.offerPrice|currency:'INR'}}/<sub class="striked">{{item.marketPlace|currency:'INR'}}</sub> -->
                 </p>
                 <div class="view-icons">
                     <button class="cancel-btn" (click)="cancel_stream(item)"
@@ -158,16 +157,23 @@
             <a class="popupclose" (click)="close_popup()">x</a>
 
             <ul>
-                <li [ngClass]="view_details_type=='Content'?'active':''" (click)="view_details_type_action('Content')">
+                <li style="border-right: 1px solid gray;border-left: 1px solid gray;"
+                    [ngClass]="view_details_type=='Content'?'active':''" (click)="view_details_type_action('Content')">
                     Details
                 </li>
-                <li [ngClass]="view_details_type=='Images'?'active':''" (click)="view_details_type_action('Images')">
+                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Images'?'active':''"
+                    (click)="view_details_type_action('Images')">
                     Images
                 </li>
-                <li [ngClass]="view_details_type=='Teaser'?'active':''" (click)="view_details_type_action('Teaser')">
+                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Teaser'?'active':''"
+                    (click)="view_details_type_action('Teaser')">
                     Teaser
                 </li>
-                <li [ngClass]="view_details_type=='Post'?'active':''" (click)="view_details_type_action('Post')">Post
+                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Post'?'active':''"
+                    (click)="view_details_type_action('Post')">Post
+                </li>
+                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Plan'?'active':''"
+                    (click)="view_details_type_action('Plan')">Plan
                 </li>
             </ul>
 
@@ -196,36 +202,55 @@
                             <td>{{view_details.primarycommunication}}</td>
                         </tr>
                         <tr>
-                            <td>Secondary Communication</td>
+                            <td>Streaming Date & Time</td>
                             <td>:</td>
-                            <td>{{view_details.secondarycommunication}}</td>
-                        </tr>
-                        <tr>
-                            <td>Streaming Date</td>
-                            <td>:</td>
-                            <td>{{view_details.streamingDate}}</td>
-                        </tr>
-                        <tr>
-                            <td>Streaming Time</td>
-                            <td>:</td>
-                            <td>{{view_details.streamingTime}}</td>
+                            <td>{{view_details.startTime | date:"dd-MM-yyyy"}} - {{view_details.startTime |
+                                date:"hh:mm a"}}</td>
                         </tr>
                         <tr>
                             <td>Description</td>
                             <td>:</td>
                             <td style="overflow-wrap: anywhere;">{{view_details.discription}}</td>
                         </tr>
-                        <tr>
-                            <td>After Streaming Show</td>
-                            <td>:</td>
-                            <td style="overflow-wrap: anywhere;">{{view_details.afterStreaming}}</td>
-                        </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Chat </td>
                             <td>:</td>
                             <td style="overflow-wrap: anywhere;text-transform: capitalize;">
                                 {{view_details.chat_need}}</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="details" *ngIf="view_details_type=='Plan'">
+                <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
+                    <tbody>
+                        <tr>
+                            <td>Plan Name</td>
+                            <td>:</td>
+                            <td>{{view_details.planNmae}}</td>
                         </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>:</td>
+                            <td>{{view_details.Duration}} mins</td>
+                        </tr>
+                        <tr>
+                            <td>Slot Type</td>
+                            <td>:</td>
+                            <td>{{view_details.slotType}}</td>
+                        </tr>
+                        <tr>
+                            <td>Raise Hands</td>
+                            <td>:</td>
+                            <td style="text-transform: capitalize;">{{view_details.purchasedplans.RaiseHands}}</td>
+                        </tr>
+                        <tr>
+                            <td>Chat</td>
+                            <td>:</td>
+                            <td style="text-transform: capitalize;">{{view_details.purchasedplans.chat_Option}}</td>
+                        </tr>
+
+
                     </tbody>
                 </table>
             </div>

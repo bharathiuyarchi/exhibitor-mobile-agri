@@ -6,7 +6,9 @@ export interface IUser {
   name?: string;
   audio?: Boolean,
   video?: Boolean,
-  class?: String
+  class?: String,
+  usertype?: String,
+  userName?: String
 }
 export interface IRtc {
   client: IAgoraRTCClient;

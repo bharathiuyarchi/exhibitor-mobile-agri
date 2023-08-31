@@ -207,7 +207,7 @@
                         <p>Go Live</p>
                     </button>
                     <button (click)="chat_now(item)"
-                        *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.status !='Completed' && item.chat_permissions"
+                        *ngIf="iso > item.startTime && iso < item.endTime && item.status !='Cancelled' && item.status !='Completed' && item.chat_permissions && !item.hostingPermissions"
                         class="go-live-btn">
                         <p>Chat Now</p>
                     </button>

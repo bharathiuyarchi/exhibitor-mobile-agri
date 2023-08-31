@@ -11,6 +11,7 @@ import { StreamchatComponent } from './streamchat/streamchat.component';
 import { PendingChangesGuard_sub } from './can.deactivate.guard';
 import { ProductdetailviewComponent_sub } from './productdetailview/productdetailview.component';
 import { MinutedDef_sub, RaisehandsComponent_sub } from './raisehands/raisehands.component';
+import { SortpipePipe_sub } from './sortpipe.pipe';
 
 
 
@@ -23,7 +24,8 @@ import { MinutedDef_sub, RaisehandsComponent_sub } from './raisehands/raisehands
     FormatTimePipe,
     ProductdetailviewComponent_sub,
     MinutedDef_sub,
-    RaisehandsComponent_sub
+    RaisehandsComponent_sub,
+    SortpipePipe_sub
   ],
   imports: [
     CommonModule,
