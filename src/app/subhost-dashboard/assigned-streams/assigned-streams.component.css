@@ -171,3 +171,11 @@ sub {
 
 }
 
+
+.page-title span{
+    color: var(--green);
+}
+.dropdown-menu .active{
+    background-color: var(--green)!important;
+    border: var(--green)!important;
+}
