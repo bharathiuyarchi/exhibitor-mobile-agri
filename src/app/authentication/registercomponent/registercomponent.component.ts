@@ -69,13 +69,18 @@ export class RegistercomponentComponent implements OnInit {
     }
     console.log(event.target.value);
   }
+  termErr: any = false;
   login_now() {
     this.submitted = true;
     this.errorMessage = null;
     console.log(this.registerForm.value);
+    if (!this.terms) {
+      this.termErr = true;
+    }
 
     if (this.registerForm.valid && this.terms) {
       this.submitted = false;
+      this.termErr = true;
       this.api.register_seller(this.registerForm.value).subscribe(
         (res: any) => {
           console.log(res);
