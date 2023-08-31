@@ -18,7 +18,14 @@
                 <label *ngIf="submitted && verifyOTP.get('otp')?.invalid">Enter valid OTP !</label>
                 <label *ngIf="errorMessage !=null">{{errorMessage | json}} !</label>
             </div>
-
+            <div class="resend-otp" style="display: flex; justify-content: end;">
+                <p style="color: blue; text-decoration: underline; cursor: pointer; text-align: right;"
+                    *ngIf="recentShow" (click)="resendOTP()">Resend OTP
+                </p>
+                <p style="color: blue; text-align: right;" *ngIf="!recentShow">
+                    {{remainingTime}}
+                </p>
+            </div>
             <div class="login-btn btn">
                 <button class="green-btn ">Verify OTP</button>
             </div>

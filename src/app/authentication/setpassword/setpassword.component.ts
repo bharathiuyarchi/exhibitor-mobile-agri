@@ -41,7 +41,6 @@ console.log(this.setpassword.value)
         this.router.navigate(['login'])
       }, error => {
         this.errorMessage = error
-
       })
     }
 

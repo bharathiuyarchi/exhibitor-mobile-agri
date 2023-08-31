@@ -121,7 +121,7 @@
         <label for="Pincode">Pincode : </label>
         <input type="text" name="" id="Pincode" placeholder="Enter Pincode" formControlName="Pincode"
           (keypress)="only_ten_degist($event, 5)"
-          onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" />
+          onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" minlength="6" maxlength="6"/>
       </div>
       <div class="form-error">
         <label *ngIf="submitted && loginerror.Pincode.errors?.['required']">Enter Pincode !</label>
