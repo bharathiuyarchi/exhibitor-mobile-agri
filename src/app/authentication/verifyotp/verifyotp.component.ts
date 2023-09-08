@@ -80,6 +80,7 @@ export class VerifyotpComponent implements OnInit {
       this.verifyOTP.reset();
       this.recentShow = false;
       this.remainingTime = 60;
+      this.errorMessage = null;
       this.startTimer();
     });
 
