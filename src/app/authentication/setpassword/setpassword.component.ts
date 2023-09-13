@@ -28,20 +28,22 @@ export class SetpasswordComponent {
   set_password() {
     this.submitted = true;
     this.errorMessage = null;
-    if (this.setpassword.get('password')?.value == this.setpassword.get('conformPassword')?.value)
-      this.sameOne = true;
-    if (this.setpassword.valid && this.sameOne) {
+    if (this.setpassword.valid) {
+      if (this.setpassword.get('password')?.value != this.setpassword.get('conformPassword')?.value) {
+        this.sameOne = true;
+      }
+    }
+    if (this.setpassword.valid && !this.sameOne) {
       this.submitted = false;
       this.sameOne = false;
       this.api.setPassword(this.setpassword.value).subscribe((res: any) => {
         console.log(res)
         localStorage.removeItem('verifiedAccount')
-        this.router.navigate(['login'])
+        this.router.navigate(['login'], { replaceUrl: true })
       }, error => {
         this.errorMessage = error
       })
     }
-
   }
 
   setpassword: any = new FormGroup({

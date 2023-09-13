@@ -1,0 +1,13 @@
+<div class="loader-page">
+    <div class="progress-load">
+        <div class="progress" style="height: 25px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="font-size: 11px;"
+                [style]="{'width':load+'%'}">{{load}}%</div>
+        </div>
+        <p>{{types[type]}}...</p>
+        <div style="text-align: center;margin-top: 20px;">
+            <a (click)="cancel_download()" class="" style="color: red;cursor: pointer;background-color: white;padding: 5px 15px;border-radius: 10px;font-size: 11px;;">close </a>
+        </div>
+
+    </div>
+</div>

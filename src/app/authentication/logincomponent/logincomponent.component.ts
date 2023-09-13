@@ -20,15 +20,15 @@ export class LogincomponentComponent implements OnInit {
     this.authchcheck.userDetails.subscribe((res: any) => {
       if (res.sellerType == 'MainSeller' || res.sellerType == 'sub-user') {
         console.log("asdas2312312")
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard'], { replaceUrl: true });
       }
       else if (res.sellerType == 'sub-host') {
-        this.router.navigate(['stream']);
+        this.router.navigate(['stream'], { replaceUrl: true });
       }
     })
   }
   Login: any = new FormGroup({
-    mobile: new FormControl(null,  [
+    mobile: new FormControl(null, [
       Validators.required,
       Validators.minLength(10),
       Validators.maxLength(10),
@@ -54,13 +54,13 @@ export class LogincomponentComponent implements OnInit {
     }
 
   }
-  continue(){
-    let data={
-      cr:'1'
+  continue() {
+    let data = {
+      cr: '1'
     }
     let query = new URLSearchParams(data).toString()
-    this.router.navigateByUrl('/forgot?'+ query)
+    this.router.navigateByUrl('/forgot?' + query)
   }
 
-  
+
 }

@@ -67,8 +67,8 @@ export class ManagelivestreamComponent {
 
   view_details: any;
   view_details_type: any;
-  view_request(type: any, item: any) {
-    console.log(item)
+  view_request(type: any, item: any, event: any) {
+    console.log(event.target)
     this.view_details = item;
     this.view_details_type = type;
     // $('#view_details').modal('show');
@@ -105,7 +105,7 @@ export class ManagelivestreamComponent {
         .share({
           title: item.streamName,
           text: item.discription,
-          url: "https://buyer.lotsmart.in/dashboard/view/" + item._id,
+          url: "https://visitor.agriexpo.live/dashboard/view/" + item._id,
         }
         )
         .then(() => console.log('Successful share'))
@@ -120,4 +120,13 @@ export class ManagelivestreamComponent {
       this.router.navigateByUrl('/dashboard/livestream/chatnow/' + res._id)
     })
   }
+
+  view_details_type_action(type: any) {
+    this.view_details_type = type;
+  }
+  popupType: any = "";
+  close_popup_now() {
+    this.popupType = "";
+  }
+
 }

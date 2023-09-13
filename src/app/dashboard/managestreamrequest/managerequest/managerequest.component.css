@@ -43,8 +43,8 @@ nav div {
 /* products */
 /* .products-container { */
 
-  /* height: 90vh; */
-  /* overflow-y: scroll; */
+/* height: 90vh; */
+/* overflow-y: scroll; */
 /* } */
 
 .view-icons span {
@@ -55,6 +55,7 @@ nav div {
 .products {
   padding: 10px;
   border-bottom: 1px solid #E7E9ED;
+  position: relative;
 }
 
 .products p {
@@ -74,7 +75,8 @@ nav div {
 }
 
 .products div span:first-child {
-  width: 150px;
+  max-width: 355px;
+  min-width: 150px;
 
 }
 
@@ -119,7 +121,7 @@ sub {
 }
 
 .cancel-btn {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   align-items: center;
   padding: 4px 10px;
@@ -287,4 +289,22 @@ sub {
   justify-content: space-between;
   max-width: 80%;
   margin: 30px auto 20px;
+}
+
+
+.view-product_view {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.view-icons a,
+.view-icons button {
+  z-index: 1000;
+}
+.strean-name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

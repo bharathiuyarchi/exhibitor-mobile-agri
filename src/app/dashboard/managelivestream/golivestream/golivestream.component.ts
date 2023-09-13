@@ -20,6 +20,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   participents: any;
   innerWidth: any;
   chatCount: number = 0;
+  livestreamCode: any = Math.floor(100000 + Math.random() * 900000);
 
   ngOnInit(): void {
     this.leave.leave_host(false);
@@ -54,6 +55,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     console.log(this.innerWidth)
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
+      this.web.same_user_jion_exhibitor({ stream: this.id, code: this.livestreamCode });
       this.get_token(this.id);
       this.get_raise_user_details()
 
@@ -222,6 +224,13 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   rice_hande: any = false;
   get_token(id: any) {
     this.api.get_token_details(id).subscribe((res: any) => {
+      this.web.get_already_jion(res._id + res.temptokens.supplierId).subscribe((res: any) => {
+        console.log(res, 987678)
+        if (this.livestreamCode != res.code) {
+          this.leave_host();
+        }
+      })
+
       if (res.current_raise != null) {
         this.api.raiseUser_Details(res.current_raise).subscribe((res: any) => {
           console.log(res, 87676)

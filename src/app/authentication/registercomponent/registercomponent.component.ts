@@ -35,7 +35,7 @@ export class RegistercomponentComponent implements OnInit {
       this.api.register_seller(this.registerForm.value).subscribe((res: any) => {
         console.log(res)
         localStorage.setItem('mobileNumber', res.mobileNumber);
-        this.router.navigate(['verifyotp'])
+        this.router.navigate(['verifyotp'],{replaceUrl: true})
       }, error => {
         console.log(error)
         this.errorMessage = error.error.message
