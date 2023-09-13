@@ -55,4 +55,16 @@ export class ManagepostService {
       data
     );
   }
+  get_old_post(id: any) {
+    return this.http.get(this.baseurl + "/v1/ecomplan/get/previus/post?id=" + id);
+  }
+
+  getAddress(lat: any, long: any) {
+    const data = {
+      lat: lat,
+      long: long,
+    };
+    const queryString = new URLSearchParams(data).toString();
+    return this.http.get(this.baseurl + '/v1/ecomplan/get/address/lat/log?' + queryString);
+  }
 }

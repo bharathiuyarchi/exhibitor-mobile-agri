@@ -123,7 +123,7 @@ export class ManagelivestreamComponent {
 
   view_details_type_action(type: any) {
     this.view_details_type = type;
-  }
+}
   popupType: any = "";
   close_popup_now() {
     this.popupType = "";

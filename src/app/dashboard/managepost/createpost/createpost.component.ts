@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Pipe, PipeTransform } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Env } from "src/app/environment";
 import { ManagepostService } from "../managepost.service";
+import { Address } from "ng-google-places-autocomplete";
 
 @Component({
   selector: "app-createpost",
@@ -16,7 +17,7 @@ export class CreatepostComponent implements OnInit {
     public api: ManagepostService,
     public router: Router,
     public route: ActivatedRoute
-  ) {}
+  ) { }
   id: any;
   ProductNotFound: any = true;
   ngOnInit(): void {
@@ -30,45 +31,73 @@ export class CreatepostComponent implements OnInit {
     });
   }
 
-  submited: any = false;
-  create_post() {
-    this.submited = true;
-    console.log(this.postForm.value);
-    if (
-      this.postForm.valid &&
-      ((this.selected_image.length != 0 && this.selected_video != null) ||
-        this.id != null)
-    ) {
-      let formData: any = new FormData();
-      formData.append("productId", this.postForm.get("productId")?.value);
-      formData.append("categoryId", this.postForm.get("categoryId")?.value);
-      formData.append("quantity", this.postForm.get("quantity")?.value);
-      formData.append("marketPlace", this.postForm.get("marketPlace")?.value);
-      formData.append("offerPrice", this.postForm.get("offerPrice")?.value);
-      formData.append(
-        "bookingAmount",
-        this.postForm.get("bookingAmount")?.value
-      );
-
-      if (this.postForm.get("postLiveStreamingPirce")?.value != null) {
-        formData.append(
-          "postLiveStreamingPirce",
-          this.postForm.get("postLiveStreamingPirce")?.value
-        );
+  validator_remove(arr: any, value: any, type: Boolean) {
+    console.log(arr)
+    arr.forEach((element: any) => {
+      this.postForm.get(element).setValue(null)
+      if (type) {
+        this.postForm.get(element).setErrors({ incorrect: true })
       }
-      formData.append("minLots", this.postForm.get("minLots")?.value);
-      formData.append(
-        "incrementalLots",
-        this.postForm.get("incrementalLots")?.value
-      );
-      formData.append("discription", this.postForm.get("discription")?.value);
-      formData.append("location", this.postForm.get("location")?.value);
-      formData.append(
-        "afterStreaming",
-        this.postForm.get("afterStreaming")?.value
-      );
-      formData.append("unit", this.postForm.get("unit")?.value);
-      // formData.append("", this.postForm.get("location")?.value)
+      else {
+        this.postForm.get(element).setErrors(null)
+      }
+    });
+  }
+  persentage: any = true;
+  submited: any = false;
+  prewview_post: any = false;
+  open_pop() {
+    this.submited = true;
+    if (this.postForm.get('booking_charge').value == 'Customize') {
+      if (this.postForm.get('booking_percentage').value <= 100 && this.postForm.get('booking_percentage').value > 0) {
+        this.persentage = true;
+      }
+      else {
+        this.persentage = false;
+      }
+    }
+    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && this.persentage && !this.price_def) {
+      if (this.id == null) {
+        this.prewview_post = true;
+      }
+      else {
+        this.create_post();
+      }
+    }
+    else {
+      this.prewview_post = false;
+    }
+
+  }
+  get_object_to_preview(control: any, obj: any, value: any) {
+
+    console.log(value, 9087656789)
+
+  }
+
+  create_post() {
+    if (this.postForm.get('booking_charge').value == 'Customize') {
+      if (this.postForm.get('booking_percentage').value <= 100 && this.postForm.get('booking_percentage').value > 0) {
+        this.persentage = true;
+      }
+      else {
+        this.persentage = false;
+      }
+    }
+    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && this.persentage && !this.price_def) {
+      let formData: any = new FormData();
+      let values: any = this.postForm.value;
+      Object.entries(values).forEach((entry: any) => {
+        const [key, value] = entry;
+        console.log(key, value)
+        if ((key == 'define_QTY' || key == 'afterStreaming' || key == 'booking_percentage' || key == 'minLots' || key == 'incrementalLots' || key == 'marketPlace' || key == 'offerPrice' || key == 'quantity' || key == 'postLiveStreamingPirce') && value == null) {
+          formData.append(key, 0);
+        }
+        else {
+          formData.append(key, value);
+        }
+      })
+
       const files: Array<File> = this.selected_image;
       for (let i = 0; i < files.length; i++) {
         formData.append("galleryImages", files[i], files[i]["name"]);
@@ -76,11 +105,16 @@ export class CreatepostComponent implements OnInit {
       if (this.id == null) {
         this.api.create_post(formData).subscribe((res: any) => {
           let video = new FormData();
-          video.append("teaser", this.selected_video);
-          this.api.create_post_teaser(video, res._id).subscribe((res: any) => {
-            console.log(res);
+          if (this.selected_video != null) {
+            video.append("teaser", this.selected_video);
+            this.api.create_post_teaser(video, res._id).subscribe((res: any) => {
+              console.log(res);
+              this.router.navigateByUrl("/dashboard/post");
+            });
+          }
+          else {
             this.router.navigateByUrl("/dashboard/post");
-          });
+          }
         });
       } else {
         this.api.update_one_post(this.id, formData).subscribe((res: any) => {
@@ -180,6 +214,51 @@ export class CreatepostComponent implements OnInit {
   change_cate(event: any) {
     this.get_products(event.target.value);
   }
+  previous: any;
+  autofill_post() {
+    if (this.previous != null) {
+      this.postForm.patchValue({
+        quantity: this.previous.quantity,
+        marketPlace: this.previous.marketPlace,
+        offerPrice: this.previous.offerPrice,
+        postLiveStreamingPirce: this.previous.postLiveStreamingPirce,
+        minLots: this.previous.minLots,
+        incrementalLots: this.previous.incrementalLots,
+        discription: this.previous.discription,
+        afterStreaming: this.previous.afterStreaming,
+        bookingAmount: this.previous.bookingAmount,
+        unit: this.previous.unit,
+        transaction: this.previous.transaction,
+        pack_discription: this.previous.pack_discription,
+        // dispatchPincode: this.previous.dispatchPincode,
+        define_QTY: this.previous.define_QTY,
+        define_UNIT: this.previous.define_UNIT,
+        booking_charge: this.previous.booking_charge,
+        booking_percentage: this.previous.booking_percentage,
+        old_post: this.previous._id,
+        old_accept: true,
+        dispatchLocation: this.previous.dispatchLocation,
+        latitude: this.previous.latitude,
+        longitude: this.previous.longitude,
+      })
+    }
+    this.autofill_popup = false;
+    this.oldDetails = this.previous;
+  }
+  select_product(event: any) {
+    this.api.get_old_post(event.target.value).subscribe((res: any) => {
+      console.log(res)
+      this.previous = res;
+      this.postForm.patchValue({
+        old_post: null,
+        old_accept: false,
+      })
+      this.oldDetails = null;
+      if (res != null) {
+        this.autofill_popup = true;
+      }
+    })
+  }
   productList: any;
   get_products(id: any) {
     this.api.get_product_by_cat(id).subscribe((res: any) => {
@@ -188,19 +267,34 @@ export class CreatepostComponent implements OnInit {
     });
   }
   postForm: any = new FormGroup({
+    // product Type
     productId: new FormControl(null, Validators.required),
     categoryId: new FormControl(null, Validators.required),
+
+    // product details
     quantity: new FormControl(null, Validators.required),
+    unit: new FormControl(null, Validators.required),
+    define_QTY: new FormControl(null, Validators.required),
+    define_UNIT: new FormControl(null, Validators.required),
+    // dispatchPincode: new FormControl(null, Validators.required),
+    pack_discription: new FormControl(null, Validators.required),
+    // transactions
+    transaction: new FormControl(null, Validators.required),
     marketPlace: new FormControl(null, Validators.required),
     offerPrice: new FormControl(null, Validators.required),
     postLiveStreamingPirce: new FormControl(null, Validators.required),
     minLots: new FormControl(null, Validators.required),
     incrementalLots: new FormControl(null, Validators.required),
     discription: new FormControl(null, Validators.required),
-    // location: new FormControl(null, Validators.required),
     afterStreaming: new FormControl(null, Validators.required),
     bookingAmount: new FormControl(null, Validators.required),
-    unit: new FormControl(null, Validators.required),
+    booking_charge: new FormControl(null, Validators.required),
+    booking_percentage: new FormControl(null, Validators.required),
+    old_post: new FormControl(null),
+    old_accept: new FormControl(false),
+    dispatchLocation: new FormControl(null, Validators.required),
+    latitude: new FormControl(null),
+    longitude: new FormControl(null),
   });
   oldDetails: any;
 
@@ -222,6 +316,16 @@ export class CreatepostComponent implements OnInit {
         afterStreaming: res.afterStreaming,
         bookingAmount: res.bookingAmount,
         unit: res.unit,
+        transaction: res.transaction,
+        pack_discription: res.pack_discription,
+        // dispatchPincode: res.dispatchPincode,
+        define_QTY: res.define_QTY,
+        define_UNIT: res.define_UNIT,
+        booking_charge: res.booking_charge,
+        booking_percentage: res.booking_percentage,
+        dispatchLocation: res.dispatchLocation,
+        latitude: res.latitude,
+        longitude: res.longitude,
       });
       this.minLost = this.postForm.get("minLots").value;
       this.IncLost = this.postForm.get("incrementalLots").value;
@@ -243,7 +347,9 @@ export class CreatepostComponent implements OnInit {
       this.postForm
         .get("postLiveStreamingPirce")
         ?.setErrors({ incorrect: true });
-    } else {
+    }
+
+    else {
       this.postForm.get("postLiveStreamingPirce")?.setErrors(null);
     }
   }
@@ -260,17 +366,52 @@ export class CreatepostComponent implements OnInit {
       return true;
     }
   }
-
+  latitude: any;
+  longtitude: any;
+  zoom: any = 2;
+  handleAddressChange(address: Address) {
+    const myAddres = address.formatted_address;
+    this.postForm.patchValue({
+      dispatchLocation: myAddres
+    })
+    const latitude = address.geometry.location.lat();
+    const longtitude = address.geometry.location.lng();
+    this.zoom = 12
+    this.postForm.patchValue({
+      latitude: latitude,
+      longitude: longtitude
+    })
+  }
+  draggEnded(event: any) {
+    // getAddress
+    const latitude = event.latLng.lat()
+    const longtitude = event.latLng.lng();
+    this.api.getAddress(latitude, longtitude).subscribe((res: any) => {
+      console.log(res)
+      if (res) {
+        this.postForm.patchValue({
+          dispatchLocation: res[0].formatted_address,
+          latitude: latitude,
+          longitude: longtitude
+        })
+      }
+    })
+  }
+  options: any = {
+    componentRestrictions: { country: 'IN' }
+  }
   // customer Add Product
-
   addPopup: any = false;
   enablePopup() {
     this.addPopup = true;
   }
+  autofill_popup: any = false;
   disablePopup() {
+    this.autofill_popup = false;
     this.addPopup = false;
     this.AddProductForm.reset();
     this.productSubmit = false;
+    this.prewview_post = false;
   }
 
   AddProductForm: any = new FormGroup({
@@ -298,50 +439,127 @@ export class CreatepostComponent implements OnInit {
   minLosterr: any = false;
   IncreMentLosterr: any = false;
 
-  qtyChange(event: any) {
-    console.log(event.target.value);
-    this.Qty = parseInt(event.target.value);
-  }
-  minLostChange(event: any) {
-    if (this.ProductNotFound) {
-      let val = parseInt(event.target.value);
-      if (val > this.Qty) {
-        this.minLosterr = true;
-        console.log(val)
-      } else {
-        this.minLost = val;
-        this.minLosterr = false;
-      }
-    } else {
-      let val = this.postForm.get("minLots").value;
-      console.log(val, this.Qty);
-      if (val > this.Qty) {
-        this.minLosterr = true;
-        console.log(val, "else");
-      } else {
-        this.minLost = val;
-        this.minLosterr = false;
-      }
+  price_def: any = false;
+
+  change_qty(event: any, type: any) {
+    console.log(56789, event.target.value)
+    let quantity = this.postForm.get('quantity').value;
+    let minlot = this.postForm.get('minLots').value;
+    let incrementalLot = this.postForm.get('incrementalLots').value;
+    let offerPrice = this.postForm.get('offerPrice').value;
+    let marketPlace = this.postForm.get('marketPlace').value;
+    console.log(type, event.target.value)
+    if (type == 'quantity') {
+      quantity = event.target.value;
     }
+    if (type == 'minLots') {
+      minlot = event.target.value;
+    }
+    if (type == 'incrementalLots') {
+      incrementalLot = event.target.value;
+    }
+    if (type == 'offerPrice') {
+      offerPrice = event.target.value;
+    }
+    if (type == 'marketPlace') {
+      marketPlace = event.target.value;
+    }
+    quantity = quantity == null || quantity == '' ? 0 : parseInt(quantity)
+    minlot = minlot == null || minlot == '' ? 0 : parseInt(minlot)
+    incrementalLot = incrementalLot == null || incrementalLot == '' ? 0 : parseInt(incrementalLot)
+    offerPrice = offerPrice == null || offerPrice == '' ? 0 : parseInt(offerPrice)
+    marketPlace = marketPlace == null || marketPlace == '' ? 0 : parseInt(marketPlace)
+    if (quantity < minlot) {
+      this.minLosterr = true;
+    }
+    else {
+      this.minLosterr = false;
+    }
+    if (quantity - minlot < incrementalLot && !this.minLosterr) {
+      this.IncreMentLosterr = true;
+    }
+    else {
+      this.IncreMentLosterr = false;
+    }
+
+    if (offerPrice > marketPlace) {
+      this.price_def = true
+    }
+    else {
+      this.price_def = false;
+    }
+    console.log(quantity, minlot, incrementalLot)
   }
 
-  IncreMentLost(event: any) {
-    let val = parseInt(event.target.value);
-    let equalChwck = this.minLost === this.Qty;
-    console.log(equalChwck);
-    if (equalChwck || val > this.minLost) {
-      this.IncreMentLosterr = true;
-      console.log(this.minLost, "min lost");
-    } else {
-      this.IncreMentLosterr = false;
-      if (this.minLost <= val) {
-        this.IncLost = val;
-        console.log("new cont");
-        this.IncreMentLosterr = false;
+  // qtyChange(event: any) {
+  //   // console.log(event.target.value);
+  //   // this.Qty = parseInt(event.target.value);
+  // }
+
+  // minLostChange(event: any) {
+  //   if (this.ProductNotFound) {
+  //     let val = parseInt(event.target.value);
+  //     if (val > this.Qty) {
+  //       this.minLosterr = true;
+  //     } else {
+  //       this.minLost = val;
+  //       this.minLosterr = false;
+  //     }
+  //   } else {
+  //     let val = this.postForm.get("minLots").value;
+  //     // this.minLost = this.postForm.get("minLots").value;
+  //     // this.IncLost = this.postForm.get("incrementalLots").value;
+  //     console.log(val, this.Qty);
+  //     if (val > this.Qty) {
+  //       this.minLosterr = true;
+  //       console.log(val, "else");
+  //     } else {
+  //       this.minLost = val;
+  //       this.minLosterr = false;
+  //     }
+  //   }
+  // }
+
+  // IncreMentLost(event: any) {
+  //   let val = parseInt(event.target.value);
+  //   let equalChwck = this.minLost === this.Qty;
+  //   console.log(equalChwck);
+  //   if (equalChwck || val > this.minLost) {
+  //     this.IncreMentLosterr = true;
+  //     console.log(this.minLost, "min lost");
+  //   } else {
+  //     this.IncreMentLosterr = false;
+  //     if (this.minLost <= val) {
+  //       this.IncLost = val;
+  //       console.log("new cont");
+  //       this.IncreMentLosterr = false;
+  //     }
+  //   }
+  //   if (!val) {
+  //     this.IncreMentLosterr = false;
+  //     console.log("null");
+  //   }
+  // }
+}
+
+
+
+
+
+
+
+@Pipe({
+  name: 'get_value'
+})
+export class get_obj_value implements PipeTransform {
+  transform(value: any, array: any, find: any, key: any): any {
+    if (array != null) {
+      let index = array.findIndex((a: any) => a[key] == value);
+      if (index != -1) {
+        return array[index][find]
       }
     }
-    if (!val) {
-      this.IncreMentLosterr = false;
-    }
+    return "";
   }
 }
+

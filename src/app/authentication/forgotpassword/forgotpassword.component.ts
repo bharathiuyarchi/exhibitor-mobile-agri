@@ -15,12 +15,11 @@ export class ForgotpasswordComponent implements OnInit {
 
   }
   errorMessage: any;
-  cr:any; 
+  cr: any;
   ngOnInit(): void {
     this.arouter.queryParams.subscribe((res: any) => {
       this.cr = res['cr']
     })
-    console.log(this.cr, 'asdfsdf')
   }
   forget_password() {
     this.errorMessage = null;
