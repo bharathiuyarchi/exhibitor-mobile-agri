@@ -1,108 +1,119 @@
 header {
-    /* display: flex; */
-    align-items: center;
-    justify-content: space-between;
-    /* padding: 5px; */
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 5px; */
 }
 
 .change-user {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .change-user svg {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .btn {
-    display: flex !important;
-    justify-content: space-between !important;
-    flex-direction: row;
-    padding: 0;
-
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-direction: row;
+  padding: 0;
 }
 
 .or {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .or h1 {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 .line {
-    height: 2px;
-    width: 35%;
-    background-color: black;
+  height: 2px;
+  width: 35%;
+  background-color: black;
 }
 
 .authendication {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .google-login-btn,
 .fb-login-btn {
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    margin: 0 15px;
-    padding: 5px 10px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    border: none;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0 15px;
+  padding: 5px 10px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border: none;
 }
 
 .normal-btn {
-    background-color: white;
-    border: none;
-    color: var(--green);
-    box-shadow: 0 0 1px 1px #0094457a;
-    font-weight: bold;
+  background-color: white;
+  border: none;
+  color: var(--green);
+  box-shadow: 0 0 1px 1px #0094457a;
+  font-weight: bold;
 }
 
 .google-login-btn img,
 .fb-login-btn img {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
-
 .sign-up {
-    margin-top: 150px;
-    text-align: center;
+  margin-top: 150px;
+  text-align: center;
 }
 
 .sign-up span {
-    color: var(--green);
-    font-weight: 700;
+  color: var(--green);
+  font-weight: 700;
 }
-form{
-    max-width: 500px;
-    margin: auto;
-    padding: 0 10px;
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 0 10px;
 }
-.welcome{
-    text-align: center;
-    font-weight: bold;
+.welcome {
+  text-align: center;
+  font-weight: bold;
 }
-
 
 .login-btn button {
-    /* margin: 10px; */
-    width: 49%;
-    border-radius: 2px;
+  /* margin: 10px; */
+  width: 49%;
+  border-radius: 2px;
+}
+.form-forgot a {
+  margin-left: 9px;
+}
 
-
-} .form-forgot a {
-    margin-left: 9px;
-  }
-  
- .form-forgot{
-    margin-top: 10px  ; display: flex; justify-content: end;
-    align-items: flex-end;
-  }
+.form-forgot {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+}
+.svg svg {
+  width: 20px;
+  height: 30px;
+  opacity: 0.5;
+}
+.form-row {
+  position: relative;
+}
+.svg {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}

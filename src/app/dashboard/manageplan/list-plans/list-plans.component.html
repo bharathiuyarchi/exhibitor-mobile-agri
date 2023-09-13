@@ -11,12 +11,10 @@
 <div class="main-container">
     <div class="row" style="margin-top: 10px;">
         <div class="col" *ngFor="let v of allPlans">
-            <div class="content">
+            <div class="content" style="margin-top: 10px;">
                 <div class="card">
-                    <div class="card-body title-card">
+                    <div class="card-body title-card" style="background: rgba(220, 235, 217, 1);">
                         <h2 style="color: var(--green);text-transform: capitalize;">{{v.planName}}</h2>
-
-
                     </div>
                 </div>
                 <div class="card" *ngIf="v.planName =='Diamond'">
@@ -345,7 +343,7 @@
                     <p class="val">{{viewPlans.Special_Notification}}</p>
                 </div>
                 <div>
-                    <p class="key">Rise Hands</p>
+                    <p class="key">Raise Hands</p>
                     <p class="val">{{viewPlans.RaiseHands}}</p>
                 </div>
                 <div>

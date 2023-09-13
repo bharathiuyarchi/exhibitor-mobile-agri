@@ -1,57 +1,73 @@
 header {
-    /* display: flex; */
-    align-items: center;
-    justify-content: space-between;
-    /* padding: 5px; */
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 5px; */
 }
 
 .change-user {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .change-user svg {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .form {
-    margin: auto;
-    margin-top: 20px;
-    max-width: 500px;
-    margin: auto;
-    padding: 0 10px;
+  margin: auto;
+  margin-top: 20px;
+  max-width: 500px;
+  margin: auto;
+  padding: 0 10px;
 }
 
 .btn {
-    display: flex !important;
-    /* justify-content: center !important; */
-    flex-direction: row;
+  display: flex !important;
+  /* justify-content: center !important; */
+  flex-direction: row;
 }
 
 .login-btn {
-    /* margin: 30px 0; */
-    padding: 0;
-    justify-content: space-between;
+  /* margin: 30px 0; */
+  padding: 0;
+  justify-content: space-between;
 }
 
 .welcome {
-    text-align: center;
-    font-weight: bold;
+  text-align: center;
+  font-weight: bold;
 }
 
 .normal-btn {
-    background-color: white;
-    border: none;
-    color: var(--green);
-    box-shadow: 0 0 3px 2px #00944536;
-    font-weight: bold;
+  background-color: white;
+  border: none;
+  color: var(--green);
+  box-shadow: 0 0 3px 2px #00944536;
+  font-weight: bold;
 }
 
 .login-btn button {
-    /* margin: 10px; */
-    width: 49%;
-    border-radius: 2px;
+  /* margin: 10px; */
+  width: 49%;
+  border-radius: 2px;
+}
 
+input[type="checkbox"] {
+  width: 30px;
+  height: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px, 0px, 0px, 0px;
+}
+.terms {
+  display: flex;
+  flex-direction: inherit;
+}
+
+.btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
 }
