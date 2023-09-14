@@ -8,10 +8,7 @@ import { RouterModule } from '@angular/router';
 import { CommommoduleModule } from 'src/app/commen/commommodule.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-import { AgmCoreModule } from '@agm/core';
-
-
-
+// import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     ManagepostComponent,
@@ -27,10 +24,10 @@ import { AgmCoreModule } from '@agm/core';
     Managepostroutingmodule,
     GooglePlaceModule,
     NgxDaterangepickerMd.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyARM6-Qr_hsR53GExv9Gmu9EtFTV5ZuDX4',
-      libraries: ['places']
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyARM6-Qr_hsR53GExv9Gmu9EtFTV5ZuDX4',
+    //   libraries: ['places']
+    // }),
 
   ]
 })
