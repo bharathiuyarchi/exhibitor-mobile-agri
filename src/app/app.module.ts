@@ -38,7 +38,6 @@ import { AgmCoreModule } from '@agm/core';
     RouterModule,
     HttpClientModule,
     NgxDaterangepickerMd.forRoot(),
-  
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     GooglePlaceModule,
