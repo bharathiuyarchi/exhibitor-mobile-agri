@@ -1,23 +1,26 @@
-<div class="main">
-    <nav>
-        <div class="back">
-            <backbutton></backbutton>
+<nav>
+    <div class="back">
+        <backbutton></backbutton>
 
-        </div>
-        <h1 class="welcome">Create Post</h1>
-        <div class="back" style="visibility: hidden;">
-            <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="var(--green)" />
-            </svg>
-        </div>
-    </nav>
+    </div>
+    <h1 class="welcome">Stream Request</h1>
+    <div class="back" style="visibility: hidden;">
+        <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="var(--green)" />
+        </svg>
+
+    </div>
+</nav>
+
+
+<div class="main-container">
     <form [formGroup]="postForm" (submit)="open_pop()">
         <div class="form">
             <div class="main-title-post mt-2">
                 <h5>Product Type</h5>
             </div>
             <div>
-                <label>Select Category <sup style="color: red;">*</sup> :</label>
+                <label>Select Category <sup style="color: red;">*</sup> </label>
                 <select (change)="change_cate($event)" formControlName="categoryId">
                     <option disabled selected [ngValue]="null">Select Category</option>
                     <option *ngFor="let item of category_list" value="{{item.id}}">
@@ -30,8 +33,8 @@
                     <span>Choose Category</span>
                 </p>
             </div>
-            <div>
-                <label>Select Product <sup style="color: red;">*</sup> :</label>
+            <div style="margin-top: 18px;">
+                <label>Select Product <sup style="color: red;">*</sup> </label>
                 <select name="" id="" formControlName="productId" style="text-transform:capitalize;"
                     (change)="select_product($event)">
                     <option [ngValue]="null" disabled selected>Select Product
@@ -55,7 +58,7 @@
                 <h5>Product details</h5>
             </div>
             <div style="margin-top: 18px;">
-                <label>Total no Of units for sale <sup style="color: red;">*</sup> :</label>
+                <label>Total no Of units for sale <sup style="color: red;">*</sup> </label>
                 <div class="two-inputs">
                     <input type="text" placeholder="Enter Total no Of units to sale"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
@@ -118,7 +121,7 @@
             </div>
             <div style="margin-top: 18px;"
                 *ngIf="postForm.get('unit').value=='Pack' || postForm.get('unit').value=='Box' || postForm.get('unit').value=='Bags'">
-                <label>Define Quantity/Units <sup style="color: red;">*</sup> :</label>
+                <label>Define Quantity/Units <sup style="color: red;">*</sup> </label>
                 <div class="two-inputs" style="position: relative;">
                     <input type="text" placeholder="Enter Define Quantity"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
@@ -181,7 +184,7 @@
                 </p>
             </div>
             <!-- <div style="margin-top: 18px;">
-                <label>Dispatched Pincode :</label>
+                <label>Dispatched Pincode </label>
                 <div>
                     <input type="text" placeholder="Enter Dispatched Pin code" formControlName="dispatchPincode">
                 </div>
@@ -193,7 +196,7 @@
                 </p>
             </div> -->
             <div style="margin-top: 18px;">
-                <label>Dispatched Location <sup style="color: red;">*</sup>:</label>
+                <label>Dispatched Location <sup style="color: red;">*</sup></label>
                 <div>
                     <input type="text" placeholder="Enter Dispatched Location"
                         value="{{postForm.get('dispatchLocation')?.value}}" class="location-field"
@@ -203,15 +206,15 @@
             </div>
             <div style="margin-top: 8px;">
                 <label></label>
-                <div style="min-height: 280px;position: relative;">
+                <div style="min-height: 280px;position: relative;box-shadow: none;">
                     <!-- <app-agm-moving-map [latitude]="latitude" [longtitude]="longtitude"></app-agm-moving-map> -->
-                    <agm-map class="z-depth-1-half map-container" style="height: 100%;position: absolute;width: 100%;"
+                    <!-- <agm-map class="z-depth-1-half map-container" style="height: 100%;position: absolute;width: 100%;"
                         [latitude]="postForm.get('latitude')?.value" [longitude]="postForm.get('longitude')?.value"
                         [zoom]="zoom" [usePanning]="true">
                         <agm-marker (dragEnd)="draggEnded($event)" [markerDraggable]="true"
                             [latitude]="postForm.get('latitude')?.value"
                             [longitude]="postForm.get('longitude')?.value"></agm-marker>
-                    </agm-map>
+                    </agm-map> -->
 
                 </div>
             </div>
@@ -221,7 +224,7 @@
                 </p>
             </div>
             <div style="margin-top: 18px;">
-                <label>Pack Description <sup style="color: red;">*</sup>:</label>
+                <label>Pack Description <sup style="color: red;">*</sup></label>
                 <textarea placeholder="Enter Pack Description" formControlName="pack_discription"
                     (keypress)="maxlengths($event, 250)"></textarea>
             </div>
@@ -236,8 +239,8 @@
                 <h5>Transaction</h5>
             </div>
             <div class="booking-amount">
-                <label>Transaction <sup style="color: red;">*</sup>:</label>
-                <div>
+                <label>Transaction <sup style="color: red;">*</sup></label>
+                <div style="margin-left: 14px;">
                     <span>
                         <input id="transaction_with" value="With" type="radio"
                             (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','afterStreaming','postLiveStreamingPirce'],postForm.get('transaction').value,true)"
@@ -257,8 +260,8 @@
                     <span>Choose Transaction Type</span>
                 </p>
             </div>
-            <div *ngIf="postForm.get('transaction').value=='With'">
-                <label>Minimum Lots <sup style="color: red;">*</sup>:</label>
+            <div style="margin-top: 18px;" *ngIf="postForm.get('transaction').value=='With'">
+                <label>Minimum Lots <sup style="color: red;">*</sup></label>
                 <div>
                     <input (keyup)="change_qty($event,'minLots')" type="text" placeholder="₹ Enter Minimum Lots"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
@@ -273,8 +276,8 @@
                     <span>Minimum Lots Limit {{postForm.get('quantity').value}} Only</span>
                 </p>
             </div>
-            <div *ngIf="postForm.get('transaction').value=='With'">
-                <label>Incremental Lots <sup style="color: red;">*</sup>:</label>
+            <div style="margin-top: 18px;" *ngIf="postForm.get('transaction').value=='With'">
+                <label>Incremental Lots <sup style="color: red;">*</sup></label>
                 <div>
                     <input (keyup)="change_qty($event,'incrementalLots')" type="text"
                         placeholder="₹ Enter Incremental Lots"
@@ -296,8 +299,8 @@
             <div class="main-title-post mt-2">
                 <h5>Price</h5>
             </div>
-            <div>
-                <label>Market Price <sup style="color: red;">*</sup>:</label>
+            <div style="margin-top: 18px;">
+                <label>Market Price <sup style="color: red;">*</sup></label>
                 <div>
                     <input type="number" placeholder="₹ Enter Market Price" (keyup)="change_qty($event,'marketPlace')"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
@@ -309,8 +312,8 @@
                     <span>Enter Market Price</span>
                 </p>
             </div>
-            <div>
-                <label>Offer Price <sup style="color: red;">*</sup>:</label>
+            <div style="margin-top: 18px;">
+                <label>Offer Price <sup style="color: red;">*</sup></label>
                 <div>
                     <input type="text" placeholder="₹ Enter Offer Price" (keyup)="change_qty($event,'offerPrice')"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
@@ -326,9 +329,9 @@
                 </p>
 
             </div>
-            <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'">
-                <label>Do You Wish To Take a Booking Amount <sup style="color: red;">*</sup>:</label>
-                <div>
+            <div style="margin-top: 18px;" class="booking-amount" *ngIf="postForm.get('transaction').value=='With'">
+                <label>Do You Wish To Take a Booking Amount <sup style="color: red;">*</sup></label>
+                <div style="margin-left: 14px;">
                     <span>
                         <input name="bookingAmount" id="bookingAmount" value="yes" type="radio"
                             formControlName="bookingAmount"
@@ -348,10 +351,10 @@
                     <span>Choose Booking Amount</span>
                 </p>
             </div>
-            <div class="booking-amount"
+            <div style="margin-top: 18px;" class="booking-amount"
                 *ngIf="postForm.get('transaction').value=='With' && postForm.get('bookingAmount').value=='yes'">
-                <label>Booking Charge <sup style="color: red;">*</sup>:</label>
-                <div>
+                <label>Booking Charge <sup style="color: red;">*</sup></label>
+                <div style="margin-left: 14px;">
                     <span>
                         <input name="booking_charge" id="booking_charge_default" value="Default" type="radio"
                             formControlName="booking_charge"
@@ -410,22 +413,24 @@
                     <span>Choose Booking Amount</span>
                 </p>
             </div>
-            <div *ngIf="postForm.get('transaction').value=='With' && postForm.get('booking_charge').value=='Customize'"
+            <div style="margin-top: 18px;"
+                *ngIf="postForm.get('transaction').value=='With' && postForm.get('booking_charge').value=='Customize'"
                 style="position: relative;">
-                <label>Percentage <sup style="color: red;">*</sup>:</label>
-                <div>
+                <label style="margin-left: 0;">Percentage <sup style="color: red;">*</sup></label>
+                <div style="position: relative;">
                     <input type="text" placeholder="Enter Percentage %"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="booking_percentage">
+                    <a style="position: absolute;right: 12px;margin-top: 14px;cursor: pointer;" class="hover-me"><svg
+                            width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.64333 6.02111C9.94444 4.88222 12.0556 4.88222 13.3567 6.02111C14.6589 7.16 14.6589 9.00667 13.3567 10.1456C13.1311 10.3444 12.8789 10.5078 12.6122 10.6367C11.7844 11.0378 11.0011 11.7467 11.0011 12.6667V13.5M21 11C21 12.3132 20.7413 13.6136 20.2388 14.8268C19.7363 16.0401 18.9997 17.1425 18.0711 18.0711C17.1425 18.9997 16.0401 19.7363 14.8268 20.2388C13.6136 20.7413 12.3132 21 11 21C9.68678 21 8.38642 20.7413 7.17317 20.2388C5.95991 19.7363 4.85752 18.9997 3.92893 18.0711C3.00035 17.1425 2.26375 16.0401 1.7612 14.8268C1.25866 13.6136 1 12.3132 1 11C1 8.34784 2.05357 5.8043 3.92893 3.92893C5.8043 2.05357 8.34784 1 11 1C13.6522 1 16.1957 2.05357 18.0711 3.92893C19.9464 5.8043 21 8.34784 21 11ZM11 16.8333H11.0089V16.8422H11V16.8333Z"
+                                stroke="#79879A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="hover-to-show">This calculates percentage to product Value</p>
+                    </a>
                 </div>
-                <a style="position: absolute;right: 12px;margin-top: 14px;cursor: pointer;" class="hover-me"><svg
-                        width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M8.64333 6.02111C9.94444 4.88222 12.0556 4.88222 13.3567 6.02111C14.6589 7.16 14.6589 9.00667 13.3567 10.1456C13.1311 10.3444 12.8789 10.5078 12.6122 10.6367C11.7844 11.0378 11.0011 11.7467 11.0011 12.6667V13.5M21 11C21 12.3132 20.7413 13.6136 20.2388 14.8268C19.7363 16.0401 18.9997 17.1425 18.0711 18.0711C17.1425 18.9997 16.0401 19.7363 14.8268 20.2388C13.6136 20.7413 12.3132 21 11 21C9.68678 21 8.38642 20.7413 7.17317 20.2388C5.95991 19.7363 4.85752 18.9997 3.92893 18.0711C3.00035 17.1425 2.26375 16.0401 1.7612 14.8268C1.25866 13.6136 1 12.3132 1 11C1 8.34784 2.05357 5.8043 3.92893 3.92893C5.8043 2.05357 8.34784 1 11 1C13.6522 1 16.1957 2.05357 18.0711 3.92893C19.9464 5.8043 21 8.34784 21 11ZM11 16.8333H11.0089V16.8422H11V16.8333Z"
-                            stroke="#79879A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <p class="hover-to-show">This calculates percentage to product Value</p>
-                </a>
+
             </div>
             <div class="error-message"
                 *ngIf="postForm.get('transaction').value=='With'&& postForm.get('booking_charge').value=='Customize'">
@@ -436,9 +441,9 @@
                     <span>Enter Only 1 - 100 %</span>
                 </p>
             </div>
-            <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'">
-                <label>Do you wish to sell after live streaming <sup style="color: red;">*</sup>:</label>
-                <div>
+            <div style="margin-top: 18px;" class="booking-amount" *ngIf="postForm.get('transaction').value=='With'">
+                <label>Do you wish to sell after live streaming <sup style="color: red;">*</sup></label>
+                <div style="margin-left: 14px;">
                     <span>
                         <input type="radio" name="afterStreaming" value="yes" id="afterStreaming"
                             formControlName="afterStreaming" (change)="afterStreaming($event)">
@@ -457,8 +462,9 @@
                     <span>Choose after live streaming</span>
                 </p>
             </div>
-            <div *ngIf="postForm.get('afterStreaming')?.value=='yes' && postForm.get('transaction').value=='With'">
-                <label>After Live Streaming <sup style="color: red;">*</sup>:</label>
+            <div style="margin-top: 18px;"
+                *ngIf="postForm.get('afterStreaming')?.value=='yes' && postForm.get('transaction').value=='With'">
+                <label style="margin-left: 0;">After Live Streaming <sup style="color: red;">*</sup></label>
                 <div>
                     <input type="text" placeholder="₹ Enter Price After Live Streaming"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
@@ -474,8 +480,8 @@
             <div class="main-title-post mt-2">
                 <h5>Media</h5>
             </div>
-            <div class="upload-files">
-                <label>Images Upload :</label>
+            <div style="margin-top: 18px;" class="upload-files">
+                <label>Images Upload </label>
                 <div class="choose-file"><label for="image">{{id==null?'Choose Image':'Replace Image'}}</label><input
                         style="display: none;" type="file" id="image" accept="image/png, image/gif, image/jpeg"
                         (change)="change_image($event)" [multiple]="5">
@@ -511,8 +517,8 @@
                 </p>
             </div>
 
-            <div class="upload-files">
-                <label>Teaser Upload :</label>
+            <div style="margin-top: 18px;" class="upload-files">
+                <label>Teaser Upload </label>
                 <div class="choose-file"><label for="video">{{id==null?'Choose Teaser':'Replace Teaser'}}</label>
                     <input style="display: none;" type="file" id="video" (change)="change_video($event)"
                         accept="video/mp4,video/x-m4v,video/*">
@@ -542,8 +548,8 @@
             </div>
             <div class="error-message">
             </div>
-            <div>
-                <label>Description <sup style="color: red;">*</sup>:</label>
+            <div style="margin-top: 18px;">
+                <label>Description <sup style="color: red;">*</sup></label>
                 <textarea placeholder="Enter description" formControlName="discription"
                     (keypress)="maxlengths($event, 250)"></textarea>
             </div>
@@ -559,7 +565,6 @@
     </form>
 </div>
 
-
 <!-- customer Add popup -->
 <div class="popup-1" *ngIf="addPopup">
     <div class="popup-close-1" (click)="disablePopup()"></div>
@@ -569,7 +574,7 @@
         </div>
         <div class="form-popup" [formGroup]="AddProductForm">
             <div>
-                <label>Category :</label>
+                <label>Category </label>
                 <input type="text" placeholder="Enter Category *" formControlName="category" />
             </div>
             <div class="error-message">
@@ -578,7 +583,7 @@
                 </p>
             </div>
             <div>
-                <label>Sub Category :</label>
+                <label>Sub Category </label>
                 <input type="text" placeholder="Enter Sub Category" formControlName="subcategory" />
             </div>
             <div class="error-message">
@@ -587,7 +592,7 @@
                 </p> -->
             </div>
             <div>
-                <label>Product Name :</label>
+                <label>Product Name </label>
                 <input type="text" placeholder="Enter Product Name *" formControlName="productName" />
             </div>
             <div class="error-message">
@@ -596,7 +601,7 @@
                 </p>
             </div>
             <div>
-                <label>Brand Name :</label>
+                <label>Brand Name </label>
                 <input type="text" placeholder="Enter Brand Name" formControlName="brandName" />
             </div>
         </div>
@@ -629,89 +634,89 @@
             <tbody>
                 <tr>
                     <th>Category</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('categoryId')?.value|get_value:category_list:'categoryName':'id'}}</td>
                 </tr>
                 <tr>
                     <th>Product</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('productId')?.value|get_value:productList:'productTitle':'id'}}</td>
                 </tr>
                 <tr>
                     <th>Total no Of units for sale</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('quantity')?.value}} {{postForm.get('unit')?.value}}</td>
                 </tr>
                 <tr
                     *ngIf="postForm.get('unit').value=='Pack' || postForm.get('unit').value=='Box' || postForm.get('unit').value=='Bags'">
                     <th>Define Quantity/Units</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('define_QTY')?.value}} {{postForm.get('define_UNIT')?.value}}</td>
                 </tr>
                 <tr>
                     <th>Dispatched Location </th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('dispatchLocation')?.value}} </td>
                 </tr>
                 <tr>
                     <th>Pack Description </th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('pack_discription')?.value}} </td>
                 </tr>
                 <tr>
                     <th>Transaction</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('transaction')?.value}}</td>
                 </tr>
                 <tr *ngIf="postForm.get('transaction').value=='With'">
                     <th>Minimum Lots</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('minLots')?.value}}</td>
                 </tr>
                 <tr *ngIf="postForm.get('transaction').value=='With'">
                     <th>Incremental Lots</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('incrementalLots')?.value}}</td>
                 </tr>
                 <tr>
                     <th>Market Price</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('marketPlace')?.value}}</td>
                 </tr>
                 <tr>
                     <th>Offer Price </th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('offerPrice')?.value}}</td>
                 </tr>
                 <tr *ngIf="postForm.get('transaction').value=='With'">
                     <th>Booking Amount </th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('bookingAmount')?.value}}</td>
                 </tr>
                 <tr *ngIf="postForm.get('transaction').value=='With' && postForm.get('bookingAmount').value=='yes'">
                     <th>Booking Charge</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('booking_charge')?.value}}</td>
                 </tr>
                 <tr
                     *ngIf="postForm.get('transaction').value=='With' && postForm.get('booking_charge').value=='Customize'">
                     <th>Percentage</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('booking_percentage')?.value}}</td>
                 </tr>
                 <tr *ngIf="postForm.get('transaction').value=='With'">
                     <th>After live streaming</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('afterStreaming')?.value}}</td>
                 </tr>
                 <tr *ngIf="postForm.get('afterStreaming')?.value=='yes' && postForm.get('transaction').value=='With'">
                     <th>After Live Streaming Price</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('postLiveStreamingPirce')?.value}}</td>
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td>:</td>
+                    <td></td>
                     <td>{{postForm.get('discription')?.value}}</td>
                 </tr>
             </tbody>
