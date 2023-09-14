@@ -17,7 +17,7 @@ import { HttploadersComponent } from './httploaders/httploaders.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-// import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core'
 
 
 @NgModule({
@@ -38,7 +38,6 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     RouterModule,
     HttpClientModule,
     NgxDaterangepickerMd.forRoot(),
-  
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     GooglePlaceModule,

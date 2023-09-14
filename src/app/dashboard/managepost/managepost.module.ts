@@ -9,9 +9,6 @@ import { CommommoduleModule } from 'src/app/commen/commommodule.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 // import { AgmCoreModule } from '@agm/core';
-
-
-
 @NgModule({
   declarations: [
     ManagepostComponent,
