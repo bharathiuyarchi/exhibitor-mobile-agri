@@ -17,7 +17,7 @@ import { HttploadersComponent } from './httploaders/httploaders.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-// import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule } from '@agm/core'
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     AppComponent,
     Error404Component,
     HttploadersComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -41,10 +41,9 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     GooglePlaceModule,
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyARM6-Qr_hsR53GExv9Gmu9EtFTV5ZuDX4',
-    //   libraries: ['places']
-    // }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyARM6-Qr_hsR53GExv9Gmu9EtFTV5ZuDX4',
+    }),
 
 
   ],
