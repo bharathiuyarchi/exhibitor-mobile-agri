@@ -124,13 +124,13 @@
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('category')?.invalid">Select Category Type !</label>
         </div>
-        <div class="form-row">
+        <!-- <div class="form-row">
           <label for="Address">Address<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
         </div>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('address')?.invalid">Enter Address !</label>
-        </div>
+        </div> -->
         <div class="form-row">
           <label for="Country">Country<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Country" placeholder="Enter Country" formControlName="country" />
@@ -153,18 +153,32 @@
           <label *ngIf="submitted && registerForm.get('city')?.invalid">Enter City !</label>
         </div>
         <div class="form-row">
+          <label for="Address">Address<sup style="color: red;">*</sup> : </label>
+          <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
+        </div>
+        <div class="form-error">
+          <label *ngIf="submitted && registerForm.get('address')?.invalid">Enter Address !</label>
+        </div>
+        <div class="form-row">
           <label for="Pincode">Pincode<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Pincode" placeholder="Enter Pincode" formControlName="Pincode"
             (keypress)="only_ten_degist($event, 5)"
             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" minlength="6"
             maxlength="6" />
         </div>
+
         <div class="form-error">
           <label *ngIf="submitted && loginerror.Pincode.errors?.['required']">Enter Pincode !</label>
           <label
             *ngIf="submitted && (loginerror.Pincode.errors?.['maxLength'] || loginerror.Pincode.errors?.['minLength'])">Enter
             Valid Pincode !</label>
           <label *ngIf="submitted && loginerror.Pincode.errors?.['pattern']">Enter Valid Pincode !</label>
+        </div>
+        <div class="form-row">
+          <label for="City">GST Number : </label>
+          <input type="text" name="" id="GST_Number" placeholder="Enter GST Number" formControlName="GST_Number" />
+        </div>
+        <div class="form-error">
         </div>
         <div class="form-row">
           <label for="City">How did you know us?<sup style="color: red;">*</sup> : </label>

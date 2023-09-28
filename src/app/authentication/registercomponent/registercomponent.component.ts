@@ -107,7 +107,10 @@ export class RegistercomponentComponent implements OnInit {
       Validators.minLength(10),
       Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
     ]),
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    email: new FormControl(
+      "",
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+    ),
     address: new FormControl(null, [Validators.required]),
     country: new FormControl(null, [Validators.required]),
     state: new FormControl(null, [Validators.required]),
@@ -118,6 +121,7 @@ export class RegistercomponentComponent implements OnInit {
       Validators.minLength(6),
       Validators.pattern("^((\\+91-?)|0)?[0-9]{6}$"),
     ]),
+    GST_Number: new FormControl(),
   });
   get loginerror(): any {
     return this.registerForm.controls;
@@ -126,7 +130,6 @@ export class RegistercomponentComponent implements OnInit {
     return this.number.number_service(event, num);
   }
   change_category(e: any) {
-    // let oldpost = this.id == null ? 0 : this.stepOne.post.length;
     let post: any = [];
     if (this.registerForm.get("category")?.value != null) {
       post = this.registerForm.get("category")?.value;
@@ -135,18 +138,9 @@ export class RegistercomponentComponent implements OnInit {
     if (index != -1) {
       post.splice(index, 1);
     } else {
-      // if (this.selectPlan.max_post_per_stream <= post.length + oldpost) {
-      //   $(event.target).prop("checked", false);
-      // } else {
       post.push(e.target.value);
-      // }
     }
-    console.log(post);
-    // if (this.selectPlan.max_post_per_stream <= post.length + oldpost) {
-    //   $("input[type='checkbox']").not(":checked").prop("disabled", true);
-    // } else {
-    //   $("input[type='checkbox']").not(":checked").prop("disabled", false);
-    // }
+
     this.registerForm.get("category")?.setValue(post);
   }
 
