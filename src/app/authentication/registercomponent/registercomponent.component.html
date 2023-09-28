@@ -24,7 +24,7 @@
     <form (submit)="login_now()" [formGroup]="registerForm">
       <div class="form">
         <div class="form-row">
-          <label for="Trade-Name">Name : </label>
+          <label for="Trade-Name">Name <sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Trade-Name" placeholder="Enter Name" formControlName="tradeName" />
         </div>
         <div class="form-error">
@@ -35,11 +35,12 @@
           <input type="email" name="" id="Email-ID" placeholder="Enter Email ID" formControlName="email" />
         </div>
         <div class="form-error">
-          <label *ngIf="submitted && loginerror.email.errors?.['required']">Enter Email ID !</label>
-          <label *ngIf="submitted && loginerror.email.errors?.['email']">Enter Valid Email !</label>
+          <!-- <label *ngIf="submitted && loginerror.email.errors?.['required']">Enter Email ID !</label>
+          <label *ngIf="submitted && loginerror.email.errors?.['email']">Enter Valid Email !</label> -->
+          <label *ngIf="submitted && loginerror.email.errors?.['pattern']">Enter Valid Email !</label>
         </div>
         <div class="form-row">
-          <label for="Mobile-Number">Mobile Number : </label>
+          <label for="Mobile-Number">Mobile Number<sup style="color: red;">*</sup> : </label>
           <input type="number" name="" id="Mobile-Number" placeholder="Enter Mobile Number"
             formControlName="mobileNumber" (keypress)="only_ten_degist($event, 9)"
             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" />
@@ -52,15 +53,20 @@
           <label *ngIf="submitted && loginerror.mobileNumber.errors?.['pattern']">Enter Valid Mobile Number !</label>
         </div>
         <div class="form-row">
-          <label for="Business-Type">Company Name : </label>
+          <label for="Business-Type">Company Name<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Business-Type" placeholder="Enter Company Name"
             formControlName="companyName" />
         </div>
+        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="If you are an individual Enter Name"
+          style="position: absolute; right: 5%;top: 453px; font-size: 20px;cursor: pointer;">
+          <!-- <button style="pointer-events: none;" type="button" disabled>Disabled button</button> -->
+          <i class="fa fa-question-circle" aria-hidden="true" style="pointer-events: none;"></i>
+        </span>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('companyName')?.invalid">Enter Company Type !</label>
         </div>
         <div class="form-row">
-          <label for="Business-Type">Designation : </label>
+          <label for="Business-Type">Designation<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Business-Type" placeholder="Enter Designation" formControlName="Designation" />
         </div>
         <div class="form-error">
@@ -74,8 +80,8 @@
           <label *ngIf="submitted && registerForm.get('webSite')?.invalid">Enter Website Type !</label>
         </div>
         <div class="form-row">
-          <label for="Business-Type">Category : </label>
-          <select formControlName="category" name="" id="" style="
+          <label for="Business-Type">Category<sup style="color: red;">*</sup> : </label>
+          <!-- <select formControlName="category" name="" id="" style="
                     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
                     border: none;
                     padding: 7px 12px;
@@ -85,41 +91,69 @@
             <option [value]="cat" *ngFor="let cat of category">
               {{ cat }}
             </option>
-          </select>
+          </select> -->
+          <span class="field_value">
+            <div class="dropdown" onclick="event.stopPropagation()">
+              <div type="text" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Select Post">
+                <div class="show_select_post">
+                  <span
+                    style="width: 100%;display: flex;align-items: center;margin-left: 0px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);border: none;padding: 7px 12px;cursor: pointer;"
+                    *ngIf="registerForm.get('category')?.invalid">Select Category</span>
+                  <span class="field_values"
+                    style="max-width: 90%;margin: auto;padding: 10px 0px; position: relative; z-index: -1000000000000000;">
+                    <!-- <p *ngFor="let item of registerForm.get('category')?.value">
+                      {{show_selected_post(item)}}</p> -->
+                    <ng-container>
+                      <p style="background-color: #cec3c3; padding: 10px;"
+                        *ngFor="let item of registerForm.get('category')?.value">
+                        {{show_selected_post(item)}}</p>
+                    </ng-container>
+                  </span>
+                </div>
+              </div>
+              <ul class="dropdown-menu" style="max-height: 447px;overflow: auto;">
+                <li *ngFor="let cat of category; let i = index" id="check" class="dropdown-item">
+                  <label [for]="cat"><input type="checkbox" (change)="change_category($event)" value="{{cat}}"
+                      [id]="cat" />
+                    <span>{{cat}}</span></label>
+                </li>
+              </ul>
+            </div>
+          </span>
         </div>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('category')?.invalid">Select Category Type !</label>
         </div>
         <div class="form-row">
-          <label for="Address">Address : </label>
+          <label for="Address">Address<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
         </div>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('address')?.invalid">Enter Address !</label>
         </div>
         <div class="form-row">
-          <label for="Country">Country : </label>
+          <label for="Country">Country<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Country" placeholder="Enter Country" formControlName="country" />
         </div>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('country')?.invalid">Enter Country !</label>
         </div>
         <div class="form-row">
-          <label for="State">State : </label>
+          <label for="State">State<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="State" placeholder="Enter State" formControlName="state" />
         </div>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('state')?.invalid">Enter State !</label>
         </div>
         <div class="form-row">
-          <label for="City">City : </label>
+          <label for="City">City<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="City" placeholder="Enter City" formControlName="city" />
         </div>
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('city')?.invalid">Enter City !</label>
         </div>
         <div class="form-row">
-          <label for="Pincode">Pincode : </label>
+          <label for="Pincode">Pincode<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Pincode" placeholder="Enter Pincode" formControlName="Pincode"
             (keypress)="only_ten_degist($event, 5)"
             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" minlength="6"
@@ -133,7 +167,7 @@
           <label *ngIf="submitted && loginerror.Pincode.errors?.['pattern']">Enter Valid Pincode !</label>
         </div>
         <div class="form-row">
-          <label for="City">How did you know us? : </label>
+          <label for="City">How did you know us?<sup style="color: red;">*</sup> : </label>
           <select name="" id="" formControlName="how_did_you_know_us" style="
                     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
                     border: none;
@@ -152,8 +186,8 @@
           <input type="checkbox" (change)="changecheck($event)" [value]="terms?'No':'Yes'">
           <p style="font-size: 10px; padding-left: 10px;">
             By clicking Register, you agree to the
-            <a style="font-size: 10px;" href="https://agriexpo.live/terms-and-conditions/">Terms and Conditions</a>
-            & <a style="font-size: 10px;" href="https://agriexpo.live/privacy-policy/">Privacy Policy</a> of
+            <a style="font-size: 10px;" href="https://agriexpo.live/terms-and-conditions/" target="_blank">Terms and Conditions</a>
+            & <a style="font-size: 10px;" href="https://agriexpo.live/privacy-policy/" target="_blank">Privacy Policy</a> of
             agriexpo.live
           </p>
         </div>

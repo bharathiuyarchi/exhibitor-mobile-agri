@@ -99,7 +99,7 @@ export class RegistercomponentComponent implements OnInit {
     companyName: new FormControl(null, Validators.required),
     Designation: new FormControl(null, Validators.required),
     webSite: new FormControl(null, Validators.required),
-    category: new FormControl(null, Validators.required),
+    category: new FormControl([], Validators.required),
     how_did_you_know_us: new FormControl(null, Validators.required),
     mobileNumber: new FormControl(null, [
       Validators.required,
@@ -124,5 +124,40 @@ export class RegistercomponentComponent implements OnInit {
   }
   only_ten_degist(event: any, num: any) {
     return this.number.number_service(event, num);
+  }
+  change_category(e: any) {
+    // let oldpost = this.id == null ? 0 : this.stepOne.post.length;
+    let post: any = [];
+    if (this.registerForm.get("category")?.value != null) {
+      post = this.registerForm.get("category")?.value;
+    }
+    let index = post.findIndex((a: any) => a == e.target.value);
+    if (index != -1) {
+      post.splice(index, 1);
+    } else {
+      // if (this.selectPlan.max_post_per_stream <= post.length + oldpost) {
+      //   $(event.target).prop("checked", false);
+      // } else {
+      post.push(e.target.value);
+      // }
+    }
+    console.log(post);
+    // if (this.selectPlan.max_post_per_stream <= post.length + oldpost) {
+    //   $("input[type='checkbox']").not(":checked").prop("disabled", true);
+    // } else {
+    //   $("input[type='checkbox']").not(":checked").prop("disabled", false);
+    // }
+    this.registerForm.get("category")?.setValue(post);
+  }
+
+  show_selected_post(item: any) {
+    console.log("show_selected_post", item);
+    let postIndex = this.category.findIndex((a: any) => a == item);
+    console.log(postIndex);
+    if (postIndex != -1) {
+      return item;
+    } else {
+      return "sdajks";
+    }
   }
 }
