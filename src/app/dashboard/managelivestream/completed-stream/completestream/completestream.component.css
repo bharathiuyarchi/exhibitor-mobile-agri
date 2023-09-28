@@ -1,0 +1,26 @@
+
+table  .tb-heading {
+    font-weight: 500;
+    /* background-color: var(--blue); */
+    color: white;
+    background-color: green;
+    border: none!important;
+
+  }
+  
+  table  .tb-heading  th {
+    font-size: 16px;
+    border-right: none!important;
+  }
+  
+  table  tr  td {
+    height: 50px;
+    padding-left: 20px;
+    border-bottom: solid rgba(128, 128, 128, 0.25) 1px;
+  }
+  .table_all_orders th{
+    font-size: 13px!important;
+  }
+.table_all_orders td{
+  font-size: 12px;
+}

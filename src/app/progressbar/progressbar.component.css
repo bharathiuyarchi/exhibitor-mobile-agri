@@ -1,0 +1,23 @@
+.loader-page {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #808080a6;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-load {
+    width: 200px;
+}
+.progress-load p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 9px;
+    color: white;
+}

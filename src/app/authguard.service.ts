@@ -75,6 +75,8 @@ export class AuthService implements CanActivate {
   logout() {
     localStorage.removeItem('sellerAuth');
     location.href = '/login'
+    // location.href = '/login'
+    // this.router.navigate(['./login'], { replaceUrl: true });
 
   }
 

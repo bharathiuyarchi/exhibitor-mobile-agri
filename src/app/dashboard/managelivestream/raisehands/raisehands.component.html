@@ -4,7 +4,7 @@
         <div class="close-icon">
             <button (click)="close_raise()">X</button>
         </div>
-        <p>Do You Want To Turn Off Raise hands</p>
+        <p>Do You Want To Turn  {{raise_hand_option.value?'Off':'On'}} Raise hands</p>
         <label class="switch">
             <input class="switch-input" value="true" name="raise_hand_option" type="checkbox"
                 (change)="raise_hand_action($event)" [formControl]="raise_hand_option" />

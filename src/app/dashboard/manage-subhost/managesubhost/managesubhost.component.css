@@ -74,3 +74,6 @@ border-bottom: 1px solid #E7E9ED;
     align-items: center;
     justify-content: space-between;
 }
+.disable-svg{   
+    opacity: 0.4;
+}

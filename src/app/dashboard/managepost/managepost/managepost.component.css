@@ -38,7 +38,9 @@ nav div {
   margin-left: 5px !important;
   color: var(--blue);
 }
-
+.disable-svg{   
+    opacity: 0.4;
+}
 
 .view-icons span {
   width: auto !important;
@@ -67,6 +69,17 @@ nav div {
 
 .products div span:first-child {
   width: 150px;
+ 
+}
+.category{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.products div span:first-child p{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .date,

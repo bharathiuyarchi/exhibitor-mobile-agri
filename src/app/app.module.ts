@@ -16,6 +16,8 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { HttploadersComponent } from './httploaders/httploaders.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { AgmCoreModule } from '@agm/core'
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     Error404Component,
     HttploadersComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -36,9 +38,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     HttpClientModule,
     NgxDaterangepickerMd.forRoot(),
-  
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    GooglePlaceModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyARM6-Qr_hsR53GExv9Gmu9EtFTV5ZuDX4',
+    }),
+
 
   ],
   providers: [AuthenticationModule, CommommoduleModule,

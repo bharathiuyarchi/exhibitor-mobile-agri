@@ -34,7 +34,7 @@ export class VerifyotpComponent implements OnInit {
           console.log(res);
           localStorage.removeItem("mobileNumber");
           localStorage.setItem("verifiedAccount", res.access.token);
-          this.router.navigate(["setpassword"]);
+          this.router.navigate(["setpassword"], { replaceUrl: true });
         },
         (error) => {
           this.errorMessage = error.error.message;

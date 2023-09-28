@@ -13,7 +13,8 @@ export class SocketioService {
   // private url = "http://localhost:3000"; // your server local path
 
   constructor() {
-    this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'] });
+    const isLoggedIn = localStorage.getItem('sellerAuth');
+    this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'], auth: { token: isLoggedIn } });
   }
   getMessage_new(): Observable<any> {
     return new Observable<any>(observer => {
@@ -238,4 +239,20 @@ export class SocketioService {
       }
     });
   }
+
+  get_already_jion(key: any): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(key, (data: any) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    });
+  }
+
+  same_user_jion_exhibitor(data: any) {
+    return this.socket.emit('same_user_jion_exhibitor', data);
+  }
+
 }

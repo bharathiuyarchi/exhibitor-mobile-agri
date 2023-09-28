@@ -16,7 +16,8 @@ const routes: Routes = [
       { path: "", component: ManagelivestreamComponent, canActivate: [AuthService] },
       { path: "settime", component: SetTimeComponent, canActivate: [AuthService] },
       { path: "assignhost", component: AssignHostComponent, canActivate: [AuthService] },
-      { path: "golive", component: GolivestreamComponent, canActivate: [AuthService],canDeactivate:[PendingChangesGuard] },
+      { path: "golive", component: GolivestreamComponent, canActivate: [AuthService], canDeactivate: [PendingChangesGuard] },
+      { path: "completed", loadChildren: () => import("./completed-stream/completed-stream.module").then((m) => m.CompletedStreamModule) },
       { path: "chatnow/:id", loadChildren: () => import("../../livechat/livechat.module").then((m) => m.LivechatModule) },
     ]
   }

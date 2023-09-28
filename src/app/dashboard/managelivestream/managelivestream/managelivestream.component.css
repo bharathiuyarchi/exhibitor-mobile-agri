@@ -1,4 +1,3 @@
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -44,6 +43,7 @@ nav div {
 .products {
     padding: 10px;
     border-bottom: 1px solid #E7E9ED;
+    position: relative;
 }
 
 .products p {
@@ -141,4 +141,136 @@ sub {
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
+}
+
+
+/* popup */
+.popup-container {
+    background-color: white;
+    width: 500px;
+    max-width: 500px;
+    padding-bottom: 10px;
+    height: 80%;
+    overflow: auto;
+}
+
+.popup-container ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 0;
+    justify-content: space-between;
+    padding-bottom: 0 !important;
+    position: sticky;
+    top: 0;
+    z-index: 10000000000;
+    background: white;
+}
+
+.popup-container ul li {
+    width: 25%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.active {
+    color: var(--blue);
+}
+
+.popup-container .details {
+    width: 95%;
+    margin: auto !important;
+}
+
+.popup-container .images,
+.teaser {
+    width: 95%;
+    margin: auto;
+}
+
+.teaser video {
+    width: 100%;
+}
+
+.popup-container .details div {
+    display: flex;
+    margin: 10px 0;
+}
+
+.popup-container .details div label {
+    min-width: 40%;
+}
+
+.popup-container .details div p {
+    max-width: 60%;
+}
+
+.carousel-indicators button {
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+}
+
+.post-conatiner {
+    /* max-height: 350px; */
+    overflow-y: scroll;
+}
+
+.post {
+    padding: 5px 0;
+    border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
+    border-top: solid rgba(0, 0, 0, 0.2) 1px;
+
+}
+
+/* .details tr {} */
+
+.post div {
+    display: flex;
+    padding: 3px 0;
+    width: 95%;
+    margin: auto;
+}
+
+.post div span {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+}
+
+.product-name {
+    font-size: 14px !important;
+}
+
+.post div span p {
+    font-size: 12px;
+
+}
+
+.post div svg {
+    margin-right: 5px;
+}
+
+.popup-title {
+    color: var(--blue);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-product_view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.view-icons a,
+.view-icons button {
+    z-index: 1000;
 }

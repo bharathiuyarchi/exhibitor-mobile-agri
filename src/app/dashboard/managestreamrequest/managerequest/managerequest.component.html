@@ -23,6 +23,8 @@
     </nav>
     <div class="products-container">
         <div class="products" *ngFor="let item of myrequest; index as i">
+            <div class="view-product_view" (click)="view_request('Content',item)">
+            </div>
             <div class="row-one">
                 <span class="subcategory">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +45,7 @@
                             d="M7.72877 6.72545C7.17762 6.84236 6.74756 7.37681 6.74756 7.94466C6.74756 8.61689 7.32793 9.19727 8.00017 9.19727C8.57428 9.19727 9.10246 8.7672 9.22146 8.20562C9.31123 7.77973 9.19015 7.37681 8.87908 7.06574C8.56593 6.75468 8.15674 6.63359 7.72877 6.72545Z"
                             fill="white" />
                     </svg>
-                    <p>{{item.streamName}}</p>
+                    <p class="strean-name">{{item.streamName}}</p>
                 </span>
                 <p class="quantity">
                     {{item.quantity}}
@@ -113,7 +115,7 @@
                         <span style="color:orange;font-weight:bold">Time Out</span>
                     </ng-container>
                 </span>
-                <p class="price">
+                <p class="price" style="display: flex;">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#BCC3CC" stroke="#BCC3CC" />
                         <g clip-path="url(#clip0_29_8357)">
@@ -131,7 +133,6 @@
                         </defs>
                     </svg>
                     <span style="font-size: 12px;">{{item.adminApprove}}</span>
-                    <!-- {{item.offerPrice|currency:'INR'}}/<sub class="striked">{{item.marketPlace|currency:'INR'}}</sub> -->
                 </p>
                 <div class="view-icons">
                     <button class="cancel-btn" (click)="cancel_stream(item)"
@@ -148,230 +149,246 @@
             </div>
         </div>
     </div>
+    <div class="pagenation">
+        <button class="prev page-btn" [disabled]="page==0" (click)="pagination('prev')"
+            [ngClass]="page==0?'disable-svg':''">
+            <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M11.58 0.460035C11.8557 0.746552 12.0063 1.13079 11.9988 1.52831C11.9913 1.92584 11.8263 2.30412 11.54 2.58003L3.66401 10L11.54 17.42C11.6887 17.5549 11.8088 17.7183 11.8932 17.9004C11.9776 18.0825 12.0246 18.2798 12.0314 18.4804C12.0382 18.681 12.0046 18.881 11.9327 19.0684C11.8608 19.2558 11.752 19.4269 11.6127 19.5715C11.4735 19.7161 11.3066 19.8313 11.122 19.9102C10.9375 19.9892 10.7389 20.0303 10.5382 20.031C10.3374 20.0318 10.1386 19.9923 9.95336 19.9149C9.76816 19.8374 9.6004 19.7235 9.46001 19.58L0.460015 11.08C0.314842 10.9401 0.199369 10.7724 0.120498 10.5868C0.0416265 10.4012 0.000976562 10.2017 0.000976562 10C0.000976562 9.7984 0.0416265 9.59884 0.120498 9.41328C0.199369 9.22772 0.314842 9.05996 0.460015 8.92003L9.46001 0.420035C9.74653 0.144374 10.1308 -0.00625661 10.5283 0.00124382C10.9258 0.00874426 11.3041 0.173762 11.58 0.460035Z"
+                    fill="var(--green)" />
+            </svg>
+
+        </button>
+        <p class="page-no">{{page+1}}</p>
+        <button class="prev page-btn" [disabled]="!next" (click)="pagination('next')"
+            [ngClass]="!next?'disable-svg':''">
+            <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1.41998 20.54C1.14432 20.2534 0.993693 19.8692 1.00119 19.4717C1.00869 19.0742 1.17371 18.6959 1.45998 18.42L9.33598 11L1.45998 3.57997C1.31129 3.44509 1.19119 3.28175 1.10679 3.0996C1.02239 2.91746 0.975403 2.72023 0.968624 2.5196C0.961846 2.31897 0.995409 2.11901 1.06732 1.93159C1.13924 1.74417 1.24804 1.57308 1.38729 1.42848C1.52654 1.28388 1.69339 1.1687 1.87797 1.08977C2.06254 1.01083 2.26109 0.96975 2.46183 0.968957C2.66258 0.968163 2.86144 1.00767 3.04664 1.08514C3.23183 1.16261 3.3996 1.27647 3.53998 1.41997L12.54 9.91997C12.6852 10.0599 12.8006 10.2276 12.8795 10.4132C12.9584 10.5988 12.999 10.7983 12.999 11C12.999 11.2016 12.9584 11.4012 12.8795 11.5867C12.8006 11.7723 12.6852 11.94 12.54 12.08L3.53999 20.58C3.25347 20.8556 2.86923 21.0063 2.47171 20.9988C2.07418 20.9913 1.6959 20.8262 1.41998 20.54Z"
+                    fill="var(--green)" />
+            </svg>
+
+        </button>
 </div>
 
-<ng-container *ngIf="true">
-    <div class="popup" *ngIf="view_details !=null">
-        <div class="dummy" (click)="close_popup()"></div>
-        <div class="popup-container">
-            <a class="popupclose" (click)="close_popup()">x</a>
+<div class="popup" *ngIf="view_details !=null">
+    <div class="dummy" (click)="close_popup()"></div>
+    <div class="popup-container">
+        <a class="popupclose" (click)="close_popup()">x</a>
 
-            <ul>
-                <li style="border-right: 1px solid gray;border-left: 1px solid gray;"
-                    [ngClass]="view_details_type=='Content'?'active':''" (click)="view_details_type_action('Content')">
-                    Details
-                </li>
-                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Images'?'active':''"
-                    (click)="view_details_type_action('Images')">
-                    Images
-                </li>
-                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Teaser'?'active':''"
-                    (click)="view_details_type_action('Teaser')">
-                    Teaser
-                </li>
-                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Post'?'active':''"
-                    (click)="view_details_type_action('Post')">Post
-                </li>
-                <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Plan'?'active':''"
-                    (click)="view_details_type_action('Plan')">Plan
-                </li>
-            </ul>
+        <ul>
+            <li style="border-right: 1px solid gray;border-left: 1px solid gray;"
+                [ngClass]="view_details_type=='Content'?'active':''" (click)="view_details_type_action('Content')">
+                Details
+            </li>
+            <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Images'?'active':''"
+                (click)="view_details_type_action('Images')">
+                Images
+            </li>
+            <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Teaser'?'active':''"
+                (click)="view_details_type_action('Teaser')">
+                Teaser
+            </li>
+            <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Post'?'active':''"
+                (click)="view_details_type_action('Post')">Post
+            </li>
+            <li style="border-right: 1px solid gray;" [ngClass]="view_details_type=='Plan'?'active':''"
+                (click)="view_details_type_action('Plan')">Plan
+            </li>
+        </ul>
 
-            <!-- details -->
-            <div class="details" *ngIf="view_details_type=='Content'">
-                <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
-                    <tbody>
-                        <tr>
-                            <td>Stream Name</td>
-                            <td>:</td>
-                            <td>{{view_details.streamName}}</td>
-                        </tr>
-                        <tr>
-                            <td>Post Count</td>
-                            <td>:</td>
-                            <td>{{view_details.post.length}}</td>
-                        </tr>
-                        <tr *ngIf="view_details.bookingAmount_contion =='yes'">
-                            <td>Booking Amount</td>
-                            <td>:</td>
-                            <td>{{view_details.bookingAmount}}</td>
-                        </tr>
-                        <tr>
-                            <td>Primary Communication</td>
-                            <td>:</td>
-                            <td>{{view_details.primarycommunication}}</td>
-                        </tr>
-                        <tr>
-                            <td>Streaming Date & Time</td>
-                            <td>:</td>
-                            <td>{{view_details.startTime | date:"dd-MM-yyyy"}} - {{view_details.startTime |
-                                date:"hh:mm a"}}</td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>:</td>
-                            <td style="overflow-wrap: anywhere;">{{view_details.discription}}</td>
-                        </tr>
-                        <!-- <tr>
+        <!-- details -->
+        <div class="details" *ngIf="view_details_type=='Content'">
+            <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
+                <tbody>
+                    <tr>
+                        <td>Stream Name</td>
+                        <td>:</td>
+                        <td>{{view_details.streamName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Post Count</td>
+                        <td>:</td>
+                        <td>{{view_details.post.length}}</td>
+                    </tr>
+                    <tr *ngIf="view_details.bookingAmount_contion =='yes'">
+                        <td>Booking Amount</td>
+                        <td>:</td>
+                        <td>{{view_details.bookingAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Communication</td>
+                        <td>:</td>
+                        <td>{{view_details.primarycommunication}}</td>
+                    </tr>
+                    <tr>
+                        <td>Streaming Date & Time</td>
+                        <td>:</td>
+                        <td>{{view_details.startTime | date:"dd-MM-yyyy"}} - {{view_details.startTime |
+                            date:"hh:mm a"}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>:</td>
+                        <td style="overflow-wrap: anywhere;">{{view_details.discription}}</td>
+                    </tr>
+                    <!-- <tr>
                             <td>Chat </td>
                             <td>:</td>
                             <td style="overflow-wrap: anywhere;text-transform: capitalize;">
                                 {{view_details.chat_need}}</td>
                         </tr> -->
-                    </tbody>
-                </table>
-            </div>
-            <div class="details" *ngIf="view_details_type=='Plan'">
-                <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
-                    <tbody>
-                        <tr>
-                            <td>Plan Name</td>
-                            <td>:</td>
-                            <td>{{view_details.planNmae}}</td>
-                        </tr>
-                        <tr>
-                            <td>Duration</td>
-                            <td>:</td>
-                            <td>{{view_details.Duration}} mins</td>
-                        </tr>
-                        <tr>
-                            <td>Slot Type</td>
-                            <td>:</td>
-                            <td>{{view_details.slotType}}</td>
-                        </tr>
-                        <tr>
-                            <td>Raise Hands</td>
-                            <td>:</td>
-                            <td style="text-transform: capitalize;">{{view_details.purchasedplans.RaiseHands}}</td>
-                        </tr>
-                        <tr>
-                            <td>Chat</td>
-                            <td>:</td>
-                            <td style="text-transform: capitalize;">{{view_details.purchasedplans.chat_Option}}</td>
-                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="details" *ngIf="view_details_type=='Plan'">
+            <table class="table table-borderless" style="box-shadow: 0 0 0 white;">
+                <tbody>
+                    <tr>
+                        <td>Plan Name</td>
+                        <td>:</td>
+                        <td>{{view_details.planNmae}}</td>
+                    </tr>
+                    <tr>
+                        <td>Duration</td>
+                        <td>:</td>
+                        <td>{{view_details.Duration}} mins</td>
+                    </tr>
+                    <tr>
+                        <td>Slot Type</td>
+                        <td>:</td>
+                        <td>{{view_details.slotType}}</td>
+                    </tr>
+                    <tr>
+                        <td>Raise Hands</td>
+                        <td>:</td>
+                        <td style="text-transform: capitalize;">{{view_details.purchasedplans.RaiseHands}}</td>
+                    </tr>
+                    <tr>
+                        <td>Chat</td>
+                        <td>:</td>
+                        <td style="text-transform: capitalize;">{{view_details.purchasedplans.chat_Option}}</td>
+                    </tr>
 
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="images" *ngIf="view_details_type=='Images'">
-                <img src="{{baseURL+'/'+view_details.image}}" alt="" style="width: 100%;    height: 300px;">
-            </div>
+        <div class="images" *ngIf="view_details_type=='Images'">
+            <img src="{{baseURL+'/'+view_details.image}}" alt="" style="width: 100%;    height: 300px;">
+        </div>
 
-            <!-- teaser -->
-            <div class="teaser" *ngIf="view_details_type=='Teaser'">
-                <video *ngIf="view_details.video !=null" src="{{view_details.teaser}}" controls
-                    style="width: 100%;height: 300px;"></video>
-            </div>
+        <!-- teaser -->
+        <div class="teaser" *ngIf="view_details_type=='Teaser'">
+            <video *ngIf="view_details.video !=null" src="{{view_details.teaser}}" controls
+                style="width: 100%;height: 300px;"></video>
+        </div>
 
-            <!-- post -->
-            <div class="post-conatiner" *ngIf="view_details_type=='Post'">
-                <div class="post" *ngFor="let item of view_details.streamrequestposts;index as i">
-                    <div><span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1.40674" y="0.848633" width="21.3256" height="21.3256" rx="10.6628"
-                                    fill="#BCC3CC" stroke="#BCC3CC" />
-                                <mask id="path-2-inside-1_11_9817" fill="white">
-                                    <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" />
-                                </mask>
-                                <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" stroke="white"
-                                    stroke-width="1.4" mask="url(#path-2-inside-1_11_9817)" />
-                                <mask id="path-3-inside-2_11_9817" fill="white">
-                                    <rect x="5.96484" y="9.06885" width="12.2093" height="9.4186" rx="0.5" />
-                                </mask>
-                                <rect x="5.96484" y="9.06885" width="12.2093" height="9.4186" rx="0.5" stroke="white"
-                                    stroke-width="1.4" mask="url(#path-3-inside-2_11_9817)" />
-                                <rect x="13.3941" y="6.27969" width="5.51565" height="2.78837"
-                                    transform="rotate(90 13.3941 6.27969)" fill="#BCC3CC" stroke="white"
-                                    stroke-width="0.7" />
-                            </svg>
-                            <p class="product-name">{{item.productTitle}}</p>
-                        </span>
+        <!-- post -->
+        <div class="post-conatiner" *ngIf="view_details_type=='Post'">
+            <div class="post" *ngFor="let item of view_details.streamrequestposts;index as i">
+                <div><span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.40674" y="0.848633" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
+                                stroke="#BCC3CC" />
+                            <mask id="path-2-inside-1_11_9817" fill="white">
+                                <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" />
+                            </mask>
+                            <rect x="5.09277" y="5.92969" width="13.9535" height="3.92442" rx="0.5" stroke="white"
+                                stroke-width="1.4" mask="url(#path-2-inside-1_11_9817)" />
+                            <mask id="path-3-inside-2_11_9817" fill="white">
+                                <rect x="5.96484" y="9.06885" width="12.2093" height="9.4186" rx="0.5" />
+                            </mask>
+                            <rect x="5.96484" y="9.06885" width="12.2093" height="9.4186" rx="0.5" stroke="white"
+                                stroke-width="1.4" mask="url(#path-3-inside-2_11_9817)" />
+                            <rect x="13.3941" y="6.27969" width="5.51565" height="2.78837"
+                                transform="rotate(90 13.3941 6.27969)" fill="#BCC3CC" stroke="white"
+                                stroke-width="0.7" />
+                        </svg>
+                        <p class="product-name">{{item.productTitle}}</p>
+                    </span>
 
-                        <span>
-                            <p>{{item.offerPrice|currency:"INR"}}</p>/<sub
-                                style="text-decoration: line-through;">{{item.marketPlace|currency:'INR'}}</sub>
-                        </span>
+                    <span>
+                        <p>{{item.offerPrice|currency:"INR"}}</p>/<sub
+                            style="text-decoration: line-through;">{{item.marketPlace|currency:'INR'}}</sub>
+                    </span>
 
-                    </div>
-                    <div>
-                        <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1.40674" y="0.733398" width="21.3256" height="21.3256" rx="10.6628"
-                                    fill="#BCC3CC" stroke="#BCC3CC" />
-                                <mask id="path-2-inside-1_11_9828" fill="white">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M12.0692 18.7211C12.0692 18.7211 17.6506 13.4315 17.6506 10.349C17.6506 7.26645 15.1517 4.76758 12.0692 4.76758C8.98667 4.76758 6.48779 7.26645 6.48779 10.349C6.48779 13.4315 12.0692 18.7211 12.0692 18.7211ZM12.0691 12.0229C12.9939 12.0229 13.7435 11.2732 13.7435 10.3485C13.7435 9.42373 12.9939 8.67406 12.0691 8.67406C11.1443 8.67406 10.3947 9.42373 10.3947 10.3485C10.3947 11.2732 11.1443 12.0229 12.0691 12.0229Z" />
-                                </mask>
-                                <path
-                                    d="M12.0692 18.7211L11.3813 19.4469L12.0692 20.0988L12.7571 19.4469L12.0692 18.7211ZM16.6506 10.349C16.6506 10.8566 16.4063 11.5802 15.9071 12.4669C15.423 13.3269 14.7643 14.2275 14.0855 15.0582C13.4098 15.8852 12.7314 16.622 12.2205 17.1532C11.9656 17.4182 11.7538 17.6307 11.6065 17.7761C11.5329 17.8488 11.4755 17.9046 11.437 17.9417C11.4178 17.9603 11.4033 17.9742 11.3939 17.9832C11.3892 17.9877 11.3858 17.991 11.3837 17.993C11.3826 17.994 11.3819 17.9947 11.3815 17.9951C11.3813 17.9953 11.3812 17.9954 11.3812 17.9954C11.3811 17.9954 11.3812 17.9954 11.3812 17.9954C11.3812 17.9953 11.3813 17.9952 12.0692 18.7211C12.7571 19.4469 12.7572 19.4468 12.7573 19.4466C12.7574 19.4466 12.7576 19.4464 12.7577 19.4463C12.758 19.446 12.7584 19.4456 12.7589 19.4451C12.7599 19.4442 12.7612 19.443 12.7628 19.4415C12.766 19.4384 12.7706 19.434 12.7765 19.4284C12.7882 19.4172 12.805 19.401 12.8267 19.3801C12.87 19.3383 12.9325 19.2774 13.0115 19.1994C13.1695 19.0435 13.3937 18.8186 13.662 18.5396C14.1977 17.9826 14.9146 17.2044 15.6343 16.3237C16.3508 15.4467 17.0875 14.447 17.6499 13.4482C18.1971 12.4761 18.6506 11.3826 18.6506 10.349H16.6506ZM12.0692 5.76758C14.5994 5.76758 16.6506 7.81874 16.6506 10.349H18.6506C18.6506 6.71417 15.704 3.76758 12.0692 3.76758V5.76758ZM7.48779 10.349C7.48779 7.81874 9.53895 5.76758 12.0692 5.76758V3.76758C8.43438 3.76758 5.48779 6.71417 5.48779 10.349H7.48779ZM12.0692 18.7211C12.7571 17.9952 12.7571 17.9953 12.7572 17.9954C12.7572 17.9954 12.7572 17.9954 12.7572 17.9954C12.7572 17.9954 12.7571 17.9953 12.7569 17.9951C12.7565 17.9947 12.7558 17.994 12.7547 17.993C12.7526 17.991 12.7491 17.9877 12.7444 17.9832C12.735 17.9742 12.7206 17.9603 12.7013 17.9417C12.6629 17.9046 12.6055 17.8488 12.5319 17.7761C12.3846 17.6307 12.1727 17.4182 11.9178 17.1532C11.407 16.622 10.7286 15.8852 10.0529 15.0582C9.37406 14.2275 8.71541 13.3269 8.23127 12.4669C7.73203 11.5802 7.48779 10.8566 7.48779 10.349H5.48779C5.48779 11.3826 5.94123 12.4761 6.4885 13.4482C7.05087 14.447 7.78757 15.4467 8.50412 16.3237C9.22375 17.2044 9.94069 17.9826 10.4763 18.5396C10.7447 18.8186 10.9689 19.0435 11.1268 19.1994C11.2058 19.2774 11.2684 19.3383 11.3117 19.3801C11.3333 19.401 11.3502 19.4172 11.3619 19.4284C11.3678 19.434 11.3723 19.4384 11.3756 19.4415C11.3772 19.443 11.3785 19.4442 11.3795 19.4451C11.3799 19.4456 11.3803 19.446 11.3806 19.4463C11.3808 19.4464 11.381 19.4466 11.381 19.4466C11.3812 19.4468 11.3813 19.4469 12.0692 18.7211ZM12.7435 10.3485C12.7435 10.721 12.4416 11.0229 12.0691 11.0229V13.0229C13.5461 13.0229 14.7435 11.8255 14.7435 10.3485H12.7435ZM12.0691 9.67406C12.4416 9.67406 12.7435 9.97601 12.7435 10.3485H14.7435C14.7435 8.87144 13.5461 7.67406 12.0691 7.67406V9.67406ZM11.3947 10.3485C11.3947 9.97601 11.6966 9.67406 12.0691 9.67406V7.67406C10.5921 7.67406 9.39468 8.87144 9.39468 10.3485H11.3947ZM12.0691 11.0229C11.6966 11.0229 11.3947 10.721 11.3947 10.3485H9.39468C9.39468 11.8255 10.5921 13.0229 12.0691 13.0229V11.0229Z"
-                                    fill="white" mask="url(#path-2-inside-1_11_9828)" />
-                            </svg>
-                            <p>{{item.location}}</p>
-                        </span>
-                        <span>Min - {{item.minLots}}Kg</span>
-                    </div>
-                    <div>
-                        <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1.40771" y="0.617188" width="21.3256" height="21.3256" rx="10.6628"
-                                    fill="#BCC3CC" stroke="#BCC3CC" />
+                </div>
+                <div>
+                    <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.40674" y="0.733398" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
+                                stroke="#BCC3CC" />
+                            <mask id="path-2-inside-1_11_9828" fill="white">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M17.4207 9.02505L19.0353 17.4049C19.075 17.6112 19.0145 17.8233 18.8699 17.984C18.7253 18.1447 18.5116 18.2376 18.2863 18.2376H6.05306C5.82778 18.2376 5.41567 18.1447 5.2711 17.984C5.12648 17.8233 5.06596 17.6112 5.10568 17.4049L6.72027 9.02505C6.7853 8.6877 7.10077 8.44212 7.46925 8.44212H10.1545C9.65101 7.9808 9.33812 7.33992 9.33812 6.63213C9.33812 5.23057 10.5639 4.09033 12.0705 4.09033C13.5772 4.09033 14.8029 5.23057 14.8029 6.63213C14.8029 7.33992 14.49 7.9808 13.9865 8.44212H16.6717C17.0402 8.44212 17.3557 8.6877 17.4207 9.02505ZM13.2811 6.63213C13.2811 6.01117 12.738 5.50601 12.0705 5.50601C11.403 5.50601 10.8599 6.01117 10.8599 6.63213C10.8599 7.2531 11.403 7.7583 12.0705 7.7583C12.738 7.7583 13.2811 7.2531 13.2811 6.63213ZM8.73491 9.74922C8.50775 9.74922 8.30914 9.90235 8.25136 10.122L6.65391 16.1957C6.57053 16.5127 6.80966 16.8229 7.13746 16.8229H17.0032C17.331 16.8229 17.5702 16.5127 17.4868 16.1957L15.8893 10.122C15.8316 9.90235 15.6329 9.74922 15.4058 9.74922H8.73491Z"
-                                    fill="white" />
-                            </svg>
-                            <p>{{item.quantity}} KG</p>
-                        </span>
-                        <span>Add on- {{item.incrementalLots}}Kg</span>
-                    </div>
+                                    d="M12.0692 18.7211C12.0692 18.7211 17.6506 13.4315 17.6506 10.349C17.6506 7.26645 15.1517 4.76758 12.0692 4.76758C8.98667 4.76758 6.48779 7.26645 6.48779 10.349C6.48779 13.4315 12.0692 18.7211 12.0692 18.7211ZM12.0691 12.0229C12.9939 12.0229 13.7435 11.2732 13.7435 10.3485C13.7435 9.42373 12.9939 8.67406 12.0691 8.67406C11.1443 8.67406 10.3947 9.42373 10.3947 10.3485C10.3947 11.2732 11.1443 12.0229 12.0691 12.0229Z" />
+                            </mask>
+                            <path
+                                d="M12.0692 18.7211L11.3813 19.4469L12.0692 20.0988L12.7571 19.4469L12.0692 18.7211ZM16.6506 10.349C16.6506 10.8566 16.4063 11.5802 15.9071 12.4669C15.423 13.3269 14.7643 14.2275 14.0855 15.0582C13.4098 15.8852 12.7314 16.622 12.2205 17.1532C11.9656 17.4182 11.7538 17.6307 11.6065 17.7761C11.5329 17.8488 11.4755 17.9046 11.437 17.9417C11.4178 17.9603 11.4033 17.9742 11.3939 17.9832C11.3892 17.9877 11.3858 17.991 11.3837 17.993C11.3826 17.994 11.3819 17.9947 11.3815 17.9951C11.3813 17.9953 11.3812 17.9954 11.3812 17.9954C11.3811 17.9954 11.3812 17.9954 11.3812 17.9954C11.3812 17.9953 11.3813 17.9952 12.0692 18.7211C12.7571 19.4469 12.7572 19.4468 12.7573 19.4466C12.7574 19.4466 12.7576 19.4464 12.7577 19.4463C12.758 19.446 12.7584 19.4456 12.7589 19.4451C12.7599 19.4442 12.7612 19.443 12.7628 19.4415C12.766 19.4384 12.7706 19.434 12.7765 19.4284C12.7882 19.4172 12.805 19.401 12.8267 19.3801C12.87 19.3383 12.9325 19.2774 13.0115 19.1994C13.1695 19.0435 13.3937 18.8186 13.662 18.5396C14.1977 17.9826 14.9146 17.2044 15.6343 16.3237C16.3508 15.4467 17.0875 14.447 17.6499 13.4482C18.1971 12.4761 18.6506 11.3826 18.6506 10.349H16.6506ZM12.0692 5.76758C14.5994 5.76758 16.6506 7.81874 16.6506 10.349H18.6506C18.6506 6.71417 15.704 3.76758 12.0692 3.76758V5.76758ZM7.48779 10.349C7.48779 7.81874 9.53895 5.76758 12.0692 5.76758V3.76758C8.43438 3.76758 5.48779 6.71417 5.48779 10.349H7.48779ZM12.0692 18.7211C12.7571 17.9952 12.7571 17.9953 12.7572 17.9954C12.7572 17.9954 12.7572 17.9954 12.7572 17.9954C12.7572 17.9954 12.7571 17.9953 12.7569 17.9951C12.7565 17.9947 12.7558 17.994 12.7547 17.993C12.7526 17.991 12.7491 17.9877 12.7444 17.9832C12.735 17.9742 12.7206 17.9603 12.7013 17.9417C12.6629 17.9046 12.6055 17.8488 12.5319 17.7761C12.3846 17.6307 12.1727 17.4182 11.9178 17.1532C11.407 16.622 10.7286 15.8852 10.0529 15.0582C9.37406 14.2275 8.71541 13.3269 8.23127 12.4669C7.73203 11.5802 7.48779 10.8566 7.48779 10.349H5.48779C5.48779 11.3826 5.94123 12.4761 6.4885 13.4482C7.05087 14.447 7.78757 15.4467 8.50412 16.3237C9.22375 17.2044 9.94069 17.9826 10.4763 18.5396C10.7447 18.8186 10.9689 19.0435 11.1268 19.1994C11.2058 19.2774 11.2684 19.3383 11.3117 19.3801C11.3333 19.401 11.3502 19.4172 11.3619 19.4284C11.3678 19.434 11.3723 19.4384 11.3756 19.4415C11.3772 19.443 11.3785 19.4442 11.3795 19.4451C11.3799 19.4456 11.3803 19.446 11.3806 19.4463C11.3808 19.4464 11.381 19.4466 11.381 19.4466C11.3812 19.4468 11.3813 19.4469 12.0692 18.7211ZM12.7435 10.3485C12.7435 10.721 12.4416 11.0229 12.0691 11.0229V13.0229C13.5461 13.0229 14.7435 11.8255 14.7435 10.3485H12.7435ZM12.0691 9.67406C12.4416 9.67406 12.7435 9.97601 12.7435 10.3485H14.7435C14.7435 8.87144 13.5461 7.67406 12.0691 7.67406V9.67406ZM11.3947 10.3485C11.3947 9.97601 11.6966 9.67406 12.0691 9.67406V7.67406C10.5921 7.67406 9.39468 8.87144 9.39468 10.3485H11.3947ZM12.0691 11.0229C11.6966 11.0229 11.3947 10.721 11.3947 10.3485H9.39468C9.39468 11.8255 10.5921 13.0229 12.0691 13.0229V11.0229Z"
+                                fill="white" mask="url(#path-2-inside-1_11_9828)" />
+                        </svg>
+                        <p>{{item.location}}</p>
+                    </span>
+                    <span>Min - {{item.minLots}}Kg</span>
                 </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="popup" *ngIf="popupType=='create_post'">
-        <div class="dummy" (click)="close_popup_now()"></div>
-        <div class="popup-container" style="max-height: 180px;">
-            <a class="popupclose" (click)="close_popup_now()">x</a>
-            <!-- details -->
-            <div class="popup-content">
-                <h3 class="popup-title">Create Post!</h3>
-                <p class="message-confirm">
-                    You Don't Have Any Active Post To Request Stream ?
-                </p>
-
-                <div class="confirm-button">
-                    <button class="back-btn" (click)="close_popup_now()" style="background-color: blue;">Back</button>
-                    <button class="submit-btn" [routerLink]="['/dashboard/post/add']">Add Post</button>
+                <div>
+                    <span><svg width="20" height="20" viewBox="0 0 24 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.40771" y="0.617188" width="21.3256" height="21.3256" rx="10.6628" fill="#BCC3CC"
+                                stroke="#BCC3CC" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M17.4207 9.02505L19.0353 17.4049C19.075 17.6112 19.0145 17.8233 18.8699 17.984C18.7253 18.1447 18.5116 18.2376 18.2863 18.2376H6.05306C5.82778 18.2376 5.41567 18.1447 5.2711 17.984C5.12648 17.8233 5.06596 17.6112 5.10568 17.4049L6.72027 9.02505C6.7853 8.6877 7.10077 8.44212 7.46925 8.44212H10.1545C9.65101 7.9808 9.33812 7.33992 9.33812 6.63213C9.33812 5.23057 10.5639 4.09033 12.0705 4.09033C13.5772 4.09033 14.8029 5.23057 14.8029 6.63213C14.8029 7.33992 14.49 7.9808 13.9865 8.44212H16.6717C17.0402 8.44212 17.3557 8.6877 17.4207 9.02505ZM13.2811 6.63213C13.2811 6.01117 12.738 5.50601 12.0705 5.50601C11.403 5.50601 10.8599 6.01117 10.8599 6.63213C10.8599 7.2531 11.403 7.7583 12.0705 7.7583C12.738 7.7583 13.2811 7.2531 13.2811 6.63213ZM8.73491 9.74922C8.50775 9.74922 8.30914 9.90235 8.25136 10.122L6.65391 16.1957C6.57053 16.5127 6.80966 16.8229 7.13746 16.8229H17.0032C17.331 16.8229 17.5702 16.5127 17.4868 16.1957L15.8893 10.122C15.8316 9.90235 15.6329 9.74922 15.4058 9.74922H8.73491Z"
+                                fill="white" />
+                        </svg>
+                        <p>{{item.quantity}} KG</p>
+                    </span>
+                    <span>Add on- {{item.incrementalLots}}Kg</span>
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 
-    <div class="popup" *ngIf="popupType=='by_plan'">
-        <div class="dummy" (click)="close_popup_now()"></div>
-        <div class="popup-container" style="max-height: 180px;">
-            <a class="popupclose" (click)="close_popup_now()">x</a>
-            <!-- details -->
-            <div class="popup-content">
-                <h3 class="popup-title">Buy Plan!</h3>
-                <p class="message-confirm">
-                    You Don't Have Any Active Plan To Request Stream ?
-                </p>
 
-                <div class="confirm-button">
-                    <button class="back-btn" (click)="close_popup_now()" style="background-color: blue;">Back</button>
-                    <button class="submit-btn" [routerLink]="['/dashboard/plan/plans']">Buy Plan</button>
-                </div>
+<div class="popup" *ngIf="popupType=='create_post'">
+    <div class="dummy" (click)="close_popup_now()"></div>
+    <div class="popup-container" style="max-height: 180px;">
+        <a class="popupclose" (click)="close_popup_now()">x</a>
+        <!-- details -->
+        <div class="popup-content">
+            <h3 class="popup-title">Create Post!</h3>
+            <p class="message-confirm">
+                You Don't Have Any Active Post To Request Stream ?
+            </p>
+
+            <div class="confirm-button">
+                <button class="back-btn" (click)="close_popup_now()" style="background-color: blue;">Back</button>
+                <button class="submit-btn" [routerLink]="['/dashboard/post/add']">Add Post</button>
             </div>
         </div>
     </div>
+</div>
 
-</ng-container>
+<div class="popup" *ngIf="popupType=='by_plan'">
+    <div class="dummy" (click)="close_popup_now()"></div>
+    <div class="popup-container" style="max-height: 180px;">
+        <a class="popupclose" (click)="close_popup_now()">x</a>
+        <!-- details -->
+        <div class="popup-content">
+            <h3 class="popup-title">Buy Plan!</h3>
+            <p class="message-confirm">
+                You Don't Have Any Active Plan To Request Stream ?
+            </p>
 
+            <div class="confirm-button">
+                <button class="back-btn" (click)="close_popup_now()" style="background-color: blue;">Back</button>
+                <button class="submit-btn" [routerLink]="['/dashboard/plan/plans']">Buy Plan</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="buyplan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">

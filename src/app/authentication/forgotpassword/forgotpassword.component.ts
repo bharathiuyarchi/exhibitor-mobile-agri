@@ -8,39 +8,38 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['./forgotpassword.component.css']
 })
-export class ForgotpasswordComponent implements OnInit{
+export class ForgotpasswordComponent implements OnInit {
   submitted: any = false;
   constructor(public api: AuthenticationService, private router: Router,
-    private arouter:ActivatedRoute) {
+    private arouter: ActivatedRoute) {
 
   }
   errorMessage: any;
-  cr:any; 
+  cr: any;
   ngOnInit(): void {
-   this.arouter.queryParams.subscribe((res:any)=>{
-    this.cr=res['cr']
-   })
-   console.log(this.cr,'asdfsdf')
+    this.arouter.queryParams.subscribe((res: any) => {
+      this.cr = res['cr']
+    })
   }
   forget_password() {
     this.errorMessage = null;
     this.submitted = true;
     if (this.forgetPassword.valid) {
-      this.submitted=false;
-      if(this.cr){
+      this.submitted = false;
+      if (this.cr) {
         console.log('continue register')
-        this.api.continueRegister(this.forgetPassword.value).subscribe((res:any)=>{
+        this.api.continueRegister(this.forgetPassword.value).subscribe((res: any) => {
           localStorage.setItem('mobileNumber', res.mobileNumber);
-          this.router.navigate(['verifyotp'])
+          this.router.navigate(['verifyotp'], { replaceUrl: true })
         }, error => {
           this.errorMessage = error.error.message;
         })
       }
-      else{
+      else {
         this.submitted = false;
         this.api.forgetPassword(this.forgetPassword.value).subscribe((res: any) => {
           localStorage.setItem('mobileNumber', res.mobileNumber);
-          this.router.navigate(['verifyotp'])
+          this.router.navigate(['verifyotp'], { replaceUrl: true })
         }, error => {
           this.errorMessage = error.error.message;
         })
@@ -49,7 +48,7 @@ export class ForgotpasswordComponent implements OnInit{
   }
 
   forgetPassword = new FormGroup({
-    mobileNumber: new FormControl(null,[
+    mobileNumber: new FormControl(null, [
       Validators.required,
       Validators.minLength(10),
       Validators.maxLength(10),
