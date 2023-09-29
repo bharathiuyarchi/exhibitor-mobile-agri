@@ -101,8 +101,6 @@
                     *ngIf="registerForm.get('category')?.invalid">Select Category</span>
                   <span class="field_values"
                     style="max-width: 90%;margin: auto;padding: 10px 0px; position: relative; z-index: -1000000000000000;">
-                    <!-- <p *ngFor="let item of registerForm.get('category')?.value">
-                      {{show_selected_post(item)}}</p> -->
                     <ng-container>
                       <p style="background-color: #cec3c3; padding: 10px;"
                         *ngFor="let item of registerForm.get('category')?.value">
@@ -124,13 +122,6 @@
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('category')?.invalid">Select Category Type !</label>
         </div>
-        <!-- <div class="form-row">
-          <label for="Address">Address<sup style="color: red;">*</sup> : </label>
-          <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
-        </div>
-        <div class="form-error">
-          <label *ngIf="submitted && registerForm.get('address')?.invalid">Enter Address !</label>
-        </div> -->
         <div class="form-row">
           <label for="Country">Country<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Country" placeholder="Enter Country" formControlName="country" />
