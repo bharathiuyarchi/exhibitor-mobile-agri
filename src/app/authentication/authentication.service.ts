@@ -35,4 +35,13 @@ export class AuthenticationService {
   continueRegister(data:any){
     return this.http.post(this.baseURL+'/v1/seller/sendOTP/continue',data)
   }
+  get_country(){
+    return this.http.get(this.baseURL+'/v2/agora/get/country')
+  }
+  get_state(country:any){
+    return this.http.get(this.baseURL+`/v2/agora/get/state?county=${country}`)
+  }
+  get_city(country:any,state:any){
+    return this.http.get(this.baseURL+`/v2/agora/get/city?county=${country}&state=${state}`)
+  }
 }

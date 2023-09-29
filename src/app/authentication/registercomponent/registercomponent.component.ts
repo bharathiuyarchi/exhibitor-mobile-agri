@@ -57,6 +57,7 @@ export class RegistercomponentComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.auth.isAuth.next("login");
+    this.getCountry();
   }
   submitted: any = false;
   terms: any = false;
@@ -97,7 +98,7 @@ export class RegistercomponentComponent implements OnInit {
   registerForm = new FormGroup({
     tradeName: new FormControl(null, Validators.required),
     companyName: new FormControl(null, Validators.required),
-    Designation: new FormControl(null, Validators.required),
+    Designation: new FormControl(null),
     webSite: new FormControl(null, Validators.required),
     category: new FormControl([], Validators.required),
     how_did_you_know_us: new FormControl(null, Validators.required),
@@ -153,5 +154,40 @@ export class RegistercomponentComponent implements OnInit {
     } else {
       return "sdajks";
     }
+  }
+
+  Allcountry: any = [];
+  isoCountry: any;
+  getCountry() {
+    this.api.get_country().subscribe((res: any) => {
+      console.log(res);
+      this.Allcountry = res;
+    });
+  }
+
+  Allstate: any = [];
+  Allcity: any = [];
+  findState(v: any) {
+    let country = this.Allcountry[v.target.value];
+    // console.log(country)
+    this.registerForm.patchValue({
+      country: country.name,
+    });
+    this.isoCountry = country.isoCode;
+    this.api.get_state(country.isoCode).subscribe((res: any) => {
+      console.log(res);
+      this.Allstate = res;
+    });
+  }
+
+  findCity(v: any) {
+    let state = this.Allstate[v.target.value];
+    this.registerForm.patchValue({
+      state: state.name,
+    });
+    this.api.get_city(this.isoCountry, state.isoCode).subscribe((res: any) => {
+      console.log(res);
+      this.Allcity = res;
+    });
   }
 }
