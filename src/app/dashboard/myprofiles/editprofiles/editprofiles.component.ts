@@ -101,7 +101,7 @@ export class EditprofilesComponent implements OnInit {
     email: new FormControl(null, [Validators.required, Validators.email]),
     companyName: new FormControl(null, Validators.required),
     Designation: new FormControl(null, Validators.required),
-    webSite: new FormControl(null, Validators.required),
+    webSite: new FormControl(null),
     category: new FormControl([], Validators.required),
     city: new FormControl(null, [Validators.required]),
     mobileNumber: new FormControl(null, [

@@ -26,6 +26,11 @@ export class ViewprofileComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
+  showEnqSubmit=false
 
-
+  show=1;
+  changeShow(v:number){
+    this.show=v
+    this.showEnqSubmit=false
+  }
 }
