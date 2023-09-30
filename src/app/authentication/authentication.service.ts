@@ -44,4 +44,10 @@ export class AuthenticationService {
   get_city(country:any,state:any){
     return this.http.get(this.baseURL+`/v2/agora/get/city?county=${country}&state=${state}`)
   }
+  deleteMyAccount(data: any) {
+    return this.http.post(
+      this.baseURL + "/v1/seller/verifyOTP/Delete/Account",
+      data
+    );
+  }
 }
