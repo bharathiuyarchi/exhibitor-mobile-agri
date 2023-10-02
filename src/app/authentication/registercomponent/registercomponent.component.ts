@@ -99,7 +99,7 @@ export class RegistercomponentComponent implements OnInit {
     tradeName: new FormControl(null, Validators.required),
     companyName: new FormControl(null, Validators.required),
     Designation: new FormControl(null),
-    webSite: new FormControl(null, Validators.required),
+    webSite: new FormControl(null),
     category: new FormControl([], Validators.required),
     how_did_you_know_us: new FormControl(null, Validators.required),
     mobileNumber: new FormControl(null, [

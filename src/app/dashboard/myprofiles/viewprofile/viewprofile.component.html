@@ -60,12 +60,11 @@
         </div>
         <div>
             <label>Category :</label>
-            <p style="width: 60%;">{{userDetails.category}}</p>
+            <div style="width: 60%; display: block;">
+                <p *ngFor="let data of userDetails.category">{{data}}</p>
+            </div>
         </div>
-        <div>
-            <label>Address :</label>
-            <p style="width: 60%;">{{userDetails.address}}</p>
-        </div>
+      
         <div>
             <label>Country :</label>
             <p style="width: 60%;">{{userDetails.country}}</p>
@@ -80,11 +79,14 @@
             <p style="width: 60%;">{{userDetails.city}}</p>
         </div>
         <div>
+            <label>Address :</label>
+            <p style="width: 60%;">{{userDetails.address}}</p>
+        </div>
+        <div>
             <label> Pin code :</label>
             <p style="width: 60%;">{{userDetails.Pincode}}</p>
         </div>
     </div>
-
 </div>
 <div class="profile-btn">
     <div>
@@ -139,7 +141,7 @@
         </div>
         <div class="resend-otp" style="display: flex; justify-content: center;">
             <p style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="recentShow"
-                (click)="resendOTP()" >Resend OTP
+                (click)="resendOTP()">Resend OTP
             </p>
             <p style="color: blue;" *ngIf="!recentShow">
                 {{remainingTime}}

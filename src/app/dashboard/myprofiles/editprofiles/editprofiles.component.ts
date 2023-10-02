@@ -66,6 +66,7 @@ export class EditprofilesComponent implements OnInit {
   ngOnInit(): void {
     console.log("on");
     this.getshopTypes();
+    this.getCountry()
     this.authcheck.userDetails.subscribe((res: any) => {
       console.log(res, 1231224323242331);
       this.mydetails.patchValue({
@@ -160,4 +161,41 @@ export class EditprofilesComponent implements OnInit {
       return "sdajks";
     }
   }
+
+  
+  Allcountry: any = [];
+  isoCountry: any;
+  getCountry() {
+    this.api.get_country().subscribe((res: any) => {
+      console.log(res);
+      this.Allcountry = res;
+    });
+  }
+
+  Allstate: any = [];
+  Allcity: any = [];
+  findState(v: any) {
+    let country = this.Allcountry[v.target.value];
+    // console.log(country)
+    this.mydetails.patchValue({
+      country: country.name,
+    });
+    this.isoCountry = country.isoCode;
+    this.api.get_state(country.isoCode).subscribe((res: any) => {
+      console.log(res);
+      this.Allstate = res;
+    });
+  }
+
+  findCity(v: any) {
+    let state = this.Allstate[v.target.value];
+    this.mydetails.patchValue({
+      state: state.name,
+    });
+    this.api.get_city(this.isoCountry, state.isoCode).subscribe((res: any) => {
+      console.log(res);
+      this.Allcity = res;
+    });
+  }
+
 }
