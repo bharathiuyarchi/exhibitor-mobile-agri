@@ -90,7 +90,7 @@ export class VerifyotpComponent implements OnInit {
       this.api.continueRegister(data).subscribe((e: any) => {
         this.verifyOTP.reset();
         this.recentShow = false;
-        this.errorMessage = "";
+        this.errorMessage = null;
         this.remainingTime = 60;
         this.startTimer();
       });
@@ -100,7 +100,7 @@ export class VerifyotpComponent implements OnInit {
         this.recentShow = false;
         this.remainingTime = 60;
         this.startTimer();
-        this.errorMessage = "";
+        this.errorMessage = null;
       });
     }
 

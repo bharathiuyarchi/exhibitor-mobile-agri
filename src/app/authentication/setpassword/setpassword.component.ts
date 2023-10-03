@@ -2,6 +2,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Component } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
 import { Router } from "@angular/router";
+import { iif } from "rxjs";
 
 @Component({
   selector: "app-setpassword",
@@ -24,27 +25,34 @@ export class SetpasswordComponent {
   }
 
   set_password() {
+    if (
+      this.setpassword.get("password")?.value !=
+      this.setpassword.get("conformPassword")?.value
+    ) {
+      console.log("asjkdhfgjshdfgsdjhfg")
+      this.sameOne = true;
+      
+    }else{
+      if (this.setpassword.valid && this.sameOne) {
+        this.submitted = false;
+        this.sameOne = false;
+        this.api.setPassword(this.setpassword.value).subscribe(
+          (res: any) => {
+            console.log(res);
+            localStorage.removeItem("verifiedAccount");
+            this.router.navigate(["login"]);
+          },
+          (error) => {
+            this.errorMessage = error;
+          }
+        );
+      }
+    }
+
     this.submitted = true;
     this.errorMessage = null;
-    if (
-      this.setpassword.get("password")?.value ==
-      this.setpassword.get("conformPassword")?.value
-    )
-      this.sameOne = true;
-    if (this.setpassword.valid && this.sameOne) {
-      this.submitted = false;
-      this.sameOne = false;
-      this.api.setPassword(this.setpassword.value).subscribe(
-        (res: any) => {
-          console.log(res);
-          localStorage.removeItem("verifiedAccount");
-          this.router.navigate(["login"]);
-        },
-        (error) => {
-          this.errorMessage = error;
-        }
-      );
-    }
+
+  
   }
 
   setpassword: any = new FormGroup({

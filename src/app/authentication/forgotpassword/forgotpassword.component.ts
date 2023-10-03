@@ -40,7 +40,7 @@ export class ForgotpasswordComponent implements OnInit {
         this.submitted = false;
         this.api.forgetPassword(this.forgetPassword.value).subscribe((res: any) => {
           localStorage.setItem('mobileNumber', res.mobileNumber);
-          localStorage.setItem("continue", "true");
+          // localStorage.setItem("continue", "true");
           this.router.navigate(['verifyotp'], { replaceUrl: true })
         }, error => {
           this.errorMessage = error.error.message;
