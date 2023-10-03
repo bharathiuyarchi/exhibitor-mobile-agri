@@ -1,4 +1,4 @@
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
@@ -9,10 +9,18 @@ import { AuthenticationService } from "../authentication.service";
   styleUrls: ["./verifyotp.component.css"],
 })
 export class VerifyotpComponent implements OnInit {
-  constructor(private api: AuthenticationService, private router: Router) {}
+  constructor(
+    private api: AuthenticationService,
+    private router: Router,
+    private aroute: ActivatedRoute
+  ) {}
+  msge: any = null;
   ngOnInit(): void {
     this.number = localStorage.getItem("mobileNumber");
     this.startTimer();
+    this.aroute.queryParams.subscribe((e: any) => {
+      this.msge = e.msg;
+    });
   }
 
   submitted: any = false;
@@ -45,9 +53,17 @@ export class VerifyotpComponent implements OnInit {
     }
   }
   resend() {
-    let data = {
-      mobileNumber: this.number,
-    };
+    let data;
+    if (this.msge == "reg") {
+      data = {
+        mobileNumber: this.number,
+        reg: true,
+      };
+    } else {
+      data = {
+        mobileNumber: this.number,
+      };
+    }
     this.api.forgetPassword(data).subscribe((res: any) => {});
   }
   verifyOTP: any = new FormGroup({

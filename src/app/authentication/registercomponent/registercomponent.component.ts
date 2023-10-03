@@ -86,7 +86,7 @@ export class RegistercomponentComponent implements OnInit {
         (res: any) => {
           console.log(res);
           localStorage.setItem("mobileNumber", res.mobileNumber);
-          this.router.navigate(["verifyotp"]);
+          this.router.navigateByUrl('/verifyotp?msg=reg');
         },
         (error) => {
           console.log(error);
