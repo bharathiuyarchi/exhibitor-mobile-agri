@@ -75,14 +75,34 @@ export class VerifyotpComponent implements OnInit {
   }
 
   resendOTP() {
+    // let data = { mobileNumber: localStorage.getItem("mobileNumber") };
+    // this.api.forgetPassword(data).subscribe((e: any) => {
+    //   this.verifyOTP.reset();
+    //   this.recentShow = false;
+    //   this.remainingTime = 60;
+    //   this.errorMessage = null;
+    //   this.startTimer();
+    // });
+
     let data = { mobileNumber: localStorage.getItem("mobileNumber") };
-    this.api.forgetPassword(data).subscribe((e: any) => {
-      this.verifyOTP.reset();
-      this.recentShow = false;
-      this.remainingTime = 60;
-      this.errorMessage = null;
-      this.startTimer();
-    });
+    let cont = localStorage.getItem("continue");
+    if (cont == "true") {
+      this.api.continueRegister(data).subscribe((e: any) => {
+        this.verifyOTP.reset();
+        this.recentShow = false;
+        this.errorMessage = "";
+        this.remainingTime = 60;
+        this.startTimer();
+      });
+    } else {
+      this.api.forgetPassword(data).subscribe((e: any) => {
+        this.verifyOTP.reset();
+        this.recentShow = false;
+        this.remainingTime = 60;
+        this.startTimer();
+        this.errorMessage = "";
+      });
+    }
 
     // http://localhost:3000/v1/seller/forgot/seller
   }

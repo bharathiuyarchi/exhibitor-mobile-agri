@@ -44,7 +44,7 @@
                 </div>
                 <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage}}</label>
                 <div class="form-forgot">
-                    <a [routerLink]="['/forgot']">Forgot Password !</a>
+                    <a [routerLink]="['/forgot']" (click)="forgot()">Forgot Password !</a>
                     <a [routerLink]="['/forgot']" (click)="continue()">Continue Registering !</a>
                 </div>
 
