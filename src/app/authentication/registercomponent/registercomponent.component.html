@@ -204,7 +204,7 @@
                   ">Select how do you know !</label>
         </div>
         <div class="form-row terms" style="margin-bottom: 30px;">
-          <input type="checkbox" (change)="changecheck($event)" [value]="terms?'No':'Yes'">
+          <input type="checkbox" (change)="changecheck($event)" [value]="terms?'No':'Yes'"> 
           <p style="font-size: 10px; padding-left: 10px;">
             By clicking Register, you agree to the
             <a style="font-size: 10px;" href="https://agriexpo.live/terms-and-conditions/" target="_blank">Terms and
@@ -216,6 +216,9 @@
         </div>
         <div class="term-err" *ngIf="termErr">
           <p style="color: red; font-weight: bold;">Select Terms and Conditions</p>
+        </div>
+        <div class="err">
+         <p *ngIf="errorMessage !=null "style="color: red;">{{errorMessage}}</p> 
         </div>
         <div class="login-btn btn">
           <!-- <button class="normal-btn" [routerLink]="['/login']" type="button"> Login</button> -->

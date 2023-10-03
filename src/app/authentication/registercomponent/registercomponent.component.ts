@@ -63,12 +63,12 @@ export class RegistercomponentComponent implements OnInit {
   terms: any = false;
   errorMessage: any;
   changecheck(event: any) {
+    console.log(event.target.value);
     if (event.target.value == "Yes") {
       this.terms = true;
     } else {
       this.terms = false;
     }
-    console.log(event.target.value);
   }
   termErr: any = false;
   login_now() {
@@ -81,7 +81,7 @@ export class RegistercomponentComponent implements OnInit {
 
     if (this.registerForm.valid && this.terms) {
       this.submitted = false;
-      this.termErr = true;
+      this.termErr = false;
       this.api.register_seller(this.registerForm.value).subscribe(
         (res: any) => {
           console.log(res);
