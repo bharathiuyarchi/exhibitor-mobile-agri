@@ -103,8 +103,8 @@ export class ManagelivestreamComponent {
     if (navigator.share) {
       navigator
         .share({
-          title: item.streamName,
-          text: item.discription,
+          title: 'Participant Agri Expo Live 2023-Live Streaming Interactive Agriculture Expo',
+          text: "Dear Participant', We are in the process of participating in an agriculture expo named AgriExpoLive(World’s First Live Streaming Interactive Agriculture Expo). To confirm participation in the expo, we wish to test how this expo might work in a real-time scenario.' 'We request you to click on the link below as a participant, so that we could actually be able to gauge ‘real time’ as how we might present ourselves as an ‘exhibitor’'",
           url: "https://visitor.agriexpo.live/dashboard/view/" + item._id,
         }
         )
