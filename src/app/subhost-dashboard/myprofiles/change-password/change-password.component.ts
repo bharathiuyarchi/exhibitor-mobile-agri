@@ -33,7 +33,9 @@ export class ChangePasswordComponent_sub implements OnInit {
     return this.changepassword.controls
   }
 
-
+keyup(){
+  this.showError2 = false
+}
 
   changepassword: any;
   showError:boolean=false
