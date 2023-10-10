@@ -15,7 +15,7 @@
 
         </div>
     </nav>
-    <div class="form-container">
+    <div class="form-container" *ngIf="mydetails !=null">
         <form [formGroup]="mydetails" (submit)="update_now()">
             <div>
                 <label>Name:</label>
@@ -79,8 +79,8 @@
                             </div>
                         </div>
                         <ul class="dropdown-menu" style="max-height: 447px;overflow: auto;">
-                            <li *ngFor="let cat of category; let i = index" id="check" class="dropdown-item">
-                                <label [for]="cat"><input type="checkbox" (change)="change_category($event)"value="{{cat}}" [id]="cat" /><span>{{cat}}</span></label>
+                            <li *ngFor="let cat of category; let i = index" id="check" class="dropdown-item" formArrayName="category" >
+                                <label [for]="cat" ><input type="checkbox" [formControlName]="i" value="{{cat}}" [id]="cat" /><span>{{cat}}</span></label>
                             </li>
                         </ul>
                     </div>
@@ -90,7 +90,7 @@
             <p class="err" *ngIf="submitted && mydetails.get('category').invalid">category is required!</p>
             <div class="selected-values"
                 style="display: flex;flex-direction: column;justify-content: center;width: 100%;background-color: antiquewhite;">
-                <p *ngFor="let item of mydetails.get('category')?.value"
+                <p *ngFor="let item of get_category"
                     style="width: 100%; text-align: center; padding: 5px;">
                     {{item}}</p>
             </div>

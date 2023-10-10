@@ -1,6 +1,11 @@
 import { Router } from "@angular/router";
 import { AuthcheckService } from "src/app/authcheck.service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from "@angular/forms";
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -22,7 +27,8 @@ export class EditprofilesComponent implements OnInit {
   constructor(
     private api: MyprofileService,
     private authcheck: AuthcheckService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {
     console.log("cons");
   }
@@ -66,26 +72,43 @@ export class EditprofilesComponent implements OnInit {
   ngOnInit(): void {
     console.log("on");
     this.getshopTypes();
-    this.getCountry()
+    this.getCountry();
     this.authcheck.userDetails.subscribe((res: any) => {
-      console.log(res, 1231224323242331);
-      this.mydetails.patchValue({
-        email: res.email,
-        Pincode: res.Pincode,
-        address: res.address,
-        tradeName: res.tradeName,
-        // country: res.country,
-        // city: res.city,
-        mobileNumber: res.mobileNumber,
-        Designation: res.Designation,
-        webSite: res.webSite,
-        companyName: res.companyName,
-        category: res.category,
-        businessType: res.businessType,
-        // state: res.state,
-        how_did_you_know_us: res.how_did_you_know_us,
-        GST_Number: res.GST_Number,
+      this.mydetails = this.formBuilder.group({
+        tradeName: new FormControl(res.tradeName, [Validators.required]),
+        email: new FormControl(res.email, [
+          Validators.required,
+          Validators.email,
+        ]),
+        companyName: new FormControl(res.companyName, Validators.required),
+        Designation: new FormControl(res.Designation, Validators.required),
+        webSite: new FormControl(res.webSite),
+        category: this.formBuilder.array(
+          this.category.map((x) => res.category.indexOf(x) > -1)
+        ),
+        mobileNumber: new FormControl(res.mobileNumber, [
+          Validators.required,
+          Validators.maxLength(10),
+          Validators.minLength(10),
+          Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+        ]),
+        Pincode: new FormControl(res.Pincode, [
+          Validators.required,
+          Validators.maxLength(6),
+          Validators.minLength(6),
+          Validators.pattern("^((\\+91-?)|0)?[0-9]{6}$"),
+        ]),
+        address: new FormControl(res.address, [Validators.required]),
+        how_did_you_know_us: new FormControl(
+          res.how_did_you_know_us,
+          Validators.required
+        ),
+        GST_Number: new FormControl(res.GST_Number),
       });
+      console.log(
+        this.category.map((x) => res.category.indexOf(x) > -1),
+        9876897654
+      );
     });
   }
   shopTypes: any;
@@ -97,37 +120,18 @@ export class EditprofilesComponent implements OnInit {
     });
   }
   submitted: boolean = false;
-  mydetails: any = new FormGroup({
-    tradeName: new FormControl(null, [Validators.required]),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    companyName: new FormControl(null, Validators.required),
-    Designation: new FormControl(null, Validators.required),
-    webSite: new FormControl(null),
-    category: new FormControl([], Validators.required),
-    // city: new FormControl(null, [Validators.required]),
-    mobileNumber: new FormControl(null, [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(10),
-      Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
-    ]),
-    Pincode: new FormControl(null, [
-      Validators.required,
-      Validators.maxLength(6),
-      Validators.minLength(6),
-      Validators.pattern("^((\\+91-?)|0)?[0-9]{6}$"),
-    ]),
-    address: new FormControl(null, [Validators.required]),
-    // country: new FormControl(null, Validators.required),
-    // state: new FormControl(null, Validators.required),
-    how_did_you_know_us: new FormControl(null, Validators.required),
-    GST_Number: new FormControl(null),
-  });
+  mydetails: any;
   update_now() {
     this.submitted = true;
     console.log(this.mydetails.valid);
+    const valueToStore = Object.assign({}, this.mydetails.value, {
+      category: this.convertToValue('category', this.category),
+
+    });
+    console.log(valueToStore)
+    console.log(this.mydetails.value)
     if (this.mydetails.valid) {
-      this.api.update_profile(this.mydetails.value).subscribe((res: any) => {
+      this.api.update_profile(valueToStore).subscribe((res: any) => {
         // this.authcheck.get_userDetails()
         this.authcheck.userDetails.next(res);
         this.submitted = false;
@@ -136,20 +140,16 @@ export class EditprofilesComponent implements OnInit {
       });
     }
   }
-  change_category(e: any) {
-    let post: any = [];
-    if (this.mydetails.get("category")?.value != null) {
-      post = this.mydetails.get("category")?.value;
-    }
-    let index = post.findIndex((a: any) => a == e.target.value);
-    if (index != -1) {
-      post.splice(index, 1);
-    } else {
-      post.push(e.target.value);
-    }
-    this.mydetails.get("category")?.setValue(post);
+  get get_category() {
+    return this.mydetails.value["category"]
+      .map((x: any, i: any) => x && this.category[i])
+      .filter((x: any) => !!x);
   }
-
+  convertToValue(key: string, value: any) {
+    return this.mydetails.value[key]
+      .map((x: any, i: any) => x && value[i])
+      .filter((x: any) => !!x);
+  }
   show_selected_post(item: any) {
     console.log("show_selected_post", item);
     let postIndex = this.category.findIndex((a: any) => a == item);
@@ -160,7 +160,6 @@ export class EditprofilesComponent implements OnInit {
     }
   }
 
-  
   Allcountry: any = [];
   isoCountry: any;
   getCountry() {
@@ -195,6 +194,4 @@ export class EditprofilesComponent implements OnInit {
       this.Allcity = res;
     });
   }
-
-
 }
