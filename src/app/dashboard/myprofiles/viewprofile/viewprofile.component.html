@@ -44,19 +44,19 @@
         </div>
         <div>
             <label>Email ID :</label>
-            <p style="width: 60%;">{{userDetails.email}}</p>
+            <p style="width: 60%;">{{userDetails.email?userDetails.email:'--'}}</p>
         </div>
         <div>
             <label>Company Name :</label>
-            <p style="width: 60%;">{{userDetails.companyName}}</p>
+            <p style="width: 60%;">{{userDetails.companyName?userDetails.companyName:"--"}}</p>
         </div>
         <div>
-            <label>WebSite :</label>
-            <p style="width: 60%;">{{userDetails.webSite}}</p>
+            <label>Website :</label>
+            <p style="width: 60%;">{{userDetails.webSite?userDetails.webSite:"--"}}</p>
         </div>
         <div>
             <label>Designation :</label>
-            <p style="width: 60%;">{{userDetails.Designation}}</p>
+            <p style="width: 60%;">{{userDetails.Designation?userDetails.Designation:"--"}}</p>
         </div>
         <div>
             <label>Category :</label>
@@ -83,7 +83,7 @@
             <p style="width: 60%;">{{userDetails.address}}</p>
         </div>
         <div>
-            <label> Pin code :</label>
+            <label> Pincode :</label>
             <p style="width: 60%;">{{userDetails.Pincode}}</p>
         </div>
     </div>

@@ -77,11 +77,10 @@ export class EditprofilesComponent implements OnInit {
       this.mydetails = this.formBuilder.group({
         tradeName: new FormControl(res.tradeName, [Validators.required]),
         email: new FormControl(res.email, [
-          Validators.required,
           Validators.email,
         ]),
         companyName: new FormControl(res.companyName, Validators.required),
-        Designation: new FormControl(res.Designation, Validators.required),
+        Designation: new FormControl(res.Designation),
         webSite: new FormControl(res.webSite),
         category: this.formBuilder.array(
           this.category.map((x) => res.category.indexOf(x) > -1)

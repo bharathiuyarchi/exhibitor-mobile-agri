@@ -25,14 +25,16 @@ export class SetpasswordComponent {
   }
 
   set_password() {
+    this.submitted = true
     if (
       this.setpassword.get("password")?.value !=
       this.setpassword.get("conformPassword")?.value
     ) {
       console.log("asjkdhfgjshdfgsdjhfg")
-      this.sameOne = true;
-      
+      this.sameOne = false;
+
     }else{
+      this.sameOne = true;
       if (this.setpassword.valid && this.sameOne) {
         this.submitted = false;
         this.sameOne = false;
