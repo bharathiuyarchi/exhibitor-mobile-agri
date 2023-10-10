@@ -113,9 +113,9 @@ export class RegistercomponentComponent implements OnInit {
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
     ),
     address: new FormControl(null, [Validators.required]),
-    country: new FormControl(null, [Validators.required]),
-    state: new FormControl(null, [Validators.required]),
-    city: new FormControl(null, [Validators.required]),
+    // country: new FormControl(null, [Validators.required]),
+    // state: new FormControl(null, [Validators.required]),
+    // city: new FormControl(null, [Validators.required]),
     Pincode: new FormControl(null, [
       Validators.required,
       Validators.maxLength(6),
@@ -170,9 +170,9 @@ export class RegistercomponentComponent implements OnInit {
   findState(v: any) {
     let country = this.Allcountry[v.target.value];
     // console.log(country)
-    this.registerForm.patchValue({
-      country: country.name,
-    });
+    // this.registerForm.patchValue({
+    //   country: country.name,
+    // });
     this.isoCountry = country.isoCode;
     this.api.get_state(country.isoCode).subscribe((res: any) => {
       console.log(res);
@@ -182,9 +182,9 @@ export class RegistercomponentComponent implements OnInit {
 
   findCity(v: any) {
     let state = this.Allstate[v.target.value];
-    this.registerForm.patchValue({
-      state: state.name,
-    });
+    // this.registerForm.patchValue({
+    //   state: state.name,
+    // });
     this.api.get_city(this.isoCountry, state.isoCode).subscribe((res: any) => {
       console.log(res);
       this.Allcity = res;
