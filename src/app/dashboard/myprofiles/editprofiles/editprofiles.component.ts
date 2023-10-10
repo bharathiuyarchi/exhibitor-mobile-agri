@@ -148,13 +148,11 @@ export class EditprofilesComponent implements OnInit {
       post.push(e.target.value);
     }
     this.mydetails.get("category")?.setValue(post);
-    console.log(this.mydetails.get("category")?.value);
   }
 
   show_selected_post(item: any) {
     console.log("show_selected_post", item);
     let postIndex = this.category.findIndex((a: any) => a == item);
-    console.log(postIndex);
     if (postIndex != -1) {
       return item;
     } else {
@@ -197,5 +195,6 @@ export class EditprofilesComponent implements OnInit {
       this.Allcity = res;
     });
   }
+
 
 }
