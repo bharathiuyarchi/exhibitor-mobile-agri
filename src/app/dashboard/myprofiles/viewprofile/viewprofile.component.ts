@@ -27,5 +27,90 @@ export class ViewprofileComponent implements OnInit {
     this.auth.logout();
   }
 
+  show=1;
+  changeShow(v:number){
+    this.show=v
+    // this.showEnqSubmit=false
+  }
+  showDltAcc=false
+  cDltAcc(){
+    this.showDltAcc= !this.showDltAcc
+  }
+  sendOtp(){
+    let data ={
+      mobile:this.userDetails.mobile
+    }
+    // this.api.forgetPassword(data).subscribe((res:any)=>{
 
+    // })
+  }
+  showAddDlt=false
+  closeAddDlt()
+  {
+    // this.showAddDlt=!this.showAddDlt
+  }
+  showOtp=false
+  remainingTime: number = 60;
+  private intervalId: any;
+  recentShow: any = false;
+  showCOtp(){
+    this.showOtp=true
+    this.sendOtp()
+    this.startTimer()
+  }
+  OpenOtp(){
+    this.showOtp=!this.showOtp
+  }
+  backOtp(){
+    this.showOtp=false
+    this.showDltAcc=false
+  }
+  startTimer() {
+    this.intervalId = setInterval(() => {
+      this.remainingTime--;
+      if (this.remainingTime === 0) {
+        this.clearTimer();
+        this.recentShow = true;
+      }
+    }, 1000);
+  }
+
+  clearTimer() {
+    clearInterval(this.intervalId);
+  }
+  resendOTP() {
+    
+    // let data ={
+    //   mobile:this.userDetails.mobile
+    // }
+    // this.api.forgetPassword(data).subscribe((e: any) => {
+     
+    //   this.recentShow = false;
+    //   this.remainingTime = 60;
+    //   this.startTimer();
+    // });
+    // http://localhost:3000/v1/seller/forgot/seller
+  }
+  DeOtp:any;
+  DeSubmit=false
+  errorMessage:any;
+  submitOtp(){
+    // this.DeSubmit=true
+    // if(this.DeOtp){
+    //   let data ={
+    //     mobile:Number(this.userDetails.mobile),
+    //     otp:Number(this.DeOtp)
+    //   }
+    //   console.log(data)
+    //   this.DeSubmit=false
+    //   this.api.verfiy_deactive_otp(data).subscribe((res:any)=>{
+    //     console.log(res)
+    //     this.logout()
+    //   },(error) => {
+    //     this.errorMessage = error.error.message;
+    //   })
+    // }
+    
+  
+  }
 }

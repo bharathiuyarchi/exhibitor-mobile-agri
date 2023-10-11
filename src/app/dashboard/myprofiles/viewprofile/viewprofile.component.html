@@ -21,57 +21,218 @@
             </a>
         </div>
     </nav>
-    <div class="form-container">
-        <div>
-            <label>Name :</label>
-            <p style="width: 60%;">{{userDetails.tradeName}}</p>
+    <div class="fc mobile">
+        <div class="inner-box">
+          <div class="bcard" data-bs-toggle="modal" data-bs-target="#prof" (click)="changeShow(1)"
+            [class.active]="show == 1">
+            <div class="img-box">
+              <img [src]="userDetails.AgriImage" alt="" srcset="" />
+            </div>
+            <div class="details-box">
+              <h4>{{ userDetails.SName }}</h4>
+              <p>{{ userDetails.mobile }}</p>
+              <p>{{ userDetails.email }}</p>
+            </div>
+            <div class="sarrow">
+              <svg *ngIf="show == 1" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L1 11" stroke="#019444" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <svg *ngIf="!(show == 1)" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="scard-container">
+            <div class="scard" (click)="changeShow(2)" [class.active]="show == 2" [routerLink]="['my-address']">
+              <div class="stitle">
+                <span>
+                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.99999 17.3965L12.3997 12.8404C14.8297 10.3241 14.8297 6.24443 12.3997 3.72816C9.96985 1.21188 6.03014 1.21188 3.60022 3.72816C1.17029 6.24443 1.17029 10.3241 3.60022 12.8404L7.99999 17.3965ZM7.99999 20L2.34314 14.1422C-0.781048 10.9069 -0.781048 5.66162 2.34314 2.42641C5.46733 -0.808803 10.5326 -0.808803 13.6569 2.42641C16.781 5.66162 16.781 10.9069 13.6569 14.1422L7.99999 20ZM7.99999 10.1252C8.98185 10.1252 9.77776 9.30104 9.77776 8.28428C9.77776 7.26755 8.98185 6.44333 7.99999 6.44333C7.01812 6.44333 6.22221 7.26755 6.22221 8.28428C6.22221 9.30104 7.01812 10.1252 7.99999 10.1252ZM7.99999 11.9662C6.03631 11.9662 4.44444 10.3177 4.44444 8.28428C4.44444 6.25082 6.03631 4.60238 7.99999 4.60238C9.96363 4.60238 11.5555 6.25082 11.5555 8.28428C11.5555 10.3177 9.96363 11.9662 7.99999 11.9662Z"
+                      fill="#262626" />
+                  </svg>
+                </span>
+                <p>My Address</p>
+              </div>
+              <div class="sarrow">
+                <svg *ngIf="show == 2" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#019444" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg *ngIf="!(show == 2)" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="scard" (click)="changeShow(3)" [class.active]="show == 3" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+              <div class="stitle">
+                <span>
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M9.33333 21L15.1667 8.5L21 21M11 17.6667H19.3333M1 3.91222C3.21155 3.63702 5.43806 3.49935 7.66667 3.5M7.66667 3.5C8.91111 3.5 10.1478 3.54222 11.3711 3.62667M7.66667 3.5V1M11.3711 3.62667C10.0844 9.50889 6.21111 14.4222 1 17.1133M11.3711 3.62667C12.3667 3.69444 13.3544 3.79 14.3333 3.91222M9.23445 13.3511C7.41219 11.4985 5.96793 9.30888 4.98222 6.90444"
+                      stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <p>Language</p>
+              </div>
+              <div class="sarrow">
+                <svg *ngIf="show == 3" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#019444" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg *ngIf="!(show == 3)" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <!-- <div class="scard" (click)="changeShow(4)" [class.active]="show == 4" data-bs-toggle="modal" data-bs-target="#enq">
+              <div class="stitle">
+                <span>
+                  <svg
+                    width="20"
+                    height="19"
+                    viewBox="0 0 20 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18 14.05H18.05V14V2V1.95H18H2H1.95V2V15.3851V15.488L2.03089 15.4244L3.78011 14.05H18ZM4.45455 15.95H4.43726L4.42366 15.9607L1.58693 18.1895C0.963608 18.6793 0.05 18.2352 0.05 17.4425V1C0.05 0.475334 0.475334 0.05 1 0.05H19C19.5247 0.05 19.95 0.475334 19.95 1V15C19.95 15.5247 19.5247 15.95 19 15.95H4.45455ZM9.05 12C9.05 11.4753 9.47533 11.05 10 11.05C10.5247 11.05 10.95 11.4753 10.95 12C10.95 12.5247 10.5247 12.95 10 12.95C9.47533 12.95 9.05 12.5247 9.05 12ZM7.55684 5.96038C7.29939 5.90889 7.08558 5.7554 6.96682 5.55884C6.84862 5.36322 6.82433 5.12524 6.94374 4.89793C7.52089 3.7992 8.67301 3.05 10 3.05C11.9054 3.05 13.45 4.59461 13.45 6.5C13.45 8.40539 11.9054 9.95 10 9.95C9.47533 9.95 9.05 9.52467 9.05 9C9.05 8.47533 9.47533 8.05 10 8.05C10.856 8.05 11.55 7.35601 11.55 6.5C11.55 5.64396 10.856 4.95 10 4.95C9.61629 4.95 9.26503 5.0895 8.99435 5.32049C8.78425 5.49979 8.55348 5.68635 8.30922 5.81495C8.06525 5.94339 7.81248 6.01151 7.55684 5.96038Z"
+                      fill="#262626"
+                      stroke="white"
+                      stroke-width="0.1"
+                    />
+                  </svg>
+                </span>
+                <p>Enquiry</p>
+              </div>
+              <div class="sarrow">
+                <svg
+                  *ngIf="show == 4"
+                  width="7"
+                  height="12"
+                  viewBox="0 0 7 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1L6 6L1 11"
+                    stroke="#019444"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  *ngIf="!(show == 4)"
+                  width="7"
+                  height="12"
+                  viewBox="0 0 7 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1L6 6L1 11"
+                    stroke="#DBDBDB"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </div> -->
+            <div class="scard" data-bs-toggle="modal" data-bs-target="#sup" (click)="changeShow(5)"
+              [class.active]="show == 5">
+              <div class="stitle">
+                <span>
+                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 15.0022C19.999 17.8731 17.9816 20.2726 15.2872 20.8616L14.6492 18.9476C15.8532 18.7511 16.8765 18.0171 17.4649 17H15C13.8954 17 13 16.1046 13 15V11C13 9.8954 13.8954 9 15 9H17.9381C17.446 5.05369 14.0796 2 10 2C5.92038 2 2.55399 5.05369 2.06189 9H5C6.10457 9 7 9.8954 7 11V15C7 16.1046 6.10457 17 5 17H2C0.89543 17 0 16.1046 0 15V10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10V10.9987V11V15V15.0022ZM18 15V11H15V15H18ZM2 11V15H5V11H2Z"
+                      fill="#262626" />
+                  </svg>
+                </span>
+                <p>Support</p>
+              </div>
+              <div class="sarrow">
+                <svg *ngIf="show == 5" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#019444" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg *ngIf="!(show == 5)" width="7" height="12" viewBox="0 0 7 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="scard" [routerLink]="['changepassword']">
+              <div class="stitle">
+                <span>
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8462 4.07244C15.6622 4.07244 16.4448 4.3967 17.0219 4.97389C17.5989 5.55107 17.9231 6.33391 17.9231 7.15018M21 7.15018C21.0001 8.04797 20.8039 8.93492 20.4251 9.74884C20.0464 10.5628 19.4942 11.284 18.8073 11.8619C18.1204 12.4397 17.3154 12.8603 16.4488 13.0942C15.5822 13.328 14.675 13.3693 13.7908 13.2154C13.2133 13.1159 12.6021 13.242 12.1877 13.6565L9.46154 16.3834H7.15385V18.6917H4.84615V21H1V18.109C1 17.4965 1.24308 16.9087 1.6759 16.4767L8.34154 9.80934C8.7559 9.39487 8.88205 8.78343 8.78256 8.20584C8.63712 7.36579 8.66773 6.50467 8.87244 5.67707C9.07715 4.84947 9.4515 4.07343 9.97177 3.39813C10.492 2.72283 11.1469 2.163 11.8948 1.75412C12.6427 1.34523 13.4674 1.09621 14.3165 1.02284C15.1657 0.949466 16.0209 1.05334 16.8278 1.32787C17.6347 1.60241 18.3758 2.04162 19.0042 2.61767C19.6325 3.19373 20.1344 3.89406 20.4779 4.67428C20.8215 5.45451 20.9993 6.29762 21 7.15018Z"
+                      stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <p>Change password</p>
+              </div>
+              <div class="sarrow">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="scard" (click)="logout()">
+              <div class="stitle">
+                <span>
+                  <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.9091 4.92729e-06C15.93 5.36624e-06 20 4.0293 20 9C20 13.9707 15.93 18 10.9091 18C9.49758 18.001 8.10528 17.6762 6.84279 17.0513C5.5803 16.4263 4.48242 15.5185 3.63636 14.4L6.1 14.4C7.14979 15.3164 8.44439 15.9135 9.82844 16.1195C11.2125 16.3256 12.6272 16.1319 13.9028 15.5617C15.1784 14.9915 16.2608 14.069 17.0199 12.9049C17.7791 11.7408 18.1828 10.3846 18.1827 8.999C18.1826 7.61338 17.7786 6.25723 17.0193 5.09327C16.2599 3.92931 15.1774 3.007 13.9017 2.43701C12.626 1.86702 11.2113 1.67356 9.82724 1.87985C8.44322 2.08614 7.14873 2.68341 6.09909 3.6L3.63546 3.6C4.4816 2.48134 5.57963 1.57347 6.84229 0.948529C8.10495 0.323592 9.49743 -0.00118538 10.9091 4.92729e-06ZM4.54545 5.4L4.54545 8.1L11.8182 8.1L11.8182 9.9L4.54545 9.9L4.54545 12.6L-1.12054e-06 9L4.54545 5.4Z"
+                      fill="#262626" />
+                  </svg>
+                </span>
+                <p>Log Out</p>
+              </div>
+              <div class="sarrow">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="scard" >
+              <div class="stitle">
+                <span>
+                  <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.9091 4.92729e-06C15.93 5.36624e-06 20 4.0293 20 9C20 13.9707 15.93 18 10.9091 18C9.49758 18.001 8.10528 17.6762 6.84279 17.0513C5.5803 16.4263 4.48242 15.5185 3.63636 14.4L6.1 14.4C7.14979 15.3164 8.44439 15.9135 9.82844 16.1195C11.2125 16.3256 12.6272 16.1319 13.9028 15.5617C15.1784 14.9915 16.2608 14.069 17.0199 12.9049C17.7791 11.7408 18.1828 10.3846 18.1827 8.999C18.1826 7.61338 17.7786 6.25723 17.0193 5.09327C16.2599 3.92931 15.1774 3.007 13.9017 2.43701C12.626 1.86702 11.2113 1.67356 9.82724 1.87985C8.44322 2.08614 7.14873 2.68341 6.09909 3.6L3.63546 3.6C4.4816 2.48134 5.57963 1.57347 6.84229 0.948529C8.10495 0.323592 9.49743 -0.00118538 10.9091 4.92729e-06ZM4.54545 5.4L4.54545 8.1L11.8182 8.1L11.8182 9.9L4.54545 9.9L4.54545 12.6L-1.12054e-06 9L4.54545 5.4Z"
+                      fill="#262626" />
+                  </svg>
+                </span>
+                <p>Delete My Account</p>
+              </div>
+              <div class="sarrow">
+                <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6L1 11" stroke="#DBDBDB" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-            <label>Mobile Number :</label>
-            <p style="width: 60%;">{{userDetails.mobileNumber}}</p>
-        </div>
-        <div>
-            <label>Email ID :</label>
-            <p style="width: 60%;">{{userDetails.email}}</p>
-        </div>
-        <div>
-            <label>Company Name :</label>
-            <p style="width: 60%;">{{userDetails.companyName}}</p>
-        </div>
-        <div>
-            <label>WebSite :</label>
-            <p style="width: 60%;">{{userDetails.webSite}}</p>
-        </div>
-        <div>
-            <label>Designation :</label>
-            <p style="width: 60%;">{{userDetails.Designation}}</p>
-        </div>
-        <div>
-            <label>Category :</label>
-            <p style="width: 60%;">{{userDetails.category}}</p>
-        </div>
-        <div>
-            <label>Address :</label>
-            <p style="width: 60%;">{{userDetails.address}}</p>
-        </div>
-        <div>
-            <label>Country :</label>
-            <p style="width: 60%;">{{userDetails.country}}</p>
-        </div>
-
-        <div>
-            <label>State :</label>
-            <p style="width: 60%;">{{userDetails.state}}</p>
-        </div>
-        <div>
-            <label>City :</label>
-            <p style="width: 60%;">{{userDetails.city}}</p>
-        </div>
-        <div>
-            <label> Pin code :</label>
-            <p style="width: 60%;">{{userDetails.Pincode}}</p>
-        </div>
-    </div>
+      </div>
 
 </div>
 <div class="profile-btn">
@@ -94,3 +255,430 @@
         </button>
     </div>
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable  mg">
+      <div class="modal-content">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <div class="top-title">
+            <span><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9.33333 21L15.1667 8.5L21 21M11 17.6667H19.3333M1 3.91222C3.21155 3.63702 5.43806 3.49935 7.66667 3.5M7.66667 3.5C8.91111 3.5 10.1478 3.54222 11.3711 3.62667M7.66667 3.5V1M11.3711 3.62667C10.0844 9.50889 6.21111 14.4222 1 17.1133M11.3711 3.62667C12.3667 3.69444 13.3544 3.79 14.3333 3.91222M9.23445 13.3511C7.41219 11.4985 5.96793 9.30888 4.98222 6.90444"
+                  stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h4>Language</h4>
+          </div>
+          <div class="right-content">
+            <div class="lang-container">
+              <div class="lang-box act-lang">
+                <span class="green"> A </span>
+                <p>English</p>
+              </div>
+              <div class="lang-box">
+                <span class="green">அ </span>
+                <p>Tamil</p>
+              </div>
+              <div class="lang-box">
+                <span class="green">अ </span>
+                <p>Hindi</p>
+              </div>
+              <div class="lang-box">
+                <span class="green">అ </span>
+                <p>Telugu</p>
+              </div>
+              <div class="lang-box">
+                <span class="green">ക </span>
+                <p>Malayalam</p>
+              </div>
+              <div class="lang-box">
+                <span class="green">ಎ </span>
+                <p>Kannada</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  <div class="modal fade" id="sup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable mg">
+      <div class="modal-content">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <div class="top-title">
+            <span>
+              <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 15.0022C19.999 17.8731 17.9816 20.2726 15.2872 20.8616L14.6492 18.9476C15.8532 18.7511 16.8765 18.0171 17.4649 17H15C13.8954 17 13 16.1046 13 15V11C13 9.8954 13.8954 9 15 9H17.9381C17.446 5.05369 14.0796 2 10 2C5.92038 2 2.55399 5.05369 2.06189 9H5C6.10457 9 7 9.8954 7 11V15C7 16.1046 6.10457 17 5 17H2C0.89543 17 0 16.1046 0 15V10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10V10.9987V11V15V15.0022ZM18 15V11H15V15H18ZM2 11V15H5V11H2Z"
+                  fill="#262626" />
+              </svg>
+            </span>
+            <h4>Support</h4>
+          </div>
+          <div class="right-content" style="margin-bottom: 66px;">
+            <div class="support-container">
+              <div class="sup-box">
+                <span class="grey"><svg width="30" height="31" viewBox="0 0 30 31" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M30 22.293C29.9985 26.5591 26.9724 30.1248 22.9308 31L21.9738 28.1558C23.7798 27.8638 25.3147 26.7731 26.1973 25.2617H22.5C20.8431 25.2617 19.5 23.9312 19.5 22.2898V16.3458C19.5 14.7044 20.8431 13.3739 22.5 13.3739H26.9072C26.169 7.5097 21.1194 2.97197 15 2.97197C8.88057 2.97197 3.83099 7.5097 3.09284 13.3739H7.5C9.15685 13.3739 10.5 14.7044 10.5 16.3458V22.2898C10.5 23.9312 9.15685 25.2617 7.5 25.2617H3C1.34314 25.2617 0 23.9312 0 22.2898V14.8598C0 6.65297 6.71572 0 15 0C23.2842 0 30 6.65297 30 14.8598V16.3439V16.3458V22.2898V22.293ZM27 22.2898V16.3458H22.5V22.2898H27ZM3 16.3458V22.2898H7.5V16.3458H3Z"
+                      fill="#262626" fill-opacity="0.5" />
+                  </svg>
+                </span>
+                <div class="sup-text">
+                  <p>Tech support <span>(+91-7418693017)</span></p>
+                  <span>9 am to 6 pm Before The Expo</span><br>
+                  <span>12 am To 12 am on the expo dates</span>
+  
+                </div>
+              </div>
+              <div class="sup-box">
+                <span class="grey"><svg width="34" height="33" viewBox="0 0 34 33" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M11.375 15.8694C11.375 16.0366 11.3092 16.197 11.1919 16.3152C11.0747 16.4334 10.9158 16.4999 10.75 16.4999C10.5842 16.4999 10.4253 16.4334 10.3081 16.3152C10.1908 16.197 10.125 16.0366 10.125 15.8694C10.125 15.7022 10.1908 15.5419 10.3081 15.4236C10.4253 15.3054 10.5842 15.239 10.75 15.239C10.9158 15.239 11.0747 15.3054 11.1919 15.4236C11.3092 15.5419 11.375 15.7022 11.375 15.8694ZM11.375 15.8694H10.75M17.625 15.8694C17.625 16.0366 17.5592 16.197 17.4419 16.3152C17.3247 16.4334 17.1658 16.4999 17 16.4999C16.8342 16.4999 16.6753 16.4334 16.5581 16.3152C16.4408 16.197 16.375 16.0366 16.375 15.8694C16.375 15.7022 16.4408 15.5419 16.5581 15.4236C16.6753 15.3054 16.8342 15.239 17 15.239C17.1658 15.239 17.3247 15.3054 17.4419 15.4236C17.5592 15.5419 17.625 15.7022 17.625 15.8694ZM17.625 15.8694H17M23.875 15.8694C23.875 16.0366 23.8092 16.197 23.6919 16.3152C23.5747 16.4334 23.4158 16.4999 23.25 16.4999C23.0842 16.4999 22.9253 16.4334 22.8081 16.3152C22.6908 16.197 22.625 16.0366 22.625 15.8694C22.625 15.7022 22.6908 15.5419 22.8081 15.4236C22.9253 15.3054 23.0842 15.239 23.25 15.239C23.4158 15.239 23.5747 15.3054 23.6919 15.4236C23.8092 15.5419 23.875 15.7022 23.875 15.8694ZM23.875 15.8694H23.25M32 15.8694C32 23.5287 25.2833 29.7389 17 29.7389C15.562 29.7406 14.1301 29.5501 12.7417 29.1723C10.7846 30.5607 8.39721 31.1915 6.01667 30.9493C5.75199 30.9235 5.48845 30.8871 5.22667 30.84C6.04811 29.8635 6.60912 28.6918 6.85667 27.4357C7.00667 26.6674 6.635 25.921 6.07833 25.3746C3.55 22.8932 2 19.5494 2 15.8694C2 8.21014 8.71667 2 17 2C25.2833 2 32 8.21014 32 15.8694Z"
+                      stroke="#262626" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div class="sup-text">
+                  <p>Live chat</p>
+                  <span>9 am to 6 pm</span>
+                </div>
+              </div>
+              <div class="sup-box">
+                <span class="grey"><svg width="34" height="27" viewBox="0 0 34 27" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M32 5.46154V21.6154C32 22.5334 31.6353 23.4139 30.9861 24.0631C30.337 24.7122 29.4565 25.0769 28.5385 25.0769H5.46154C4.54348 25.0769 3.66303 24.7122 3.01386 24.0631C2.3647 23.4139 2 22.5334 2 21.6154V5.46154M32 5.46154C32 4.54348 31.6353 3.66303 30.9861 3.01386C30.337 2.3647 29.4565 2 28.5385 2H5.46154C4.54348 2 3.66303 2.3647 3.01386 3.01386C2.3647 3.66303 2 4.54348 2 5.46154M32 5.46154V5.83538C32.0001 6.42638 31.8488 7.00755 31.5607 7.52353C31.2725 8.03952 30.857 8.47313 30.3538 8.78308L18.8154 15.8831C18.2695 16.2193 17.6411 16.3973 17 16.3973C16.3589 16.3973 15.7305 16.2193 15.1846 15.8831L3.64615 8.78462C3.14296 8.47467 2.72749 8.04106 2.43934 7.52507C2.15118 7.00909 1.99993 6.42792 2 5.83692V5.46154"
+                      stroke="#262626" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div class="sup-text">
+                  <p>Email support <span>(visitor@agriexpo.live)</span></p>
+                  <span>Revert time 2 hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--   
+  <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable mg">
+      <div class="modal-content">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <div class="top-title">
+            <span>
+              <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.99999 17.3965L12.3997 12.8404C14.8297 10.3241 14.8297 6.24443 12.3997 3.72816C9.96985 1.21188 6.03014 1.21188 3.60022 3.72816C1.17029 6.24443 1.17029 10.3241 3.60022 12.8404L7.99999 17.3965ZM7.99999 20L2.34314 14.1422C-0.781048 10.9069 -0.781048 5.66162 2.34314 2.42641C5.46733 -0.808803 10.5326 -0.808803 13.6569 2.42641C16.781 5.66162 16.781 10.9069 13.6569 14.1422L7.99999 20ZM7.99999 10.1252C8.98185 10.1252 9.77776 9.30104 9.77776 8.28428C9.77776 7.26755 8.98185 6.44333 7.99999 6.44333C7.01812 6.44333 6.22221 7.26755 6.22221 8.28428C6.22221 9.30104 7.01812 10.1252 7.99999 10.1252ZM7.99999 11.9662C6.03631 11.9662 4.44444 10.3177 4.44444 8.28428C4.44444 6.25082 6.03631 4.60238 7.99999 4.60238C9.96363 4.60238 11.5555 6.25082 11.5555 8.28428C11.5555 10.3177 9.96363 11.9662 7.99999 11.9662Z"
+                  fill="#262626" />
+              </svg>
+            </span>
+            <h4>My Address</h4>
+          </div>
+          <div class="right-content">
+            <div class="add-container">
+              <div class="add-box" *ngFor="let v of addressData ;index as i">
+                <div class="add-text">
+                  <span class="main-span">
+                    <span>
+                      <span><svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M7.99999 17.3965L12.3997 12.8404C14.8297 10.3241 14.8297 6.24443 12.3997 3.72816C9.96985 1.21188 6.03014 1.21188 3.60022 3.72816C1.17029 6.24443 1.17029 10.3241 3.60022 12.8404L7.99999 17.3965ZM7.99999 20L2.34314 14.1422C-0.781048 10.9069 -0.781048 5.66162 2.34314 2.42641C5.46733 -0.808803 10.5326 -0.808803 13.6569 2.42641C16.781 5.66162 16.781 10.9069 13.6569 14.1422L7.99999 20ZM7.99999 10.1252C8.98185 10.1252 9.77776 9.30104 9.77776 8.28428C9.77776 7.26755 8.98185 6.44333 7.99999 6.44333C7.01812 6.44333 6.22221 7.26755 6.22221 8.28428C6.22221 9.30104 7.01812 10.1252 7.99999 10.1252ZM7.99999 11.9662C6.03631 11.9662 4.44444 10.3177 4.44444 8.28428C4.44444 6.25082 6.03631 4.60238 7.99999 4.60238C9.96363 4.60238 11.5555 6.25082 11.5555 8.28428C11.5555 10.3177 9.96363 11.9662 7.99999 11.9662Z"
+                            fill="#262626" />
+                        </svg></span>{{v.location_name}}
+                    </span>
+                    <span class="sub-span"><svg data-bs-toggle="offcanvas" data-bs-target="#editAdd"
+                        aria-controls="offcanvasRight" (click)="editAdd(v)" width="20" height="20" viewBox="0 0 20 20"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M14.5577 0.952381L12.4413 3.06878H2.1164V17.8836H16.9312V7.55873L19.0476 5.44233V18.9418C19.0476 19.2225 18.9361 19.4916 18.7377 19.6901C18.5392 19.8885 18.2701 20 17.9894 20H1.0582C0.777549 20 0.508391 19.8885 0.30994 19.6901C0.111489 19.4916 0 19.2225 0 18.9418V2.01058C0 1.72993 0.111489 1.46077 0.30994 1.26232C0.508391 1.06387 0.777549 0.952381 1.0582 0.952381H14.5577ZM18.5026 0L20 1.49841L10.273 11.2254L8.77884 11.2286L8.77672 9.7291L18.5026 0Z"
+                          fill="#BCC3CC" />
+                      </svg>
+                      <svg (click)="assignAdd(v._id)" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M19.4615 4.97727L18.8205 16.2536C18.786 16.8614 18.5281 17.4326 18.0997 17.8502C17.6712 18.2678 17.1047 18.5002 16.5159 18.5H5.4841C4.89535 18.5002 4.32877 18.2678 3.90034 17.8502C3.47191 17.4326 3.21403 16.8614 3.17949 16.2536L2.53846 4.97727M8.69231 9.35227L11 11.7386M11 11.7386L13.3077 14.125M11 11.7386L13.3077 9.35227M11 11.7386L8.69231 14.125M2.15385 4.97727H19.8462C20.4831 4.97727 21 4.44273 21 3.78409V2.19318C21 1.53455 20.4831 1 19.8462 1H2.15385C1.51692 1 1 1.53455 1 2.19318V3.78409C1 4.44273 1.51692 4.97727 2.15385 4.97727Z"
+                          stroke="#BCC3CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </span>
+                  <p>{{v.address}} {{v.city}} {{v.state}}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="add-submit">
+              <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7.29869 15.8368C7.68785 16.2196 8.31213 16.2196 8.70129 15.8368L12.3997 12.1983C14.8297 9.80794 14.8297 5.93221 12.3997 3.54175C9.96985 1.15129 6.03014 1.15129 3.60022 3.54175C1.17029 5.93221 1.17029 9.80794 3.60022 12.1983L7.29869 15.8368ZM8.70128 18.3101C8.31212 18.6929 7.68786 18.6929 7.2987 18.3101L2.34314 13.4351C-0.781048 10.3616 -0.781048 5.37854 2.34314 2.30509C5.46733 -0.768363 10.5326 -0.768363 13.6569 2.30509C16.781 5.37854 16.781 10.3616 13.6569 13.4351L8.70128 18.3101ZM6.1111 6.99561C6.66339 6.99561 7.1111 6.5479 7.1111 5.99561V5.26115C7.1111 4.77023 7.50907 4.37226 7.99999 4.37226C8.49091 4.37226 8.88888 4.77023 8.88888 5.26115V5.99561C8.88888 6.5479 9.33659 6.99561 9.88888 6.99561H10.6811C11.164 6.99561 11.5555 7.38712 11.5555 7.87007C11.5555 8.35301 11.164 8.74452 10.6811 8.74452H9.88888C9.33659 8.74452 8.88888 9.19223 8.88888 9.74452V10.479C8.88888 10.9699 8.49091 11.3679 7.99999 11.3679C7.50907 11.3679 7.1111 10.9699 7.1111 10.479V9.74452C7.1111 9.19223 6.66339 8.74452 6.1111 8.74452H5.31889C4.83594 8.74452 4.44444 8.35301 4.44444 7.87007C4.44444 7.38712 4.83594 6.99561 5.31889 6.99561H6.1111Z"
+                    fill="white" />
+                </svg>
+                Add Location
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="modal fade" id="prof" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable mg">
+      <div class="modal-content">
+        <div class="modal-header"> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body">
+          <div class="top-title">
+            <span><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.6472 18.4722C16.8708 17.4442 15.8664 16.6106 14.713 16.037C13.5596 15.4634 12.2887 15.1654 11.0006 15.1666C9.71239 15.1654 8.44154 15.4634 7.28813 16.037C6.13473 16.6106 5.13027 17.4442 4.35389 18.4722M17.6472 18.4722C19.1622 17.1246 20.2307 15.3483 20.713 13.3789C21.1953 11.4094 21.0675 9.3399 20.3466 7.44475C19.6257 5.5496 18.3458 3.91836 16.6766 2.76736C15.0073 1.61637 13.0276 1 11 1C8.9724 1 6.9927 1.61637 5.32345 2.76736C3.6542 3.91836 2.37426 5.5496 1.65337 7.44475C0.932491 9.3399 0.804726 11.4094 1.28702 13.3789C1.76932 15.3483 2.83889 17.1246 4.35389 18.4722M17.6472 18.4722C15.8184 20.1035 13.4513 21.0035 11.0006 21C8.54948 21.0038 6.18304 20.1038 4.35389 18.4722M14.3339 8.49979C14.3339 9.38386 13.9827 10.2317 13.3576 10.8569C12.7325 11.482 11.8846 11.8332 11.0006 11.8332C10.1165 11.8332 9.26865 11.482 8.64353 10.8569C8.01841 10.2317 7.66722 9.38386 7.66722 8.49979C7.66722 7.61572 8.01841 6.76786 8.64353 6.14273C9.26865 5.5176 10.1165 5.1664 11.0006 5.1664C11.8846 5.1664 12.7325 5.5176 13.3576 6.14273C13.9827 6.76786 14.3339 7.61572 14.3339 8.49979Z"
+                  stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h4>Profile</h4>
+          </div>
+          <div class="right-content" style="margin-bottom: 80px;">
+            <div class="profile-form">
+              <div class="form-box">
+                <p>Profile Picture :</p>
+                <p>
+                  <img [src]="userDetails.AgriImage" alt="" srcset="" />
+                </p>
+              </div>
+              <div class="form-box" *ngIf="userDetails.SType=='Company'">
+                <p>Trade Name :</p>
+                <p>{{ userDetails.companyName }}</p>
+              </div>
+              <div class="form-box">
+                <p>Category :</p>
+                <ul style="list-style:none;padding-left: 0;">
+                  <li  *ngFor="let i of userDetails.category">{{i}}</li>
+                </ul>
+               
+              </div>
+              <div class="form-box">
+                <p>Contact name:</p>
+                <p>{{ userDetails.SName }}</p>
+              </div>
+              <div class="form-box">
+                <p>Mobile Number :</p>
+                <p>{{ userDetails.mobile }}</p>
+              </div>
+              <div *ngIf="userDetails.email" class="form-box">
+                <p>Email ID :</p>
+                <p>{{ userDetails.email }}</p>
+              </div>
+              <div class="form-box">
+                <p>Address :</p>
+                <p>{{ userDetails.address }}</p>
+              </div>
+              <div *ngIf="userDetails.designation" class="form-box">
+                <p>Designation :</p>
+                <p>{{ userDetails.designation }}</p>
+              </div>
+              <div *ngIf="userDetails.website" class="form-box">
+                <p>Website :</p>
+                <p>{{ userDetails.website }}</p>
+              </div>
+              <!-- <div class="form-box">
+                <p>Country :</p>
+                <p>{{ userDetails.country }}</p>
+              </div>
+              <div class="form-box">
+                <p>State :</p>
+                <p>{{ userDetails.state }}</p>
+              </div>
+              <div class="form-box">
+                <p>City :</p>
+                <p>{{ userDetails.city }}</p>
+              </div> -->
+              <div class="form-box">
+                <p>Pincode :</p>
+                <p>{{ userDetails.Pincode }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--   
+  <div class="offcanvas offcanvas-end off" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9.64747 20.5254C9.8425 20.7193 10.1575 20.7193 10.3525 20.5254L15.4996 15.4084C18.5371 12.389 18.5371 7.49332 15.4996 4.47379C12.4623 1.45426 7.53768 1.45426 4.50027 4.47379C1.46286 7.49332 1.46286 12.389 4.50027 15.4084L9.64747 20.5254ZM10.3525 23.6496C10.1575 23.8434 9.8425 23.8434 9.64748 23.6496L2.92893 16.9706C-0.97631 13.0883 -0.97631 6.79395 2.92893 2.91169C6.83417 -0.970564 13.1658 -0.970564 17.0711 2.91169C20.9763 6.79395 20.9763 13.0883 17.0711 16.9706L10.3525 23.6496ZM8.38888 8.83657C8.66502 8.83657 8.88888 8.61271 8.88888 8.33657V6.02285C8.88888 5.74671 9.11273 5.52285 9.38888 5.52285H10.6111C10.8872 5.52285 11.1111 5.74671 11.1111 6.02285V8.33657C11.1111 8.61271 11.335 8.83657 11.6111 8.83657H13.9444C14.2206 8.83657 14.4444 9.06042 14.4444 9.33657V10.5457C14.4444 10.8218 14.2206 11.0457 13.9444 11.0457H11.6111C11.335 11.0457 11.1111 11.2696 11.1111 11.5457V13.8594C11.1111 14.1356 10.8872 14.3594 10.6111 14.3594H9.38888C9.11273 14.3594 8.88888 14.1356 8.88888 13.8594V11.5457C8.88888 11.2696 8.66502 11.0457 8.38888 11.0457H6.05555C5.77941 11.0457 5.55555 10.8218 5.55555 10.5457V9.33657C5.55555 9.06042 5.77941 8.83657 6.05555 8.83657H8.38888Z"
+            fill="#019444" />
+        </svg>
+        Add Address
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="right-content" [formGroup]="addform">
+        <div class="enq-form">
+          <div class="enq-input">
+            <label for="name">Location Name:</label>
+            <input type="text" formControlName="location_name" />
+          </div>
+          <p class="err" *ngIf="addform.get('location_name')?.invalid && addsubmitted">
+            Location is required
+          </p>
+          <div class="enq-input">
+            <label for="name">Address:</label>
+            <input formControlName="address" type="text" />
+          </div>
+          <p class="err" *ngIf="addform.get('address')?.invalid && addsubmitted">Address is required</p>
+          <div class="enq-input">
+            <label for="name">Pincode:</label>
+            <input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" maxlength="6"
+              formControlName="pincode" type="text" />
+          </div>
+          <p class="err" *ngIf="addform.get('pincode')?.invalid && addsubmitted">Pincode is required</p>
+          <div class="enq-input">
+            <label for="name">City:</label>
+            <input formControlName="city" type="text" />
+          </div>
+          <p class="err" *ngIf="addform.get('city')?.invalid && addsubmitted">City is required</p>
+          <div class="enq-input">
+            <label for="name">State:</label>
+            <input type="text" formControlName="state" />
+            <p class="err" *ngIf="addform.get('state')?.invalid && addsubmitted">State is required</p>
+          </div>
+  
+          <div class="adadd-submit">
+            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" #closeadd
+              style="display: none;">x</button>
+            <button (click)="submitAdd(closeadd)">Submit</button>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="offcanvas offcanvas-end off" tabindex="-1" id="editAdd" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9.64747 20.5254C9.8425 20.7193 10.1575 20.7193 10.3525 20.5254L15.4996 15.4084C18.5371 12.389 18.5371 7.49332 15.4996 4.47379C12.4623 1.45426 7.53768 1.45426 4.50027 4.47379C1.46286 7.49332 1.46286 12.389 4.50027 15.4084L9.64747 20.5254ZM10.3525 23.6496C10.1575 23.8434 9.8425 23.8434 9.64748 23.6496L2.92893 16.9706C-0.97631 13.0883 -0.97631 6.79395 2.92893 2.91169C6.83417 -0.970564 13.1658 -0.970564 17.0711 2.91169C20.9763 6.79395 20.9763 13.0883 17.0711 16.9706L10.3525 23.6496ZM8.38888 8.83657C8.66502 8.83657 8.88888 8.61271 8.88888 8.33657V6.02285C8.88888 5.74671 9.11273 5.52285 9.38888 5.52285H10.6111C10.8872 5.52285 11.1111 5.74671 11.1111 6.02285V8.33657C11.1111 8.61271 11.335 8.83657 11.6111 8.83657H13.9444C14.2206 8.83657 14.4444 9.06042 14.4444 9.33657V10.5457C14.4444 10.8218 14.2206 11.0457 13.9444 11.0457H11.6111C11.335 11.0457 11.1111 11.2696 11.1111 11.5457V13.8594C11.1111 14.1356 10.8872 14.3594 10.6111 14.3594H9.38888C9.11273 14.3594 8.88888 14.1356 8.88888 13.8594V11.5457C8.88888 11.2696 8.66502 11.0457 8.38888 11.0457H6.05555C5.77941 11.0457 5.55555 10.8218 5.55555 10.5457V9.33657C5.55555 9.06042 5.77941 8.83657 6.05555 8.83657H8.38888Z"
+            fill="#019444" />
+        </svg>
+        Update Address
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="right-content" [formGroup]="Eaddform">
+        <div class="enq-form">
+          <div class="enq-input">
+            <label for="name">Location Name:</label>
+            <input type="text" formControlName="location_name" />
+          </div>
+          <p class="err" *ngIf="Eaddform.get('location_name')?.invalid && addsubmitted">
+            Location is required
+          </p>
+          <div class="enq-input">
+            <label for="name">Address:</label>
+            <input formControlName="address" type="text" />
+          </div>
+          <p class="err" *ngIf="Eaddform.get('address')?.invalid && addsubmitted">Address is required</p>
+          <div class="enq-input">
+            <label for="name">Pincode:</label>
+            <input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" maxlength="6"
+              formControlName="pincode" type="text" />
+          </div>
+          <p class="err" *ngIf="Eaddform.get('pincode')?.invalid && addsubmitted">Pincode is required</p>
+          <div class="enq-input">
+            <label for="name">City:</label>
+            <input formControlName="city" type="text" />
+          </div>
+          <p class="err" *ngIf="Eaddform.get('city')?.invalid && addsubmitted">City is required</p>
+          <div class="enq-input">
+            <label for="name">State:</label>
+            <input type="text" formControlName="state" />
+            <p class="err" *ngIf="Eaddform.get('state')?.invalid && addsubmitted">State is required</p>
+          </div>
+  
+          <div class="adadd-submit">
+            <button data-bs-toggle="offcanvas" data-bs-target="#editAdd" aria-controls="offcanvasRight" #closeaddup
+              style="display: none;">x</button>
+  
+            <button (click)="updateAdd(closeaddup)">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
+  
+  
+  <!-- <div class="pop-container" *ngIf="showAddDlt">
+    <div class="pop-content">
+      <div class="pop-body">
+        <div class="pop-title">Delete Address</div>
+        <div class="pop-main">Are You sure you want to delete your address?</div>
+        <div class="pop-footer">
+          <button class="no" (click)="closeAddDlt()">No</button>
+          <button class="yes" (click)="deleteadd()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
+  <div class="pop-container" *ngIf="showDltAcc">
+    <div class="pop-content">
+      <div class="pop-body">
+        <div class="pop-title">Delete My Account</div>
+        <div class="pop-main">Are You sure you want to delete your account?</div>
+        <div class="pop-footer">
+          <button class="no" (click)="cDltAcc()">No</button>
+          <button class="yes" (click)="showCOtp()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pop-container" *ngIf="showOtp">
+    <div class="pop-content">
+      <div class="pop-body">
+        <div class="pop-title">Enter Otp</div>
+        <div class="pop-main">
+          <div>
+            <label>OTP :</label>
+            <input type="text" maxlength="6" [(ngModel)]="DeOtp" placeholder="Enter OTP"
+              onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57">
+  
+          </div>
+          <div class="resend-otp" style="display: flex; justify-content: end;">
+            <p style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="recentShow" (click)="resendOTP()">
+              Resend OTP
+            </p>
+            <p style="color: blue;" *ngIf="!recentShow">
+              {{remainingTime}}
+            </p>
+          </div>
+          <p class="err" *ngIf="DeSubmit && !DeOtp">Enter valid Otp</p>
+          <p class="err" *ngIf="errorMessage">Enter valid Otp</p>
+        </div>
+        <div class="pop-footer">
+          <button class="no" (click)="backOtp()">Back</button>
+          <button class="yes" (click)="submitOtp()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
