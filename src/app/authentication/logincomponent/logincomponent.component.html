@@ -20,7 +20,7 @@
                     id="mobile-number" placeholder="Enter Mobile Number" formControlName="mobile">
             </div>
             <div class="form-error">
-                <label *ngIf="submitted && Login.get('mobile')?.invalid">Enter a valid number !</label>
+                <label *ngIf="submitted && Login.get('mobile')?.invalid">Enter mobile number !</label>
             </div>
             <div style="position: relative;">
                 <label for="password">Password :</label>
@@ -39,16 +39,17 @@
                         </path>
                     </svg>
                 </div>
+                <div class="form-error">
+                    <label *ngIf="submitted  && Login.get('password')?.invalid ">Enter Password !</label>
+                </div>
+                <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage}}</label>
                 <div class="form-forgot">
-                    <a [routerLink]="['/forgot']">Forget Password !</a>
+                    <a [routerLink]="['/forgot']" (click)="forgot()">Forgot Password !</a>
                     <a [routerLink]="['/forgot']" (click)="continue()">Continue Registering !</a>
                 </div>
 
             </div>
-            <div class="form-error">
-                <label *ngIf="submitted  && Login.get('password')?.invalid ">Invalid Password !</label>
-            </div>
-            <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage}}</label>
+          
 
             <div class="login-btn btn">
                 <button class="normal-btn" [routerLink]="['/register']" type="button"> Sign Up</button>

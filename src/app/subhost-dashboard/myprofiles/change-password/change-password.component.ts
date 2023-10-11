@@ -33,15 +33,31 @@ export class ChangePasswordComponent_sub implements OnInit {
     return this.changepassword.controls
   }
 
-
+keyup(){
+  this.showError2 = false
+}
 
   changepassword: any;
-
+  showError:boolean=false
+  showError2:boolean=false
+  submitted:boolean=false
   change_pass() {
-    if (this.changepassword.valid) {
+    this.showError=false
+    this.submitted=true
+    if(this.changepassword.get('password')?.value !== this.changepassword.get('repassword')?.value){
+      this.showError=true
+      console.log(this.showError,'sdfsf')
+    }
+    if (this.changepassword.valid && !this.showError) {
       this.api.chanagepassword(this.changepassword.value).subscribe((res: any) => {
+        this.showError2=false
         console.log(res)
         this.auth.logout()
+      },error=>{
+        console.log(error.error,error.error.message)
+        if( error.error.message=="Password Doesn't Match"){
+          this.showError2=true
+        }
       })
     }
   }

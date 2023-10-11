@@ -57,17 +57,18 @@ export class RegistercomponentComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.auth.isAuth.next("login");
+    this.getCountry();
   }
   submitted: any = false;
   terms: any = false;
   errorMessage: any;
   changecheck(event: any) {
+    console.log(event.target.value);
     if (event.target.value == "Yes") {
       this.terms = true;
     } else {
       this.terms = false;
     }
-    console.log(event.target.value);
   }
   termErr: any = false;
   login_now() {
@@ -80,12 +81,12 @@ export class RegistercomponentComponent implements OnInit {
 
     if (this.registerForm.valid && this.terms) {
       this.submitted = false;
-      this.termErr = true;
+      this.termErr = false;
       this.api.register_seller(this.registerForm.value).subscribe(
         (res: any) => {
           console.log(res);
           localStorage.setItem("mobileNumber", res.mobileNumber);
-          this.router.navigate(["verifyotp"]);
+          this.router.navigateByUrl('/verifyotp?msg=reg');
         },
         (error) => {
           console.log(error);
@@ -97,9 +98,9 @@ export class RegistercomponentComponent implements OnInit {
   registerForm = new FormGroup({
     tradeName: new FormControl(null, Validators.required),
     companyName: new FormControl(null, Validators.required),
-    Designation: new FormControl(null, Validators.required),
-    webSite: new FormControl(null, Validators.required),
-    category: new FormControl(null, Validators.required),
+    Designation: new FormControl(null),
+    webSite: new FormControl(null),
+    category: new FormControl([], Validators.required),
     how_did_you_know_us: new FormControl(null, Validators.required),
     mobileNumber: new FormControl(null, [
       Validators.required,
@@ -107,22 +108,86 @@ export class RegistercomponentComponent implements OnInit {
       Validators.minLength(10),
       Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
     ]),
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    email: new FormControl(
+      "",
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+    ),
     address: new FormControl(null, [Validators.required]),
-    country: new FormControl(null, [Validators.required]),
-    state: new FormControl(null, [Validators.required]),
-    city: new FormControl(null, [Validators.required]),
+    // country: new FormControl(null, [Validators.required]),
+    // state: new FormControl(null, [Validators.required]),
+    // city: new FormControl(null, [Validators.required]),
     Pincode: new FormControl(null, [
       Validators.required,
       Validators.maxLength(6),
       Validators.minLength(6),
       Validators.pattern("^((\\+91-?)|0)?[0-9]{6}$"),
     ]),
+    GST_Number: new FormControl(),
   });
   get loginerror(): any {
     return this.registerForm.controls;
   }
   only_ten_degist(event: any, num: any) {
     return this.number.number_service(event, num);
+  }
+  change_category(e: any) {
+    let post: any = [];
+    if (this.registerForm.get("category")?.value != null) {
+      post = this.registerForm.get("category")?.value;
+    }
+    let index = post.findIndex((a: any) => a == e.target.value);
+    if (index != -1) {
+      post.splice(index, 1);
+    } else {
+      post.push(e.target.value);
+    }
+
+    this.registerForm.get("category")?.setValue(post);
+  }
+
+  show_selected_post(item: any) {
+    console.log("show_selected_post", item);
+    let postIndex = this.category.findIndex((a: any) => a == item);
+    console.log(postIndex);
+    if (postIndex != -1) {
+      return item;
+    } else {
+      return "sdajks";
+    }
+  }
+
+  Allcountry: any = [];
+  isoCountry: any;
+  getCountry() {
+    this.api.get_country().subscribe((res: any) => {
+      console.log(res);
+      this.Allcountry = res;
+    });
+  }
+
+  Allstate: any = [];
+  Allcity: any = [];
+  findState(v: any) {
+    let country = this.Allcountry[v.target.value];
+    // console.log(country)
+    // this.registerForm.patchValue({
+    //   country: country.name,
+    // });
+    this.isoCountry = country.isoCode;
+    this.api.get_state(country.isoCode).subscribe((res: any) => {
+      console.log(res);
+      this.Allstate = res;
+    });
+  }
+
+  findCity(v: any) {
+    let state = this.Allstate[v.target.value];
+    // this.registerForm.patchValue({
+    //   state: state.name,
+    // });
+    this.api.get_city(this.isoCountry, state.isoCode).subscribe((res: any) => {
+      console.log(res);
+      this.Allcity = res;
+    });
   }
 }

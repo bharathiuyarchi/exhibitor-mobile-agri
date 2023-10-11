@@ -1,137 +1,274 @@
 .main-container {
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    max-width: 1000px;
-    /* height: 100vh; */
-    position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  max-width: 1000px;
+  /* height: 100vh; */
+  position: relative;
 }
 
 nav {
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .back {
-    width: 15px;
-    display: flex;
-    justify-content: start;
+  width: 15px;
+  display: flex;
+  justify-content: start;
 }
 
 .edit {
-    display: flex;
-    justify-content: end;
-    margin-right: -15px;
+  display: flex;
+  justify-content: end;
+  margin-right: -15px;
 }
 
 nav .back,
 nav h3 {
-    display: flex;
-    align-items: center;
-    color: var(--blue);
+  display: flex;
+  align-items: center;
+  color: var(--blue);
 }
 
 nav h3 svg {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .form-container {
-    padding: 0 15px;
-    margin-top: 40px;
-    padding-bottom: 86px;
+  padding: 0 15px;
+  margin-top: 40px;
+  padding-bottom: 86px;
 }
 
 .form-container h3 {
-    margin-bottom: 25px;
-    text-align: center;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 .form-container div {
-    display: flex;
-    margin-bottom: 15px;
+  display: flex;
+  margin-bottom: 15px;
 }
 
 .form-container p {
-    margin-bottom: 25px;
-    margin-bottom: 0;
+  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
 .form-container div label {
-    margin: 0 0 2px 10px;
-    height: fit-content;
-    width: 50%;
-    font-size: 16px !important;
+  margin: 0 0 2px 10px;
+  height: fit-content;
+  width: 40%;
+  font-size: 14px !important;
 }
 
 .form-container div input {
-    background: #FAFAFA;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border: none;
-    padding: 15px;
+  background: #fafafa;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 15px;
 }
 
 .resend-otp {
-    font-size: 12px;
-    text-align: right;
-    margin: 5px;
-    text-decoration: underline;
+  font-size: 12px;
+  text-align: right;
+  margin: 5px;
+  text-decoration: underline;
 }
 
 .login-btn {
-    width: fit-content;
-    margin: auto;
-    margin-top: 35px;
-
+  width: fit-content;
+  margin: auto;
+  margin-top: 35px;
 }
 
 .login-btn button {
-    background-color: var(--green);
-    border: none;
-    padding: 10px 35px;
-    border-radius: 3px;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-
+  background-color: var(--green);
+  border: none;
+  padding: 10px 35px;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .profile-btn {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: white;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
 }
 
 .profile-btn button {
-    display: flex;
-    align-items: center;
-    height: 45px;
-    border-radius: 3px;
-    width: 48%;
-    color: white;
-    justify-content: center;
-    border: none;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  border-radius: 3px;
+  width: 48%;
+  color: white;
+  justify-content: center;
+  border: none;
 }
 
 .profile-btn button svg {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .change-password {
-    background-color: var(--blue);
+  background-color: var(--blue);
 }
 
 .logout {
-    background-color: #FF4D4D;
+  background-color: #ff4d4d;
 }
 
 .profile-btn div {
-    display: flex;
-    justify-content: space-evenly;
-    max-width: 500px;
-    margin: auto;
-    padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
 }
+
+.popup-1 {
+  height: 100%;
+  z-index: 100000000000000;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.popup-container-1 {
+  z-index: 1;
+  background-color: white;
+  min-width: 95%;
+  max-width: 95%;
+  min-height: 50vh;
+  max-height: 90vh;
+  overflow-y: scroll;
+  position: relative;
+  border-radius: 10px;
+}
+
+.popup-container-1::-webkit-scrollbar {
+  display: none;
+}
+
+.popup-close-1 {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 0.5;
+}
+
+.content-title {
+  padding-top: 20px;
+  /* display: flex; */
+}
+.content-title p {
+  text-align: center;
+  font-size: 20px;
+  color: #ff4d4d;
+}
+.content p {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 17px;
+}
+
+.buttons{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.buttons button{
+    width: 125px;
+    height: 36px;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+
+.popup-2 {
+    height: 100%;
+    z-index: 100000000000000;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+  
+  .popup-container-2 {
+    z-index: 1;
+    background-color: white;
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 50vh;
+    max-height: 90vh;
+    overflow-y: scroll;
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  .popup-container-2::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .popup-close-2 {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 0.5;
+  }
+  
+  .content-title {
+    padding-top: 20px;
+    /* display: flex; */
+  }
+  .content-title p {
+    text-align: center;
+    font-size: 20px;
+    color: #ff4d4d;
+  }
+  .content p {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 17px;
+  }
+  
+  .buttons{
+    width: 71%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
+  
+  .buttons button{
+      width: 125px;
+      height: 36px;
+      border: none;
+      color: white;
+      border-radius: 10px;
+  }
