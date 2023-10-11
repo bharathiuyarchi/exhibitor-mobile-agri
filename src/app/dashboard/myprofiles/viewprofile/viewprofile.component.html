@@ -86,6 +86,10 @@
             <label> Pincode :</label>
             <p style="width: 60%;">{{userDetails.Pincode}}</p>
         </div>
+        <div>
+          <label> GST_Number</label>
+          <p style="width: 60%;">{{userDetails.GST_Number?userDetails.GST_Number:"--"}}</p>
+      </div>
     </div>
 </div>
 <div class="profile-btn">
@@ -116,7 +120,7 @@
             <p>Delete My Account</p>
         </div>
         <div class="content">
-            <p>Are Sure Want Delete Your Account?</p>
+            <p>Are You Sure Do You Want To Delete Your Account?</p>
         </div>
         <div class="buttons">
             <button style="background-color: green; color: white;" (click)="popupCLose1()">No</button>

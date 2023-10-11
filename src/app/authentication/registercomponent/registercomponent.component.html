@@ -41,7 +41,7 @@
         </div>
         <div class="form-row">
           <label for="Mobile-Number">Mobile Number<sup style="color: red;">*</sup> : </label>
-          <input type="number" name="" id="Mobile-Number" placeholder="Enter Mobile Number"
+          <input type="tel" name="" id="Mobile-Number" placeholder="Enter Mobile Number"
             formControlName="mobileNumber" (keypress)="only_ten_degist($event, 9)"
             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" />
         </div>
@@ -187,9 +187,11 @@
         </div>
         <div class="form-row">
           <label for="City">GST Number : </label>
-          <input type="text" name="" id="GST_Number" placeholder="Enter GST Number" formControlName="GST_Number" />
+        <input type="text" name="" id="GST_Number" placeholder="Enter GST Number" formControlName="GST_Number"/>
         </div>
         <div class="form-error">
+          <label *ngIf="submitted &&registerForm.get('GST_Number')?.invalid ">Enter Valid GST Number !</label>
+
         </div>
         <div class="form-row">
           <label for="City">How did you know us?<sup style="color: red;">*</sup> : </label>
@@ -204,7 +206,7 @@
                   ">Select how do you know !</label>
         </div>
         <div class="form-row terms" style="margin-bottom: 30px;">
-          <input type="checkbox" (change)="changecheck($event)" [value]="terms?'No':'Yes'"> 
+          <input type="checkbox" (change)="changecheck($event)" > 
           <p style="font-size: 10px; padding-left: 10px;">
             By clicking Register, you agree to the
             <a style="font-size: 10px;" href="https://agriexpo.live/terms-and-conditions/" target="_blank">Terms and
@@ -214,7 +216,7 @@
             agriexpo.live
           </p>
         </div>
-        <div class="term-err" *ngIf="termErr">
+        <div class="term-err" *ngIf="!terms && submitted">
           <p style="color: red; font-weight: bold;">Select Terms and Conditions</p>
         </div>
         <div class="err">

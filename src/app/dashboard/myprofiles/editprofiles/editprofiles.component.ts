@@ -102,7 +102,7 @@ export class EditprofilesComponent implements OnInit {
           res.how_did_you_know_us,
           Validators.required
         ),
-        GST_Number: new FormControl(res.GST_Number),
+        GST_Number: new FormControl(res.GST_Number,[Validators.pattern(/^[a-zA-Z0-9]*$/)]),
       });
       console.log(
         this.category.map((x) => res.category.indexOf(x) > -1),

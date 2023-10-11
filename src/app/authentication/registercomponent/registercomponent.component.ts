@@ -60,15 +60,16 @@ export class RegistercomponentComponent implements OnInit {
     this.getCountry();
   }
   submitted: any = false;
-  terms: any = false;
+  terms: boolean = false;
   errorMessage: any;
   changecheck(event: any) {
-    console.log(event.target.value);
-    if (event.target.value == "Yes") {
-      this.terms = true;
-    } else {
-      this.terms = false;
-    }
+    console.log(event.target.checked);
+    this.terms = event.target.checked;
+    // if (event.target.value == "Yes") {
+    //   this.terms = !this.terms;
+    // } else {
+    //   this.terms = !this.terms;
+    // }
   }
   termErr: any = false;
   login_now() {
@@ -86,7 +87,7 @@ export class RegistercomponentComponent implements OnInit {
         (res: any) => {
           console.log(res);
           localStorage.setItem("mobileNumber", res.mobileNumber);
-          this.router.navigateByUrl('/verifyotp?msg=reg');
+          this.router.navigateByUrl("/verifyotp?msg=reg");
         },
         (error) => {
           console.log(error);
@@ -106,7 +107,7 @@ export class RegistercomponentComponent implements OnInit {
       Validators.required,
       Validators.maxLength(10),
       Validators.minLength(10),
-      Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+      Validators.pattern("^[6-9]{1}[0-9]{9}$"),
     ]),
     email: new FormControl(
       "",
@@ -122,7 +123,7 @@ export class RegistercomponentComponent implements OnInit {
       Validators.minLength(6),
       Validators.pattern("^((\\+91-?)|0)?[0-9]{6}$"),
     ]),
-    GST_Number: new FormControl(),
+    GST_Number: new FormControl(null, [Validators.pattern(/^[a-zA-Z0-9]*$/)]),
   });
   get loginerror(): any {
     return this.registerForm.controls;

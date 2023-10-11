@@ -25,7 +25,7 @@ export class ChangePasswordComponent_sub implements OnInit {
       oldpassword: new FormControl(null, Validators.required),
       password: new FormControl(null, [Validators.required,]),
       repassword: new FormControl(null, [Validators.required,]),
-    }, { validator: ConfirmPasswordValidator("password", "repassword") })
+    })
 
   }
 
@@ -46,7 +46,6 @@ keyup(){
     this.submitted=true
     if(this.changepassword.get('password')?.value !== this.changepassword.get('repassword')?.value){
       this.showError=true
-      console.log(this.showError,'sdfsf')
     }
     if (this.changepassword.valid && !this.showError) {
       this.api.chanagepassword(this.changepassword.value).subscribe((res: any) => {
@@ -60,5 +59,8 @@ keyup(){
         }
       })
     }
+  }
+  get formcontrols(){
+    return this.changepassword.controls
   }
 }

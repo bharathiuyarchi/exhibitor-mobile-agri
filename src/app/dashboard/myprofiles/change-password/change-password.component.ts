@@ -25,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
       oldpassword: new FormControl(null, Validators.required),
       password: new FormControl(null, [Validators.required,]),
       repassword: new FormControl(null, [Validators.required,]),
-    }, { validator: ConfirmPasswordValidator("password", "repassword") })
+    })
 
   }
 
@@ -47,10 +47,11 @@ export class ChangePasswordComponent implements OnInit {
       this.showError=true
       console.log(this.showError,'sdfsf')
     }
-    if (this.changepassword.valid) {
+    if (this.changepassword.valid && !this.showError) {
       this.api.chanagepassword(this.changepassword.value).subscribe((res: any) => {
         console.log(res)
         this.auth.logout()
+        this.showError=false
       },error=>{
         console.log(error.error,error.error.message)
         if( error.error.message=="Password Doesn't Match"){
