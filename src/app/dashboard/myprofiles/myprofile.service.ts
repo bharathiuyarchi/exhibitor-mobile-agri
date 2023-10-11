@@ -19,4 +19,13 @@ export class MyprofileService {
   chanagepassword(data: any) {
     return this.http.put(this.baseURL + "/v1/seller/mydetails/profile/changepassword", data)
   }
+  get_country(){
+    return this.http.get(this.baseURL+'/v2/agora/get/country')
+  }
+  get_state(country:any){
+    return this.http.get(this.baseURL+`/v2/agora/get/state?county=${country}`)
+  }
+  get_city(country:any,state:any){
+    return this.http.get(this.baseURL+`/v2/agora/get/city?county=${country}&state=${state}`)
+  }
 }

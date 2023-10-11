@@ -71,6 +71,9 @@ export class LogincomponentComponent implements OnInit {
   change1() {
     this.show1 = !this.show1;
   }
+  forgot() {
+    localStorage.clear();
+  }
   change2() {
     this.show2 = !this.show2;
   }

@@ -53,24 +53,34 @@
           <label *ngIf="submitted && loginerror.mobileNumber.errors?.['pattern']">Enter Valid Mobile Number !</label>
         </div>
         <div class="form-row">
-          <label for="Business-Type">Company Name<sup style="color: red;">*</sup> : </label>
+          <label for="Business-Type">Company Name<sup style="color: red;">*</sup> : <a style="    position: absolute;
+              margin-left: 52%;
+              cursor: pointer;
+              margin-top: 40px;" class="hover-me"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M8.64333 6.02111C9.94444 4.88222 12.0556 4.88222 13.3567 6.02111C14.6589 7.16 14.6589 9.00667 13.3567 10.1456C13.1311 10.3444 12.8789 10.5078 12.6122 10.6367C11.7844 11.0378 11.0011 11.7467 11.0011 12.6667V13.5M21 11C21 12.3132 20.7413 13.6136 20.2388 14.8268C19.7363 16.0401 18.9997 17.1425 18.0711 18.0711C17.1425 18.9997 16.0401 19.7363 14.8268 20.2388C13.6136 20.7413 12.3132 21 11 21C9.68678 21 8.38642 20.7413 7.17317 20.2388C5.95991 19.7363 4.85752 18.9997 3.92893 18.0711C3.00035 17.1425 2.26375 16.0401 1.7612 14.8268C1.25866 13.6136 1 12.3132 1 11C1 8.34784 2.05357 5.8043 3.92893 3.92893C5.8043 2.05357 8.34784 1 11 1C13.6522 1 16.1957 2.05357 18.0711 3.92893C19.9464 5.8043 21 8.34784 21 11ZM11 16.8333H11.0089V16.8422H11V16.8333Z"
+                  stroke="#79879A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <p class="hover-to-show" style="margin-left: -254px;">If you are individual enter name.</p>
+            </a> </label>
           <input type="text" name="" id="Business-Type" placeholder="Enter Company Name"
             formControlName="companyName" />
         </div>
-        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="If you are an individual Enter Name"
-          style="position: absolute; right: 5%;top: 453px; font-size: 20px;cursor: pointer;">
-          <!-- <button style="pointer-events: none;" type="button" disabled>Disabled button</button> -->
+        <!-- <span data-container="body" data-toggle="popover" data-placement="top" data-content="If you are an individual Enter Name."
+          style="font-size: 20px;cursor: pointer;">
+          <p class="hover-to-show">asklfgh</p>
           <i class="fa fa-question-circle" aria-hidden="true" style="pointer-events: none;"></i>
-        </span>
+        </span> -->
+
         <div class="form-error">
           <label *ngIf="submitted && registerForm.get('companyName')?.invalid">Enter Company Type !</label>
         </div>
         <div class="form-row">
-          <label for="Business-Type">Designation<sup style="color: red;">*</sup> : </label>
+          <label for="Business-Type">Designation : </label>
           <input type="text" name="" id="Business-Type" placeholder="Enter Designation" formControlName="Designation" />
         </div>
         <div class="form-error">
-          <label *ngIf="submitted && registerForm.get('Designation')?.invalid">Enter Designation Type !</label>
         </div>
         <div class="form-row">
           <label for="Business-Type">Website : </label>
@@ -93,16 +103,15 @@
             </option>
           </select> -->
           <span class="field_value">
-            <div class="dropdown" onclick="event.stopPropagation()">
-              <div type="text" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Select Post">
-                <div class="show_select_post">
+            <div class="dropdown" onclick="event.stopPropagation()" style="margin-bottom: 0px;">
+              <div type="text" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Select Post"
+                style="margin-bottom: -17px;">
+                <div class="show_select_post" style="margin-bottom: 0px;">
                   <span
-                    style="width: 100%;display: flex;align-items: center;margin-left: 0px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);border: none;padding: 7px 12px;cursor: pointer;"
+                    style="width: 100%;display: flex;align-items: center;margin-left: 0px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);border: none;padding: 7px 12px;cursor: pointer; height: 48px; background-color: #fafafa;;"
                     *ngIf="registerForm.get('category')?.invalid">Select Category</span>
                   <span class="field_values"
                     style="max-width: 90%;margin: auto;padding: 10px 0px; position: relative; z-index: -1000000000000000;">
-                    <!-- <p *ngFor="let item of registerForm.get('category')?.value">
-                      {{show_selected_post(item)}}</p> -->
                     <ng-container>
                       <p style="background-color: #cec3c3; padding: 10px;"
                         *ngFor="let item of registerForm.get('category')?.value">
@@ -125,33 +134,35 @@
           <label *ngIf="submitted && registerForm.get('category')?.invalid">Select Category Type !</label>
         </div>
         <!-- <div class="form-row">
-          <label for="Address">Address<sup style="color: red;">*</sup> : </label>
-          <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
-        </div>
-        <div class="form-error">
-          <label *ngIf="submitted && registerForm.get('address')?.invalid">Enter Address !</label>
-        </div> -->
-        <div class="form-row">
           <label for="Country">Country<sup style="color: red;">*</sup> : </label>
-          <input type="text" name="" id="Country" placeholder="Enter Country" formControlName="country" />
+          <select class="all-select" name="" id="" (change)="findState($event)">
+            <option selected disabled>Select</option>
+            <option *ngFor="let v of Allcountry;index as i" [value]="i">{{v.name}}</option>
+          </select>
         </div>
         <div class="form-error">
-          <label *ngIf="submitted && registerForm.get('country')?.invalid">Enter Country !</label>
+          <label *ngIf="submitted && registerForm.get('country')?.invalid">Select Country !</label>
         </div>
         <div class="form-row">
           <label for="State">State<sup style="color: red;">*</sup> : </label>
-          <input type="text" name="" id="State" placeholder="Enter State" formControlName="state" />
+          <select class="all-select" name="" id="" (change)="findCity($event)">
+            <option selected disabled>Select</option>
+            <option *ngFor="let v of Allstate;index as i" [value]="i">{{v.name}}</option>
+          </select>
         </div>
         <div class="form-error">
-          <label *ngIf="submitted && registerForm.get('state')?.invalid">Enter State !</label>
+          <label *ngIf="submitted && registerForm.get('state')?.invalid">Select State !</label>
         </div>
         <div class="form-row">
           <label for="City">City<sup style="color: red;">*</sup> : </label>
-          <input type="text" name="" id="City" placeholder="Enter City" formControlName="city" />
+          <select class="all-select" name="city" id="" formControlName="city">
+            <option selected disabled>Select</option>
+            <option *ngFor="let v of Allcity;index as i" [value]="v.name">{{v.name}}</option>
+          </select>
         </div>
         <div class="form-error">
-          <label *ngIf="submitted && registerForm.get('city')?.invalid">Enter City !</label>
-        </div>
+          <label *ngIf="submitted && registerForm.get('city')?.invalid">Selct City !</label>
+        </div> -->
         <div class="form-row">
           <label for="Address">Address<sup style="color: red;">*</sup> : </label>
           <input type="text" name="" id="Address" placeholder="Enter Address" formControlName="address" />
@@ -161,7 +172,7 @@
         </div>
         <div class="form-row">
           <label for="Pincode">Pincode<sup style="color: red;">*</sup> : </label>
-          <input type="text" name="" id="Pincode" placeholder="Enter Pincode" formControlName="Pincode"
+          <input type="tel" name="" id="Pincode" placeholder="Enter Pincode" formControlName="Pincode"
             (keypress)="only_ten_degist($event, 5)"
             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" minlength="6"
             maxlength="6" />
@@ -182,7 +193,8 @@
         </div>
         <div class="form-row">
           <label for="City">How did you know us?<sup style="color: red;">*</sup> : </label>
-          <select name="" id="" formControlName="how_did_you_know_us" style="box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);border: none;padding: 7px 12px;width: 100%;">
+          <select name="" id="" formControlName="how_did_you_know_us"
+            style="box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);border: none;padding: 7px 12px;width: 100%;height: 40px;">
             <option [value]="k" *ngFor="let k of know">{{ k }}</option>
           </select>
         </div>
@@ -192,7 +204,7 @@
                   ">Select how do you know !</label>
         </div>
         <div class="form-row terms" style="margin-bottom: 30px;">
-          <input type="checkbox" (change)="changecheck($event)" [value]="terms?'No':'Yes'">
+          <input type="checkbox" (change)="changecheck($event)" [value]="terms?'No':'Yes'"> 
           <p style="font-size: 10px; padding-left: 10px;">
             By clicking Register, you agree to the
             <a style="font-size: 10px;" href="https://agriexpo.live/terms-and-conditions/" target="_blank">Terms and
@@ -204,6 +216,9 @@
         </div>
         <div class="term-err" *ngIf="termErr">
           <p style="color: red; font-weight: bold;">Select Terms and Conditions</p>
+        </div>
+        <div class="err">
+         <p *ngIf="errorMessage !=null "style="color: red;">{{errorMessage}}</p> 
         </div>
         <div class="login-btn btn">
           <!-- <button class="normal-btn" [routerLink]="['/login']" type="button"> Login</button> -->
