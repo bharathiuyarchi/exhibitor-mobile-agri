@@ -17,6 +17,7 @@
             <div class="form-error">
                 <label *ngIf="submitted && verifyOTP.get('otp')?.invalid">Enter valid OTP !</label>
                 <label *ngIf="errorMessage !=null">Invalid OTP</label>
+                <label *ngIf="errorMessage2 !=null || errorMessage2 !='' ">{{errorMessage2}}</label>
             </div>
             <div class="resend-otp" style="display: flex; justify-content: end;">
                 <p style="color: blue; text-decoration: underline; cursor: pointer; text-align: right;"

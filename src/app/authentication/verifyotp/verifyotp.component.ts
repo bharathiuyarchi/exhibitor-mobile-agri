@@ -25,6 +25,8 @@ export class VerifyotpComponent implements OnInit {
 
   submitted: any = false;
   errorMessage: any;
+  errorMessage2: any;
+
   number: any;
   recentShow: any = false;
   remainingTime: number = 60;
@@ -45,8 +47,7 @@ export class VerifyotpComponent implements OnInit {
           this.router.navigate(["setpassword"], { replaceUrl: true });
         },
         (error) => {
-          this.errorMessage = error.error.message;
-
+          this.errorMessage2 = error.error.message;
           console.log(this.errorMessage);
         }
       );
@@ -90,23 +91,52 @@ export class VerifyotpComponent implements OnInit {
     clearInterval(this.intervalId);
   }
 
-  resendOTP() {
-    // let data = { mobileNumber: localStorage.getItem("mobileNumber") };
-    // this.api.forgetPassword(data).subscribe((e: any) => {
-    //   this.verifyOTP.reset();
-    //   this.recentShow = false;
-    //   this.remainingTime = 60;
-    //   this.errorMessage = null;
-    //   this.startTimer();
-    // });
+  // resendOTP() {
+  //   // let data = { mobileNumber: localStorage.getItem("mobileNumber") };
+  //   // this.api.forgetPassword(data).subscribe((e: any) => {
+  //   //   this.verifyOTP.reset();
+  //   //   this.recentShow = false;
+  //   //   this.remainingTime = 60;
+  //   //   this.errorMessage = null;
+  //   //   this.startTimer();
+  //   // });
 
-    let data = { mobileNumber: localStorage.getItem("mobileNumber") };
+  //   let data = { mobileNumber: localStorage.getItem("mobileNumber") };
+  //   let cont = localStorage.getItem("continue");
+  //   if (cont == "true") {
+  //     this.api.continueRegister(data).subscribe((e: any) => {
+  //       this.verifyOTP.reset();
+  //       this.recentShow = false;
+  //       this.errorMessage = null;
+  //       this.remainingTime = 60;
+  //       this.startTimer();
+  //     });
+  //   } else {
+  //     this.api.forgetPassword(data).subscribe((e: any) => {
+  //       this.verifyOTP.reset();
+  //       this.recentShow = false;
+  //       this.remainingTime = 60;
+  //       this.startTimer();
+  //       this.errorMessage = null;
+  //     });
+  //   }
+
+  //   // http://localhost:3000/v1/seller/forgot/seller
+  // }
+  resendOTP() {
+    let data;
+    if (this.msge != "") {
+      data = { mobileNumber: localStorage.getItem("mobileNumber"), reg: true };
+    } else {
+      data = { mobileNumber: localStorage.getItem("mobileNumber") };
+    }
     let cont = localStorage.getItem("continue");
     if (cont == "true") {
       this.api.continueRegister(data).subscribe((e: any) => {
         this.verifyOTP.reset();
         this.recentShow = false;
         this.errorMessage = null;
+        this.errorMessage2 = null
         this.remainingTime = 60;
         this.startTimer();
       });
@@ -117,6 +147,7 @@ export class VerifyotpComponent implements OnInit {
         this.remainingTime = 60;
         this.startTimer();
         this.errorMessage = null;
+        this.errorMessage2 = null
       });
     }
 

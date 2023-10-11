@@ -23,42 +23,38 @@ export class SetpasswordComponent {
   change2() {
     this.show2 = !this.show2;
   }
+  setpassword: any = new FormGroup({
+    password: new FormControl(null, [Validators.required]),
+    conformPassword: new FormControl(null, [Validators.required]),
+  });
 
   set_password() {
-    this.submitted = true
+    this.submitted = true;
+   if(this.setpassword.valid){
     if (
       this.setpassword.get("password")?.value !=
       this.setpassword.get("conformPassword")?.value
     ) {
-      console.log("asjkdhfgjshdfgsdjhfg")
-      this.sameOne = false;
-
-    }else{
       this.sameOne = true;
-      if (this.setpassword.valid && this.sameOne) {
+    } else {
+      this.sameOne = false;
+      if (this.sameOne ==false) {
         this.submitted = false;
-        this.sameOne = false;
         this.api.setPassword(this.setpassword.value).subscribe(
           (res: any) => {
-            console.log(res);
+            this.submitted = true;
+            this.errorMessage = null;
             localStorage.removeItem("verifiedAccount");
             this.router.navigate(["login"]);
           },
           (error) => {
-            this.errorMessage = error;
+            // this.errorMessage = error.error.message;
+            console.log(error);
           }
         );
       }
     }
 
-    this.submitted = true;
-    this.errorMessage = null;
-
-  
+   }
   }
-
-  setpassword: any = new FormGroup({
-    password: new FormControl(null, [Validators.required]),
-    conformPassword: new FormControl(null, [Validators.required]),
-  });
 }
