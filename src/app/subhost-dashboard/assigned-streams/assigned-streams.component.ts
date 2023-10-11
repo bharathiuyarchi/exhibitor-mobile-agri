@@ -16,7 +16,7 @@ export class AssignedStreamsComponent implements OnInit {
   iso: any;
   setinterval: any;
   baseURL: any = Env.baseAPi
-date_now = new Date().getTime()
+  date_now = new Date().getTime()
 
   setTimeinterval() {
     this.iso = new Date().getTime()
@@ -41,7 +41,7 @@ date_now = new Date().getTime()
   my_stream: any;
 
   get_streams(page: any) {
-    this.api.get_all_plans(page,this.sortForm).subscribe((res: any) => {
+    this.api.get_all_plans(page, this.sortForm).subscribe((res: any) => {
       console.log(res)
       this.my_stream = res.value;
       this.next = res.next;
@@ -75,22 +75,40 @@ date_now = new Date().getTime()
   }
 
   go_live(item: any) {
-    let data = {
-      isPublisher: true,
-      type: "subhost",
-      streamId: item._id
+    // let data = {
+    //   isPublisher: true,
+    //   type: "subhost",
+    //   streamId: item._id
+    // }
+    // this.api.create_token(data).subscribe((res: any) => {
+    //   console.log(res)
+    //   this.router.navigateByUrl('stream/golive?id=' + item._id)
+    // })
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: any) => {
+        let currentLat = position.coords.latitude;
+        let currentLong = position.coords.longitude;
+        let data = {
+          isPublisher: true,
+          type: "host",
+          streamId: item._id,
+          lot: currentLat,
+          long: currentLong
+        }
+        this.api.create_token(data).subscribe((res: any) => {
+          this.router.navigateByUrl('stream/golive?id=' + item._id)
+        })
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
     }
-    this.api.create_token(data).subscribe((res: any) => {
-      console.log(res)
-      this.router.navigateByUrl('stream/golive?id=' + item._id)
-    })
   }
 
 
   sortForm: any = 'All';
   sort_byr(type: any) {
     this.sortForm = type;
-    this.page=0;
+    this.page = 0;
     this.get_streams(this.page);
 
   }

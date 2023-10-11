@@ -176,15 +176,26 @@ export class CreatepostComponent implements OnInit {
     this.selected_video = null;
     if (event.target.files.length != 0) {
       if (event.target.files[0].type == "video/mp4") {
-        this.selected_video = event.target.files[0];
-        const filereader = new FileReader();
-        filereader.onload = (e: any) => {
-          this.selected_video_view = e.target.result;
-        };
+        console.log(event.target.files[0].size)
+        let limit = 40 * 1024 * 1024;
+        if (event.target.files[0].size < limit) {
+          console.log(true)
 
-        filereader.readAsDataURL(this.selected_video);
+          this.selected_video = event.target.files[0];
+          const filereader = new FileReader();
+          filereader.onload = (e: any) => {
+            this.selected_video_view = e.target.result;
+          };
+
+          filereader.readAsDataURL(this.selected_video);
+        }
+        else {
+          this.selected_video_view = null;
+          this.selected_video = "Video Limmit 40mb Only"
+        }
       } else {
-        this.selected_video = "invalid";
+        this.selected_video_view = null;
+        this.selected_video = "invalid video Format";
       }
     }
   }
@@ -218,7 +229,7 @@ export class CreatepostComponent implements OnInit {
   autofill_post() {
     if (this.previous != null) {
       this.postForm.patchValue({
-        quantity: this.previous.quantity,
+        // quantity: this.previous.quantity,
         marketPlace: this.previous.marketPlace,
         offerPrice: this.previous.offerPrice,
         postLiveStreamingPirce: this.previous.postLiveStreamingPirce,
@@ -240,10 +251,48 @@ export class CreatepostComponent implements OnInit {
         dispatchLocation: this.previous.dispatchLocation,
         latitude: this.previous.latitude,
         longitude: this.previous.longitude,
+        max_purchase_value: this.previous.max_purchase_value,
+        purchase_limit: this.previous.purchase_limit,
+        pruductreturnble: this.previous.pruductreturnble,
+        return_policy: this.previous.return_policy
       })
     }
     this.autofill_popup = false;
     this.oldDetails = this.previous;
+  }
+  already_exist_product: any = false;
+  open_new_pop() {
+    this.submited = true;
+    if (this.postForm.get('booking_charge').value == 'Customize') {
+      if (this.postForm.get('booking_percentage').value <= 100 && this.postForm.get('booking_percentage').value > 0) {
+        this.persentage = true;
+      }
+      else {
+        this.persentage = false;
+      }
+    }
+    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && this.persentage && !this.price_def) {
+      if (this.id == null) {
+        if (this.oldDetails != null) {
+          console.log("adsasad")
+          if (this.oldDetails.quantity == this.postForm.get('quantity').value && this.oldDetails.unit == this.postForm.get('unit').value) {
+            this.already_exist_product = true;
+          }
+          else {
+            this.prewview_post = true;
+          }
+        }
+        else {
+          this.create_post();
+        }
+      }
+      else {
+        this.create_post();
+      }
+    }
+    else {
+      this.already_exist_product = false;
+    }
   }
   select_product(event: any) {
     this.api.get_old_post(event.target.value).subscribe((res: any) => {
@@ -293,6 +342,10 @@ export class CreatepostComponent implements OnInit {
     old_post: new FormControl(null),
     old_accept: new FormControl(false),
     dispatchLocation: new FormControl(null, Validators.required),
+    purchase_limit: new FormControl(null, Validators.required),
+    max_purchase_value: new FormControl(null, Validators.required),
+    pruductreturnble: new FormControl(null, Validators.required),
+    return_policy: new FormControl(null, Validators.required),
     latitude: new FormControl(null),
     longitude: new FormControl(null),
   });
@@ -326,6 +379,10 @@ export class CreatepostComponent implements OnInit {
         dispatchLocation: res.dispatchLocation,
         latitude: res.latitude,
         longitude: res.longitude,
+        max_purchase_value: res.max_purchase_value,
+        purchase_limit: res.purchase_limit,
+        pruductreturnble: res.pruductreturnble,
+        return_policy: res.return_policy
       });
       this.minLost = this.postForm.get("minLots").value;
       this.IncLost = this.postForm.get("incrementalLots").value;
@@ -339,7 +396,11 @@ export class CreatepostComponent implements OnInit {
       }
     });
   }
-
+  onPaste(event: ClipboardEvent, element: any, key: any) {
+    let clipboardData: any = event.clipboardData || window.Clipboard;
+    let pastedText = clipboardData.getData('text');
+    this.postForm.get(key).setValue(this.postForm.get(key).valid ? this.postForm.get(key).value.substring(0, 250) : '')
+  }
   afterStreaming(event: any) {
     let value = event.target.value;
     this.postForm.get("postLiveStreamingPirce")?.setValue(null);
@@ -353,14 +414,12 @@ export class CreatepostComponent implements OnInit {
       this.postForm.get("postLiveStreamingPirce")?.setErrors(null);
     }
   }
-  maxlengths(element: any, maxvalue: any) {
+  maxlengths(element: any, maxvalue: any, key: any) {
     var q = element.target.value.length + 1;
+    element.target.value = element.target.value.substring(0, 250);
+    this.postForm.get(key).setValue(this.postForm.get(key).valid ? this.postForm.get(key).value.substring(0, 250) : '')
     if (q > maxvalue) {
-      var r = q - maxvalue;
-      // alert("Sorry, you have input " + q + " words into the " +
-      //   "text area box you just completed. It can return no more than " +
-      //   maxvalue + " words to be processed. Please abbreviate " +
-      //   "your text by at least " + r + " words");
+
       return false;
     } else {
       return true;
@@ -412,6 +471,7 @@ export class CreatepostComponent implements OnInit {
     this.AddProductForm.reset();
     this.productSubmit = false;
     this.prewview_post = false;
+    this.already_exist_product = false;
   }
 
   AddProductForm: any = new FormGroup({
@@ -560,6 +620,25 @@ export class get_obj_value implements PipeTransform {
       }
     }
     return "";
+  }
+}
+
+
+
+
+@Pipe({
+  name: 'discount'
+})
+export class discount_calculate implements PipeTransform {
+  transform(marketprice: any, salesprice: any): any {
+
+    marketprice = marketprice == null ? 0 : marketprice
+    salesprice = salesprice == null ? 0 : salesprice
+
+    let dif = (marketprice - salesprice) * 100;
+    return Math.round(dif / marketprice) + "%";
+
+    // return "";
   }
 }
 

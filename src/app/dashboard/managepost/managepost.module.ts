@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManagepostComponent } from './managepost/managepost.component';
-import { CreatepostComponent, get_obj_value } from './createpost/createpost.component';
+import { CreatepostComponent, discount_calculate, get_obj_value } from './createpost/createpost.component';
 import { Managepostroutingmodule } from './managepost-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -13,7 +13,8 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     ManagepostComponent,
     CreatepostComponent,
-    get_obj_value
+    get_obj_value,
+    discount_calculate
   ],
   imports: [
     CommonModule,

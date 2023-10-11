@@ -74,14 +74,25 @@ export class ManagelivestreamComponent {
     // $('#view_details').modal('show');
   }
   go_live(item: any) {
-    let data = {
-      isPublisher: true,
-      type: "host",
-      streamId: item._id
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: any) => {
+        let currentLat = position.coords.latitude;
+        let currentLong = position.coords.longitude;
+        let data = {
+          isPublisher: true,
+          type: "host",
+          streamId: item._id,
+          lot: currentLat,
+          long: currentLong
+        }
+        this.api.create_token(data).subscribe((res: any) => {
+          this.router.navigateByUrl('dashboard/livestream/golive?id=' + item._id);
+        })
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
     }
-    this.api.create_token(data).subscribe((res: any) => {
-      this.router.navigateByUrl('dashboard/livestream/golive?id=' + item._id);
-    })
+
   }
   close_popup() {
     this.view_details = null;
@@ -123,7 +134,7 @@ export class ManagelivestreamComponent {
 
   view_details_type_action(type: any) {
     this.view_details_type = type;
-}
+  }
   popupType: any = "";
   close_popup_now() {
     this.popupType = "";
