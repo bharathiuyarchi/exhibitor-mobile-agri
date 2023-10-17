@@ -67,4 +67,7 @@ export class ManagepostService {
     const queryString = new URLSearchParams(data).toString();
     return this.http.get(this.baseurl + '/v1/ecomplan/get/address/lat/log?' + queryString);
   }
+  get_slob() {
+    return this.http.get(this.baseurl + "/v1/ecomplan/slab/getall");
+  }
 }

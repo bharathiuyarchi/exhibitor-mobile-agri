@@ -11,14 +11,12 @@
 
     </div>
 </nav>
-
-
 <div class="page-container post-form">
     <form [formGroup]="postRequest" (submit)="open_preview()">
         <div class="form-container">
             <div class="forms">
                 <div class="form-flex" *ngIf="id ==null">
-                    <label>Choose Plan :</label>
+                    <label>Choose Plan <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <select name="planId" formControlName="planId" (change)="change_plan($event)">
                             <option [ngValue]="null" disabled selected>Select Plan</option>
@@ -31,7 +29,7 @@
                     <span *ngIf="submited  && postRequest.get('planId')?.invalid">Choose Plan</span>
                 </p>
                 <div class="form-flex">
-                    <label>Stream Name :</label>
+                    <label>Stream Name <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <input type="text" name="streamName" id="" formControlName="streamName"
                             placeholder="Enter Stream Name">
@@ -41,7 +39,7 @@
                     <span *ngIf="submited  && postRequest.get('streamName')?.invalid">Enter Stream Name</span>
                 </p>
                 <div class="form-flex">
-                    <label>Choose Post :</label>
+                    <label>Choose Post <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <div class="dropdown" onclick="event.stopPropagation()">
                             <div type="text" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Select Post">
@@ -74,7 +72,7 @@
                     <span *ngIf="submited  && postRequest.get('post')?.invalid">Select Post</span>
                 </p>
                 <div class="form-flex">
-                    <label>Primary Language :</label>
+                    <label>Primary Language <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <select name="primarycommunication" formControlName="primarycommunication">
                             <option [ngValue]="null" disabled selected>Select Language</option>
@@ -82,26 +80,49 @@
                             <option value="English">English</option>
                             <option value="Hindi">Hindi</option>
                             <option value="Telugu">Telugu</option>
+                            <option value="Malayalam">Malayalam</option>
+                            <option value="Kannada">Kannada</option>
                         </select>
                     </span>
                 </div>
                 <p class="error-message">
                     <span *ngIf="submited  && postRequest.get('primarycommunication')?.invalid">Select Language</span>
                 </p>
-                <div class="form-flex" style="position: relative;">
-                    <label style="display: block;text-align: left;">Images Upload <br>
-                        <span
-                            style="display: flex;text-align: center;align-items: center;justify-content: left;font-size: 11px;">
-                            (jpg, jpeg, png)</span>
-                    </label>
+                <div class="form-flex">
+                    <label>Secondary Language :</label>
                     <span class="field_value">
-                        <span *ngIf="selected_image  ==null" class="over-image" style="display: flex;"
+                        <select name="secondarycommunication" formControlName="secondarycommunication">
+                            <option [ngValue]="null" disabled selected>Select Language</option>
+                            <option value="Tamil" *ngIf="postRequest.get('primarycommunication')?.value!='Tamil'">
+                                Tamil</option>
+                            <option value="English" *ngIf="postRequest.get('primarycommunication')?.value!='English'">
+                                English</option>
+                            <option value="Hindi" *ngIf="postRequest.get('primarycommunication')?.value!='Hindi'">
+                                Hindi</option>
+                            <option value="Telugu" *ngIf="postRequest.get('primarycommunication')?.value !='Telugu'">
+                                Telugu</option>
+                            <option value="Malayalam"
+                                *ngIf="postRequest.get('primarycommunication')?.value !='Malayalam'">
+                                Malayalam</option>
+                            <option value="Kannada" *ngIf="postRequest.get('primarycommunication')?.value !='Kannada'">
+                                Kannada</option>
+
+                        </select>
+                    </span>
+                </div>
+                <div class="form-flex" style="position: relative;">
+                    <label>Images Upload</label>
+                    <span class="field_value">
+                        <span *ngIf="selected_image  ==null && stepOne ==null" class="over-image"
+                            style="display: flex;justify-content: space-between;width: 100%;"
                             (mouseout)="mouseout('over-image')"
                             ngClass="{{stepOne  !=null && selected_image==null ?'hide-image':''}}">
                             <input type="file" name="" id="image-upload" style="display: none;"
                                 accept="image/png, image/gif, image/jpeg" (change)="change_image($event)">
-                            <label for="image-upload" class="btn btn-primary"
-                                (mouseout)="mouseout('over-image')">Choose</label>
+                            <label style="width: 50%;" for="image-upload" class="btn btn-primary"
+                                (mouseout)="mouseout('over-image')">{{id==null?'Choose':'Change'}}</label><span
+                                style="width: 50%;display: flex;text-align: center;align-items: center;justify-content: left;font-size: 12px; ">
+                                .jpg, .jpeg, .png ( Up to 5 Image)</span>
                         </span>
                         <span *ngIf="selected_image  !=null" style="display: flex;">
                             <div style="display: block;position: relative;width: 20%;padding-left: 4px;">
@@ -112,33 +133,111 @@
                                     style="height: 60px;border: 2px solid gray;">
                             </div>
                         </span>
-                        <span *ngIf="stepOne  !=null && selected_image==null" style="display: flex;"
-                            (mouseover)="mouseover('over-image')">
-                            <div style="display: block;position: relative;padding-left: 4px;">
-                                <img src="{{baseURL+'/'+stepOne.image}}" alt=""
-                                    style="width: 100%;height: 50px;border: 2px solid gray;">
+                        <ng-container *ngIf="selected_image  ==null && stepOne !=null">
+                            <span *ngIf="stepOne.image  ==null" class="over-image"
+                                style="display: flex;justify-content: space-between;width: 100%;"
+                                (mouseout)="mouseout('over-image')"
+                                ngClass="{{stepOne  !=null && selected_image==null ?'hide-image':''}}">
+                                <input type="file" name="" id="image-upload" style="display: none;"
+                                    accept="image/png, image/gif, image/jpeg" (change)="change_image($event)">
+                                <label style="width: 50%;" for="image-upload" class="btn btn-primary"
+                                    (mouseout)="mouseout('over-image')">{{id==null?'Choose':'Change'}}</label><span
+                                    style="width: 50%;display: flex;text-align: center;align-items: center;justify-content: left;font-size: 12px; ">
+                                    .jpg, .jpeg, .png ( Up to 5 Image)</span>
+                            </span>
+
+                        </ng-container>
+                        <ng-container *ngIf="stepOne  !=null && selected_image==null ">
+                            <span *ngIf="stepOne.image !=null" style="display: flex;"
+                                (mouseover)="mouseover('over-image')">
+                                <div style="display: block;position: relative;padding-left: 4px;">
+                                    <span
+                                        style="font-size: 13px;position: absolute;right: -6px;top: -10px;padding: 0px 8px;background: red;color: white;border-radius: 50%;cursor: pointer;z-index: 100;"
+                                        (click)="remove_file('image')">x</span>
+                                    <img src="{{stepOne.image}}" alt=""
+                                        style="width: 100%;height: 50px;border: 2px solid gray;">
+                                </div>
+                            </span>
+                        </ng-container>
+                    </span>
+
+                </div>
+                <p class="error-message">
+                    <span *ngIf="selected_image=='invalid'">Invalid
+                        Image Format</span>
+                </p>
+
+                <div class="form-flex" style="position: relative;">
+                    <label>Brochure Upload</label>
+                    <span class="field_value">
+                        <span *ngIf="selected_broucher  ==null && stepOne==null" class="over-image"
+                            style="display: flex;justify-content: space-between;width: 100%;"
+                            (mouseout)="mouseout('over-image')"
+                            ngClass="{{stepOne  !=null && selected_broucher==null ?'hide-image':''}}">
+                            <input type="file" name="" id="broucher-upload" style="display: none;"
+                                accept=".ppt, .pptx,.pdf" (change)="change_broucher($event)">
+                            <label style="width: 50%;" for="broucher-upload" class="btn btn-primary"
+                                (mouseout)="mouseout('over-image')">{{id==null?'Choose':'Choose'}}</label><span
+                                style="width: 50%;display: flex;text-align: center;align-items: center;justify-content: left;font-size: 12px;  ">
+                                .pdf, .ppt</span>
+                        </span>
+                        <span *ngIf="selected_broucher_view  !=null" style="display: flex;">
+                            <div style="display: block;position: relative;width: 100%;padding-left: 4px;">
+                                <span
+                                    style="font-size: 13px;position: absolute;right: -14px;top: -18px;padding: 0px 8px;background: red;color: white;border-radius: 50%;cursor: pointer;z-index: 100;"
+                                    (click)="removebroucher()">x</span>
+                                <p>{{selected_broucher_view}}</p>
+                                <!-- <object [data]="selected_broucher_view" type="application/pdf">
+                                    <embed [src]="selected_broucher_view" type="application/pdf" />
+                                </object>
+                                <iframe [src]="selected_broucher_view" frameborder="0"></iframe> -->
+                            </div>
+                        </span>
+
+
+                        <ng-container *ngIf="selected_broucher  ==null && stepOne !=null">
+                            <span class="over-image" *ngIf="stepOne.broucherName ==null"
+                                style="display: flex;justify-content: space-between;width: 100%;"
+                                (mouseout)="mouseout('over-image')"
+                                ngClass="{{stepOne  !=null && selected_broucher==null ?'hide-image':''}}">
+                                <input type="file" name="" id="broucher-upload" style="display: none;"
+                                    accept=".ppt, .pptx,.pdf" (change)="change_broucher($event)">
+                                <label style="width: 50%;" for="broucher-upload" class="btn btn-primary"
+                                    (mouseout)="mouseout('over-image')">{{id==null?'Choose':'Choose'}}</label><span
+                                    style="width: 50%;display: flex;text-align: center;align-items: center;justify-content: left;font-size: 12px;  ">
+                                    .pdf, .ppt</span>
+                            </span>
+                        </ng-container>
+
+                        <span *ngIf="stepOne  !=null && selected_broucher==null" style="display: flex;">
+                            <div style="display: block;position: relative;padding-left: 4px;"
+                                *ngIf="stepOne.broucherName !=null">
+                                <span
+                                    style="font-size: 13px;position: absolute;right: -14px;top: -18px;padding: 0px 8px;background: red;color: white;border-radius: 50%;cursor: pointer;z-index: 100;"
+                                    (click)="remove_file('brochure')">x</span>
+                                <p>{{stepOne.broucherName}}</p>
                             </div>
                         </span>
                     </span>
                 </div>
                 <p class="error-message">
-                    <span *ngIf="selected_image=='invalid'|| submited && selected_image==null && id ==null">Invalid
-                        Image</span>
+                    <span *ngIf="selected_broucher=='invalid'">Invalid
+                        Brochure Format</span>
                 </p>
+
                 <div class="form-flex" style="position: relative;">
-                    <label style="display: block;text-align: left;">
-                        Teaser Upload
-                        <span
-                            style="display: flex;text-align: center;align-items: center;justify-content: left;font-size: 11px;">
-                            (mp4)</span>
-                    </label>
+                    <label>Teaser Upload</label>
                     <span class="field_value" style="justify-content: space-between;">
-                        <span *ngIf="selected_video  ==null" class="over-video" style="display: flex;"
+                        <span *ngIf="selected_video  ==null && stepOne ==null" class="over-video"
+                            style="display: flex;justify-content: space-between;width: 100%;"
                             ngClass="{{stepOne  !=null && selected_video==null ?'hide-image':''}}">
-                            <input type="file" name="" id="video-upload" style="display: none;" accept="video/mp4"
-                                (change)="change_video($event)">
-                            <label for="video-upload" class="btn btn-primary" accept="video/mp4,video/x-m4v,video/*"
-                                (mouseout)="mouseout('over-image')">Choose</label>
+                            <input style="width: 50%;" type="file" name="" id="video-upload" style="display: none;"
+                                accept="video/mp4" (change)="change_video($event)">
+                            <label style="width:50%" for="video-upload" class="btn btn-primary"
+                                accept="video/mp4,video/x-m4v,video/*"
+                                (mouseout)="mouseout('over-image')">{{id==null?'Choose':'Change'}}</label><span
+                                style=" width: 50%;display: flex;justify-content: left;text-align: center;align-items: center;padding-left: 9px;font-size: 12px; ">.mp4
+                                ( Up to 40mb)</span>
                         </span>
                         <span *ngIf="selected_video  !=null" style="display: flex;" (mouseout)="mouseout('over-video')">
                             <div
@@ -149,25 +248,46 @@
                                 <video src="{{selected_video_view}}" style="width: 100%;height: 50px"></video>
                             </div>
                         </span>
-                        <span *ngIf="stepOne  !=null && selected_video==null" style="display: flex;"
-                            (mouseover)="mouseover('over-video')">
-                            <div style="display: block;position: relative;padding-left: 4px;">
-                                <video src="{{stepOne.teaser}}"
-                                    style="width: 100%;height: 50px;border: 2px solid gray;"></video>
-                            </div>
-                        </span>
+
+                        <ng-container *ngIf="selected_video  ==null && stepOne !=null">
+                            <span *ngIf="stepOne.teaser  ==null" class="over-video"
+                                style="display: flex;justify-content: space-between;width: 100%;"
+                                ngClass="{{stepOne  !=null && selected_video==null ?'hide-image':''}}">
+                                <input style="width: 50%;" type="file" name="" id="video-upload" style="display: none;"
+                                    accept="video/mp4" (change)="change_video($event)">
+                                <label style="width:50%" for="video-upload" class="btn btn-primary"
+                                    accept="video/mp4,video/x-m4v,video/*"
+                                    (mouseout)="mouseout('over-image')">{{id==null?'Choose':'Change'}}</label><span
+                                    style=" width: 50%;display: flex;justify-content: left;text-align: center;align-items: center;padding-left: 9px;font-size: 12px; ">.mp4
+                                    ( Up to 40mb)</span>
+                            </span>
+                        </ng-container>
+                        <ng-container *ngIf="stepOne !=null && selected_video==null ">
+                            <span *ngIf="stepOne.teaser !=null" style="display: flex;"
+                                (mouseover)="mouseover('over-video')">
+                                <div style="display: block;position: relative;padding-left: 4px;">
+                                    <span
+                                        style="font-size: 13px;position: absolute;right: -6px;top: -10px;padding: 0px 8px;background: red;color: white;border-radius: 50%;cursor: pointer;z-index: 100;"
+                                        (click)="remove_file('teaser')">x</span>
+                                    <video src="{{stepOne.teaser}}"
+                                        style="width: 100%;height: 50px;border: 2px solid gray;"></video>
+                                </div>
+                            </span>
+                        </ng-container>
                     </span>
                 </div>
                 <p class="error-message">
-                    <span *ngIf="selected_video=='invalid' || submited && selected_video==null && id ==null">Invalid
-                        Video</span>
+                    <span
+                        *ngIf="this.selected_video_error =='Video Limit 40mb Only' || this.selected_video_error =='invalid video Format'">{{selected_video_error}}</span>
                 </p>
                 <div class="form-flex" *ngIf="id ==null">
-                    <label>Choose Slot :</label>
+                    <label>Choose Slot <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <select name="slot" formControlName="slot">
                             <option [ngValue]="null" disabled>Select Slot</option>
-                            <option *ngFor="let data of BookedSlots;let i = index" [value]="data.slots._id">
+                            <option *ngFor="let data of BookedSlots;let i = index" [value]="data._id"
+                                [disabled]="data.slotExpire">
+                                <span style="color:red" *ngIf="data.slotExpire">Expired - </span>
                                 {{data.slotType}} - {{data.Durations}} min - {{data.slots.date}} -
                                 {{data.slots.start|date:'HH:mm a'}} - {{data.slots.end | date:'HH:mm a'}}
                             </option>
@@ -177,22 +297,21 @@
                 <p class="error-message">
                     <span *ngIf="submited  && postRequest.get('slot')?.invalid">Choose Slot</span>
                 </p>
+                <ng-container *ngIf="selected_plan !=null ">
+                    <div class="form-flex"
+                        *ngIf="postRequest.get('planId')?.valid && selected_plan.transaction=='With Transaction'">
+                        <label>Transaction <sup style="color: red;">*</sup>:</label>
+                        <span class="field_value">
+                            <select name="transaction" formControlName="transaction">
+                                <option [ngValue]="null" disabled selected>Select Transaction</option>
+                                <option value="With Transaction">With Transaction</option>
+                                <option value="Without Transaction">Without Transaction</option>
+                            </select>
+                        </span>
+                    </div>
+                </ng-container>
                 <div class="form-flex">
-                    <label>Transaction :</label>
-                    <span class="field_value">
-                        <select name="transaction" formControlName="transaction">
-                            <option [ngValue]="null" disabled selected>Select Transaction</option>
-                            <option value="With Transaction">With Transaction</option>
-                            <option value="Without Transaction">Without Transaction</option>
-                        </select>
-                    </span>
-                </div>
-                <p class="error-message">
-                    <span *ngIf="submited  && postRequest.get('transaction')?.invalid">Select Transaction</span>
-                </p>
-
-                <div class="form-flex" style="margin-top: 20px;">
-                    <label>Location :</label>
+                    <label>Location <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <input type="text" name="Location" id="" formControlName="Location"
                             placeholder="Enter Your Location">
@@ -215,26 +334,28 @@
                     </span>
 
                 </div> -->
-
                 <div class="form-flex" style="position: relative;">
-                    <label>Description</label>
+                    <label>Description <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <textarea name="" id="" cols="30" rows="10" formControlName="discription"
-                            (keypress)="maxlengths($event, 250)" (paste)="(false)"></textarea>
+                            (paste)="onPaste($event,$event)" (change)="maxlengths($event, 250)"
+                            (keypress)="maxlengths($event, 250)"></textarea>
                         <span
-                            style="text-align: right;float: right; font-weight: bold;position: absolute;bottom: -20px;right: 0;width: auto;">{{postRequest.get('discription')?.valid?postRequest.get('discription')?.value.length:0}}/250</span>
-                    </span>
+                            style="text-align: right;float: right; font-weight: bold;position: absolute;bottom: -10px;right: 0;width: auto;">{{postRequest.get('discription')?.valid?postRequest.get('discription')?.value.length
+                            < 250?postRequest.get('discription')?.value.length:250:0}}/250</span>
+                        </span>
                 </div>
                 <p class="error-message">
                     <span *ngIf="submited  && postRequest.get('discription')?.invalid">Enter Description</span>
                 </p>
             </div>
-            <div class="btn">
+            <div class="btn mt-3">
                 <button type="submit">Submit</button>
             </div>
         </div>
     </form>
 </div>
+
 
 
 <div class="modal fade mt-4" id="preview-form" style="margin-top: 5.5rem!important;">

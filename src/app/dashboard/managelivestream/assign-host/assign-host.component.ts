@@ -36,6 +36,7 @@ export class AssignHostComponent implements OnInit {
   stream_list: any;
   get_alert_stream(id: any) {
     this.api.get_stream_one(id).subscribe((res: any) => {
+      console.log(res,98768)
       this.stream_list = res;
       if (res.chat_need == 'yes') {
         this.postForm.addControl('allot_chat', new FormControl(res.allot_chat, Validators.required))

@@ -20,23 +20,26 @@
 
 .form div label {
   width: 100%;
-  
+
 }
 
-.form div input[type="text"],.form div input[type="tel"],.form div input[type="number"],
-.form div select{
+.form div input[type="text"],
+.form div input[type="tel"],
+.form div input[type="number"],
+.form div select {
   width: 100%;
   border: none;
   border-radius: 50px;
   height: 50px;
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25)!important;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
   /* cursor: pointer; */
 
 }
 
-.form div textarea{
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25)!important;
+.form div textarea {
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
 }
+
 .form div input[type='radio'] {
   cursor: pointer;
 }
@@ -72,13 +75,15 @@ textarea {
 
 .booking-amount {
   /* height: 0px; */
-  margin: 20px 0 0  0 !important;
+  margin: 20px 0 0 0 !important;
   align-items: center !important;
 }
+
 .booking-amount div label {
   margin-bottom: 0;
 
 }
+
 .booking-amount label {
   width: 100% !important;
 }
@@ -101,8 +106,7 @@ textarea {
   margin-right: 5px;
 }
 
-.booking-amount 
-.choose-file {
+.booking-amount .choose-file {
   display: flex;
   align-items: flex-end;
 }
@@ -115,7 +119,7 @@ textarea {
 .choose-file label {
   padding: 7px 30px;
   width: 180px !important;
-  background:rgb(230 229 229);
+  background: rgb(230 229 229);
   border: none;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
@@ -134,9 +138,11 @@ textarea {
   margin-top: 20px !important;
   flex-direction: row;
 }
-.booking-amount input[type="radio"]{
-  height: auto!important;
+
+.booking-amount input[type="radio"] {
+  height: auto !important;
 }
+
 .uploaded-images .image {
   max-width: 80px;
   position: relative;
@@ -159,12 +165,14 @@ video {
 .post-btn {
   width: fit-content !important;
   margin: 25px auto !important;
-  padding-bottom: 20px!important; 
+  padding-bottom: 20px !important;
+  display: flex;
+  flex-direction: row;
 }
 
 .post-btn button {
-  background-color:#019444;
-  color:white;
+  background-color: #019444;
+  color: white;
   border: none;
   min-width: 150px;
   display: flex;
@@ -237,11 +245,11 @@ video {
   max-height: 90vh;
   overflow-y: auto;
   background-color: rgba(245, 245, 245, 1);
-  min-width: 85%;
-  max-width: 85%;
+  min-width: 92%;
+  max-width: 92%;
   /* min-height: 65vh; */
-  border-radius: 30px;
-  padding-bottom:20px ;
+  border-radius: 8px;
+  padding-bottom: 20px;
 }
 
 .popup-container-2 {
@@ -294,7 +302,7 @@ video {
   border: none;
   border-radius: 50px;
   height: 50px;
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25)!important;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
   /* cursor: pointer; */
   padding-left: 20px;
 }
@@ -326,26 +334,30 @@ video {
   background-color: red;
 
 }
-.two-inputs{
+
+.two-inputs {
   position: relative;
 }
-.two-inputs .dropdown{
+
+.two-inputs .dropdown {
   position: absolute;
-  width: 100px!important;
-  height: 100%!important;
+  width: 100px !important;
+  height: 100% !important;
   right: 0;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
-.two-inputs .dropdown button{
+
+.two-inputs .dropdown button {
   height: 100%;
 }
+
 .two-inputs input {
-  border-radius:  50px !important;
+  border-radius: 50px !important;
   flex: 0 0 50%;
 }
 
 .two-inputs select {
-  border-radius:50px !important;
+  border-radius: 50px !important;
   flex: 0 0 20%;
 }
 
@@ -386,7 +398,7 @@ video {
   position: absolute;
   width: 250px;
   z-index: 100000;
-  margin-left: -131px;
+  right: -3px;
   background: white;
   margin-top: 5px;
   border-radius: 9px;
@@ -401,9 +413,41 @@ video {
 .hover-me:hover p {
   display: block;
 }
-.booking-amount div{ 
+
+.booking-amount div {
   flex-direction: row;
 }
+
 .form div {
-  margin-bottom: 0!important;
+  margin-bottom: 0 !important;
+}
+
+.popup-container-1 table tr td:last-child {
+  max-width: 30%;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+
+.product-body {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  /* optional, for equal spacing */
+  border-collapse: collapse;
+  margin-bottom: 0;
+  margin: 5px 0;
+}
+
+.product-body li {
+  display: table-cell;
+  vertical-align: middle;
+  overflow-wrap: break-word;
+  padding: 1px 11px;
+  margin-bottom: 0;
+}
+
+.title-popup {
+  font-weight: 500;
 }

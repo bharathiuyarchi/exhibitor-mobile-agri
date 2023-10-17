@@ -29,8 +29,16 @@ export class CreatepostComponent implements OnInit {
         this.ProductNotFound = false;
       }
     });
+    this.get_slob();
   }
 
+  list_slob: any;
+  get_slob() {
+    this.api.get_slob().subscribe((res) => {
+      console.log(res)
+      this.list_slob = res;
+    })
+  }
   validator_remove(arr: any, value: any, type: Boolean) {
     console.log(arr)
     arr.forEach((element: any) => {
@@ -42,6 +50,12 @@ export class CreatepostComponent implements OnInit {
         this.postForm.get(element).setErrors(null)
       }
     });
+    if (!type) {
+      this.IncreMentLosterr = false;
+      this.purchaseLimit = false;
+      this.minLosterr = false;
+      this.afterLivePriceerror = false;
+    }
   }
   persentage: any = true;
   submited: any = false;
@@ -56,7 +70,7 @@ export class CreatepostComponent implements OnInit {
         this.persentage = false;
       }
     }
-    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && this.persentage && !this.price_def) {
+    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && !this.purchaseLimit && !this.afterLivePriceerror && this.persentage && !this.price_def) {
       if (this.id == null) {
         this.prewview_post = true;
       }
@@ -84,7 +98,7 @@ export class CreatepostComponent implements OnInit {
         this.persentage = false;
       }
     }
-    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && this.persentage && !this.price_def) {
+    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && !this.purchaseLimit && !this.afterLivePriceerror && this.persentage && !this.price_def) {
       let formData: any = new FormData();
       let values: any = this.postForm.value;
       Object.entries(values).forEach((entry: any) => {
@@ -180,7 +194,6 @@ export class CreatepostComponent implements OnInit {
         let limit = 40 * 1024 * 1024;
         if (event.target.files[0].size < limit) {
           console.log(true)
-
           this.selected_video = event.target.files[0];
           const filereader = new FileReader();
           filereader.onload = (e: any) => {
@@ -191,7 +204,7 @@ export class CreatepostComponent implements OnInit {
         }
         else {
           this.selected_video_view = null;
-          this.selected_video = "Video Limmit 40mb Only"
+          this.selected_video = "Video Limit 40mb Only"
         }
       } else {
         this.selected_video_view = null;
@@ -227,7 +240,12 @@ export class CreatepostComponent implements OnInit {
   }
   previous: any;
   autofill_post() {
+
+
     if (this.previous != null) {
+      console.log(this.previous.purchase_limit, 8976, this.previous.transaction == 'With')
+      this.validator_remove(['incrementalLots', 'minLots', 'bookingAmount', 'booking_charge', 'booking_percentage', 'purchase_limit', 'pruductreturnble', 'max_purchase_value', 'return_policy'], this.previous.transaction, this.previous.transaction == 'With')
+      this.validator_remove(['max_purchase_value'], this.previous.purchase_limit, this.previous.purchase_limit == 'yes')
       this.postForm.patchValue({
         // quantity: this.previous.quantity,
         marketPlace: this.previous.marketPlace,
@@ -259,9 +277,38 @@ export class CreatepostComponent implements OnInit {
     }
     this.autofill_popup = false;
     this.oldDetails = this.previous;
+    if (this.previous.afterStreaming == "yes") {
+      this.postForm
+        .get("postLiveStreamingPirce")
+        ?.setErrors({ incorrect: true });
+    } else {
+      this.postForm.get("postLiveStreamingPirce")?.setErrors(null);
+    }
+    if (this.postForm.get('unit').value == 'Pack' || this.postForm.get('unit').value == 'Box' || this.postForm.get('unit').value == 'Bags') {
+      this.postForm.get("define_QTY")?.setErrors({ incorrect: true });
+    }
+    else {
+      this.postForm.get("define_QTY")?.setErrors(null);
+    }
+    if (this.previous.purchase_limit == "yes") {
+      this.postForm.get("max_purchase_value")?.setErrors({ incorrect: true });
+    } else {
+      this.postForm.get("max_purchase_value")?.setErrors(null);
+    }
+    if (this.previous.transaction == 'With') {
+      this.postForm.get("incrementalLots")?.setErrors({ incorrect: true });
+      this.postForm.get("minLots")?.setErrors({ incorrect: true });
+    } else {
+      this.postForm.get("incrementalLots")?.setErrors(null);
+      this.postForm.get("minLots")?.setErrors(null);
+    }
+
   }
   already_exist_product: any = false;
   open_new_pop() {
+    for (let key in this.postForm.value) {
+      console.log(this.postForm.get(key).valid, key)
+    }
     this.submited = true;
     if (this.postForm.get('booking_charge').value == 'Customize') {
       if (this.postForm.get('booking_percentage').value <= 100 && this.postForm.get('booking_percentage').value > 0) {
@@ -271,7 +318,7 @@ export class CreatepostComponent implements OnInit {
         this.persentage = false;
       }
     }
-    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && this.persentage && !this.price_def) {
+    if (this.postForm.valid && !this.minLosterr && !this.IncreMentLosterr && !this.purchaseLimit && !this.afterLivePriceerror && this.persentage && !this.price_def) {
       if (this.id == null) {
         if (this.oldDetails != null) {
           console.log("adsasad")
@@ -321,19 +368,19 @@ export class CreatepostComponent implements OnInit {
     categoryId: new FormControl(null, Validators.required),
 
     // product details
-    quantity: new FormControl(null, Validators.required),
+    quantity: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
     unit: new FormControl(null, Validators.required),
-    define_QTY: new FormControl(null, Validators.required),
+    define_QTY: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
     define_UNIT: new FormControl(null, Validators.required),
     // dispatchPincode: new FormControl(null, Validators.required),
     pack_discription: new FormControl(null, Validators.required),
     // transactions
     transaction: new FormControl(null, Validators.required),
-    marketPlace: new FormControl(null, Validators.required),
-    offerPrice: new FormControl(null, Validators.required),
-    postLiveStreamingPirce: new FormControl(null, Validators.required),
-    minLots: new FormControl(null, Validators.required),
-    incrementalLots: new FormControl(null, Validators.required),
+    marketPlace: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
+    offerPrice: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
+    postLiveStreamingPirce: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
+    minLots: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
+    incrementalLots: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
     discription: new FormControl(null, Validators.required),
     afterStreaming: new FormControl(null, Validators.required),
     bookingAmount: new FormControl(null, Validators.required),
@@ -343,7 +390,7 @@ export class CreatepostComponent implements OnInit {
     old_accept: new FormControl(false),
     dispatchLocation: new FormControl(null, Validators.required),
     purchase_limit: new FormControl(null, Validators.required),
-    max_purchase_value: new FormControl(null, Validators.required),
+    max_purchase_value: new FormControl(null, [Validators.required, Validators.pattern('^[1-9].*')]),
     pruductreturnble: new FormControl(null, Validators.required),
     return_policy: new FormControl(null, Validators.required),
     latitude: new FormControl(null),
@@ -393,6 +440,22 @@ export class CreatepostComponent implements OnInit {
           ?.setErrors({ incorrect: true });
       } else {
         this.postForm.get("postLiveStreamingPirce")?.setErrors(null);
+      }
+      if (this.postForm.get('unit').value == 'Pack' || this.postForm.get('unit').value == 'Box' || this.postForm.get('unit').value == 'Bags') {
+        this.postForm.get("define_QTY")?.setErrors({ incorrect: true });
+      }
+      else {
+        this.postForm.get("define_QTY")?.setErrors(null);
+      }
+      if (res.transaction == 'With') {
+        this.postForm.get("minLots")?.setErrors({ incorrect: true });
+        this.postForm.get("incrementalLots")?.setErrors({ incorrect: true });
+        this.postForm.get("max_purchase_value")?.setErrors({ incorrect: true });
+      }
+      else {
+        this.postForm.get("minLots")?.setErrors(null);
+        this.postForm.get("incrementalLots")?.setErrors(null);
+        this.postForm.get("max_purchase_value")?.setErrors(null);
       }
     });
   }
@@ -498,6 +561,8 @@ export class CreatepostComponent implements OnInit {
   IncLost: any;
   minLosterr: any = false;
   IncreMentLosterr: any = false;
+  purchaseLimit: any = false;
+  afterLivePriceerror: any = false;
 
   price_def: any = false;
 
@@ -508,6 +573,8 @@ export class CreatepostComponent implements OnInit {
     let incrementalLot = this.postForm.get('incrementalLots').value;
     let offerPrice = this.postForm.get('offerPrice').value;
     let marketPlace = this.postForm.get('marketPlace').value;
+    let max_purchase_value = this.postForm.get('max_purchase_value').value;
+    let postLiveStreamingPirce = this.postForm.get('postLiveStreamingPirce').value;
     console.log(type, event.target.value)
     if (type == 'quantity') {
       quantity = event.target.value;
@@ -524,11 +591,19 @@ export class CreatepostComponent implements OnInit {
     if (type == 'marketPlace') {
       marketPlace = event.target.value;
     }
+    if (type == 'max_purchase_value') {
+      max_purchase_value = event.target.value;
+    }
+    if (type == 'postLiveStreamingPirce') {
+      postLiveStreamingPirce = event.target.value;
+    }
     quantity = quantity == null || quantity == '' ? 0 : parseInt(quantity)
     minlot = minlot == null || minlot == '' ? 0 : parseInt(minlot)
     incrementalLot = incrementalLot == null || incrementalLot == '' ? 0 : parseInt(incrementalLot)
     offerPrice = offerPrice == null || offerPrice == '' ? 0 : parseInt(offerPrice)
     marketPlace = marketPlace == null || marketPlace == '' ? 0 : parseInt(marketPlace)
+    max_purchase_value = max_purchase_value == null || max_purchase_value == '' ? 0 : parseInt(max_purchase_value)
+    postLiveStreamingPirce = postLiveStreamingPirce == null || postLiveStreamingPirce == '' ? 0 : parseInt(postLiveStreamingPirce)
     if (quantity < minlot) {
       this.minLosterr = true;
     }
@@ -542,13 +617,56 @@ export class CreatepostComponent implements OnInit {
       this.IncreMentLosterr = false;
     }
 
-    if (offerPrice > marketPlace) {
+    if (offerPrice >= marketPlace) {
       this.price_def = true
     }
     else {
       this.price_def = false;
     }
-    console.log(quantity, minlot, incrementalLot)
+    if (this.postForm.get('afterStreaming').value == 'yes') {
+      if (postLiveStreamingPirce >= marketPlace) {
+        this.afterLivePriceerror = true
+      }
+      else {
+        this.afterLivePriceerror = false;
+      }
+    }
+    if (this.postForm.get('purchase_limit').value == 'yes') {
+      if (max_purchase_value <= quantity) {
+        if (max_purchase_value >= minlot) {
+          // console.log(3)
+          let step1 = max_purchase_value - minlot;
+          // console.log(step1, 'step1')
+          let step2: any = step1 / incrementalLot;
+          // console.log(step2, 'step2')
+          let step3 = parseInt(step2) * incrementalLot
+          // console.log(step3, 'step3')
+          let step4 = step1 - step3;
+          // console.log(step4, 'step4')
+          if (step4 == 0) {
+            console.log(4)
+            this.purchaseLimit = false;
+          }
+          else {
+            console.log(3)
+            this.purchaseLimit = true
+          }
+        }
+        else {
+          console.log(2)
+          this.purchaseLimit = true
+        }
+      }
+      else {
+        console.log(1)
+        this.purchaseLimit = true
+      }
+    }
+    else {
+      this.purchaseLimit = false;
+    }
+
+    // console.log(quantity, minlot, incrementalLot)
   }
 
   // qtyChange(event: any) {

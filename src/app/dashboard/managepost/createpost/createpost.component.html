@@ -27,7 +27,6 @@
                         {{item.categoryName}}</option>
                 </select>
             </div>
-
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('categoryId').invalid">
                     <span>Choose Category</span>
@@ -87,12 +86,12 @@
                             <li><label class="dropdown-item " [ngClass]="postForm.get('unit').value=='Grms'?'active':''"
                                     for="qty-Grms"><input formControlName="unit" type="radio" id="qty-Grms" name="unit"
                                         (change)="validator_remove(['define_QTY','define_UNIT'],postForm.get('unit').value,false)"
-                                        value="Grms">Grms</label>
+                                        value="Grms">Gram</label>
                             </li>
                             <li><label class="dropdown-item " [ngClass]="postForm.get('unit').value=='Bags'?'active':''"
                                     for="qty-Bags"><input formControlName="unit" type="radio" id="qty-Bags" name="unit"
                                         (change)="validator_remove(['define_QTY','define_UNIT'],postForm.get('unit').value,true)"
-                                        value="Bags">Bags</label>
+                                        value="Bags">Bag</label>
                             </li>
                             <li><label class="dropdown-item " [ngClass]="postForm.get('unit').value=='Box'?'active':''"
                                     for="qty-Box"><input formControlName="unit" type="radio" id="qty-Box" name="unit"
@@ -134,13 +133,13 @@
                     <input type="text" placeholder="Enter Define Quantity"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="define_QTY">
-                    <a style="position: absolute;right: 101px;margin-top: 14px;cursor: pointer;" class="hover-me"><svg
+                    <a style="position: absolute;right: 101px;margin-top: 17px;cursor: pointer;" class="hover-me"><svg
                             width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M8.64333 6.02111C9.94444 4.88222 12.0556 4.88222 13.3567 6.02111C14.6589 7.16 14.6589 9.00667 13.3567 10.1456C13.1311 10.3444 12.8789 10.5078 12.6122 10.6367C11.7844 11.0378 11.0011 11.7467 11.0011 12.6667V13.5M21 11C21 12.3132 20.7413 13.6136 20.2388 14.8268C19.7363 16.0401 18.9997 17.1425 18.0711 18.0711C17.1425 18.9997 16.0401 19.7363 14.8268 20.2388C13.6136 20.7413 12.3132 21 11 21C9.68678 21 8.38642 20.7413 7.17317 20.2388C5.95991 19.7363 4.85752 18.9997 3.92893 18.0711C3.00035 17.1425 2.26375 16.0401 1.7612 14.8268C1.25866 13.6136 1 12.3132 1 11C1 8.34784 2.05357 5.8043 3.92893 3.92893C5.8043 2.05357 8.34784 1 11 1C13.6522 1 16.1957 2.05357 18.0711 3.92893C19.9464 5.8043 21 8.34784 21 11ZM11 16.8333H11.0089V16.8422H11V16.8333Z"
                                 stroke="#79879A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <p class="hover-to-show">Define Units is also known as units</p>
+                        <p class="hover-to-show" style="right:-34px;;">Define Units is also known as units</p>
                     </a>
                     <div class="dropdown">
                         <button type="button" style="background: white;" class="btn  dropdown-toggle border-inside"
@@ -231,12 +230,15 @@
                     <span>Enter Dispatched Location</span>
                 </p>
             </div>
-            <div style="margin-top: 18px;">
+            <div style="margin-top: 18px;position: relative">
                 <label>Pack Description <sup style="color: red;">*</sup>:</label>
                 <textarea placeholder="Enter Pack Description" formControlName="pack_discription"
                     (paste)="onPaste($event,$event,'pack_discription')"
                     (change)="maxlengths($event, 250,'pack_discription')"
                     (keypress)="maxlengths($event, 250,'pack_discription')"></textarea>
+                <span
+                    style="text-align: right;float: right; font-weight: bold;position: absolute;bottom: -24px;right: 0;width: auto;">{{postForm.get('pack_discription')?.valid?postForm.get('pack_discription')?.value.length
+                    < 250?postForm.get('pack_discription')?.value.length:250:0}}/250</span>
             </div>
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('pack_discription').invalid">
@@ -253,13 +255,13 @@
                 <div>
                     <span>
                         <input id="transaction_with" value="With" type="radio"
-                            (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','afterStreaming','postLiveStreamingPirce','purchase_limit','pruductreturnble'],postForm.get('transaction').value,true)"
+                            (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','purchase_limit','pruductreturnble','max_purchase_value','return_policy'],postForm.get('transaction').value,true)"
                             formControlName="transaction" name="transaction">
                         <label for="transaction_with">With</label>
                     </span>
                     <span style="margin-left: 50px;">
                         <input id="transaction_without" name="transaction" value="Without" type="radio"
-                            (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','afterStreaming','postLiveStreamingPirce','purchase_limit','pruductreturnble'],postForm.get('transaction').value,false)"
+                            (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','purchase_limit','pruductreturnble','max_purchase_value','return_policy'],postForm.get('transaction').value,false)"
                             formControlName="transaction">
                         <label for="transaction_without">Without</label>
                     </span>
@@ -305,7 +307,7 @@
                 </p>
             </div>
             <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'"
-               >
+                style="margin-top: 18px;padding-top: 18px;">
                 <label>Purchased Limit <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
@@ -339,13 +341,13 @@
             </div>
             <div class="error-message"
                 *ngIf="postForm.get('transaction').value=='With' && postForm.get('purchase_limit')?.value=='yes'">
-                <!-- <p
-                    *ngIf="IncreMentLosterr && postForm.get('transaction').value=='With' && postForm.get('incrementalLots').valid">
-                    <span>Incremental Lots Limit Exceeded</span>
-                </p> -->
-                <p *ngIf="submited && postForm.get('max_purchase_value').invalid ">
-                    <span>Enter Incremental Lots</span>
+                <p
+                    *ngIf="purchaseLimit && postForm.get('transaction').value=='With' && postForm.get('purchase_limit').valid">
+                    <span>Please Check your Posted Quantity and/or Minmum lots</span>
                 </p>
+                <p *ngIf="submited && postForm.get('max_purchase_value').invalid ">
+                    <span>Enter Purchase Limit</span>
+
             </div>
 
             <div class="main-title-post mt-2">
@@ -367,7 +369,7 @@
             <div style="margin-top: 18px;">
                 <label>Offer Price <sup style="color: red;">*</sup>:</label>
                 <div>
-                    <input type="text" placeholder="₹ Enter Offer Price" (keyup)="change_qty($event,'offerPrice')"
+                    <input type="number" placeholder="₹ Enter Offer Price" (keyup)="change_qty($event,'offerPrice')"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="offerPrice">
                 </div>
@@ -377,23 +379,60 @@
                     <span>Enter Offer Price</span>
                 </p>
                 <p *ngIf="submited && postForm.get('offerPrice').valid&& price_def">
-                    <span>Offer Price is Morethen Market Price</span>
+                    <span>You should enter an offer price that is lower than the market price.</span>
                 </p>
 
             </div>
             <div style="margin-top: 18px;"
                 *ngIf="postForm.get('marketPlace').valid && postForm.get('offerPrice').valid">
-                <label>Discount <sup style="color: red;">*</sup>:</label>
+                <label>Discount :</label>
                 <div>
                     {{postForm.get('marketPlace').value|discount:postForm.get('offerPrice').value}}
                 </div>
             </div>
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('marketPlace').invalid">
-                    <span>Enter Market Price</span>
+                    <span></span>
                 </p>
             </div>
-            <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'" >
+            <div class="booking-amount" style="padding-top: 18px;">
+                <label>Do you wish to sell after live streaming <sup style="color: red;">*</sup>:</label>
+                <div>
+                    <span>
+                        <input type="radio" name="afterStreaming" value="yes" id="afterStreaming"
+                            formControlName="afterStreaming" (change)="afterStreaming($event)">
+                        <label for="afterStreaming">Yes</label>
+                    </span>
+                    <span style="margin-left: 50px;">
+                        <input type="radio" name="afterStreaming" id="afterStreaming_no" value="no"
+                            formControlName="afterStreaming" (change)="afterStreaming($event)">
+                        <label for="afterStreaming_no">No</label>
+                    </span>
+
+                </div>
+            </div>
+            <div class="error-message">
+                <p *ngIf="submited && postForm.get('afterStreaming').invalid">
+                    <span>Choose after live streaming</span>
+                </p>
+            </div>
+            <div *ngIf="postForm.get('afterStreaming')?.value=='yes' ">
+                <label>After Live Streaming <sup style="color: red;">*</sup>:</label>
+                <div>
+                    <input type="text" placeholder="₹ Enter Price After Live Streaming"
+                        onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+                        formControlName="postLiveStreamingPirce" (keyup)="change_qty($event,'postLiveStreamingPirce')">
+                </div>
+            </div>
+            <div *ngIf="postForm.get('afterStreaming')?.value=='yes'" class="error-message">
+                <p *ngIf="submited && postForm.get('postLiveStreamingPirce').invalid">
+                    <span>Enter After Live Streaming</span>
+                </p>
+                <p *ngIf="submited && postForm.get('postLiveStreamingPirce').valid&& afterLivePriceerror">
+                    <span>Price is More than Market Price</span>
+                </p>
+            </div>
+            <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'" style="padding-top: 18px;">
                 <label>Do You Wish To Take a Booking Amount <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
@@ -435,30 +474,12 @@
                                     </svg>
 
                                 </a>
-                                <ul class="dropdown-menu" style="padding: 0;min-width: 200px;">
-                                    <li style="padding: 5px;display: flex;justify-content: space-between;">
-                                        <span>{{0|currency:"INR"}} - {{1000|currency:"INR"}} </span>
-                                        <span>20%</span>
-                                    </li>
-                                    <li style="padding: 5px;display: flex;justify-content: space-between;">
-                                        <span>{{1000|currency:"INR"}} - {{2000|currency:"INR"}} </span>
-                                        <span>20%</span>
-                                    </li>
-                                    <li style="padding: 5px;display: flex;justify-content: space-between;">
-                                        <span>{{2000|currency:"INR"}} - {{3000|currency:"INR"}} </span>
-                                        <span>20%</span>
-                                    </li>
-                                    <li style="padding: 5px;display: flex;justify-content: space-between;">
-                                        <span>{{3000|currency:"INR"}} - {{4000|currency:"INR"}} </span>
-                                        <span>20%</span>
-                                    </li>
-                                    <li style="padding: 5px;display: flex;justify-content: space-between;">
-                                        <span>{{5000|currency:"INR"}} - {{6000|currency:"INR"}} </span>
-                                        <span>20%</span>
-                                    </li>
-                                    <li style="padding: 5px;display: flex;justify-content: space-between;">
-                                        <span>{{6000|currency:"INR"}} - {{7000|currency:"INR"}} </span>
-                                        <span>20%</span>
+                                <ul class="dropdown-menu" style="padding: 0;min-width: 250px;">
+                                    <li style="padding: 5px;display: flex;justify-content: space-between;"
+                                        *ngFor="let slob of list_slob;">
+                                        <span>{{slob.formAmount|currency:"INR"}} - {{slob.endAmount|currency:"INR"}}
+                                        </span>
+                                        <span>{{slob.slabPercentage}}%</span>
                                     </li>
                                 </ul>
                             </div></label>
@@ -485,7 +506,7 @@
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="booking_percentage">
                 </div>
-                <a style="position: absolute;right: 12px;margin-top: 14px;cursor: pointer;" class="hover-me"><svg
+                <a style="position: absolute;right: 12px;margin-top: 43px;cursor: pointer;" class="hover-me"><svg
                         width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M8.64333 6.02111C9.94444 4.88222 12.0556 4.88222 13.3567 6.02111C14.6589 7.16 14.6589 9.00667 13.3567 10.1456C13.1311 10.3444 12.8789 10.5078 12.6122 10.6367C11.7844 11.0378 11.0011 11.7467 11.0011 12.6667V13.5M21 11C21 12.3132 20.7413 13.6136 20.2388 14.8268C19.7363 16.0401 18.9997 17.1425 18.0711 18.0711C17.1425 18.9997 16.0401 19.7363 14.8268 20.2388C13.6136 20.7413 12.3132 21 11 21C9.68678 21 8.38642 20.7413 7.17317 20.2388C5.95991 19.7363 4.85752 18.9997 3.92893 18.0711C3.00035 17.1425 2.26375 16.0401 1.7612 14.8268C1.25866 13.6136 1 12.3132 1 11C1 8.34784 2.05357 5.8043 3.92893 3.92893C5.8043 2.05357 8.34784 1 11 1C13.6522 1 16.1957 2.05357 18.0711 3.92893C19.9464 5.8043 21 8.34784 21 11ZM11 16.8333H11.0089V16.8422H11V16.8333Z"
@@ -501,41 +522,6 @@
                 </p>
                 <p *ngIf="submited && postForm.get('booking_percentage').valid && !persentage">
                     <span>Enter Only 1 - 100 %</span>
-                </p>
-            </div>
-            <div class="booking-amount"  *ngIf="postForm.get('transaction').value=='With'">
-                <label>Do you wish to sell after live streaming <sup style="color: red;">*</sup>:</label>
-                <div>
-                    <span>
-                        <input type="radio" name="afterStreaming" value="yes" id="afterStreaming"
-                            formControlName="afterStreaming" (change)="afterStreaming($event)">
-                        <label for="afterStreaming">Yes</label>
-                    </span>
-                    <span style="margin-left: 50px;">
-                        <input type="radio" name="afterStreaming" id="afterStreaming_no" value="no"
-                            formControlName="afterStreaming" (change)="afterStreaming($event)">
-                        <label for="afterStreaming_no">No</label>
-                    </span>
-
-                </div>
-            </div>
-            <div class="error-message" *ngIf="postForm.get('transaction').value=='With'">
-                <p *ngIf="submited && postForm.get('afterStreaming').invalid">
-                    <span>Choose after live streaming</span>
-                </p>
-            </div>
-            <div *ngIf="postForm.get('afterStreaming')?.value=='yes' && postForm.get('transaction').value=='With'">
-                <label>After Live Streaming <sup style="color: red;">*</sup>:</label>
-                <div>
-                    <input type="text" placeholder="₹ Enter Price After Live Streaming"
-                        onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                        formControlName="postLiveStreamingPirce">
-                </div>
-            </div>
-            <div *ngIf="postForm.get('afterStreaming')?.value=='yes' && postForm.get('transaction').value=='With'"
-                class="error-message">
-                <p *ngIf="submited && postForm.get('postLiveStreamingPirce').invalid">
-                    <span>Enter After Live Streaming</span>
                 </p>
             </div>
             <div class="main-title-post mt-2">
@@ -568,7 +554,7 @@
             <div class="uploaded-images" *ngIf="oldDetails  !=null && selected_image.length==0">
                 <ng-container *ngIf="oldDetails.length !=0">
                     <div class="image" *ngFor="let item of oldDetails.images">
-                        <img src="{{baseURL+'/'+item}}">
+                        <img src="{{item}}">
                     </div>
                 </ng-container>
             </div>
@@ -582,7 +568,7 @@
                 <div class="choose-file"><label for="video">{{id==null?'Choose Teaser':'Replace Teaser'}}</label>
                     <input style="display: none;" type="file" id="video" (change)="change_video($event)"
                         accept="video/mp4,video/x-m4v,video/*">
-                    <p>.mp4</p>
+                    <p>.mp4 ( Up to 40mb)</p>
                 </div>
             </div>
             <div class="uploaded-images" *ngIf="selected_video_view  !=null">
@@ -607,13 +593,13 @@
             </div>
             <div class="error-message">
                 <p class=""
-                    *ngIf="this.selected_video =='Video Limmit 40mb Only' || this.selected_video =='invalid video Format'">
+                    *ngIf="this.selected_video =='Video Limit 40mb Only' || this.selected_video =='invalid video Format'">
                     <span>{{selected_video}}</span>
                 </p>
             </div>
 
             <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'"
-                style="">
+                style="margin-top: 18px;padding-top: 18px;">
                 <label>Product Returnable <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
@@ -636,24 +622,24 @@
                     <span>Choose Product Returnable</span>
                 </p>
             </div>
-            <div class="booking-amount"
+            <div class="booking-amount" style="padding-top: 18px;"
                 *ngIf="postForm.get('transaction').value=='With' && postForm.get('pruductreturnble')?.value=='yes'">
                 <label>Return Policy<sup style="color: red;">*</sup>:</label>
                 <div>
                     <span style="flex: auto;">
-                        <input type="radio" name="return_policy" value="3 days" id="return_policy-1"
-                            formControlName="return_policy" (change)="afterStreaming($event)">
+                        <input type="radio" name="return_policy" value="3" id="return_policy-1"
+                            formControlName="return_policy">
                         <label for="return_policy-1">3 days</label>
                     </span>
                     <span style="flex: auto;margin-left: 50px;">
-                        <input type="radio" name="return_policy" id="return_policy-2" value="7 days"
-                            formControlName="return_policy" (change)="afterStreaming($event)">
+                        <input type="radio" name="return_policy" id="return_policy-2" value="7"
+                            formControlName="return_policy">
                         <label for="return_policy-2">7 days</label>
                     </span>
                     <span style="flex: auto;margin-left: 50px;">
-                        <input type="radio" name="return_policy" id="return_policy-3" value="14 days"
-                            formControlName="return_policy" (change)="afterStreaming($event)">
-                        <label for="return_policy-3">4 days</label>
+                        <input type="radio" name="return_policy" id="return_policy-3" value="14"
+                            formControlName="return_policy">
+                        <label for="return_policy-3">14 days</label>
                     </span>
 
                 </div>
@@ -668,12 +654,16 @@
                     <span>Choose Return Policy</span>
                 </p>
             </div>
-            <div>
+            <div style="position: relative;">
                 <label>Description <sup style="color: red;">*</sup>:</label>
                 <textarea placeholder="Enter description" formControlName="discription"
                     (paste)="onPaste($event,$event,'discription')" (change)="maxlengths($event, 250,'discription')"
                     (keypress)="maxlengths($event, 250,'discription')"></textarea>
+                <span
+                    style="text-align: right;float: right; font-weight: bold;position: absolute;bottom: -24px;right: 0;width: auto;">{{postForm.get('discription')?.valid?postForm.get('discription')?.value.length
+                    < 250?postForm.get('discription')?.value.length:250:0}}/250</span>
             </div>
+
             <div class="error-message">
                 <p *ngIf="submited && postForm.get('discription').invalid">
                     <span>Enter Description</span>
@@ -681,11 +671,56 @@
             </div>
             <div class="post-btn">
                 <button type="submit" (click)="open_new_pop()">Submit </button>
-                <button *ngIf="id ==null" type="submit" style="margin-left: 10px;" [disabled]="postForm.invalid"
-                    ngClass="{{postForm.invalid?'button-disabled':''}}" (click)="open_pop()">Preview & Submit</button>
+                <button *ngIf="id ==null" type="submit" style="margin-left: 10px;"
+                    [disabled]="postForm.invalid || this.minLosterr || this.IncreMentLosterr || this.purchaseLimit "
+                    ngClass="{{postForm.invalid || this.minLosterr || this.IncreMentLosterr || this.purchaseLimit?'button-disabled':''}}"
+                    (click)="open_pop()">Preview & Submit</button>
             </div>
         </div>
     </form>
+</div>
+
+<!-- customer Add popup -->
+<div class="popup-1" *ngIf="addPopup">
+    <div class="popup-close-1" (click)="disablePopup()"></div>
+    <div class="popup-container-1">
+        <div class="content-title">
+            <p>Add Product</p>
+        </div>
+        <div class="form-popup" [formGroup]="AddProductForm">
+            <div>
+                <label>Category :</label>
+                <input type="text" placeholder="Enter Category *" formControlName="category" />
+            </div>
+            <div class="error-message">
+                <p *ngIf="productSubmit && AddProductForm.get('category').invalid">
+                    <span>Enter category</span>
+                </p>
+            </div>
+            <div>
+                <label>Sub Category :</label>
+                <input type="text" placeholder="Enter Sub Category" formControlName="subcategory" />
+            </div>
+            <div class="error-message">
+            </div>
+            <div>
+                <label>Product Name :</label>
+                <input type="text" placeholder="Enter Product Name *" formControlName="productName" />
+            </div>
+            <div class="error-message">
+                <p *ngIf="productSubmit && AddProductForm.get('productName').invalid">
+                    <span>Enter productName</span>
+                </p>
+            </div>
+            <div>
+                <label>Brand Name :</label>
+                <input type="text" placeholder="Enter Brand Name" formControlName="brandName" />
+            </div>
+        </div>
+        <div class="submit-btn">
+            <button type="button" (click)="submitProduct()">Submit</button>
+        </div>
+    </div>
 </div>
 
 <!-- customer Add popup -->
@@ -735,116 +770,195 @@
 </div>
 
 
+<div class="popup-1" *ngIf="already_exist_product">
+    <div class="popup-close-1" (click)="disablePopup()"></div>
+    <div class="popup-container-1" style="display: grid;max-width: 40%;min-width: 40%;padding: 0 21px 21px;">
+        <div class="content-title">
+            <p class="worning-message">Are you sure, There is no changes in Total no Of units for sale, do you wish to
+                Continue Posting?
+            </p>
+            <ul *ngIf="oldDetails !=null" style="text-align: center;list-style-type: none;margin-top: 40px;">
+                <li style="padding: 10px;">Previous Post Value :<b>{{oldDetails.quantity}}
+                        <sub>{{oldDetails.unit}}</sub></b>
+                </li>
+                <li style="padding: 10px;">Current Value : <b>{{postForm.get('quantity')?.value}}
+                        <sub>{{postForm.get('unit')?.value}}</sub></b></li>
+            </ul>
+        </div>
+        <div class="submit-btn">
+            <button type="button" (click)="prewview_post =true">Yes</button>
+            <button type="button" (click)="already_exist_product=false">No</button>
+        </div>
+    </div>
+</div>
+
 
 
 <div class="popup-1" *ngIf="autofill_popup">
     <div class="popup-close-1" (click)="disablePopup()"></div>
-    <div class="popup-container-2" style="width: 400px;height: 200px;display: grid;">
+    <div class="popup-container-2" style="width: 500px;height:251px;display: grid;padding: 20px;">
         <div class="content-title">
             <p class="worning-message">Are you Sure You want to Autofill Previous Post Details ?</p>
         </div>
-        <div class="submit-btn">
+        <ul *ngIf="previous !=null" style="text-align: center;list-style-type: none;">
+            <li style="padding: 5px;">Previous QTY :<b>{{previous.quantity}}<sub>{{previous.unit}}</sub></b>
+            </li>
+            <li style="padding: 5px;">Ordered QTY :<b>
+                    {{previous.purchase_quantity}}<sub>{{previous.unit}}</sub></b>
+            </li>
+            <!-- <li style="padding: 5px;">Total Quantity/Remaining Quantity <b>{{previous.quantity}}
+                    /{{previous.quantity-previous.purchase_quantity}}<sub>{{previous.unit}}</sub></b>
+            </li> -->
+        </ul>
+        <div class="submit-btn" style="margin-top: 0;">
             <button type="button" (click)="autofill_post()">Yes</button>
             <button type="button" (click)="autofill_popup=false">No</button>
         </div>
     </div>
 </div>
 
+
+
 <div class="popup-1" *ngIf="prewview_post">
     <div class="popup-close-1" (click)="disablePopup()"></div>
     <div class="popup-container-1">
-        <table class="table table-borderless mt-4" style="max-width: 80%;margin: auto;box-shadow: none;border: none;">
-            <tbody>
-                <tr>
-                    <th>Category</th>
-                    <td></td>
-                    <td>{{postForm.get('categoryId')?.value|get_value:category_list:'categoryName':'id'}}</td>
-                </tr>
-                <tr>
-                    <th>Product</th>
-                    <td></td>
-                    <td>{{postForm.get('productId')?.value|get_value:productList:'productTitle':'id'}}</td>
-                </tr>
-                <tr>
-                    <th>Total no Of units for sale</th>
-                    <td></td>
-                    <td>{{postForm.get('quantity')?.value}} {{postForm.get('unit')?.value}}</td>
-                </tr>
-                <tr
-                    *ngIf="postForm.get('unit').value=='Pack' || postForm.get('unit').value=='Box' || postForm.get('unit').value=='Bags'">
-                    <th>Define Quantity/Units</th>
-                    <td></td>
-                    <td>{{postForm.get('define_QTY')?.value}} {{postForm.get('define_UNIT')?.value}}</td>
-                </tr>
-                <tr>
-                    <th>Dispatched Location </th>
-                    <td></td>
-                    <td>{{postForm.get('dispatchLocation')?.value}} </td>
-                </tr>
-                <tr>
-                    <th>Pack Description </th>
-                    <td></td>
-                    <td>{{postForm.get('pack_discription')?.value}} </td>
-                </tr>
-                <tr>
-                    <th>Transaction</th>
-                    <td></td>
-                    <td>{{postForm.get('transaction')?.value}}</td>
-                </tr>
-                <tr *ngIf="postForm.get('transaction').value=='With'">
-                    <th>Minimum Lots</th>
-                    <td></td>
-                    <td>{{postForm.get('minLots')?.value}}</td>
-                </tr>
-                <tr *ngIf="postForm.get('transaction').value=='With'">
-                    <th>Incremental Lots</th>
-                    <td></td>
-                    <td>{{postForm.get('incrementalLots')?.value}}</td>
-                </tr>
-                <tr>
-                    <th>Market Price</th>
-                    <td></td>
-                    <td>{{postForm.get('marketPlace')?.value}}</td>
-                </tr>
-                <tr>
-                    <th>Offer Price </th>
-                    <td></td>
-                    <td>{{postForm.get('offerPrice')?.value}}</td>
-                </tr>
-                <tr *ngIf="postForm.get('transaction').value=='With'">
-                    <th>Booking Amount </th>
-                    <td></td>
-                    <td>{{postForm.get('bookingAmount')?.value}}</td>
-                </tr>
-                <tr *ngIf="postForm.get('transaction').value=='With' && postForm.get('bookingAmount').value=='yes'">
-                    <th>Booking Charge</th>
-                    <td></td>
-                    <td>{{postForm.get('booking_charge')?.value}}</td>
-                </tr>
-                <tr
-                    *ngIf="postForm.get('transaction').value=='With' && postForm.get('booking_charge').value=='Customize'">
-                    <th>Percentage</th>
-                    <td></td>
-                    <td>{{postForm.get('booking_percentage')?.value}}</td>
-                </tr>
-                <tr *ngIf="postForm.get('transaction').value=='With'">
-                    <th>After live streaming</th>
-                    <td></td>
-                    <td>{{postForm.get('afterStreaming')?.value}}</td>
-                </tr>
-                <tr *ngIf="postForm.get('afterStreaming')?.value=='yes' && postForm.get('transaction').value=='With'">
-                    <th>After Live Streaming Price</th>
-                    <td></td>
-                    <td>{{postForm.get('postLiveStreamingPirce')?.value}}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td></td>
-                    <td>{{postForm.get('discription')?.value}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="submit-btn mb-4">
+        <h4 style="padding: 10px;position: sticky;top: 0;background-color: white;">Post Details</h4>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Category</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('categoryId')?.value|get_value:category_list:'categoryName':'id'}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Product</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('productId')?.value|get_value:productList:'productTitle':'id'}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Total no Of units for sale</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">
+                {{postForm.get('quantity')?.value}} {{postForm.get('unit')?.value}} <br>
+                <ng-container *ngIf="oldDetails !=null">
+                    <p style="font-weight: bold;color:red;text-decoration: underline;"
+                        *ngIf="this.oldDetails.quantity == this.postForm.get('quantity')?.value && this.oldDetails.unit == this.postForm.get('unit')?.value">
+                        Previous Post Quantity is Same</p>
+                </ng-container>
+            </li>
+        </ul>
+        <ul class="product-body"
+            *ngIf="postForm.get('unit').value=='Pack' || postForm.get('unit').value=='Box' || postForm.get('unit').value=='Bags'">
+            <li style="width: 40%;" class="title-popup">Define Quantity/Unit</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('define_QTY')?.value}} {{postForm.get('define_UNIT')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Dispatched Location</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('dispatchLocation')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Pack Description</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('pack_discription')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Transaction</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('transaction')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('transaction').value=='With'">
+            <li style="width: 40%;" class="title-popup">Minimum Lots</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('minLots')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('transaction').value=='With'">
+            <li style="width: 40%;" class="title-popup">Incremental Lots</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('incrementalLots')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('transaction').value=='With'">
+            <li style="width: 40%;" class="title-popup">Purchase Limit</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('purchase_limit')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('purchase_limit').value=='yes'">
+            <li style="width: 40%;" class="title-popup">Max Purchase Limit</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('max_purchase_value')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body ">
+            <li style="width: 40%;" class="title-popup">Market Price</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('marketPlace')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Offer Price</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('offerPrice')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('transaction').value=='With'">
+            <li style="width: 40%;" class="title-popup">Booking Amount</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('bookingAmount')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body"
+            *ngIf="postForm.get('transaction').value=='With' && postForm.get('bookingAmount').value=='yes'">
+            <li style="width: 40%;" class="title-popup">Booking Charge</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('booking_charge')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body"
+            *ngIf="postForm.get('transaction').value=='With' && postForm.get('booking_charge').value=='Customize'">
+            <li style="width: 40%;" class="title-popup">Percentage</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('booking_percentage')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">After live streaming</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('afterStreaming')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('afterStreaming')?.value=='yes'">
+            <li style="width: 40%;" class="title-popup">After Live Streaming Price</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('postLiveStreamingPirce')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('transaction').value=='With'">
+            <li style="width: 40%;" class="title-popup">Product Returnable</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('pruductreturnble')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body" *ngIf="postForm.get('pruductreturnble').value=='yes'">
+            <li style="width: 40%;" class="title-popup">Return Policy</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('return_policy')?.value}}
+            </li>
+        </ul>
+        <ul class="product-body">
+            <li style="width: 40%;" class="title-popup">Description</li>
+            <li style="width: 10%;">:</li>
+            <li style="width: 40%;">{{postForm.get('discription')?.value}}
+            </li>
+        </ul>
+        <div class="submit-btn">
             <button type="button" (click)="create_post()">Submit</button>
             <button type="button" (click)="disablePopup()">close</button>
         </div>
