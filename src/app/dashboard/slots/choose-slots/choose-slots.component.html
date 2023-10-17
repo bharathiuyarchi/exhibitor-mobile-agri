@@ -18,9 +18,11 @@
   <div class="date-container">
     <p
       class="date"
-      [class.date-active]="v == selectedDate"
+    
       *ngFor="let v of dates"
+      [class.date-active]=" sameDate(v,selectedDate)"
       (click)="changeSDate(v)"
+      [ngClass]="{'show-date': showdate(today,v)}"
     >
       <span>{{ v | date : "EEE" }}</span
       ><span>{{ v | date : "dd-MMM" }}</span>
@@ -43,6 +45,7 @@
      
     *ngFor="let v of normal | slot : selectedDate"
       class="buy-slot"
+      [class.show-slot]="showslot(v.endFormat,v.date)"
       (click)="choose(v)"
       [ngClass]="isActive(v._id) ? 'slot-active' : ''"
     >
@@ -50,10 +53,7 @@
         {{ v.start | date : "h:mm a" }}-{{ v.end | date : "h:mm a" }}
       </p>
       <p style="top: 12px">
-        Duration: {{ v.Duration }} <span *ngIf="isActive(v._id)">-</span
-        ><span *ngIf="isActive(v._id)" class="count">{{
-          returnIndex(v._id) + 1
-        }}</span>
+        Duration: {{ v.Duration }}
       </p>
       <span class="left"></span>
       <span class="right"></span>
@@ -81,16 +81,14 @@
       (click)="chooseP(v)"
       *ngFor="let v of peak | slot : selectedDate"
       class="buy-slot"
+      [class.show-slot]="showslot(v.endFormat,v.date)"
       [ngClass]="isActive(v._id) ? 'slot-active-p' : ''"
     >
       <p style="bottom: 8px">
         {{ v.start | date : "h:mm a" }}-{{ v.end | date : "h:mm a" }}
       </p>
       <p style="top: 12px">
-        Duration: {{ v.Duration }}<span *ngIf="isActive(v._id)">-</span
-        ><span *ngIf="isActive(v._id)" class="count">{{
-          returnIndex(v._id) + 1
-        }}</span>
+        Duration: {{ v.Duration }}
       </p>
       <span class="left peak"></span>
       <span class="right peak"></span>
@@ -118,16 +116,14 @@
     *ngFor="let v of exclusive | slot : selectedDate"
       class="buy-slot"
       (click)="chooseEx(v)"
+      [class.show-slot]="showslot(v.endFormat,v.date)"
       [ngClass]="isActive(v._id) ? 'slot-active-e' : ''"
     >
       <p style="bottom: 8px">
         {{ v.start | date : "h:mm a" }}-{{ v.end | date : "h:mm a" }}
       </p>
       <p style="top: 12px">
-        Duration: {{ v.Duration }} <span *ngIf="isActive(v._id)">-</span
-        ><span *ngIf="isActive(v._id)" class="count">{{
-          returnIndex(v._id) + 1
-        }}</span>
+        Duration: {{ v.Duration }} 
       </p>
       <span class="left ex"></span>
       <span class="right ex"></span>
@@ -160,19 +156,19 @@
           Confirm Slot
         </h4>
         <div class="buy-container">
-          <span class="buy-slot-show slot-active">
+          <span class="buy-slot-show slot-active show-slot">
             <p >Normal</p>
             <span class="left"></span>
             <span class="right"></span>
           </span>
 
-          <span class="buy-slot-show slot-active-p">
+          <span class="buy-slot-show slot-active-p show-slot">
             <p >Peak</p>
             <span class="left peak"></span>
             <span class="right peak"></span>
           </span>
 
-          <span class="buy-slot-show slot-active-e">
+          <span class="buy-slot-show slot-active-e show-slot">
             <p >
               Exclusive
             </p>
@@ -191,7 +187,7 @@
             <div class='buy-container'>
             <span
               *ngFor="let slot of v.value"
-              class="buy-slot"
+              class="buy-slot show-slot"
               [ngClass]="{
                 'slot-active-p': slot.Type == 'Peak',
                 'slot-active-e': slot.Type == 'Exclusive',

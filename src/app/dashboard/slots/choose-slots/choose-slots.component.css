@@ -11,10 +11,10 @@
 
 }
 .date{
-
+    display: none;
     align-items: center;
     flex-direction: column;
-    cursor: pointer;display: flex;
+    cursor: pointer;
     height: 71%;
     border: none;
     border-width: 2px ;
@@ -82,7 +82,7 @@
     position: relative;
     height: 46px;
    
-    display: inline-block;
+    display:none;
     box-shadow: 0 0 7px 2px #a7a7a787;
     cursor: pointer;
     margin: 20px 8px;
@@ -212,6 +212,12 @@
     top: 10px;
     width: fit-content;
     position: relative;
+}
+.show-date{
+    display: flex;
+}
+.show-slot{
+    display: inline-block;
 }
 @media only screen and (max-width: 440px) {
     .date{

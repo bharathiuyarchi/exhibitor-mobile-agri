@@ -1,4 +1,4 @@
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManageplaneService } from '../../manageplan/manageplane.service';
@@ -76,9 +76,28 @@ planName!:string;
       res.dates.forEach((res: any) => {
         this.dates.push(new Date(res.date));
       });
+      const datePipe = new DatePipe('en-US');
+
+     
+      const today = datePipe.transform(this.today, 'yyyy-MM-dd')
+
       this.dates.sort((a: Date, b: Date) => a.getTime() - b.getTime());
-      this.selectedDate = this.dates[0];
-      console.log(this.dates);
+  this.selectedDate=    res.dates.find((res:any)=>{
+           console.log( res.date == today,'iji')
+         return   res.date == today
+  
+         }) ? today : this.dates[0]
+      // this.selectedDate = res.dates.includes((res:any)=>{
+      //   console.log( res.date == today,'iji')
+      // return   res.date == today
+
+      // })? today :this.dates[0];
+
+      console.log(this.selectedDate,'selected date',res.dates.includes((res:any)=>{
+        return   res.date == today
+  
+        }),res.dates,today)
+      console.log(this.dates,'dates');
       for (let i = 0; i <= res.val.length - 1; i++) {
         console.log(i);
 
@@ -92,14 +111,22 @@ planName!:string;
           this.normal = res.val[i].documents;
         }
       }
-      this.normal.sort((a: any, b: any) => a.Duration - b.Duration);
-      this.exclusive.sort((a: any, b: any) => a.Duration - b.Duration);
-      this.peak.sort((a: any, b: any) => a.Duration - b.Duration);
+      if(this.normal){
+        this.normal.sort((a: any, b: any) => a.Duration - b.Duration);
+      }
+      if(this.exclusive){
+        this.exclusive.sort((a: any, b: any) => a.Duration - b.Duration);
+      }
+      if(this.peak){
+        this.peak.sort((a: any, b: any) => a.Duration - b.Duration);
+
+      }
     });
   }
   changeSDate(v: any) {
     
     this.selectedDate = v;
+    console.log(this.selectedDate,'selected date')
   }
   choose(v: any) {
     let find = this.slotsFinal.findIndex((res: any) => {
@@ -289,6 +316,7 @@ planName!:string;
     });
   }
   }
+  today = new Date()
   submit(){
     let data ={
       arr:this.slotsFinal
@@ -299,7 +327,59 @@ planName!:string;
       this.router.navigateByUrl('/dashboard/slots')
     })
   }
+  showdate(current:any,old:any):boolean{
 
+    const datePipe = new DatePipe('en-US');
+const currentDate = datePipe.transform(current, 'yyyy-MM-dd');
+const olddate = datePipe.transform(old, 'yyyy-MM-dd');
+// console.log(currentDate,olddate)
+if (currentDate !== null && olddate !== null) {
+  if(currentDate == olddate || currentDate < olddate ){
+    return true
+  }else{
+    return false
+  }
+}else{
+  return false
+}
+   
+ }
+  showslot(endTime:any,date:any){
+  
+  const now = new Date();
+const currentHours = now.getHours();
+const currentMinutes = now.getMinutes();
+const currentSeconds = now.getSeconds();
+let time= currentHours+':'+currentMinutes
+const datePipe = new DatePipe('en-US');
+const today = datePipe.transform(this.today, 'yyyy-MM-dd')
+if(date == today){
+  if(time< endTime){
+    return true
+  }
+  else{
+    return false
+  }
+}else{
+  return true
+}
+// console.log(time,endTime,time< endTime)
+   
+}
+    sameDate(current:any,selected:any){
+      const datePipe = new DatePipe('en-US');
+      const currentDate = datePipe.transform(current, 'yyyy-MM-dd');
+      const olddate = datePipe.transform(selected, 'yyyy-MM-dd');
+      if (currentDate !== null && olddate !== null) {
+        if(currentDate == olddate  ){
+          return true
+        }else{
+          return false
+        }
+      }else{
+        return false
+      }
+    }
 }
 
 
