@@ -66,7 +66,7 @@
           </a>
         </li>
       </ul>
-      <ul class="product-body"  (click)="view_image('content',item)">
+      <ul class="product-body" (click)="view_image('content',item)">
         <li>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#BCC3CC" stroke="#BCC3CC" />
@@ -82,7 +82,7 @@
         <li> </li>
       </ul>
       <ul class="product-body">
-        <li   (click)="view_image('content',item)">
+        <li (click)="view_image('content',item)">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#BCC3CC" stroke="#BCC3CC" />
             <path
@@ -92,7 +92,7 @@
           <span *ngIf="item.streamName==null" style="color:orange;font-size: 11px;">Not Yet Assing</span>
           <span *ngIf="item.streamName!=null">{{item.streamName}}</span>
         </li>
-        <li  (click)="view_image('content',item)">
+        <li (click)="view_image('content',item)">
           <span
             *ngIf="(filterForm.get('status')?.value == 'Active' ||filterForm.get('status')?.value == 'Cancelled' ||filterForm.get('status')?.value == 'removed' ||filterForm.get('status')?.value == 'all') &&item.status != 'Completed' &&item.status != 'Assigned' ">
             <svg width="5" height="5" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -257,7 +257,7 @@
         <div class="carousel-inner">
           <div class="carousel-item" *ngFor="let item of view_details.images; index as i"
             [ngClass]="i == 0 ? 'active' : ''">
-            <img src="{{ baseURL + '/' + item }}" class="d-block w-100" alt="..." />
+            <img src="{{item }}" class="d-block w-100" alt="..." />
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
