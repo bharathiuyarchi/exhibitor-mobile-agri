@@ -136,6 +136,8 @@ sub {
   width: 500px;
   max-width: 500px;
   padding-bottom: 10px;
+  overflow: auto;
+  max-height: 95%;
 }
 
 .popup-container ul {
@@ -188,6 +190,7 @@ sub {
 
 .popup-container .details div p {
   max-width: 60%;
+  overflow-wrap:break-word;
 }
 
 .carousel-indicators button {

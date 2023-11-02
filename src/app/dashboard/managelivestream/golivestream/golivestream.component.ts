@@ -77,7 +77,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
         let index = this.streamDetails.temptokens_sub.findIndex((a: any) => a.Uid == res);
 
         if (index == -1) {
-          this.api.get_token_details(this.id).subscribe((res: any) => {
+          this.api.get_token_details_sub(this.id).subscribe((res: any) => {
             this.streamDetails.temptokens_sub = res.temptokens_sub;
           })
         }
@@ -224,6 +224,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   rice_hande: any = false;
   get_token(id: any) {
     this.api.get_token_details(id).subscribe((res: any) => {
+      // console.log(res._id + res.temptokens.supplierId,9876890)
       this.web.get_already_jion(res._id + res.temptokens.supplierId).subscribe((res: any) => {
         console.log(res, 987678)
         if (this.livestreamCode != res.code) {

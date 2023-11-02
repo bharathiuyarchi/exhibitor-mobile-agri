@@ -87,7 +87,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   targetDate: any;
   streamDetails: any
   get_token(id: any) {
-    this.api.get_token_details(id).subscribe((res: any) => {
+    this.api.get_token_details_sub(id).subscribe((res: any) => {
       console.log(res, 1237816231)
       if (res.length != 0) {
         this.web.get_already_jion(res[0]._id + res[0].temptokens.supplierId).subscribe((res: any) => {

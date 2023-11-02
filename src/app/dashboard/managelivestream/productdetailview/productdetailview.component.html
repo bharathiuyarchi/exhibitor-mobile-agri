@@ -8,7 +8,7 @@
                 <video src="{{viewProduct.video}}" controls></video>
             </div>
             <div class="carousel-item" *ngFor=" let item of viewProduct.images">
-                <img src="{{baseUrl+'/'+item}}" alt="New York" class="d-block" style="width:100%">
+                <img src="{{item}}" alt="New York" class="d-block" style="width:100%">
             </div>
         </div>
         <div class="scroll-control">

@@ -6,7 +6,7 @@
             <div class="product-details">
                 <div class="row" style="padding: 0;margin:0">
                     <div class="col-3 image-view-medium" style="margin:0">
-                        <img [src]="baseURl+'/'+item.image" alt="">
+                        <img [src]="baseURl+'/'+item.image" alt=""  onError="this.onerror=null;this.src='https://agriimagestreaming.s3.ap-south-1.amazonaws.com/icon-image-not-found-free-vector.jpeg';">
                     </div>
                     <div class="col-4 title-views" style="padding: 0;margin:0">
                         <p (click)="productView(item)" class="product-title">{{item.productTitle}}

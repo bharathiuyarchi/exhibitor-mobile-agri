@@ -89,7 +89,7 @@
               d="M12.3077 9.11111L15.2123 6.31407C15.2769 6.252 15.3591 6.20973 15.4485 6.19261C15.538 6.1755 15.6307 6.1843 15.715 6.2179C15.7993 6.25151 15.8714 6.30842 15.9221 6.38143C15.9728 6.45445 15.9999 6.5403 16 6.62815V13.3719C15.9999 13.4597 15.9728 13.5456 15.9221 13.6186C15.8714 13.6916 15.7993 13.7485 15.715 13.7821C15.6307 13.8157 15.538 13.8245 15.4485 13.8074C15.3591 13.7903 15.2769 13.748 15.2123 13.6859L12.3077 10.8889M5.38462 14H10.9231C11.2903 14 11.6425 13.8595 11.9021 13.6095C12.1618 13.3594 12.3077 13.0203 12.3077 12.6667V7.33333C12.3077 6.97971 12.1618 6.64057 11.9021 6.39052C11.6425 6.14048 11.2903 6 10.9231 6H5.38462C5.01739 6 4.66521 6.14048 4.40554 6.39052C4.14588 6.64057 4 6.97971 4 7.33333V12.6667C4 13.0203 4.14588 13.3594 4.40554 13.6095C4.66521 13.8595 5.01739 14 5.38462 14Z"
               stroke="white" stroke-linecap="round" />
           </svg>
-          <span *ngIf="item.streamName==null" style="color:orange;font-size: 11px;">Not Yet Assing</span>
+          <span *ngIf="item.streamName==null" style="color:orange;font-size: 11px;">Not Yet Assign</span>
           <span *ngIf="item.streamName!=null">{{item.streamName}}</span>
         </li>
         <li (click)="view_image('content',item)">
@@ -191,7 +191,7 @@
   <div class="dummy" (click)="close_popup()"></div>
   <div class="popup-container">
     <a class="popupclose" (click)="close_popup()">x</a>
-    <ul>
+    <ul style="position: sticky;top: 0;background: white;">
       <li [ngClass]="view_details_type == 'content' ? 'active' : ''" (click)="view_details_type_action('content')">
         Details
       </li>
@@ -209,12 +209,41 @@
         <p>{{ view_details.productName }}</p>
       </div>
       <div>
-        <label>Unit :</label>
-        <p>{{ view_details.unit?view_details.unit:'nill' }}</p>
+        <label> Total no Of units for sale:</label>
+        <p>{{ view_details.quantity }} / {{ view_details.unit}}</p>
+      </div>
+      <div *ngIf="view_details.unit=='Pack' || view_details.unit=='Box' || view_details.unit=='Bags'">
+        <label>Define Quantity/Units :</label>
+        <p>{{ view_details.define_QTY }} / {{ view_details.define_UNIT}}</p>
+      </div>
+
+      <div>
+        <label>Dispatched Location :</label>
+        <p>{{ view_details.dispatchLocation }}</p>
       </div>
       <div>
-        <label>Quantity :</label>
-        <p>{{ view_details.quantity }}</p>
+        <label>Pack Description :</label>
+        <p>{{ view_details.pack_discription }}</p>
+      </div>
+      <div>
+        <label>Transaction :</label>
+        <p>{{ view_details.transaction }}</p>
+      </div>
+      <div *ngIf="view_details.transaction=='With'">
+        <label>Minimum Lots :</label>
+        <p>{{ view_details.minLots }}</p>
+      </div>
+      <div *ngIf="view_details.transaction=='With'">
+        <label>Incremental Lots :</label>
+        <p>{{ view_details.incrementalLots }}</p>
+      </div>
+      <div *ngIf="view_details.transaction=='With'">
+        <label>Purchase Limit :</label>
+        <p>{{ view_details.purchase_limit }}</p>
+      </div>
+      <div *ngIf="view_details.purchase_limit=='yes'">
+        <label>Max Purchase Limit :</label>
+        <p>{{ view_details.max_purchase_value }}</p>
       </div>
       <div>
         <label>Market Price :</label>
@@ -224,25 +253,37 @@
         <label>Offer Price :</label>
         <p>{{ view_details.offerPrice }}</p>
       </div>
-      <div>
+      <div *ngIf="view_details.transaction=='With'">
         <label>Booking Amount :</label>
         <p>{{ view_details.bookingAmount }}</p>
       </div>
+      <div *ngIf="view_details.transaction=='With' && view_details.bookingAmount=='yes'">
+        <label>Booking Charge :</label>
+        <p>{{ view_details.booking_charge }}</p>
+      </div>
+      <div *ngIf="view_details.booking_charge=='Customize' && view_details.transaction=='With' ">
+        <label>Percentage :</label>
+        <p>{{ view_details.booking_percentage}}</p>
+      </div>
 
       <div>
-        <label>Post Live Streaming Pirce :</label>
-        <p>{{ view_details.postLiveStreamingPirce?view_details.postLiveStreamingPirce:'null' }}</p>
+        <label>After live streaming :</label>
+        <p>{{ view_details.afterStreaming }}</p>
+      </div>
+      <div *ngIf="view_details.afterStreaming=='yes'">
+        <label>After Live Streaming Price :</label>
+        <p>{{ view_details.postLiveStreamingPirce }}</p>
+      </div>
+      <div *ngIf="view_details.transaction=='With'">
+        <label>Product Returnable :</label>
+        <p>{{ view_details.pruductreturnble }}</p>
+      </div>
+      <div *ngIf="view_details.transaction=='With' && view_details.pruductreturnble=='yes'">
+        <label>return_policy :</label>
+        <p>{{ view_details.return_policy }}</p>
       </div>
       <div>
-        <label>Min Lots :</label>
-        <p>{{ view_details.minLots }}</p>
-      </div>
-      <div>
-        <label>Incremental Lots :</label>
-        <p>{{ view_details.incrementalLots?view_details.incrementalLots:0 }}</p>
-      </div>
-      <div>
-        <label>Description :</label>
+        <label>Post Description :</label>
         <p>{{ view_details.discription }}.</p>
       </div>
     </div>

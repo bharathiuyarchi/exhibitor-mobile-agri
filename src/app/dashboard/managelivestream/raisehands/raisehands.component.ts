@@ -28,7 +28,7 @@ export class RaisehandsComponent implements OnInit {
       // this.get_token(this.id);
       this.get_token_details();
       this.socket.get_request_users(this.id).subscribe((res: any) => {
-        console.log(res)
+        console.log(res,98786786)
         let index = this.raised_users.findIndex((a: any) => a._id == res._id);
         if (index == -1) {
           this.raised_users.push(res)

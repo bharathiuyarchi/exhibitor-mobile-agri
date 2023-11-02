@@ -108,17 +108,31 @@ textarea {
 
 .booking-amount .choose-file {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+
+}
+
+.choose-file {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+
+}
+
+.choose-file label {
+  width: 37% !important;
+  font-size: 12px !important;
+  padding: 10px!important;
 }
 
 .choose-file p {
-  font-size: 12px;
+  font-size: 11px;
   margin-left: 15px;
 }
 
 .choose-file label {
   padding: 7px 30px;
-  width: 180px !important;
+  /* width: 180px !important; */
   background: rgb(230 229 229);
   border: none;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
@@ -187,7 +201,7 @@ video {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 9px;
-  height: 15px;
+  min-height: 15px;
   margin-top: 5px;
 }
 

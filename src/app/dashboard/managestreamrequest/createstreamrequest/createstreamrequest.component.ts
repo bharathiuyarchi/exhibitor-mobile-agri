@@ -1,17 +1,17 @@
-import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Env } from 'src/app/environment';
-import { ManagestreamrequestService } from '../managestreamrequest.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { formatDate } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Env } from "src/app/environment";
+import { ManagestreamrequestService } from "../managestreamrequest.service";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 declare let $: any;
 
 @Component({
-  selector: 'app-createstreamrequest',
-  templateUrl: './createstreamrequest.component.html',
-  styleUrls: ['./createstreamrequest.component.css']
+  selector: "app-createstreamrequest",
+  templateUrl: "./createstreamrequest.component.html",
+  styleUrls: ["./createstreamrequest.component.css"],
 })
 export class CreatestreamrequestComponent implements OnInit {
   baseURL: any = Env.baseAPi;
@@ -67,6 +67,8 @@ export class CreatestreamrequestComponent implements OnInit {
   }
   get_requrement(id: any) {
     this.api.get_one_request(id).subscribe((res: any) => {
+      this.get_posts(res.planId)
+      this.selected_plan = res.purchasedplans;
       this.stepOne = res;
       this.selectPlan = res.purchasedplans;
       this.postRequest.get("post").setErrors(null);
@@ -138,6 +140,7 @@ export class CreatestreamrequestComponent implements OnInit {
       this.BookedSlots = a;
     });
     this.get_posts(id);
+
   }
   open_preview() {
     console.log(this.postRequest.value)
@@ -445,7 +448,6 @@ export class CreatestreamrequestComponent implements OnInit {
     element.target.value = element.target.value.substring(0, 250);
     this.postRequest.get("discription").setValue(this.postRequest.get("discription").valid ? this.postRequest.get("discription").value.substring(0, 250) : '')
     if (q > maxvalue) {
-
       return false;
     } else {
       return true;
@@ -458,14 +460,12 @@ export class CreatestreamrequestComponent implements OnInit {
   }
   show_selected_post(id: any, item: any) {
     let postIndex = item.findIndex((a: any) => a._id == id);
-
     if (postIndex != -1) {
       return item[postIndex].productName;
     } else {
-      return "sdajks";
+
     }
   }
-
   preview_details(id: any, item: any) {
     if (item == 'plan') {
       let index = this.planes.findIndex((a: any) => a._id == id);

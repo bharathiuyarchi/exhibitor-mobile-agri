@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommommoduleModule } from '../commen/commommodule.module';
 import { dashboardroutingmodule } from './dashboard-routing.module';
+import { DemostreamComponent } from './demostream/demostream.component';
 
 
 
@@ -18,6 +19,7 @@ import { dashboardroutingmodule } from './dashboard-routing.module';
     CommomComponent,
     HomepageComponent,
     SidebarComponent,  
+    DemostreamComponent
   ],
   imports: [
     CommonModule,

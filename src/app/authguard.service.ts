@@ -2,13 +2,16 @@ import { AuthcheckService } from './authcheck.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Env } from './environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
 
-  constructor(private router: Router, public authcheck: AuthcheckService) { }
+  baseUrl = Env.baseAPi;
+  constructor(private router: Router, public authcheck: AuthcheckService, private http: HttpClient) { }
   intersect(a: any, b: any) {
     return a.filter(Set.prototype.has, new Set(b));
   }
@@ -24,7 +27,12 @@ export class AuthService implements CanActivate {
             if (path.role) {
               let access = this.intersect(path.role, res.roleNum)
               if (access.length != 0) {
-                resolve(true);
+                if (path.route == 'demo') {
+                  resolve(res.purchaseplan);
+                }
+                else {
+                  resolve(true);
+                }
               }
               else {
                 this.router.navigate(['404']);
@@ -73,11 +81,13 @@ export class AuthService implements CanActivate {
   // }
 
   logout() {
-    localStorage.removeItem('sellerAuth');
-    location.href = '/login'
-    // location.href = '/login'
-    // this.router.navigate(['./login'], { replaceUrl: true });
-
+    this.http.put(this.baseUrl + "/v1/seller/logout/seller", {}).subscribe((res: any) => {
+      localStorage.removeItem('sellerAuth');
+      location.href = '/login'
+    }, error => {
+      localStorage.removeItem('sellerAuth');
+      location.href = '/login'
+    })
   }
 
 }

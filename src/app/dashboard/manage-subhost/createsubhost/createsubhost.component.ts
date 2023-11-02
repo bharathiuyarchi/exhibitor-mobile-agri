@@ -17,29 +17,44 @@ export class CreatesubhostComponent implements OnInit {
   constructor(public api: ManagesubhostService, public router: Router, private route: ActivatedRoute) {
     this.route.queryParamMap.subscribe((res: any) => {
       this.id = res.params.id;
-      this.get_userDetails(this.id)
+      if (this.id != null) {
+        this.get_userDetails(this.id)
+      }
     })
   }
   createsubhost = new FormGroup({
     contactName: new FormControl(null, [Validators.required]),
-    mobileNumber: new FormControl(null, [Validators.required]),
-    email: new FormControl(null, [Validators.required]),
+    mobileNumber: new FormControl(null, [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     sellerRole: new FormControl(null, [Validators.required])
   })
+  error_message: any;
+  submited: boolean = false;
+
+  get controls() {
+    return this.createsubhost.controls;
+  }
   submit_subhost() {
     console.log(this.createsubhost.value)
+    this.submited = true;
+    this.error_message = null;
 
     if (this.createsubhost.valid) {
+      this.submited = false;
       if (this.id == null) {
         this.api.create_subhost(this.createsubhost.value).subscribe((res: any) => {
           console.log(res)
           this.router.navigateByUrl('/dashboard/subhost')
+        }, error => {
+          this.error_message = error.error.message
         })
       }
       else {
         this.api.update_single_user(this.id, this.createsubhost.value).subscribe((res: any) => {
           console.log(res)
           this.router.navigateByUrl('/dashboard/subhost')
+        }, error => {
+          this.error_message = error.error.message
         })
       }
     }
@@ -56,6 +71,5 @@ export class CreatesubhostComponent implements OnInit {
       })
     })
   }
-
 
 }

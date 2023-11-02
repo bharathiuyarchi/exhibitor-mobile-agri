@@ -19,6 +19,9 @@ export class ManagelivestreamService {
   get_token_details(id: any) {
     return this.http.get(this.baseurl + "/v1/ecomplan/golive/host/view?id=" + id);
   }
+  get_token_details_sub(id: any) {
+    return this.http.get(this.baseurl + "/v1/ecomplan/golive/host/view/details?id=" + id);
+  }
   create_token(data: any) {
     return this.http.post(this.baseurl + "/v2/generateRTC/production/livestream/generateToken/supplier", data);
     // return this.http.post("http://localhost:3000/v2/generateRTC/getToken" ,data, { headers: { auth: this.token }, });
@@ -56,5 +59,12 @@ export class ManagelivestreamService {
   }
   raiseUser_Details(id: any) {
     return this.http.post(this.baseurl + "/v2/generateRTC/get/raise/hand/user?id=" + id, {});
+  }
+
+  demo_Request(transaction: any) {
+    return this.http.post(this.baseurl + "/v2/demostream/demo/request", { transaction });
+  }
+  get_demo_request() {
+    return this.http.get(this.baseurl + "/v2/demostream/demo/request");
   }
 }

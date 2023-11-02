@@ -22,6 +22,10 @@ export class Managelivestream_sub {
   get_token_details(id: any) {
     return this.http.get(this.baseurl + "/v1/ecomplan/golive/host/view/subhost?id=" + id);
   }
+  get_token_details_sub(id: any) {
+    return this.http.get(this.baseurl + "/v1/ecomplan/details/host/view/subhost?id=" + id);
+  }
+
   create_token(data: any) {
     // return this.http.post("http://localhost:3000/v2/generateRTC/getToken" ,data, { headers: { auth: this.token }, });
     return this.http.post(this.baseurl + "/v2/generateRTC/create/subhost/token", data);

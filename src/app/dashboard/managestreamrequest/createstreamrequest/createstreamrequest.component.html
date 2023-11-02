@@ -57,7 +57,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="width: 130%;">
                                 <li *ngFor="let data of post_list; let i = index" id="check" class="dropdown-item">
                                     <label [for]="data._id"><input type="checkbox" (change)="change_post($event)"
                                             value="{{data._id}}" [id]="data._id" />

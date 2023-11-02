@@ -40,7 +40,7 @@
     width: 100%;
     margin: auto;
     margin-top: 20px;
-    background-color: rgba(215, 230, 222, 1);
+    /* background-color: rgba(215, 230, 222, 1); */
     border-radius: 20px;
     padding-bottom: 30px;
     padding: 10px;
@@ -274,3 +274,8 @@
   .form-flex .field_value .dropdown-item label input {
     margin-right: 10px;
   }
+
+
+.field_value input ,.field_value select ,.over-image label ,.over-video label ,.field_value textarea ,.show_select_post{
+  box-shadow: 0 0px 7px -1px #8080806e;
+}

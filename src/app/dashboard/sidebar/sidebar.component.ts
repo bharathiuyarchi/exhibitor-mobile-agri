@@ -62,4 +62,12 @@ export class SidebarComponent implements OnInit {
     // this.closeMenu();
 
   }
+  show_menus_plan() {
+    if (this.userDetails != null) {
+      return this.userDetails.purchaseplan;
+    }
+    else {
+      return false;
+    }
+  }
 }

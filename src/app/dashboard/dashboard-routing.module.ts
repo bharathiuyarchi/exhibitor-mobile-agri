@@ -7,6 +7,7 @@ import { AuthService } from "../authguard.service";
 import { CommomComponent } from "./commom/commom.component";
 import { ManageOrdersComponent } from "./manageorder/manage-orders/manage-orders.component";
 import { StreamOrdersComponent } from "./manageorder/stream-orders/stream-orders.component";
+import { DemostreamComponent } from "./demostream/demostream.component";
 
 const routes: Routes = [
   {
@@ -109,6 +110,8 @@ const routes: Routes = [
         canActivate: [AuthService],
         data: { role: [1], route: "dashboard/stream" },
       },
+      { path: "demostream", component: DemostreamComponent, data: { role: [1], route: "demo" }, canActivate: [AuthService], },
+
     ],
   },
 ];
@@ -116,4 +119,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class dashboardroutingmodule {}
+export class dashboardroutingmodule { }
