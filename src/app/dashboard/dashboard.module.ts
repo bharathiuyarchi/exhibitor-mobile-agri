@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { CommommoduleModule } from '../commen/commommodule.module';
 import { dashboardroutingmodule } from './dashboard-routing.module';
 import { DemostreamComponent } from './demostream/demostream.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -28,6 +29,7 @@ import { DemostreamComponent } from './demostream/demostream.component';
     RouterModule,
     CommommoduleModule,
     dashboardroutingmodule,
+    TranslateModule
   ]
 })
 export class DashboardModule { }

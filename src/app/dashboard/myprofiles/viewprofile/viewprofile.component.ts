@@ -5,6 +5,7 @@ import { AuthService } from "src/app/authguard.service";
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "src/app/authentication/authentication.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-viewprofile",
@@ -21,13 +22,23 @@ export class ViewprofileComponent implements OnInit {
       this.userDetails = res;
     });
   }
+  language: any;
   constructor(
     private auth: AuthService,
     private authcheck: AuthcheckService,
     private http: HttpClient,
-    private authService: AuthenticationService
-  ) {}
-
+    private authService: AuthenticationService,
+    private translate: TranslateService
+  ) {
+    let lang: any = localStorage.getItem('language');
+    lang == null ? 'en' : lang
+    this.language = lang;
+  }
+  change_lang(language: any) {
+    this.translate.use(language);
+    localStorage.setItem('language', language)
+    this.language = language;
+  }
   logout() {
     this.auth.logout();
   }

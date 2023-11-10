@@ -18,6 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AgmCoreModule } from '@agm/core'
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 @NgModule({
@@ -44,6 +46,13 @@ import { AgmCoreModule } from '@agm/core'
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyARM6-Qr_hsR53GExv9Gmu9EtFTV5ZuDX4',
     }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
 
 
   ],
@@ -53,4 +62,20 @@ import { AgmCoreModule } from '@agm/core'
   bootstrap: [AppComponent],
   exports: [CommonModule, FormsModule, CommommoduleModule]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private translate: TranslateService
+  ) {
+    // this.translate.addLangs(['en', 'nl', 'el', 'de', 'fr', 'es', 'it', 'pt', 'bg', 'tr', 'ru', 'hi', 'ja']);
+    let lang: any = localStorage.getItem('language');
+    if (lang == null) {
+      localStorage.setItem('language', 'en');
+    }
+    lang = lang == null ? 'en' : lang
+    this.translate.setDefaultLang(lang);
+  }
+}
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}

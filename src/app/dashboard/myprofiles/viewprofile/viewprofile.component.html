@@ -303,7 +303,7 @@
                                     fill="#262626" />
                             </svg>
                         </span>
-                        <p>Support</p>
+                        <p>Tech Support</p>
                     </div>
                     <div class="sarrow">
                         <svg *ngIf="show == 5" width="7" height="12" viewBox="0 0 7 12" fill="none"
@@ -398,27 +398,27 @@
                     </div>
                     <div class="right-content">
                         <div class="lang-container">
-                            <div class="lang-box act-lang">
+                            <div class="lang-box" [ngClass]="language=='en'?'act-lang':''" (click)="change_lang('en')">
                                 <span class="green"> A </span>
                                 <p>English</p>
                             </div>
-                            <div class="lang-box">
+                            <div class="lang-box" [ngClass]="language=='ta'?'act-lang':''" (click)="change_lang('ta')">
                                 <span class="green">அ </span>
                                 <p>Tamil</p>
                             </div>
-                            <div class="lang-box">
+                            <div class="lang-box" [ngClass]="language=='hi'?'act-lang':''">
                                 <span class="green">अ </span>
                                 <p>Hindi</p>
                             </div>
-                            <div class="lang-box">
+                            <div class="lang-box" [ngClass]="language=='tq'?'act-lang':''">
                                 <span class="green">అ </span>
                                 <p>Telugu</p>
                             </div>
-                            <div class="lang-box">
+                            <div class="lang-box" [ngClass]="language=='ma'?'act-lang':''">
                                 <span class="green">ക </span>
                                 <p>Malayalam</p>
                             </div>
-                            <div class="lang-box">
+                            <div class="lang-box" [ngClass]="language=='ka'?'act-lang':''">
                                 <span class="green">ಎ </span>
                                 <p>Kannada</p>
                             </div>
@@ -444,7 +444,7 @@
                                     fill="#262626" />
                             </svg>
                         </span>
-                        <h4>Support</h4>
+                        <h4>Tech Support</h4>
                     </div>
                     <div class="right-content" style="margin-bottom: 66px;">
                         <div class="support-container">
@@ -487,7 +487,7 @@
                                     </svg>
                                 </span>
                                 <div class="sup-text">
-                                    <p>Email support <span>(exhibitor@agriexpo.live)</span></p>
+                                    <p>Email support <span>{{'(exhibitor@agriexpo.live)'}}</span></p>
                                     <span>Revert time 2 hours</span>
                                 </div>
                             </div>
