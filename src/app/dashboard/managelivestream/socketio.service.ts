@@ -22,7 +22,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -32,7 +32,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+      //  this.socket.disconnect();
       }
     });
   }
@@ -45,7 +45,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -55,7 +55,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -68,7 +68,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       //this.socket.disconnect();
       }
     });
   }
@@ -86,7 +86,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -100,7 +100,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -144,7 +144,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -175,7 +175,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -189,7 +189,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -203,7 +203,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -213,7 +213,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -224,7 +224,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -235,7 +235,7 @@ export class SocketioService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }

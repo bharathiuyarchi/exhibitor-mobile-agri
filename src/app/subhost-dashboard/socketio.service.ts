@@ -22,7 +22,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -32,7 +32,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -45,7 +45,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -55,7 +55,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -68,7 +68,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -86,7 +86,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -99,7 +99,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -110,7 +110,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //  this.socket.disconnect();
       }
     });
   }
@@ -121,7 +121,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -133,7 +133,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -143,7 +143,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -174,7 +174,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -188,7 +188,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -202,7 +202,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -212,7 +212,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -223,7 +223,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        // this.socket.disconnect();
       }
     });
   }
@@ -234,7 +234,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -249,7 +249,7 @@ export class SocketioService_sub {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
