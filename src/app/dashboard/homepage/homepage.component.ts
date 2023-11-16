@@ -6,12 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit{
+export class HomepageComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
-  constructor(private router:Router){}
- routeto()
-{
-  this.router.navigateByUrl('/dashboard/plan/plans')
-}}
+  constructor(private router: Router) { }
+  routeto() {
+    this.router.navigateByUrl('/dashboard/plan/plans')
+  }
+}

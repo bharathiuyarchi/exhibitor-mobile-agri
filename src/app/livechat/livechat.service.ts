@@ -22,7 +22,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -32,7 +32,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -45,7 +45,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -55,7 +55,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+      //  this.socket.disconnect();
       }
     });
   }
@@ -68,7 +68,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+      //  this.socket.disconnect();
       }
     });
   }
@@ -86,7 +86,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -100,7 +100,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+        //this.socket.disconnect();
       }
     });
   }
@@ -111,7 +111,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -122,7 +122,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -134,7 +134,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+      //  this.socket.disconnect();
       }
     });
   }
@@ -144,7 +144,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+      //  this.socket.disconnect();
       }
     });
   }
@@ -175,7 +175,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+      //  this.socket.disconnect();
       }
     });
   }
@@ -189,7 +189,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
@@ -213,7 +213,7 @@ export class LivechatService {
         observer.next(data);
       });
       return () => {
-        this.socket.disconnect();
+       // this.socket.disconnect();
       }
     });
   }
