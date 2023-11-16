@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommommoduleModule } from 'src/app/commen/commommodule.module';
 import { Managesubhostroutingmodule } from './managesubhost-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -20,7 +21,8 @@ import { Managesubhostroutingmodule } from './managesubhost-routing.module';
     FormsModule,
     RouterModule,
     CommommoduleModule,
-    Managesubhostroutingmodule
+    Managesubhostroutingmodule,
+    TranslateModule
   ]
 })
 export class ManageSubhostModule { }

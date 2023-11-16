@@ -3,7 +3,7 @@
         <backbutton></backbutton>
 
     </div>
-    <h1 class="welcome">Add Sub-Host</h1>
+    <h1 class="welcome">{{'Add Sub-Host'|translate}}</h1>
     <div class="back" style="visibility: hidden;">
         <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="var(--green)" />
@@ -15,23 +15,23 @@
     <form [formGroup]="createsubhost" (submit)="submit_subhost()">
         <div class="form">
             <div>
-                <label for="Name">Name :</label>
+                <label for="Name">{{'Name'|translate}} :</label>
                 <input id="Name" type="text" placeholder="Enter Sub Host Name" formControlName="contactName">
             </div>
             <p style="text-align: right;color: red;height: 20px;">
                 <span *ngIf="createsubhost.get('contactName')?.invalid && submited">Enter Name</span>
             </p>
             <div>
-                <label for="emailId">Email ID :</label>
-                <input id="emailId" type="text" placeholder="Enter Your Email ID" formControlName="email">
+                <label for="emailId">{{'Email ID'|translate}} :</label>
+                <input id="emailId" type="text" placeholder="{{'Enter Sub-Host Email ID'|translate}}" formControlName="email">
             </div>
             <p style="text-align: right;color: red;height: 20px;">
                 <span *ngIf="createsubhost.get('email')?.hasError('required') && submited">Enter Email</span>
                 <span *ngIf="createsubhost.get('email')?.hasError('email') && submited">Enter Valid Email</span>
             </p>
             <div>
-                <label for="phoneNumber">Phone Number :</label>
-                <input id="phoneNumber" type="tel" placeholder="Enter Your Phone Number" formControlName="mobileNumber"
+                <label for="phoneNumber">{{'Phone Number'|translate}} :</label>
+                <input id="phoneNumber" type="tel" placeholder="{{'Enter Sub-Host Phone Number'|translate}}" formControlName="mobileNumber"
                     onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57">
             </div>
             <p style="text-align: right;color: red;height: 20px;">
@@ -43,12 +43,12 @@
 
             </p>
             <div>
-                <label for="Role">Role :</label>
+                <label for="Role">{{'Role'|translate}} :</label>
                 <select formControlName="sellerRole" id="Role">
-                    <option disabled selected [ngValue]="null">Select Role</option>
-                    <option value="chat/stream">Chat/Stream</option>
-                    <option value="chat">Chat</option>
-                    <option value="stream">Stream</option>
+                    <option disabled selected [ngValue]="null">{{'Select Role'|translate}}</option>
+                    <option value="chat/stream">{{'Chat/Stream'|translate}}</option>
+                    <option value="chat">{{'Chat'|translate}}</option>
+                    <option value="stream">{{'Stream'|translate}}</option>
                 </select>
             </div>
             <p style="text-align: right;color: red;height: 20px;">
@@ -56,7 +56,7 @@
             </p>
             <p style="text-align: right;color: red;height: 20px;">{{error_message}}</p>
             <div class="post-btn">
-                <button>Submit</button>
+                <button>{{'Submit'|translate}}</button>
             </div>
         </div>
     </form>

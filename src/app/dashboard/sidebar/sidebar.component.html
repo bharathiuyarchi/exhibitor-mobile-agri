@@ -25,7 +25,7 @@
             [routerLinkActive]="'acive-button-menu'" [routerLinkActiveOptions]="{ exact: true }"
             *ngIf="show_menus([1])">
             <span>
-                Dashboard
+                {{'Dashboard'|translate}}
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
 
@@ -51,7 +51,7 @@
                     stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
 
-            <span>Slots </span>
+            <span>{{'Slots'|translate}} </span>
             <i class="fa fa-caret-right arrow-mark"></i>
         </a>
         <a class="btn single-menu" (click)="closeMenu()" [routerLink]="['stream']"
@@ -75,7 +75,7 @@
             </svg>
 
             <span>
-                My Stream Request
+                {{'My Stream Request'|translate}}
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
 
@@ -90,7 +90,7 @@
             </svg>
 
             <span>
-                Live Stream
+                {{'Live Stream'|translate}}
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
 
@@ -104,7 +104,7 @@
                     fill="#262626" />
             </svg>
             <span>
-                My Plans
+                {{'My Plans'|translate}}
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
         </a>
@@ -116,7 +116,7 @@
                     fill="#262626" />
             </svg>
             <span>
-                Manage Sub-Host
+                {{'Manage Sub-Host'|translate}}
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
 
@@ -148,7 +148,7 @@
             </svg>
 
             <span>
-                Manage Order
+                {{'Manage Order'|translate}}
             </span>
             <i class="fa fa-caret-right arrow-mark"></i>
 
@@ -173,7 +173,7 @@
                     </clipPath>
                 </defs>
             </svg>
-            <span> Demo Stream</span>
+            <span> {{'Demo Stream'|translate}}</span>
             <i class="fa fa-caret-right arrow-mark"></i>
         </a>
         <!-- <a class="btn single-menu" (click)="closeMenu()" [routerLink]="['subuser']"

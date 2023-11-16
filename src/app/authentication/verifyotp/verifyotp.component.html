@@ -3,15 +3,15 @@
         <new-header></new-header>
     </header>
     <div class="welcome-content">
-        <h1 class="welcome">Enter OTP</h1>
+        <h1 class="welcome">{{'Enter OTP'|translate}}</h1>
     </div>
     <form (submit)="verify_otp()" [formGroup]="verifyOTP">
         <div class="form">
 
             <div>
-                <label>OTP :</label>
+                <label>{{'OTP'|translate}} :</label>
                 <input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                    type="tel" maxlength="6" name="" id="OTP" placeholder="Enter OTP" formControlName="otp">
+                    type="tel" maxlength="6" name="" id="OTP" placeholder="{{'Enter OTP'|translate}}" formControlName="otp">
                 <!-- <a (click)="resend()" class="forget-password">Resend OTP !</a> -->
             </div>
             <div class="form-error">
@@ -21,14 +21,14 @@
             </div>
             <div class="resend-otp" style="display: flex; justify-content: end;">
                 <p style="color: blue; text-decoration: underline; cursor: pointer; text-align: right;"
-                    *ngIf="recentShow" (click)="resendOTP()">Resend OTP
+                    *ngIf="recentShow" (click)="resendOTP()">{{'Resend OTP'|translate}}
                 </p>
                 <p style="color: blue; text-align: right;" *ngIf="!recentShow">
                     {{remainingTime}}
                 </p>
             </div>
             <div class="login-btn btn">
-                <button class="green-btn ">Verify OTP</button>
+                <button class="green-btn ">{{'Verify OTP'|translate}}</button>
             </div>
         </div>
     </form>

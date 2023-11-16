@@ -9,22 +9,22 @@
 
 
     <div class="welcome-content" style="margin-top: 30px;">
-        <h1 class="welcome">Exhibitor Login!</h1>
+        <h1 class="welcome">{{'Exhibitor Login!'|translate}}</h1>
     </div>
     <form (submit)="register_now()" [formGroup]="Login">
         <div class="form">
             <div>
-                <label for="mobile-number">Mobile Number :</label>
+                <label for="mobile-number">{{'Mobile Number'|translate}} :</label>
                 <input type="tel"
                     onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57" name=""
-                    id="mobile-number" placeholder="Enter Mobile Number" formControlName="mobile">
+                    id="mobile-number" placeholder="{{'Enter Mobile Number'|translate}}" formControlName="mobile">
             </div>
             <div class="form-error">
-                <label *ngIf="submitted && Login.get('mobile')?.invalid">Enter mobile number !</label>
+                <label *ngIf="submitted && Login.get('mobile')?.invalid">{{'Enter mobile number !'|translate}}</label>
             </div>
             <div style="position: relative;">
-                <label for="password">Password :</label>
-                <input name="" id="password" placeholder="Password" formControlName="password"
+                <label for="password">{{'Password'|translate}} :</label>
+                <input name="" id="password" placeholder="{{'Enter Password'|translate}}" formControlName="password"
                     [type]="show2?'text':'password'">
                 <div class="svg" style="position: absolute; top: 36px;">
                     <svg (click)="change2()" *ngIf="!show2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -40,20 +40,20 @@
                     </svg>
                 </div>
                 <div class="form-error">
-                    <label *ngIf="submitted  && Login.get('password')?.invalid ">Enter Password !</label>
+                    <label *ngIf="submitted  && Login.get('password')?.invalid ">{{'Enter Password !'|translate}}</label>
                 </div>
-                <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage}}</label>
+                <label for="" class="form-error" *ngIf="errorMessage !=null">{{errorMessage|translate}}</label>
                 <div class="form-forgot">
-                    <a [routerLink]="['/forgot']" (click)="forgot()">Forgot Password !</a>
-                    <a [routerLink]="['/forgot']" (click)="continue()">Continue Registering !</a>
+                    <a [routerLink]="['/forgot']" (click)="forgot()">{{'Forgot Password !'|translate}}</a>
+                    <a [routerLink]="['/forgot']" (click)="continue()">{{'Continue Registering !'|translate}}</a>
                 </div>
 
             </div>
           
 
             <div class="login-btn btn">
-                <button class="normal-btn" [routerLink]="['/register']" type="button"> Sign Up</button>
-                <button class="green-btn ">Log In</button>
+                <button class="normal-btn" [routerLink]="['/register']" type="button"> {{'Sign Up'|translate}}</button>
+                <button class="green-btn ">{{'Log In'|translate}}</button>
             </div>
         </div>
 

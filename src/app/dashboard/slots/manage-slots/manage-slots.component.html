@@ -10,7 +10,7 @@
                     d="M4.44444 4.4V1.1C4.44444 0.808261 4.56151 0.528472 4.76988 0.322182C4.97826 0.115892 5.26087 0 5.55556 0H18.8889C19.1836 0 19.4662 0.115892 19.6746 0.322182C19.8829 0.528472 20 0.808261 20 1.1V16.5C20 16.7917 19.8829 17.0715 19.6746 17.2778C19.4662 17.4841 19.1836 17.6 18.8889 17.6H15.5556V20.9C15.5556 21.5072 15.0556 22 14.4367 22H1.11889C0.972363 22.0008 0.827108 21.973 0.691469 21.9182C0.55583 21.8633 0.432481 21.7824 0.32851 21.6802C0.224538 21.578 0.141992 21.4564 0.0856159 21.3225C0.0292396 21.1886 0.000143749 21.045 0 20.9L0.00333336 5.49999C0.00333336 4.8928 0.503333 4.4 1.12111 4.4H4.44444ZM2.22444 6.59999L2.22222 19.8H13.3333V6.59999H2.22444ZM6.66667 4.4H15.5556V15.4H17.7778V2.2H6.66667V4.4ZM4.44444 9.89999H11.1111V12.1H4.44444V9.89999ZM4.44444 14.3H11.1111V16.5H4.44444V14.3Z"
                     fill="var(--green)" />
             </svg>
-            <p>My Slots</p>
+            <p>{{'My Slots'|translate}}</p>
         </div>
         <div class="add">
            
@@ -33,20 +33,20 @@
           <h2>{{v.planName}}</h2>
         </div>
         <div class="box-slot">
-          <p>Normal</p>
+          <p>{{'Normal'|translate}}</p>
           <p>{{v.Normal}}</p>
         </div>
         <div class="box-slot">
-          <p>Peak</p>
+          <p>{{'Peak'|translate}}</p>
           <p>{{v.Peak}}</p>
         </div>
         <div class="box-slot">
-          <p>Exclusive</p>
+          <p>{{'Exclusive'|translate}}</p>
           <p>{{v.Exclusive}}</p>
         </div>
         <div class="box-btn">
-          <button *ngIf="!(checkbutton(v))" (click)="chooseSlot(v._id)" >Choose slots</button>
-          <button *ngIf="checkbutton(v)" (click)="view(v._id)" >View slots</button>
+          <button *ngIf="!(checkbutton(v))" (click)="chooseSlot(v._id)" >{{'Choose slots'|translate}}</button>
+          <button *ngIf="checkbutton(v)" (click)="view(v._id)" >{{'View slots'|translate}}</button>
         </div>
       </div>
     </div>

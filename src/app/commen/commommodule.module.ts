@@ -10,6 +10,7 @@ import { ToggleMenusComponent } from '../toggle-menus/toggle-menus.component';
 import { BackbuttonComponent } from '../backbutton/backbutton.component';
 import { NewHeaderComponent } from '../new-header/new-header.component';
 import { ProgressbarComponent } from '../progressbar/progressbar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -28,7 +29,7 @@ import { ProgressbarComponent } from '../progressbar/progressbar.component';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    
+    TranslateModule
   ],
   providers: [FooterComponent, HeaderComponent, ToggleMenusComponent, BackbuttonComponent],
   exports: [FooterComponent, HeaderComponent, CommenComponent, ToggleMenusComponent, BackbuttonComponent, NewHeaderComponent,ProgressbarComponent]

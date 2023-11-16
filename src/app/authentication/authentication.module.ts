@@ -11,6 +11,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { SetpasswordComponent } from './setpassword/setpassword.component';
 import { VerifyotpComponent } from './verifyotp/verifyotp.component';
 import { AlreadyregisterComponent } from './alreadyregister/alreadyregister.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -30,6 +31,7 @@ import { AlreadyregisterComponent } from './alreadyregister/alreadyregister.comp
     FormsModule,
     RouterModule,
     CommommoduleModule,
+    TranslateModule
 
   ],
   exports: [LogincomponentComponent]

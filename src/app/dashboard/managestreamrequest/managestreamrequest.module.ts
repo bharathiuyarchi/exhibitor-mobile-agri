@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CommommoduleModule } from 'src/app/commen/commommodule.module';
 import { ManagerequestComponent } from './managerequest/managerequest.component';
 import { CreatestreamrequestComponent } from './createstreamrequest/createstreamrequest.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -20,7 +21,8 @@ import { CreatestreamrequestComponent } from './createstreamrequest/createstream
     FormsModule,
     RouterModule,
     CommommoduleModule,
-    Managerequestroutingmodule
+    Managerequestroutingmodule,
+    TranslateModule
   ]
 })
 export class ManagestreamrequestModule { }

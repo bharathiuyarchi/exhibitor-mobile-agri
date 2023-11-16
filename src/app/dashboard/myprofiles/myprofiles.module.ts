@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CommommoduleModule } from 'src/app/commen/commommodule.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CommommoduleModule } from 'src/app/commen/commommodule.module';
     FormsModule,
     RouterModule,
     MyprofilesRoutingModule,
-    CommommoduleModule
+    CommommoduleModule,
+    TranslateModule
   ]
 })
 export class MyprofilesModule { }

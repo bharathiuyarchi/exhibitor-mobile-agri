@@ -8,7 +8,7 @@
                     d="M17.6472 18.4722C16.8708 17.4442 15.8664 16.6106 14.713 16.037C13.5596 15.4634 12.2887 15.1654 11.0006 15.1666C9.71239 15.1654 8.44154 15.4634 7.28813 16.037C6.13473 16.6106 5.13027 17.4442 4.35389 18.4722M17.6472 18.4722C19.1622 17.1246 20.2307 15.3483 20.713 13.3789C21.1953 11.4094 21.0675 9.3399 20.3466 7.44475C19.6257 5.5496 18.3458 3.91836 16.6766 2.76736C15.0073 1.61637 13.0276 1 11 1C8.9724 1 6.9927 1.61637 5.32345 2.76736C3.6542 3.91836 2.37426 5.5496 1.65337 7.44475C0.932491 9.3399 0.804726 11.4094 1.28702 13.3789C1.76932 15.3483 2.83889 17.1246 4.35389 18.4722M17.6472 18.4722C15.8184 20.1035 13.4513 21.0035 11.0006 21C8.54948 21.0038 6.18304 20.1038 4.35389 18.4722M14.3339 8.49979C14.3339 9.38386 13.9827 10.2317 13.3576 10.8569C12.7325 11.482 11.8846 11.8332 11.0006 11.8332C10.1165 11.8332 9.26865 11.482 8.64353 10.8569C8.01841 10.2317 7.66722 9.38386 7.66722 8.49979C7.66722 7.61572 8.01841 6.76786 8.64353 6.14273C9.26865 5.5176 10.1165 5.1664 11.0006 5.1664C11.8846 5.1664 12.7325 5.5176 13.3576 6.14273C13.9827 6.76786 14.3339 7.61572 14.3339 8.49979Z"
                     stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            Edit Profile
+            {{'Edit Profile'|translate}}
         </h3>
 
         <div class=" edit">
@@ -18,17 +18,17 @@
     <div class="form-container" *ngIf="mydetails !=null">
         <form [formGroup]="mydetails" (submit)="update_now()">
             <div>
-                <label>Name:</label>
+                <label>{{'Name'|translate}}:</label>
                 <p><input type="text" name="" id="" formControlName="tradeName"></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('tradeName').invalid">Name is required!</p>
             <div>
-                <label>Email ID :</label>
+                <label>{{'Email ID'|translate}} :</label>
                 <p><input type="email" name="" id="" formControlName="email"></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('email').invalid">Email is Invalid!</p>
             <div>
-                <label>Company Name: <a class="hover-me" style="position: absolute; right: 5%;"><svg width="22"
+                <label>{{'Company Name'|translate}}: <a class="hover-me" style="position: absolute; right: 5%;"><svg width="22"
                             height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M8.64333 6.02111C9.94444 4.88222 12.0556 4.88222 13.3567 6.02111C14.6589 7.16 14.6589 9.00667 13.3567 10.1456C13.1311 10.3444 12.8789 10.5078 12.6122 10.6367C11.7844 11.0378 11.0011 11.7467 11.0011 12.6667V13.5M21 11C21 12.3132 20.7413 13.6136 20.2388 14.8268C19.7363 16.0401 18.9997 17.1425 18.0711 18.0711C17.1425 18.9997 16.0401 19.7363 14.8268 20.2388C13.6136 20.7413 12.3132 21 11 21C9.68678 21 8.38642 20.7413 7.17317 20.2388C5.95991 19.7363 4.85752 18.9997 3.92893 18.0711C3.00035 17.1425 2.26375 16.0401 1.7612 14.8268C1.25866 13.6136 1 12.3132 1 11C1 8.34784 2.05357 5.8043 3.92893 3.92893C5.8043 2.05357 8.34784 1 11 1C13.6522 1 16.1957 2.05357 18.0711 3.92893C19.9464 5.8043 21 8.34784 21 11ZM11 16.8333H11.0089V16.8422H11V16.8333Z"
@@ -43,17 +43,17 @@
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('companyName').invalid">Company Name is required!</p>
             <div>
-                <label>Designation :</label>
+                <label>{{'Designation'|translate}} :</label>
                 <p><input type="text" name="" id="" formControlName="Designation"></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('Designation').invalid">Designation is required!</p>
             <div>
-                <label>Website :</label>
+                <label>{{'Website'|translate}} :</label>
                 <p><input type="text" name="" id="" formControlName="webSite"></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('webSite').invalid">webSite is required!</p>
             <div>
-                <label>Category:</label>
+                <label>{{'Category'|translate}}:</label>
                 <!-- <p><select name="Category" id="" formControlName="category">
                         <option [value]="v" *ngFor="let v of category">{{v}}</option>
                     </select></p> -->
@@ -126,7 +126,7 @@
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('city').invalid">Select City</p> -->
             <div>
-                <label>Address:</label>
+                <label>{{'Address'|translate}}:</label>
                 <p>
                     <textarea style="height: 100px;" name="" id="" cols="30" rows="10"
                         formControlName="address"></textarea>
@@ -135,17 +135,17 @@
             <p class="err" *ngIf="submitted && mydetails.get('address').invalid">Address is required!</p>
 
             <div>
-                <label> Pin code:</label>
+                <label> {{'Pin code'|translate}}:</label>
                 <p><input onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         type="number" name="" id="" formControlName="Pincode"></p>
             </div>
             <div>
-                <label for="City">GST Number : </label>
+                <label for="City">{{'GST Number'|translate}} : </label>
                 <p> <input type="text" name="" id="GST_Number" placeholder="Enter GST Number" formControlName="GST_Number" /></p>
             </div>
             <p class="err" *ngIf="submitted && mydetails.get('Pincode').invalid">Pincode is Invalid!</p>
             <div class="form-row">
-                <label for="City">How did you know us?: </label>
+                <label for="City">{{'How did you know us?'|translate}}: </label>
                 <p>
                     <select name="" id="" formControlName="how_did_you_know_us"
                         style="box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);border: none;padding: 7px 12px;width: 100%;">

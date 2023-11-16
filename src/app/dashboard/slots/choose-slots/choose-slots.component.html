@@ -6,7 +6,7 @@
     class="welcome"
     style="font-family: sans-serif !important; font-size: 22px !important"
   >
-    Choose Slots
+    {{'Choose Slots'|translate}}
   </h1>
   <div class="back">
     <div style="color: green; font-weight: 600">
@@ -30,7 +30,7 @@
   </div>
   <div class="slot-container">
     <div class="slot-title">
-      <h4>Normal</h4>
+      <h4>{{'Normal'|translate}}</h4>
     </div>
     <div class="own-slot">
       <span *ngFor="let v of normalS" class="os"
@@ -59,13 +59,13 @@
       <span class="right"></span>
     </span>
     <span class="no-slot" *ngIf="(normal | slot : selectedDate).length == 0"
-    >No Available Slots on this date
+    >{{'No Available Slots on this date'|translate}}
     {{ selectedDate | date : "dd-MM-YYYY" }}</span
   >
   </div>
   <div class="slot-container">
     <div class="slot-title">
-      <h4>Peak</h4>
+      <h4>{{'Peak'|translate}}</h4>
     </div>
     <div class="own-slot">
       <span *ngFor="let v of peakS" class="os peak"
@@ -94,13 +94,13 @@
       <span class="right peak"></span>
     </span>
     <span class="no-slot" *ngIf="(peak | slot : selectedDate).length == 0"
-    >No Available Slots on this date
+    >{{'No Available Slots on this date'|translate}}
     {{ selectedDate | date : "dd-MM-YYYY" }}</span
   >
   </div>
   <div class="slot-container">
     <div class="slot-title">
-      <h4>Exclusive</h4>
+      <h4>{{'Exclusive'|translate}}</h4>
     </div>
     <div class="own-slot">
       <span *ngFor="let v of exS" class="os ex"
@@ -129,12 +129,12 @@
       <span class="right ex"></span>
     </span>
     <span class="no-slot" *ngIf="(exclusive | slot : selectedDate).length == 0"
-    >No Available Slots on this date
+    >{{'No Available Slots on this date'|translate}}
     {{ selectedDate | date : "dd-MM-YYYY" }}</span
   >
   </div>
   <div class="button">
-    <button class="btn btn-success" (click)="viewslots()">Submit</button>
+    <button class="btn btn-success" (click)="viewslots()">{{'Submit'|translate}}</button>
   </div>
 </div>
 

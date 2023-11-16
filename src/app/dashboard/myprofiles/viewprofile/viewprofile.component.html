@@ -8,7 +8,7 @@
                     d="M17.6472 18.4722C16.8708 17.4442 15.8664 16.6106 14.713 16.037C13.5596 15.4634 12.2887 15.1654 11.0006 15.1666C9.71239 15.1654 8.44154 15.4634 7.28813 16.037C6.13473 16.6106 5.13027 17.4442 4.35389 18.4722M17.6472 18.4722C19.1622 17.1246 20.2307 15.3483 20.713 13.3789C21.1953 11.4094 21.0675 9.3399 20.3466 7.44475C19.6257 5.5496 18.3458 3.91836 16.6766 2.76736C15.0073 1.61637 13.0276 1 11 1C8.9724 1 6.9927 1.61637 5.32345 2.76736C3.6542 3.91836 2.37426 5.5496 1.65337 7.44475C0.932491 9.3399 0.804726 11.4094 1.28702 13.3789C1.76932 15.3483 2.83889 17.1246 4.35389 18.4722M17.6472 18.4722C15.8184 20.1035 13.4513 21.0035 11.0006 21C8.54948 21.0038 6.18304 20.1038 4.35389 18.4722M14.3339 8.49979C14.3339 9.38386 13.9827 10.2317 13.3576 10.8569C12.7325 11.482 11.8846 11.8332 11.0006 11.8332C10.1165 11.8332 9.26865 11.482 8.64353 10.8569C8.01841 10.2317 7.66722 9.38386 7.66722 8.49979C7.66722 7.61572 8.01841 6.76786 8.64353 6.14273C9.26865 5.5176 10.1165 5.1664 11.0006 5.1664C11.8846 5.1664 12.7325 5.5176 13.3576 6.14273C13.9827 6.76786 14.3339 7.61572 14.3339 8.49979Z"
                     stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            My Profile
+            {{'My Profile'|translate}}
         </h3>
 
         <div class=" edit">
@@ -117,14 +117,14 @@
         <div class="popup-close-1" (click)="popupCLose1()"></div>
         <div class="popup-container-1" style="position: relative;overflow: hidden;">
             <div class="content-title">
-                <p>Delete My Account</p>
+                <p>{{'Delete My Account'|translate}}</p>
             </div>
             <div class="content">
-                <p>Are You Sure Do You Want To Delete Your Account?</p>
+                <p>{{'Are You Sure Do You Want To Delete Your Account?'|translate}}</p>
             </div>
             <div class="buttons">
-                <button style="background-color: green; color: white;" (click)="popupCLose1()">No</button>
-                <button style="background-color: red; color: white;" (click)="sendOTP()">Yes</button>
+                <button style="background-color: green; color: white;" (click)="popupCLose1()">{{'No'|translate}}</button>
+                <button style="background-color: red; color: white;" (click)="sendOTP()">{{'Yes'|translate}}</button>
             </div>
         </div>
     </div>
@@ -133,27 +133,27 @@
         <div class="popup-close-2" (click)="popupCLose2()"></div>
         <div class="popup-container-2" style="position: relative;overflow: hidden;">
             <div class="content-title">
-                <p>Enter OTP</p>
+                <p>{{'Enter OTP'|translate}}</p>
             </div>
             <div class="content" [formGroup]="otpform" style="display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 31px;">
-                <input type="tel" placeholder="Enter Valid OTP" maxlength="6"
+                <input type="tel" placeholder="{{'Enter Valid OTP'|translate}}" maxlength="6"
                     onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                     formControlName="otp">
             </div>
             <div class="resend-otp" style="display: flex; justify-content: center;">
                 <p style="color: blue; text-decoration: underline; cursor: pointer;" *ngIf="recentShow"
-                    (click)="resendOTP()">Resend OTP
+                    (click)="resendOTP()">{{'Resend OTP'|translate}}
                 </p>
                 <p style="color: blue;" *ngIf="!recentShow">
                     {{remainingTime}}
                 </p>
             </div>
             <div class="buttons">
-                <button style="background-color: green; color: white;" (click)="popupCLose2()">Back</button>
-                <button style="background-color: red; color: white;" (click)="otpSubmit()">Submit</button>
+                <button style="background-color: green; color: white;" (click)="popupCLose2()">{{'Back'|translate}}</button>
+                <button style="background-color: red; color: white;" (click)="otpSubmit()">{{'Submit'|translate}}</button>
             </div>
         </div>
     </div>
@@ -222,7 +222,7 @@
                                     stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
-                        <p>Language</p>
+                        <p>{{'Language'|translate}}</p>
                     </div>
                     <div class="sarrow">
                         <svg *ngIf="show == 3" width="7" height="12" viewBox="0 0 7 12" fill="none"
@@ -303,7 +303,7 @@
                                     fill="#262626" />
                             </svg>
                         </span>
-                        <p>Tech Support</p>
+                        <p>{{'Tech Support'|translate}}</p>
                     </div>
                     <div class="sarrow">
                         <svg *ngIf="show == 5" width="7" height="12" viewBox="0 0 7 12" fill="none"
@@ -328,7 +328,7 @@
                                     stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
-                        <p>Change password</p>
+                        <p>{{'Change password'|translate}}</p>
                     </div>
                     <div class="sarrow">
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -347,7 +347,7 @@
                                     fill="#262626" />
                             </svg>
                         </span>
-                        <p>Log Out</p>
+                        <p>{{'Log Out'|translate}}</p>
                     </div>
                     <div class="sarrow">
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -366,7 +366,7 @@
                                     fill="#262626" />
                             </svg>
                         </span>
-                        <p>Delete My Account</p>
+                        <p>{{'Delete My Account'|translate}}</p>
                     </div>
                     <div class="sarrow">
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -394,7 +394,7 @@
                                     stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
-                        <h4>Language</h4>
+                        <h4>{{'Language'|translate}}</h4>
                     </div>
                     <div class="right-content">
                         <div class="lang-container">
