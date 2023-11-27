@@ -3,7 +3,7 @@
         <backbutton></backbutton>
 
     </div>
-    <h1 class="welcome">Create Post</h1>
+    <h1 class="welcome">{{'Create Post'|translate}}</h1>
     <div class="back" style="visibility: hidden;">
         <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="var(--green)" />
@@ -17,12 +17,12 @@
     <form [formGroup]="postForm">
         <div class="form">
             <div class="main-title-post mt-2">
-                <h5>Product Type</h5>
+                <h5>{{'Product Type'|translate}}</h5>
             </div>
             <div style="margin-top: 18px;">
-                <label>Select Category <sup style="color: red;">*</sup> :</label>
+                <label>{{'Select Category'|translate}} <sup style="color: red;">*</sup> :</label>
                 <select (change)="change_cate($event)" formControlName="categoryId">
-                    <option disabled selected [ngValue]="null">Select Category</option>
+                    <option disabled selected [ngValue]="null">{{'Select Category'|translate}}</option>
                     <option *ngFor="let item of category_list" value="{{item.id}}">
                         {{item.categoryName}}</option>
                 </select>
@@ -33,10 +33,10 @@
                 </p>
             </div>
             <div style="margin-top: 18px;">
-                <label>Select Product <sup style="color: red;">*</sup> :</label>
+                <label>{{'Select Product'|translate}} <sup style="color: red;">*</sup> :</label>
                 <select name="" id="" formControlName="productId" style="text-transform:capitalize;"
                     (change)="select_product($event)">
-                    <option [ngValue]="null" disabled selected>Select Product
+                    <option [ngValue]="null" disabled selected>{{'Select Product'|translate}}
                     </option>
                     <ng-container *ngIf="productList !=null">
 
@@ -51,15 +51,15 @@
                 </p>
             </div>
             <div class="add-product" style="padding-bottom: 20px;" *ngIf="ProductNotFound">
-                <p (click)="enablePopup()">Product Not Found ?</p>
+                <p (click)="enablePopup()">{{'Product Not Found ?'|translate}}</p>
             </div>
             <div class="main-title-post mt-2">
-                <h5>Product details</h5>
+                <h5>{{'Product details'|translate}}</h5>
             </div>
             <div style="margin-top: 18px;">
-                <label>Total no Of units for sale <sup style="color: red;">*</sup> :</label>
+                <label>{{'Total no of units for sale'|translate}} <sup style="color: red;">*</sup> :</label>
                 <div class="two-inputs">
-                    <input type="text" placeholder="Enter Total no Of units to sale"
+                    <input type="text" placeholder="{{'Enter Total no of units to sale'|translate}}"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="quantity" (keyup)="change_qty($event,'quantity')">
                     <div class="dropdown">
@@ -113,7 +113,7 @@
                     <span>{{oldDetails.quantity}}/{{oldDetails.purchase_quantity}} <sub>{{oldDetails.unit}}</sub></span>
                 </p>
                 <p *ngIf="submited && postForm.get('quantity').valid&& postForm.get('unit').invalid">
-                    <span>Choose Unit</span>
+                    <span>{{'Choose Unit'|translate}}</span>
                 </p>
             </div>
 
@@ -128,9 +128,9 @@
             </div>
             <div style="margin-top: 18px;"
                 *ngIf="postForm.get('unit').value=='Pack' || postForm.get('unit').value=='Box' || postForm.get('unit').value=='Bags'">
-                <label>Define Quantity/Units <sup style="color: red;">*</sup> :</label>
+                <label>{{'Define Quantity/Units'|translate}} <sup style="color: red;">*</sup> :</label>
                 <div class="two-inputs" style="position: relative;">
-                    <input type="text" placeholder="Enter Define Quantity"
+                    <input type="text" placeholder="{{'Enter Define Quantity'|translate}}"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="define_QTY">
                     <a style="position: absolute;right: 101px;margin-top: 17px;cursor: pointer;" class="hover-me"><svg
@@ -203,9 +203,9 @@
                 </p>
             </div> -->
             <div style="margin-top: 18px;">
-                <label>Dispatched Location <sup style="color: red;">*</sup>:</label>
+                <label>{{'Dispatched Location'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
-                    <input type="text" placeholder="Enter Dispatched Location"
+                    <input type="text" placeholder="{{'Enter Dispatched Location'|translate}}"
                         value="{{postForm.get('dispatchLocation')?.value}}" class="location-field"
                         ngx-google-places-autocomplete [options]="options"
                         (onAddressChange)="handleAddressChange($event)" type="text">
@@ -231,8 +231,8 @@
                 </p>
             </div>
             <div style="margin-top: 18px;position: relative">
-                <label>Pack Description <sup style="color: red;">*</sup>:</label>
-                <textarea placeholder="Enter Pack Description" formControlName="pack_discription"
+                <label>{{'Pack Description'|translate}} <sup style="color: red;">*</sup>:</label>
+                <textarea placeholder="{{'Enter Pack Description'|translate}}" formControlName="pack_discription"
                     (paste)="onPaste($event,$event,'pack_discription')"
                     (change)="maxlengths($event, 250,'pack_discription')"
                     (keypress)="maxlengths($event, 250,'pack_discription')"></textarea>
@@ -248,22 +248,22 @@
 
 
             <div class="main-title-post mt-2">
-                <h5>Transaction</h5>
+                <h5>{{'Transaction'|translate}}</h5>
             </div>
             <div class="booking-amount">
-                <label>Transaction <sup style="color: red;">*</sup>:</label>
+                <label>{{'Transaction'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
                         <input id="transaction_with" value="With" type="radio"
                             (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','purchase_limit','pruductreturnble','max_purchase_value','return_policy'],postForm.get('transaction').value,true)"
                             formControlName="transaction" name="transaction">
-                        <label for="transaction_with">With</label>
+                        <label for="transaction_with">{{'With'|translate}}</label>
                     </span>
                     <span style="margin-left: 50px;">
                         <input id="transaction_without" name="transaction" value="Without" type="radio"
                             (change)="validator_remove(['incrementalLots','minLots','bookingAmount','booking_charge','booking_percentage','purchase_limit','pruductreturnble','max_purchase_value','return_policy'],postForm.get('transaction').value,false)"
                             formControlName="transaction">
-                        <label for="transaction_without">Without</label>
+                        <label for="transaction_without">{{'Without'|translate}}</label>
                     </span>
                 </div>
             </div>
@@ -273,9 +273,9 @@
                 </p>
             </div>
             <div *ngIf="postForm.get('transaction').value=='With'">
-                <label>Minimum Lots <sup style="color: red;">*</sup>:</label>
+                <label>{{'Minimum Lots'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
-                    <input (keyup)="change_qty($event,'minLots')" type="text" placeholder="₹ Enter Minimum Lots"
+                    <input (keyup)="change_qty($event,'minLots')" type="text" placeholder="₹ {{'Enter Minimum Lots'|translate}}"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="minLots">
                 </div>
@@ -289,10 +289,10 @@
                 </p>
             </div>
             <div *ngIf="postForm.get('transaction').value=='With'" style="margin-top: 18px;">
-                <label>Incremental Lots <sup style="color: red;">*</sup>:</label>
+                <label>{{'Incremental Lots'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
                     <input (keyup)="change_qty($event,'incrementalLots')" type="text"
-                        placeholder="₹ Enter Incremental Lots"
+                        placeholder="₹ {{'Enter Incremental Lots'|translate}}"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="incrementalLots">
                 </div>
@@ -308,19 +308,19 @@
             </div>
             <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'"
                 style="margin-top: 18px;padding-top: 18px;">
-                <label>Purchased Limit <sup style="color: red;">*</sup>:</label>
+                <label>{{'Purchased Limit'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
                         <input id="purchase_limit" value="yes" type="radio"
                             (change)="validator_remove(['max_purchase_value'],postForm.get('purchase_limit').value,true)"
                             formControlName="purchase_limit" name="purchase_limit">
-                        <label for="purchase_limit">Yes</label>
+                        <label for="purchase_limit">{{'Yes'|translate}}</label>
                     </span>
                     <span style="margin-left: 50px;">
                         <input id="purchase_limit-no" name="purchase_limit" value="no" type="radio"
                             (change)="validator_remove(['max_purchase_value'],postForm.get('purchase_limit').value,false)"
                             formControlName="purchase_limit">
-                        <label for="purchase_limit-no">No</label>
+                        <label for="purchase_limit-no">{{'No'|translate}}</label>
                     </span>
                 </div>
             </div>
@@ -331,10 +331,10 @@
                 </p>
             </div>
             <div *ngIf="postForm.get('transaction').value=='With' && postForm.get('purchase_limit')?.value=='yes'">
-                <label>Purchased Quantity Limit<sup style="color: red;">*</sup>:</label>
+                <label>{{'Purchased Quantity Limit'|translate}}<sup style="color: red;">*</sup>:</label>
                 <div>
                     <input (keyup)="change_qty($event,'max_purchase_value')" type="tel"
-                        placeholder="₹ Enter Purchased Quantity"
+                        placeholder="₹ {{'Enter Purchased Quantity'|translate}}"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="max_purchase_value">
                 </div>
@@ -351,12 +351,12 @@
             </div>
 
             <div class="main-title-post mt-2">
-                <h5>Price</h5>
+                <h5>{{'Price'|translate}}</h5>
             </div>
             <div style="margin-top: 18px;">
-                <label>Market Price <sup style="color: red;">*</sup>:</label>
+                <label>{{'Market Price'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
-                    <input type="number" placeholder="₹ Enter Market Price" (keyup)="change_qty($event,'marketPlace')"
+                    <input type="number" placeholder="₹ {{'Enter Market Price'|translate}}" (keyup)="change_qty($event,'marketPlace')"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="marketPlace">
                 </div>
@@ -367,9 +367,9 @@
                 </p>
             </div>
             <div style="margin-top: 18px;">
-                <label>Offer Price <sup style="color: red;">*</sup>:</label>
+                <label>{{'Offer Price'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
-                    <input type="number" placeholder="₹ Enter Offer Price" (keyup)="change_qty($event,'offerPrice')"
+                    <input type="number" placeholder="₹ {{'Enter Offer Price'|translate}}" (keyup)="change_qty($event,'offerPrice')"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="offerPrice">
                 </div>
@@ -396,17 +396,17 @@
                 </p>
             </div>
             <div class="booking-amount" style="padding-top: 18px;">
-                <label>Do you wish to sell after live streaming <sup style="color: red;">*</sup>:</label>
+                <label>{{'Do you wish to sell after live streaming'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
                         <input type="radio" name="afterStreaming" value="yes" id="afterStreaming"
                             formControlName="afterStreaming" (change)="afterStreaming($event)">
-                        <label for="afterStreaming">Yes</label>
+                        <label for="afterStreaming">{{'Yes'|translate}}</label>
                     </span>
                     <span style="margin-left: 50px;">
                         <input type="radio" name="afterStreaming" id="afterStreaming_no" value="no"
                             formControlName="afterStreaming" (change)="afterStreaming($event)">
-                        <label for="afterStreaming_no">No</label>
+                        <label for="afterStreaming_no">{{'No'|translate}}</label>
                     </span>
 
                 </div>
@@ -417,9 +417,9 @@
                 </p>
             </div>
             <div *ngIf="postForm.get('afterStreaming')?.value=='yes' ">
-                <label>After Live Streaming <sup style="color: red;">*</sup>:</label>
+                <label>{{'After Live Streaming'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
-                    <input type="text" placeholder="₹ Enter Price After Live Streaming"
+                    <input type="text" placeholder="₹ {{'Enter After Live Streaming Price'|translate}}"
                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
                         formControlName="postLiveStreamingPirce" (keyup)="change_qty($event,'postLiveStreamingPirce')">
                 </div>
@@ -433,19 +433,19 @@
                 </p>
             </div>
             <div class="booking-amount" *ngIf="postForm.get('transaction').value=='With'" style="padding-top: 18px;">
-                <label>Do You Wish To Take a Booking Amount <sup style="color: red;">*</sup>:</label>
+                <label>{{'Do You Wish To Take a Booking Amount'|translate}} <sup style="color: red;">*</sup>:</label>
                 <div>
                     <span>
                         <input name="bookingAmount" id="bookingAmount" value="yes" type="radio"
                             formControlName="bookingAmount"
                             (change)="validator_remove(['booking_charge','booking_percentage'],postForm.get('bookingAmount').value,true)">
-                        <label for="bookingAmount">Yes</label>
+                        <label for="bookingAmount">{{'Yes'|translate}}</label>
                     </span>
                     <span style="margin-left: 50px;">
                         <input id="bookingAmount_no" name="bookingAmount" value="no" type="radio"
                             formControlName="bookingAmount"
                             (change)="validator_remove(['booking_charge','booking_percentage'],postForm.get('bookingAmount').value,false)">
-                        <label for="bookingAmount_no">No</label>
+                        <label for="bookingAmount_no">{{'No'|translate}}</label>
                     </span>
                 </div>
             </div>
@@ -525,10 +525,10 @@
                 </p>
             </div>
             <div class="main-title-post mt-2">
-                <h5>Media</h5>
+                <h5>{{'Media'|translate}}</h5>
             </div>
             <div class="upload-files">
-                <label>Images Upload :</label>
+                <label>{{'Images Upload'|translate}} :</label>
                 <div class="choose-file"><label for="image">{{id==null?'Choose Image':'Replace Image'}}</label><input
                         style="display: none;" type="file" id="image" accept="image/png, image/gif, image/jpeg"
                         (change)="change_image($event)" [multiple]="5">
@@ -564,7 +564,7 @@
                 </p>
             </div>
             <div class="upload-files">
-                <label>Teaser Upload :</label>
+                <label>{{'Teaser Upload'|translate}} :</label>
                 <div class="choose-file"><label for="video">{{id==null?'Choose Teaser':'Replace Teaser'}}</label>
                     <input style="display: none;" type="file" id="video" (change)="change_video($event)"
                         accept="video/mp4,video/x-m4v,video/*">
@@ -655,8 +655,8 @@
                 </p>
             </div>
             <div style="position: relative;">
-                <label>Description <sup style="color: red;">*</sup>:</label>
-                <textarea placeholder="Enter description" formControlName="discription"
+                <label>{{'Description'|translate}} <sup style="color: red;">*</sup>:</label>
+                <textarea placeholder="{{'Enter description'|translate}}" formControlName="discription"
                     (paste)="onPaste($event,$event,'discription')" (change)="maxlengths($event, 250,'discription')"
                     (keypress)="maxlengths($event, 250,'discription')"></textarea>
                 <span
@@ -670,11 +670,11 @@
                 </p>
             </div>
             <div class="post-btn">
-                <button type="submit" (click)="open_new_pop()">Submit </button>
+                <button type="submit" (click)="open_new_pop()">{{'Submit'|translate}} </button>
                 <button *ngIf="id ==null" type="submit" style="margin-left: 10px;"
                     [disabled]="postForm.invalid || this.minLosterr || this.IncreMentLosterr || this.purchaseLimit "
                     ngClass="{{postForm.invalid || this.minLosterr || this.IncreMentLosterr || this.purchaseLimit?'button-disabled':''}}"
-                    (click)="open_pop()">Preview & Submit</button>
+                    (click)="open_pop()">{{'Preview & Submit'|translate}}</button>
             </div>
         </div>
     </form>

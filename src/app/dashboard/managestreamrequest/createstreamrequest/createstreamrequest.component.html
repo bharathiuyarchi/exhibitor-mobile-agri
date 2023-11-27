@@ -3,7 +3,7 @@
         <backbutton></backbutton>
 
     </div>
-    <h1 class="welcome">Stream Request</h1>
+    <h1 class="welcome">{{'Stream Request'|translate    }}</h1>
     <div class="back" style="visibility: hidden;">
         <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.6359 7.5L10 13.3336L8.18205 15L0 7.5L8.18205 0L10 1.6664L3.6359 7.5Z" fill="var(--green)" />
@@ -16,10 +16,10 @@
         <div class="form-container">
             <div class="forms">
                 <div class="form-flex" *ngIf="id ==null">
-                    <label>Choose Plan <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Choose Plan'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <select name="planId" formControlName="planId" (change)="change_plan($event)">
-                            <option [ngValue]="null" disabled selected>Select Plan</option>
+                            <option [ngValue]="null" disabled selected>{{'Select Plan'|translate}}</option>
                             <option *ngFor="let plan of planes; let i = index" [value]="plan._id">{{plan.planName}}
                             </option>
                         </select>
@@ -29,17 +29,17 @@
                     <span *ngIf="submited  && postRequest.get('planId')?.invalid">Choose Plan</span>
                 </p>
                 <div class="form-flex">
-                    <label>Stream Name <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Stream Name'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <input type="text" name="streamName" id="" formControlName="streamName"
-                            placeholder="Enter Stream Name">
+                            placeholder="{{'Enter Stream Name'|translate}}">
                     </span>
                 </div>
                 <p class="error-message">
                     <span *ngIf="submited  && postRequest.get('streamName')?.invalid">Enter Stream Name</span>
                 </p>
                 <div class="form-flex">
-                    <label>Choose Post <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Choose Post'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <div class="dropdown" onclick="event.stopPropagation()">
                             <div type="text" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Select Post">
@@ -72,10 +72,10 @@
                     <span *ngIf="submited  && postRequest.get('post')?.invalid">Select Post</span>
                 </p>
                 <div class="form-flex">
-                    <label>Primary Language <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Primary Language'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <select name="primarycommunication" formControlName="primarycommunication">
-                            <option [ngValue]="null" disabled selected>Select Language</option>
+                            <option [ngValue]="null" disabled selected>{{'Select Language'|translate}}</option>
                             <option value="Tamil">Tamil</option>
                             <option value="English">English</option>
                             <option value="Hindi">Hindi</option>
@@ -89,10 +89,10 @@
                     <span *ngIf="submited  && postRequest.get('primarycommunication')?.invalid">Select Language</span>
                 </p>
                 <div class="form-flex">
-                    <label>Secondary Language :</label>
+                    <label>{{'Secondary Language'|translate}} :</label>
                     <span class="field_value">
                         <select name="secondarycommunication" formControlName="secondarycommunication">
-                            <option [ngValue]="null" disabled selected>Select Language</option>
+                            <option [ngValue]="null" disabled selected>{{'Select Language'|translate}}</option>
                             <option value="Tamil" *ngIf="postRequest.get('primarycommunication')?.value!='Tamil'">
                                 Tamil</option>
                             <option value="English" *ngIf="postRequest.get('primarycommunication')?.value!='English'">
@@ -111,7 +111,7 @@
                     </span>
                 </div>
                 <div class="form-flex" style="position: relative;">
-                    <label>Images Upload</label>
+                    <label>{{'Images Upload'|translate}}</label>
                     <span class="field_value">
                         <span *ngIf="selected_image  ==null && stepOne ==null" class="over-image"
                             style="display: flex;justify-content: space-between;width: 100%;"
@@ -168,7 +168,7 @@
                 </p>
 
                 <div class="form-flex" style="position: relative;">
-                    <label>Brochure Upload</label>
+                    <label>{{'Brochure Upload'|translate}}</label>
                     <span class="field_value">
                         <span *ngIf="selected_broucher  ==null && stepOne==null" class="over-image"
                             style="display: flex;justify-content: space-between;width: 100%;"
@@ -226,7 +226,7 @@
                 </p>
 
                 <div class="form-flex" style="position: relative;">
-                    <label>Teaser Upload</label>
+                    <label>{{'Teaser Upload'|translate}}</label>
                     <span class="field_value" style="justify-content: space-between;">
                         <span *ngIf="selected_video  ==null && stepOne ==null" class="over-video"
                             style="display: flex;justify-content: space-between;width: 100%;"
@@ -281,10 +281,10 @@
                         *ngIf="this.selected_video_error =='Video Limit 40mb Only' || this.selected_video_error =='invalid video Format'">{{selected_video_error}}</span>
                 </p>
                 <div class="form-flex" *ngIf="id ==null">
-                    <label>Choose Slot <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Choose Slot'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <select name="slot" formControlName="slot">
-                            <option [ngValue]="null" disabled>Select Slot</option>
+                            <option [ngValue]="null" disabled>{{'Select Slot'|translate}}t</option>
                             <option *ngFor="let data of BookedSlots;let i = index" [value]="data._id"
                                 [disabled]="data.slotExpire">
                                 <span style="color:red" *ngIf="data.slotExpire">Expired - </span>
@@ -311,10 +311,10 @@
                     </div>
                 </ng-container>
                 <div class="form-flex">
-                    <label>Location <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Location'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <input type="text" name="Location" id="" formControlName="Location"
-                            placeholder="Enter Your Location">
+                            placeholder="{{'Enter Your Location'|translate}}">
                     </span>
                 </div>
                 <p class="error-message">
@@ -335,7 +335,7 @@
 
                 </div> -->
                 <div class="form-flex" style="position: relative;">
-                    <label>Description <sup style="color: red;">*</sup>:</label>
+                    <label>{{'Description'|translate}} <sup style="color: red;">*</sup>:</label>
                     <span class="field_value">
                         <textarea name="" id="" cols="30" rows="10" formControlName="discription"
                             (paste)="onPaste($event,$event)" (change)="maxlengths($event, 250)"
@@ -350,7 +350,7 @@
                 </p>
             </div>
             <div class="btn mt-3">
-                <button type="submit">Submit</button>
+                <button type="submit">{{'Submit'|translate}}</button>
             </div>
         </div>
     </form>
