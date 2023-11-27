@@ -421,12 +421,20 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     this.countDown = timer(0, 1000).subscribe(() => {
       --this.counter;
       this.nowTimae = new Date().getTime();
-
+      if (this.counter == 5) {
+        this.stop_recording();
+      }
     });
 
   }
   pauseAll: any = false;
+  stop_recording() {
+    if (this.stream.remoteUsers.length == 0) {
+      this.agora.stop_recording({ stream: this.id }).subscribe((res: any) => {
 
+      })
+    }
+  }
   pause_all() {
     console.log(this.pauseAll)
     this.stream.pause_all(this.pauseAll);
